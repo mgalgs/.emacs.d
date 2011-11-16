@@ -1,0 +1,17 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+/**
+ * @class ${1:AppName}.views.${2:viewNamespace}.${3:New}
+ * @extends ExtMVC.view.scaffold.${3:New}
+ * The ${3:New} ${2:viewNamespace} form
+ */
+${1:AppName}.views.${2:viewNamespace}.${3:New} = Ext.extend(ExtMVC.view.scaffold.${3:New}, {
+${4:
+  initComponent: function() {
+    Ext.applyIf(this, {
+      $0
+    \});
+    
+    ${1:AppName}.views.${2:viewNamespace}.${3:New}.superclass.initComponent.apply(this, arguments);
+  \}
+}});

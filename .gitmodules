@@ -1,0 +1,12 @@
+[submodule "indent-hints-mode"]
+	path = indent-hints-mode
+	url = git@github.com:mgalgs/indent-hints-mode.git
+[submodule "site-lisp/indent-hints-mode"]
+	path = site-lisp/indent-hints-mode
+	url = git@github.com:mgalgs/indent-hints-mode.git
+[submodule "site-lisp/fgallina-python-mode"]
+	path = site-lisp/fgallina-python-mode
+	url = https://github.com/fgallina/python.el.git
+[submodule "site-lisp/auto-complete"]
+	path = site-lisp/auto-complete
+	url = https://github.com/m2ym/auto-complete.git

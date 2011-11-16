@@ -1,0 +1,14 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+/**
+ * ${2:Renders the HTML for this component}
+ * @param {Ext.Container} ct The container to render this component to
+ * @param {Number} position The position within the parent container to render this component to
+ */
+onRender: function(ct, position) {
+  this.el = ct.createChild({
+    $0
+  });
+
+  ${1:MyClassName}.superclass.onRender.apply(this, arguments);
+}

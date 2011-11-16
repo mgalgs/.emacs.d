@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: bmat
+# key: bmat
+# --
+\left[
+\begin{array}{${1:cc}}
+$0
+\end{array}
+\right]

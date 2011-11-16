@@ -1,0 +1,12 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+Ext.Msg.confirm(
+  '${1:title}',
+  '${2:description}',
+  function(btn) {
+    if (btn == 'yes') {
+      $0
+    }
+  },
+  ${3:this}
+);

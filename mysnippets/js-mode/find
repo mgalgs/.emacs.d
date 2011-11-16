@@ -1,0 +1,10 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+${1:ModelName}.findById(${2:id}, {${3:
+  loadFailure: function(response) {
+    
+  },}
+  loadSuccess: function($4) {
+    $0
+  }
+});

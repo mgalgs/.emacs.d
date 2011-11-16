@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# contributor: Mitchel Humpherys
+# name: db0
+# key: db0
+# --
+db_0or1row ${1:query_name} {
+    SELECT ${2:*}
+    FROM ${3}
+    WHERE ${4}
+}

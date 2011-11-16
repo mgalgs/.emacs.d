@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# contributor: Mitchel Humpherys
+# name: db_foreach
+# key: dbfor
+# --
+db_foreach ${1:query_name} {
+    ${2:sql}
+} {
+    ${3:tcl}
+}$0

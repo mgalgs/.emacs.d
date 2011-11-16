@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+initComponent: function() {
+  $0
+  ${1:theClass}.superclass.initComponent.apply(this, arguments);
+}${2:,}

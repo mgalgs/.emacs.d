@@ -1,0 +1,19 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# Original by Ed Spencer
+# Modified by Mitchel Humpherys
+# --
+/**
+ * @class ${1:NameSpace}.${2:ClassName}
+ * @extends ${3:BaseClass}
+ * ${4:Description}
+ */
+$1.$2 = Ext.extend($3, {
+
+    ${5:$$(yas/choose-value '("initComponent" "contructor"))} : function() {
+        Ext.applyIf(this, {
+            $0
+        });
+
+        $1.$2.superclass.$5.apply(this, arguments);
+    } //eo $5
+});

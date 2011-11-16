@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+ExtMVC.registerView('${1:viewPackage}', '${2:${TM_FILENAME/(.+)\.js$/$1/}}', {
+  xtype: '${3:panel}'$0
+});

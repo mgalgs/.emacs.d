@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: mat
+# key: mat
+# --
+\left[ \begin{array}{${1:cc}} $0 \end{array} \right]

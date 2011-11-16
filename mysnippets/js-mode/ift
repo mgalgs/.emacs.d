@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+if (typeof ${1:myObject} == ${2:$$(yas/choose-value '("\"object\"" "\"function\"" "\"string\"" "\"number\"" "\"boolean\"" "\"undefined\""))}) ${3:{
+  $0
+}}

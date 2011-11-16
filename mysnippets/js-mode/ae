@@ -1,0 +1,10 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+${1:this}.addEvents(
+  /**
+   * @event ${2:eventName}
+   * ${3:Event description}${4:
+   * @param {${5:paramType}\} ${6:paramName} ${7:parameter description}}
+   */
+  '${2:eventName}'$0
+);

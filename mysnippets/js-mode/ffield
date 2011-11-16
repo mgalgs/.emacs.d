@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+{
+    fieldLabel: '${1:Label}',
+    name:       '$0'
+}

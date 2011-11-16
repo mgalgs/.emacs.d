@@ -1,0 +1,14 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+/**
+ * @property ${1:buttonName}
+ * @type Ext.Button
+ * ${2:Property description}
+ */
+this.${1:buttonName} = new Ext.Button({
+  text    : '${3:Button Text}',${4:
+  iconCls : '${5:icon class}',}${6:
+  disabled: true,}
+  scope   : this,
+  handler : $0
+});

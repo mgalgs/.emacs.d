@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: try-catch-wrap
+# binding: "C-c C-c C-w"
+# --
+try {
+  `yas/selected-text`
+  $0
+} catch (std::exception& e) {
+  std::cerr << "error: " << e.what() << std::endl;
+} // eo try-catch

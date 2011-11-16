@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: store
+# key: store
+# contributor: Mitchel Humpherys
+# --
+Ext.data.JsonStore({
+    url: '${1:page}'
+    ,root: '${2:payload}'
+    ,baseParams: {action: 'LOAD'}
+    ,fields: [$0]
+});

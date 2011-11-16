@@ -1,0 +1,43 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+/**
+ * @class ${1:ClassName}
+ * @extends ${2:Ext.Container}
+ * ${5:Description}
+ */
+${1:ClassName} = function(config) {
+  var config = config || {};
+ 
+  Ext.applyIf(config, {
+    $0
+  });
+ 
+  ${1:ClassName}.superclass.constructor.call(this, config);
+};
+Ext.extend(${1:ClassName}, ${2:Ext.Container}, {
+  /**
+   * ${6:Renders the HTML for this container}
+   * @param {Ext.Container} ct The container to render this component to
+   * @param {Number} position The position within the parent container to render this component to
+   */
+  onRender: function(ct, position) {
+    this.el = ct.createChild({
+      $7
+    });
+${8:
+    this.layoutTarget = this.el.child('${9:childSelector}');
+}  
+    ${1:ClassName}.superclass.onRender.apply(this, arguments);
+  },${10:
+  
+  /**
+   * Returns the element to add child components to
+   * @return {Ext.Element\} The HTML element child components will be rendered to
+   */
+  getLayoutTarget: function() {
+    return this.layoutTarget;
+  \}
+}
+});
+
+${3:Ext.reg('${4:xtype}', ${1:ClassName});}

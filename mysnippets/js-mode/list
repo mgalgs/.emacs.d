@@ -1,0 +1,10 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+listeners: {
+  '${1:load}': {
+    scope: this
+    ,fn: function(${2:args}) {
+      $0
+    }
+  }
+}

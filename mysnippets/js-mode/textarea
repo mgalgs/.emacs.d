@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+{
+  xtype:      'textarea',
+  fieldLabel: '${1:Label}',
+  name:       '${2:name}'
+}$0

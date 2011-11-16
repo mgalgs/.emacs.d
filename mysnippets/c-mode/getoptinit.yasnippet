@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: getoptinit
+# --
+static int flag_verbose;
+static int flag_silent;
+static struct option long_options[] =
+  {
+    /* These options set a flag. */
+    {"verbose", no_argument,       &flag_verbose, 1},
+    {"silent",   no_argument,       &flag_silent, 1},
+    $0
+    {0, 0, 0, 0}
+  };
+extern char *optarg;

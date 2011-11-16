@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+ExtMVC.buildView("${1:Namespace}", "${2:ViewName}", {
+  $0
+});

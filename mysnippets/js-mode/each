@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+Ext.each(${1:Array}, ${2:function(${4}) {
+  ${0}
+\}}${3:, this});

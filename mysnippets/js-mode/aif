@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+Ext.applyIf(${1:config}, {
+  $0
+});

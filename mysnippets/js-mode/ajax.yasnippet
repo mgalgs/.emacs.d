@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: ajax
+# key: ajax
+# contributor: Mitchel Humpherys
+# --
+Ext.Ajax.request({
+    url: '${1:url}'
+    ,params: {$2}
+    ,success: function(response, opts) {
+        var obj = Ext.decode(response.responseText);
+	$0
+    }
+    ,failure: function(response, opts) {
+        Ext.Msg.alert("Error","Error while processing request. Please try again later");
+    }
+});

@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+/**
+ * ${1:Method Description}
+ * @param {${2:String}} ${3:paramName} ${4:Parameter Description}
+ * @return {${5:String}} ${6:Return value Description}
+ */$0

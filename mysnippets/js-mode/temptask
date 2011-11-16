@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+var ${1:tempTask} = new Ext.util.DelayedTask(${2:function() {
+  $0
+}}, ${3:this});
+$1.delay(${4:1000});

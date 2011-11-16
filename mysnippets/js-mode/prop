@@ -1,0 +1,10 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+/**
+ * @property ${1:propertyName}
+ * @type $2
+ * ${3:Description}
+ */
+${4:this.$1} = ${5:new ${2:Boolean}({
+  $0
+})};

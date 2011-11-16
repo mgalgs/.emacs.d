@@ -1,0 +1,17 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+{
+  xtype:        'dataview',
+  emptyText:    '${1:No items to display}',${2:
+  singleSelect: ${3:true},}${4:
+  autoHeight:   true,}${5:
+  autoScroll:   true,
+  overClass:    '${6:x-view-over}',}${7:
+  itemSelector: '${8:div.thumb-wrap}',}
+  store:        ${9:store}${10:,
+  tpl:          ${11:new ${12:Ext.XTemplate}(
+    '<tpl for=".">',
+      $0
+    '</tpl>'
+  )}}
+}

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# contributor: Mitchel Humpherys
+# name: stdin
+# --
+scanf("${1:%d}", ${2:&input});
+while(!feof(stdin)) {
+   /* process the data */
+   $0
+   /* read another line */
+  scanf("$1", $2);
+}

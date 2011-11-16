@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+if (${1:this}.fireEvent('${2:eventName}'${3:, ${4:params}})) {
+  $0
+}

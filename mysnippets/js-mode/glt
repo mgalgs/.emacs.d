@@ -1,0 +1,9 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+/**
+ * Returns the HTML element to render child components to
+ * @return {Ext.Element} The element child components will be rendered to
+ */
+getLayoutTarget: function() {
+  return ${1:this.layoutTarget};
+}

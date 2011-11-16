@@ -1,0 +1,12 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+/**
+ * @class ${1:MyNamespace}.models.${2:thing}
+ * @extends ExtMVC.Model.Base
+ */
+ExtMVC.model.define("$2", {${3:
+  adapter: '${4:REST}',}
+  fields: [
+    $0
+  ]
+});

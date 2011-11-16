@@ -1,0 +1,9 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+ExtMVC.registerModel("${1:${TM_FILENAME/(.+)\.js$/$1/}}", {
+  ${3:primaryKey: "${2:id}",
+  
+  }fields: [
+    {name: "${2:id}", type: "int"}$0
+  ]
+});

@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+${1:var ${2:viewport}} = new Ext.Viewport({
+  layout: '${3:border}',
+  items: [
+    $0
+  ]
+});

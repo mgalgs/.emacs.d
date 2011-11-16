@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# contributor: Mitchel Humpherys
+# name: adlib
+# --
+ad_library {
+    ${1:Description of library}
+
+    @author ${2:`(user-full-name)`}
+    @created ${3:`(format-time-string "%d %B %Y")`}
+}
+
+namespace eval ${4:library_name} {}

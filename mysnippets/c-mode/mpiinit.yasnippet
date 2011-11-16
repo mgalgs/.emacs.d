@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# contributor: Mitchel Humpherys
+# name: mpiinit
+# --
+int err;
+/* Initialize MPI (checking for errors) */
+if ( 0 != (err = MPI_Init(&argc, &argv)) ) {
+  fprintf(stderr, "Error running MPI_Init: %d\n", err);
+  exit(-1);
+}
+$0
+MPI_Finalize();

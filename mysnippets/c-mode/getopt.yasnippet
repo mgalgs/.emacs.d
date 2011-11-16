@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: getopt
+# --
+int option_index;
+for ( ret = getopt_long(argc, argv, "", long_options, &option_index);
+      ret != -1;
+      ret = getopt_long(argc, argv, "", long_options, &option_index)) {
+  switch (ret) {
+  case 0:			/* long options */
+    if (long_options[option_index].flag != 0) /* a flag got set */
+      break;
+
+    /* non-flag options: */
+    printf ("option %s", long_options[option_index].name);
+    if (optarg)		/* optarg gets set by getopt_long */
+      printf (" with arg %s", optarg);
+    printf ("\n");
+    break;
+  } /* eo switch  */
+}   /* eo for */

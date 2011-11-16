@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# Contributor: Mitchel Humpherys
+# name: try
+# --
+try {
+    $0
+}
+catch(exception& e) {
+    cerr << "error: " << e.what() << "\n";
+    return 1;
+}
+catch(...) {
+    cerr << "Exception of unkown type!\n";
+}

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# contributor: Mitchel Humpherys
+# name: adpage
+# --
+ad_page_contract {
+    ${1:Description of page}
+
+    @author ${2:`(user-full-name)`}
+    @creation-date ${3:`(format-time-string "%d %B %Y")`}
+} {
+    {${4:var1} ${5:"default value"}}
+}

@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+ExtMVC.registerController("${1:controllerName}", {
+  model: ExtMVC.getModel("${2:ModelName}")$0
+});

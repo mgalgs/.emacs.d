@@ -1,0 +1,16 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+{
+  xtype:          'combo',
+  mode:           'local',
+  triggerAction:  'all',
+  forceSelection: true,
+  editable:       false,
+  anchor:         "-20",
+  fieldLabel:     '${1:Label}',
+  name:           '${2:${1/(.*)/\l$1/}}',
+  hiddenName:     '${2:${1/(.*)/\l$1/}}',
+  displayField:   '${3:name}',
+  valueField:     '${4:value}',
+  store:          ${5:store}
+}

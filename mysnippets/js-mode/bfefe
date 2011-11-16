@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+# --
+if (${1:this}.fireEvent('${3:before-${2:eventName}}'${4:, ${5:params}}) !== false) {
+  $0
+  
+  ${1:this}.fireEvent('${2:eventName}'${6:${4:, ${5:params}}});
+}
