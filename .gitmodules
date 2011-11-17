@@ -10,3 +10,12 @@
 [submodule "site-lisp/yasnippet"]
 	path = site-lisp/yasnippet
 	url = https://github.com/capitaomorte/yasnippet.git
+[submodule "site-lisp/textmate"]
+	path = site-lisp/textmate
+	url = https://mgalgs@github.com/mgalgs/textmate.el.git
+[submodule "site-lisp/gist"]
+	path = site-lisp/gist
+	url = https://github.com/defunkt/gist.el.git
+[submodule "site-lisp/ace-jump-mode"]
+	path = site-lisp/ace-jump-mode
+	url = https://github.com/winterTTr/ace-jump-mode.git

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# contributor: Mitchel Humpherys
+# name: Stringize
+# binding: C-c s s
+# --
+"`yas/selected-text`"
