@@ -4,8 +4,12 @@
       (append (list nil
                     "~/.emacs.d/site-lisp"
 		    "~/.emacs.d/site-lisp/auto-complete"
+		    "~/.emacs.d/site-lisp/yasnippet"
 		    "~/.emacs.d/python-config")
               load-path))
+
+;; set up python
+(load-file "~/.emacs.d/python-config/epy-mitch.el")
 
 (require 'ido)			    ;ido-mode:
 (ido-mode)			    ;sweet!
@@ -21,9 +25,6 @@
         "^\*Help\*" "^\*RE\-Builder\*"
 		"^\*Pymacs\*" "*Async Shell Command*"
         "^\*GTAGS SELECT\*"))
-
-;; set up python
-(load-file "~/.emacs.d/python-config/epy-mitch.el")
 
 (setq inhibit-startup-screen t)
 (tool-bar-mode 0)
@@ -48,3 +49,15 @@
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . espresso-mode))
 (autoload 'espresso-mode "espresso" nil t)
+
+;; pkgbuild mode
+(autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
+(setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode))
+			      auto-mode-alist))
+
+;; yasnippet!
+(require 'yasnippet)
+(yas/initialize)
+(setq yas/snippet-dirs '("~/.emacs.d/mysnippets"
+                         "~/.emacs.d/site-lisp/yasnippet/snippets"))
+(mapc 'yas/load-directory yas/snippet-dirs)
