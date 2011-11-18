@@ -26,7 +26,6 @@
 (define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
 
 (global-set-key "\M-Y" 'yank-pop-forwards)
-(global-set-key (kbd "C-c m g") 'grep-with-prefix-arg)
 
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
@@ -56,3 +55,5 @@
 (global-set-key (kbd "C-c ;") 'iy-go-to-char-continue)
 (global-set-key (kbd "C-c ,") 'iy-go-to-char-continue-backward)
 
+(global-set-key (kbd "C-M-S-SPC") 'one-key-menu-toplevel)
+(global-set-key (kbd "M-S") 'lazy-search-menu)

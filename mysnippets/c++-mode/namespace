@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: namespace
+# key: nsp
+# --
+namespace ${1:} {
+$0
+}; // namespace $1

@@ -11,6 +11,7 @@
                     "~/.emacs.d/site-lisp/gist"
                     "~/.emacs.d/site-lisp/indent-hints-mode"
                     "~/.emacs.d/site-lisp/ace-jump-mode"
+                    "~/.emacs.d/auto-install"
                     "~/.emacs.d/python-config")
               load-path))
 
@@ -170,3 +171,13 @@
 
 ;; iy go to char motion helper
 (require 'iy-go-to-char)
+
+;; auto install
+(require 'auto-install)
+
+;; one key
+(require 'one-key)
+
+;; lazy search
+(require 'lazy-search)
+(setq-default lazy-search-keep-region nil)
