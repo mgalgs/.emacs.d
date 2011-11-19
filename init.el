@@ -48,7 +48,7 @@
 ;; set up yasnippet
 (load-file "~/.emacs.d/yasnippet-setup.el")
 
-;;; begin some mics setup
+;;; begin some misc setup
 (tool-bar-mode 0)
 (show-paren-mode t)
 
@@ -61,6 +61,7 @@
 (set-scroll-bar-mode 'right)
 
 (setq
+ skeleton-pair t
  display-time-day-and-date t
  nxml-sexp-element-flag t
  linum-format "%4d"

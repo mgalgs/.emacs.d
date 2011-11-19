@@ -57,3 +57,9 @@
 
 (global-set-key (kbd "C-M-S-SPC") 'one-key-menu-toplevel)
 (global-set-key (kbd "M-S") 'lazy-search-menu)
+
+(global-set-key "(" 'skeleton-pair-insert-maybe)
+(global-set-key "[" 'skeleton-pair-insert-maybe)
+(global-set-key "{" 'skeleton-pair-insert-maybe)
+(global-set-key "\"" 'skeleton-pair-insert-maybe)
+

@@ -1,14 +1,5 @@
 ;;; epy-completion.el --- A few common completion tricks
 
-;; Pairing parentheses
-
-;; All languages:
-(setq skeleton-pair t)
-(global-set-key "(" 'skeleton-pair-insert-maybe)
-(global-set-key "[" 'skeleton-pair-insert-maybe)
-(global-set-key "{" 'skeleton-pair-insert-maybe)
-(global-set-key "\"" 'skeleton-pair-insert-maybe)
-
 ;; Just python
 (add-hook 'python-mode-hook 
 	  (lambda () 
