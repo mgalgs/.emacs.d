@@ -163,8 +163,8 @@
 (add-hook 'textmate-goto-symbol-hook 'push-mark)
 
 ;; zenburn theme
-(require 'color-theme-zenburn)
-(color-theme-zenburn)
+;(require 'color-theme-zenburn)
+;(color-theme-zenburn)
 
 ;; gist fun
 (require 'gist)
