@@ -319,3 +319,16 @@ otherwise we prompt the user."
   (let ((nstr (number-to-string n))
         (npretty (my-thousands-separate n)))
     (message "%s | %g | %d | %s" npretty n n nstr)))
+
+(defun my-kill-last-message ()
+  "Puts the last line from the *Messages* buffer onto the kill
+ring"
+  (interactive)
+  (with-current-buffer "*Messages*"
+    (goto-char (point-max))
+    (forward-line -1)
+    (let ((last-message (buffer-substring-no-properties
+                         (point)
+                         (line-end-position))))
+      (kill-new last-message)
+      (message "Killed last message: %s" last-message))))

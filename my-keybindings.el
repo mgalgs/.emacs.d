@@ -45,6 +45,7 @@
 (global-set-key (kbd "C-c m i") 'kill-where-i-am)
 (global-set-key (kbd "C-c m g") 'grep-what-im-on)
 (global-set-key (kbd "C-c m w") 'my-make-this-buffer-writable)
+(global-set-key (kbd "C-c m l") 'my-kill-last-message)
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 

@@ -15,6 +15,7 @@
         (("w" . "Make this buffer writable") . my-make-this-buffer-writable)
         (("k" . "Kill buffer and window") . kill-buffer-and-window)
         (("m" . "Woman") . woman)
+        (("l" . "Kill last message") . my-kill-last-message)
         (("s" . "Search all buffers") . my-search-all-buffers)))
 
 (setq one-key-menu-rfc-alist
