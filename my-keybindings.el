@@ -63,3 +63,7 @@
 (global-set-key "{" 'skeleton-pair-insert-maybe)
 (global-set-key "\"" 'skeleton-pair-insert-maybe)
 
+;; key chords:
+(key-chord-define-global "jr" 'jump-to-register)
+(key-chord-define-global "fd" 'iy-go-to-char)
+(key-chord-define-global "pw" 'pwd)

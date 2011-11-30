@@ -36,6 +36,10 @@
 ;; some utility functions
 (load-file "~/.emacs.d/my-util.el")
 
+;; key chord
+(require 'key-chord)
+(key-chord-mode 1)
+
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
 
@@ -164,8 +168,8 @@
 (add-hook 'textmate-goto-symbol-hook 'push-mark)
 
 ;; zenburn theme
-;(require 'color-theme-zenburn)
-;(color-theme-zenburn)
+(require 'color-theme-zenburn)
+(color-theme-zenburn)
 
 ;; gist fun
 (require 'gist)
@@ -183,3 +187,4 @@
 ;; lazy search
 (require 'lazy-search)
 (setq-default lazy-search-keep-region nil)
+
