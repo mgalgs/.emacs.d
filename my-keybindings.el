@@ -26,6 +26,9 @@
 (define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
 
 (global-set-key "\M-Y" 'yank-pop-forwards)
+(global-set-key [(shift delete)] 'clipboard-kill-region)
+(global-set-key [(control insert)] 'clipboard-kill-ring-save)
+(global-set-key [(shift insert)] 'clipboard-yank)
 
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)

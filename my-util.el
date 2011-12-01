@@ -327,8 +327,7 @@ ring"
   (with-current-buffer "*Messages*"
     (goto-char (point-max))
     (forward-line -1)
-    (let ((last-message (buffer-substring-no-properties
-                         (point)
-                         (line-end-position))))
-      (kill-new last-message)
-      (message "Killed last message: %s" last-message))))
+    (clipboard-kill-ring-save (point) (line-end-position))
+    (message "Killed last message: %s" (buffer-substring-no-properties
+                                        (point)
+                                        (line-end-position)))))
