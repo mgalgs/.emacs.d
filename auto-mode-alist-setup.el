@@ -16,3 +16,6 @@
 
 ;; Magically go into c++ mode (for windriver headers):
 (add-to-list 'magic-fallback-mode-alist '("^// " . c++-mode))
+
+(add-to-list 'auto-mode-alist '("\\.markdown" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))

@@ -19,3 +19,9 @@
 [submodule "site-lisp/ace-jump-mode"]
 	path = site-lisp/ace-jump-mode
 	url = https://github.com/winterTTr/ace-jump-mode.git
+[submodule "site-lisp/markdown-mode"]
+	path = site-lisp/markdown-mode
+	url = https://github.com/defunkt/markdown-mode.git
+[submodule "site-lisp/yaml-mode"]
+	path = site-lisp/yaml-mode
+	url = https://github.com/yoshiki/yaml-mode.git
