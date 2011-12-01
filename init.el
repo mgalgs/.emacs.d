@@ -2,6 +2,7 @@
 
 (setq load-path
       (append (list nil
+                    "~/.emacs.d/auto-install"
                     "~/.emacs.d/site-lisp"
                     "~/.emacs.d/site-lisp/auto-complete"
                     "~/.emacs.d/site-lisp/yasnippet"
@@ -11,7 +12,8 @@
                     "~/.emacs.d/site-lisp/gist"
                     "~/.emacs.d/site-lisp/indent-hints-mode"
                     "~/.emacs.d/site-lisp/ace-jump-mode"
-                    "~/.emacs.d/auto-install"
+                    "~/.emacs.d/site-lisp/markdown-mode"
+                    "~/.emacs.d/site-lisp/yaml-mode"
                     "~/.emacs.d/python-config")
               load-path))
 
@@ -188,3 +190,8 @@
 (require 'lazy-search)
 (setq-default lazy-search-keep-region nil)
 
+;; markdown mode
+(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
+
+;; yaml mode
+(autoload 'yaml-mode "yaml-mode" "Major mode for editing yaml files" t)
