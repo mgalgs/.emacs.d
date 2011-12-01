@@ -26,6 +26,9 @@
 (define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
 
 (global-set-key "\M-Y" 'yank-pop-forwards)
+(global-set-key [(shift delete)] 'clipboard-kill-region)
+(global-set-key [(control insert)] 'clipboard-kill-ring-save)
+(global-set-key [(shift insert)] 'clipboard-yank)
 
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
@@ -45,6 +48,7 @@
 (global-set-key (kbd "C-c m i") 'kill-where-i-am)
 (global-set-key (kbd "C-c m g") 'grep-what-im-on)
 (global-set-key (kbd "C-c m w") 'my-make-this-buffer-writable)
+(global-set-key (kbd "C-c m l") 'my-kill-last-message)
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
@@ -63,3 +67,7 @@
 (global-set-key "{" 'skeleton-pair-insert-maybe)
 (global-set-key "\"" 'skeleton-pair-insert-maybe)
 
+;; key chords:
+(key-chord-define-global "jr" 'jump-to-register)
+(key-chord-define-global "fd" 'iy-go-to-char)
+(key-chord-define-global "pw" 'pwd)

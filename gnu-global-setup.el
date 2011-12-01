@@ -30,17 +30,6 @@
 
 
 (defun my-gtags-mode-hook ()
-  (define-key gtags-mode-map "\C-cgh" 'gtags-display-browser)
-  (define-key gtags-mode-map "\C-cgm" 'gtags-find-tag-from-here)
-  (define-key gtags-mode-map "\C-cgk" 'gtags-pop-stack)
-  (define-key gtags-mode-map "\C-cgf" 'gtags-find-file)
-  (define-key gtags-mode-map "\C-cgp" 'gtags-parse-file)
-  (define-key gtags-mode-map "\C-cgg" 'gtags-find-with-grep)
-  (define-key gtags-mode-map "\C-cgi" 'gtags-find-with-idutils)
-  (define-key gtags-mode-map "\C-cgs" 'gtags-find-symbol)
-  (define-key gtags-mode-map "\C-cgr" 'gtags-find-rtag)
-  (define-key gtags-mode-map "\C-cgt" 'gtags-find-tag)
-  (define-key gtags-mode-map "\C-cgd" 'gtags-visit-rootdir)
   (define-key gtags-mode-map (kbd "M-.") 'semantic-goto-definition) ;gtags binds to M-. and M-* which we don't want
   (define-key gtags-mode-map (kbd "M-*") 'semantic-pop-tag-mark))
 
