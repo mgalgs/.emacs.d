@@ -188,3 +188,4 @@
 (require 'lazy-search)
 (setq-default lazy-search-keep-region nil)
 
+(require 'tbemail)

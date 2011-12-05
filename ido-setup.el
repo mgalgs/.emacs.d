@@ -9,6 +9,6 @@
         "^\*Bookmark" "^\*Compile\-Log"
         "^\*Buffer List" "^\*scratch\*"
         "^\*Shell Command Output" ;"^\*compilation\*"
-        "^\*Help\*" "^\*RE\-Builder\*"
+        "^\*RE\-Builder\*"
 		"^\*Pymacs\*" "*Async Shell Command*"
         "^\*GTAGS SELECT\*"))
