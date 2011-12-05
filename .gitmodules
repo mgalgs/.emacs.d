@@ -22,6 +22,3 @@
 [submodule "site-lisp/yaml-mode"]
 	path = site-lisp/yaml-mode
 	url = https://github.com/yoshiki/yaml-mode.git
-[submodule "site-lisp/yasnippet"]
-	path = site-lisp/yasnippet
-	url = https://github.com/capitaomorte/yasnippet.git
