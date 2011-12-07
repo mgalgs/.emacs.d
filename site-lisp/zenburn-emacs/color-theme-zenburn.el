@@ -66,6 +66,8 @@
 (defvar zenburn-red-2 "#ac7373")
 (defvar zenburn-red-3 "#9c6363")
 (defvar zenburn-red-4 "#8c5353")
+(defvar zenburn-red-5 "#7c4343")
+(defvar zenburn-red-6 "#6c3333")
 (defvar zenburn-orange "#dfaf8f")
 (defvar zenburn-yellow "#f0dfaf")
 (defvar zenburn-yellow-1 "#e0cf9f")
@@ -155,7 +157,7 @@
      (mode-line-buffer-id ((t (:inherit zenburn-strong-1-face))))
      (mode-line-inactive
       ((t (:foreground ,zenburn-green-1  :background ,zenburn-bg-1))))
-     (region ((t (:background ,zenburn-bg-1))))
+     (region ((t (:background ,zenburn-red-6))))
      (secondary-selection ((t (:background ,zenburn-bg+2))))
      (trailing-whitespace ((t (:background ,zenburn-red))))
      (vertical-border ((t (:foreground ,zenburn-fg))))
