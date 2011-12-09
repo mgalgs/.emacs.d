@@ -24,4 +24,4 @@
 	url = https://github.com/yoshiki/yaml-mode.git
 [submodule "site-lisp/yasnippet"]
 	path = site-lisp/yasnippet
-	url = https://github.com/capitaomorte/yasnippet.git
+	url = https://mgalgs@github.com/mgalgs/yasnippet.git

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: testfile
+# key: testfile
+# expand-env: ((inputfile (file-name-nondirectory (buffer-file-name))) (outputfile (file-name-sans-extension inputfile)))
+# --
+// -*- compile-command: "g++ -g -o `outputfile` `inputfile`" -*-
+
+int main(int argc, char *argv[])
+{
+    $0
+    return 0;
+}

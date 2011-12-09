@@ -24,7 +24,7 @@
 (load-file "~/.emacs.d/python-config/epy-mitch.el")
 
 ;; set up cedet
-(load-file "~/.emacs.d/semantic-setup.el")
+(load-file "~/.emacs.d/cedet-setup.el")
 
 ;; set up gnu global
 (load-file "~/.emacs.d/gnu-global-setup.el")
