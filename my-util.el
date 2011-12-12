@@ -1,5 +1,8 @@
 (require 'cl)
 
+;; load some other guys
+(load-file "~/.emacs.d/auto-install/split-window-transpose.el")
+
 (defun fill-out-to-column (&optional width fill-char)
   "Insert FILL-CHAR at the end of the current line until the line
   is WIDTH columns wide. WIDTH defaults to 80 and FILL-CHAR
@@ -254,10 +257,11 @@
 (defun kill-where-i-am ()
   "put filename:linum in the kill ring"
   (interactive)
-  (kill-new
-   (concat (file-name-nondirectory (buffer-file-name))
-	   ":"
-	   (number-to-string (gtags-current-lineno)))))
+  (let ((x-select-enable-clipboard t))
+    (kill-new
+     (concat (file-name-nondirectory (buffer-file-name))
+             ":"
+             (number-to-string (gtags-current-lineno))))))
 
 (defun grep-what-im-on ()
   "grep whatever i'm on by passing a prefix:"

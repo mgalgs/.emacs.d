@@ -16,6 +16,7 @@
         (("k" . "Kill buffer and window") . kill-buffer-and-window)
         (("m" . "Woman") . woman)
         (("l" . "Kill last message") . my-kill-last-message)
+        (("t" . "Transpose split windows") . split-window-transpose)
         (("s" . "Search all buffers") . my-search-all-buffers)))
 
 (setq one-key-menu-rfc-alist
