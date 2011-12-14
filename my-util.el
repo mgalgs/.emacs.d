@@ -1,8 +1,5 @@
 (require 'cl)
 
-;; load some other guys
-(load-file "~/.emacs.d/auto-install/split-window-transpose.el")
-
 (defun fill-out-to-column (&optional width fill-char)
   "Insert FILL-CHAR at the end of the current line until the line
   is WIDTH columns wide. WIDTH defaults to 80 and FILL-CHAR
