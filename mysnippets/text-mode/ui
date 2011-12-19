@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ui
+# key: ui
+# --
+unsigned int $0
