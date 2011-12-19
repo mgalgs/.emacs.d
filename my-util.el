@@ -335,3 +335,16 @@ ring"
     (message "Killed last message: %s" (buffer-substring-no-properties
                                         (point)
                                         (line-end-position)))))
+
+(defun my-make-buffer-a-scratch-buffer (buf loc)
+  "Copy the contents of BUF into a temporary buffer, switch to
+that buffer, and move point to LOC in the new buffer."
+  (let ((new-buf (generate-new-buffer
+                  (format"SCRATCH_%s" (buffer-name buf)))))
+    (switch-to-buffer new-buf)
+    (insert-buffer buf)
+    (goto-char loc)))
+
+(defun my-make-this-a-scratch-buffer ()
+  (interactive)
+  (my-make-buffer-a-scratch-buffer (current-buffer) (point)))
