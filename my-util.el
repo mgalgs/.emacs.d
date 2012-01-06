@@ -201,11 +201,11 @@
 
 (defun rebuild-the-unit-tests ()
   (interactive)
-  (my-compile-unit-tests my-test-loc "./rebuild.sh"))
+  (my-compile-unit-tests my-test-loc "schroot -p -- ./rebuild.sh"))
 
 (defun build-the-unit-tests ()
   (interactive)
-  (my-compile-unit-tests my-test-loc "./build.sh"))
+  (my-compile-unit-tests my-test-loc "schroot -p -- ./build.sh"))
 
 (defun browse-url-chrome (url &rest args)
   "Use chrome to browse urls"

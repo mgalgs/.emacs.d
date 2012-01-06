@@ -72,4 +72,3 @@
 (key-chord-define-global "fd" 'iy-go-to-char)
 (key-chord-define-global "pw" 'pwd)
 (key-chord-define-global "tr" 'string-insert-rectangle)
-

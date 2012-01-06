@@ -206,3 +206,11 @@
 
 ;; transpose split windows
 (load-file "~/.emacs.d/auto-install/transpose.el")
+
+;; column marker
+(require 'column-marker)
+(add-hook 'c-mode-common-hook (lambda () (interactive) (column-marker-3 80)))
+
+;; browse kill ring visually
+(require 'browse-kill-ring)
+
