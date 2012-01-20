@@ -201,11 +201,11 @@
 
 (defun rebuild-the-unit-tests ()
   (interactive)
-  (my-compile-unit-tests my-test-loc "./rebuild.sh"))
+  (my-compile-unit-tests my-test-loc "schroot -p -- ./rebuild.sh"))
 
 (defun build-the-unit-tests ()
   (interactive)
-  (my-compile-unit-tests my-test-loc "./build.sh"))
+  (my-compile-unit-tests my-test-loc "schroot -p -- ./build.sh"))
 
 (defun browse-url-chrome (url &rest args)
   "Use chrome to browse urls"
@@ -254,10 +254,11 @@
 (defun kill-where-i-am ()
   "put filename:linum in the kill ring"
   (interactive)
-  (kill-new
-   (concat (file-name-nondirectory (buffer-file-name))
-	   ":"
-	   (number-to-string (gtags-current-lineno)))))
+  (let ((x-select-enable-clipboard t))
+    (kill-new
+     (concat (file-name-nondirectory (buffer-file-name))
+             ":"
+             (number-to-string (gtags-current-lineno))))))
 
 (defun grep-what-im-on ()
   "grep whatever i'm on by passing a prefix:"
@@ -331,3 +332,16 @@ ring"
     (message "Killed last message: %s" (buffer-substring-no-properties
                                         (point)
                                         (line-end-position)))))
+
+(defun my-make-buffer-a-scratch-buffer (buf loc)
+  "Copy the contents of BUF into a temporary buffer, switch to
+that buffer, and move point to LOC in the new buffer."
+  (let ((new-buf (generate-new-buffer
+                  (format"SCRATCH_%s" (buffer-name buf)))))
+    (switch-to-buffer new-buf)
+    (insert-buffer buf)
+    (goto-char loc)))
+
+(defun my-make-this-a-scratch-buffer ()
+  (interactive)
+  (my-make-buffer-a-scratch-buffer (current-buffer) (point)))

@@ -55,7 +55,11 @@
 (load-file "~/.emacs.d/yasnippet-setup.el")
 
 ;;; begin some misc setup
-(tool-bar-mode 0)
+(if window-system
+    (progn
+      (tool-bar-mode 0)
+      (set-scroll-bar-mode 'right)))
+
 (show-paren-mode t)
 
 ; display date and time in status bar
@@ -64,7 +68,6 @@
 ;; ansi color escape codes fun:
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
-(set-scroll-bar-mode 'right)
 
 (setq
  skeleton-pair t
@@ -170,8 +173,10 @@
 (add-hook 'textmate-goto-symbol-hook 'push-mark)
 
 ;; zenburn theme
-(require 'color-theme-zenburn)
-(color-theme-zenburn)
+(if window-system
+    (progn
+      (require 'color-theme-zenburn)
+      (color-theme-zenburn)))
 
 ;; gist fun
 (require 'gist)
@@ -198,3 +203,14 @@
 
 ;; yaml mode
 (autoload 'yaml-mode "yaml-mode" "Major mode for editing yaml files" t)
+
+;; transpose split windows
+(load-file "~/.emacs.d/auto-install/transpose.el")
+
+;; column marker
+(require 'column-marker)
+(add-hook 'c-mode-common-hook (lambda () (interactive) (column-marker-3 80)))
+
+;; browse kill ring visually
+(require 'browse-kill-ring)
+

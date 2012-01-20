@@ -5,6 +5,8 @@
 (defvar one-key-menu-rfc-alist nil
   "`One-Key' menu list for rfc view stuffs.")
 
+(setq-default one-key-items-per-line 1)
+
 ;;;; the alists
 (setq one-key-menu-misc-alist
       '(
@@ -16,6 +18,8 @@
         (("k" . "Kill buffer and window") . kill-buffer-and-window)
         (("m" . "Woman") . woman)
         (("l" . "Kill last message") . my-kill-last-message)
+        (("t" . "Transpose split windows") . split-window-transpose)
+        (("c" . "Make this a scratch buffer") . my-make-this-a-scratch-buffer)
         (("s" . "Search all buffers") . my-search-all-buffers)))
 
 (setq one-key-menu-rfc-alist

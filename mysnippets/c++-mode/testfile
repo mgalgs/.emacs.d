@@ -3,7 +3,7 @@
 # key: testfile
 # expand-env: ((inputfile (file-name-nondirectory (buffer-file-name))) (outputfile (file-name-sans-extension inputfile)))
 # --
-// -*- compile-command: "g++ -g -o `outputfile` `inputfile`" -*-
+// -*- compile-command: "g++ -g -O0 -Werror -Wall -o `outputfile` `inputfile`" -*-
 
 int main(int argc, char *argv[])
 {

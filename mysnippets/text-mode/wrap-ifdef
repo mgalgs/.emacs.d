@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: wrap-ifdef
+# binding: C-c s i
+# --
+#if${1:n}def ${2:}
+  `yas/selected-text`
+#endif /* $2 */
+$0
