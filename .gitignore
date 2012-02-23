@@ -3,4 +3,4 @@ abbrev_defs
 eproject.lst
 ac-comphist.dat
 *.elc
-*patch
+*.patch
