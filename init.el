@@ -29,6 +29,9 @@
 ;; set up gnu global
 (load-file "~/.emacs.d/gnu-global-setup.el")
 
+;; set up yasnippet
+(load-file "~/.emacs.d/yasnippet-setup.el")
+
 ;; set up org mode
 (load-file "~/.emacs.d/org-setup.el")
 
@@ -50,9 +53,6 @@
 
 ;; set up ido mode
 (load-file "~/.emacs.d/ido-setup.el")
-
-;; set up yasnippet
-(load-file "~/.emacs.d/yasnippet-setup.el")
 
 ;;; begin some misc setup
 (if window-system
