@@ -122,7 +122,7 @@
   (message "Getting available unit tests...")
   (let* ((the-test-loc (file-name-as-directory my-test-loc))
          (the-listing-command-output
-          (shell-command-to-string (concat the-test-loc "build/unittest -l")))
+          (shell-command-to-string (concat "schroot -p -- " the-test-loc "build/unittest -l")))
          (the-choices
           (cons "All Tests" (cdr (split-string the-listing-command-output "\n"))))
          (whichtests
@@ -136,7 +136,7 @@
               ""
             whichtests))
          (the-command
-          (concat the-test-loc "build/unittest " the-command-args)))
+          (concat "schroot -p -- " the-test-loc "build/unittest " the-command-args)))
     (message (concat "Running unittest" the-command-args))
     (async-shell-command the-command "*Unit Tests*")))
 
@@ -345,3 +345,12 @@ that buffer, and move point to LOC in the new buffer."
 (defun my-make-this-a-scratch-buffer ()
   (interactive)
   (my-make-buffer-a-scratch-buffer (current-buffer) (point)))
+
+(defun convert-size-to-bytes (s)
+  "Given a size with suffix K or M, returns the size in bytes"
+  (let* ((slen (length s))
+         (all-but-last (substring s 0 (- slen 1 )))
+         (last-char (downcase (substring s (- slen 1) slen))))
+    (cond
+     ((string= last-char "k") (* 1024 (string-to-number all-but-last)))
+     ((string= last-char "m") (* 1048576 (string-to-number all-but-last))))))
