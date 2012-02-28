@@ -38,18 +38,9 @@
 ;; set up a bunch of auto-mode-alist stuff
 (load-file "~/.emacs.d/auto-mode-alist-setup.el")
 
-;; some utility functions
-(load-file "~/.emacs.d/my-util.el")
-
 ;; key chord
 (require 'key-chord)
 (key-chord-mode 1)
-
-;; some keybindings
-(load-file "~/.emacs.d/my-keybindings.el")
-
-;; some general advice
-(load-file "~/.emacs.d/my-advice.el")
 
 ;; set up ido mode
 (load-file "~/.emacs.d/ido-setup.el")
@@ -214,3 +205,15 @@
 ;; browse kill ring visually
 (require 'browse-kill-ring)
 
+;; pretty control L page breaks
+(require 'pp-c-l)
+(pretty-control-l-mode 1)
+
+;; some keybindings
+(load-file "~/.emacs.d/my-keybindings.el")
+
+;; some general advice
+(load-file "~/.emacs.d/my-advice.el")
+
+;; some utility functions
+(load-file "~/.emacs.d/my-util.el")
