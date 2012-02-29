@@ -382,3 +382,41 @@ their titles. Requires rfc-index.txt to be in place."
     (with-output-to-temp-buffer "*Downloaded RFCs*"
       (dolist (output-line rfc-output)
         (princ (concat output-line "\n"))))))
+
+(defcustom pageview-narrow-to-page t
+  "When non-nil, narrows to page whenever
+  `pageview-goto-next-page-break' or
+  `pageview-goto-previous-page-break' are used")
+
+(defun pageview-toggle-narrow-to-page ()
+  "toggles the value of `pageview-narrow-to-page'"
+  (interactive)
+  (setq pageview-narrow-to-page (not pageview-narrow-to-page)))
+
+(defun pageview-navigate-page-break (how)
+  "Navigates to the next or previous page break (depending on
+  HOW) and recenters the screen with the page break at the top.
+
+HOW should be `forward-page', `backward-page', or similar."
+  (interactive)
+  (widen)
+  ;; (if (and pageview-narrow-to-page
+  ;;          ;; extra backward-page when we're narrowing
+  ;;          (equal how 'backward-page))
+  ;;     (backward-page))
+  (funcall how)
+  (recenter 3)
+  (when pageview-narrow-to-page
+    (narrow-to-page)))
+
+(defun pageview-goto-next-page-break ()
+  "Navigates to the next page break and recenters the screen with
+  the page break at the top."
+  (interactive)
+  (pageview-navigate-page-break 'forward-page))
+
+(defun pageview-goto-previous-page-break ()
+  "Navigates to the previous page break and recenters the screen
+  with the page break at the top."
+  (interactive)
+  (pageview-navigate-page-break 'backward-page))

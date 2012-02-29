@@ -50,6 +50,8 @@
 (global-set-key (kbd "C-c m g") 'grep-what-im-on)
 (global-set-key (kbd "C-c m w") 'my-make-this-buffer-writable)
 (global-set-key (kbd "C-c m l") 'my-kill-last-message)
+(global-set-key (kbd "C-c m n") 'pageview-goto-next-page-break)
+(global-set-key (kbd "C-c m p") 'pageview-goto-previous-page-break)
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
@@ -68,10 +70,11 @@
 (global-set-key "{" 'skeleton-pair-insert-maybe)
 (global-set-key "\"" 'skeleton-pair-insert-maybe)
 
-(global-set-key "\C-cmp" 'my-prettify-number)
-
 ;; key chords:
 (key-chord-define-global "jr" 'jump-to-register)
 (key-chord-define-global "fd" 'iy-go-to-char)
 (key-chord-define-global "pw" 'pwd)
 (key-chord-define-global "tr" 'string-insert-rectangle)
+
+(define-key rfcview-mode-map "j" 'pageview-goto-next-page-break)
+(define-key rfcview-mode-map "k" 'pageview-goto-previous-page-break)
