@@ -112,7 +112,8 @@
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
 ;; rfcview mode
-(autoload 'rfcview-mode "rfcview" nil t)
+;; (autoload 'rfcview-mode "rfcview" nil t)
+(require 'rfcview)
 
 ;; rfc downloader:
 (autoload 'get-rfc-view-rfc "get-rfc" "Get and view an RFC" t nil)

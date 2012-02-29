@@ -44,6 +44,7 @@
 (global-set-key (kbd "C-c r r") 'get-rfc-view-rfc)
 (global-set-key (kbd "C-c r .") 'get-rfc-view-rfc-at-point)
 (global-set-key (kbd "C-c r g") 'get-rfc-grep-rfc-index)
+(global-set-key (kbd "C-c r l") 'get-rfc-list-downloaded-rfcs)
 
 (global-set-key (kbd "C-c m i") 'kill-where-i-am)
 (global-set-key (kbd "C-c m g") 'grep-what-im-on)

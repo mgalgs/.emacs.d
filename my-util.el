@@ -354,3 +354,31 @@ that buffer, and move point to LOC in the new buffer."
     (cond
      ((string= last-char "k") (* 1024 (string-to-number all-but-last)))
      ((string= last-char "m") (* 1048576 (string-to-number all-but-last))))))
+
+(defun get-rfc-list-downloaded-rfcs ()
+  "Lists RFCs under `get-rfc-local-rfc-directory' along with
+their titles. Requires rfc-index.txt to be in place."
+  (interactive)
+  (require 'get-rfc)
+  (let ((rfcs (remove-if (lambda (f)
+                           (or (file-directory-p f)
+                               (string= "rfc-index.txt" f))) 
+                         (directory-files get-rfc-local-rfc-directory)))
+        (rfc-output '()))
+    (with-temp-buffer
+      (insert-file-contents (concat get-rfc-local-rfc-directory "/" get-rfc-rfc-index))
+      (dolist (rfc rfcs)
+        (goto-char 0)
+        (let* ((rfc-match (string-match "[[:alpha:]]+\\([[:digit:]]+\\)\\.txt" rfc))
+               (rfc-num (string-to-number (match-string 1
+                                                        rfc)))
+               (rfc-num-padded (format "%.4d" rfc-num))
+               (beginning-of-title (re-search-forward (concat "^" rfc-num-padded " ")))
+               (end-of-title (line-end-position))
+               (the-title (buffer-substring beginning-of-title end-of-title)))
+          (setq rfc-output
+                  (cons (format "%6s %13s %s %s" rfc-num rfc " => " the-title)
+                        rfc-output)))))
+    (with-output-to-temp-buffer "*Downloaded RFCs*"
+      (dolist (output-line rfc-output)
+        (princ (concat output-line "\n"))))))

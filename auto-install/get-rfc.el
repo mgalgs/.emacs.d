@@ -86,7 +86,7 @@ This *must* end in a trailing slash."
   :type 'string)
 
 (defcustom get-rfc-remote-rfc-index
-  "http://www.isi.edu/in-notes/rfc-index.txt"
+  "http://www.ietf.org/download/rfc-index.txt"
   "*Where to find the file \"rfc-index.txt\" which lists all currently
 available RFCS.
 

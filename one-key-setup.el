@@ -20,13 +20,15 @@
         (("l" . "Kill last message") . my-kill-last-message)
         (("t" . "Transpose split windows") . split-window-transpose)
         (("c" . "Make this a scratch buffer") . my-make-this-a-scratch-buffer)
-        (("s" . "Search all buffers") . my-search-all-buffers)))
+        (("s" . "Search all buffers") . my-search-all-buffers)
+        (("p" . "Prettify number") . my-prettify-number)))
 
 (setq one-key-menu-rfc-alist
       '(
         (("r" . "Get and view RFC") . get-rfc-view-rfc)
         (("." . "Get and view RFC at point") . get-rfc-view-rfc-at-point)
-        (("g" . "Grep RFC index") . get-rfc-grep-rfc-index)))
+        (("g" . "Grep RFC index") . get-rfc-grep-rfc-index)
+        (("l" . "List downloaded RFCs") . get-rfc-list-downloaded-rfcs)))
 
 (setq one-key-menu-global-alist
       '(
