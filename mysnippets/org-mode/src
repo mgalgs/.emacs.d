@@ -1,7 +1,6 @@
 # -*- mode: snippet -*-
 # name: src
 # key: src
-# type: command
 # --
 #+BEGIN_SRC ${1:sh}
 $0
