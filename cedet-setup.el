@@ -1,6 +1,6 @@
 ;; set up cedet:
 ;; snapshot from http://www.randomsample.de/cedet-snapshots/
-(load-file "~/.emacs.d/site-lisp/cedet-bzr/trunk/common/cedet.el") ;dev version
+(load-file "~/.emacs.d/site-lisp/cedet/common/cedet.el") ;dev version
 
 (global-ede-mode t)
 (semantic-load-enable-excessive-code-helpers)
