@@ -96,7 +96,7 @@
   (moz-minor-mode 1))
 
 ;; Line numbering
-(global-linum-mode 1)
+;; (global-linum-mode 1)
 
 ;; espresso mode
 (autoload 'espresso-mode "espresso" nil t)
