@@ -6,6 +6,7 @@
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'auto-mode-alist '("\\.doc\\'" . no-word))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . espresso-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'" . espresso-mode))
 (add-to-list 'auto-mode-alist
              '("/\\(rfc\\|std\\)[0-9]+\\.txt\\'" . rfcview-mode))
 (add-to-list 'auto-mode-alist '(".bc\\'" . bc-mode))
@@ -23,3 +24,4 @@
 
 (add-to-list 'auto-mode-alist '("CMakeLists\\.txt$" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.cmake$" . cmake-mode))
+
