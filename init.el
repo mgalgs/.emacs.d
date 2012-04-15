@@ -14,6 +14,11 @@
                     "~/.emacs.d/site-lisp/ace-jump-mode"
                     "~/.emacs.d/site-lisp/markdown-mode"
                     "~/.emacs.d/site-lisp/yaml-mode"
+                    "~/.emacs.d/site-lisp/popup"
+                    "~/.emacs.d/site-lisp/gh"
+                    "~/.emacs.d/site-lisp/pcache"
+                    "~/.emacs.d/site-lisp/logito"
+                    "~/.emacs.d/site-lisp/tabulated-list"
                     "~/.emacs.d/python-config")
               load-path))
 

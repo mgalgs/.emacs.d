@@ -6,6 +6,8 @@
 (semantic-load-enable-excessive-code-helpers)
 (require 'semantic-ia)
 
+(require 'eieio-opt)
+
 ;; cedet helper function (cscope-pop-mark envy)
 (defvar semantic-tags-location-ring (make-ring 20))
 

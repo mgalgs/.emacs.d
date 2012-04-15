@@ -28,3 +28,18 @@
 [submodule "site-lisp/cedet"]
 	path = site-lisp/cedet
 	url = https://github.com/emacsmirror/cedet.git
+[submodule "site-lisp/popup"]
+	path = site-lisp/popup
+	url = https://github.com/m2ym/popup-el.git
+[submodule "site-lisp/gh"]
+	path = site-lisp/gh
+	url = https://github.com/sigma/gh.el.git
+[submodule "site-lisp/pcache"]
+	path = site-lisp/pcache
+	url = https://github.com/sigma/pcache.git
+[submodule "site-lisp/logito"]
+	path = site-lisp/logito
+	url = https://github.com/sigma/logito.git
+[submodule "site-lisp/tabulated-list"]
+	path = site-lisp/tabulated-list
+	url = https://github.com/sigma/tabulated-list.el.git
