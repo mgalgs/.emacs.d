@@ -77,3 +77,7 @@
 
 (define-key rfcview-mode-map "j" 'pageview-goto-next-page-break)
 (define-key rfcview-mode-map "k" 'pageview-goto-previous-page-break)
+
+;; global:
+(global-set-key (kbd "C-c g M-*") 'gtags-pop-stack)
+(global-set-key (kbd "C-c g .") 'gtags-find-tag)
