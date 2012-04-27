@@ -6,3 +6,4 @@ ac-comphist.dat
 *.patch
 auto-save-list
 *.bndl
+*.xz
