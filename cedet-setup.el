@@ -1,12 +1,8 @@
 ;; set up cedet:
-;; snapshot from http://www.randomsample.de/cedet-snapshots/
-(load-file "~/.emacs.d/site-lisp/cedet/common/cedet.el") ;dev version
+(load-file "~/.emacs.d/site-lisp/cedet/cedet-devel-load.el") ;dev version
 
 (global-ede-mode t)
 (semantic-load-enable-excessive-code-helpers)
-(require 'semantic-ia)
-
-(require 'eieio-opt)
 
 ;; cedet helper function (cscope-pop-mark envy)
 (defvar semantic-tags-location-ring (make-ring 20))
@@ -61,6 +57,3 @@ marker if tag is found"
 ;; load any cedet projects definitions:
 (if (file-exists-p "~/.cedet-projects.el")
     (load-file "~/.cedet-projects.el"))
-
-;; system includes
-(require 'semantic-gcc)
