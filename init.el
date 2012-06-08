@@ -1,5 +1,11 @@
 (server-start)
 
+;;; begin some misc setup
+(if window-system
+    (progn
+      (tool-bar-mode 0)
+      (set-scroll-bar-mode 'right)))
+
 (setq load-path
       (append (list nil
                     "~/.emacs.d/auto-install"
@@ -50,12 +56,6 @@
 
 ;; set up ido mode
 (load-file "~/.emacs.d/ido-setup.el")
-
-;;; begin some misc setup
-(if window-system
-    (progn
-      (tool-bar-mode 0)
-      (set-scroll-bar-mode 'right)))
 
 (show-paren-mode t)
 
