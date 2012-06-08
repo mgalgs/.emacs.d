@@ -9,3 +9,5 @@ auto-save-list
 *.xz
 *.bundle
 semanticdb
+var
+ede-projects.el
