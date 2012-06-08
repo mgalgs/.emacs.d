@@ -43,3 +43,6 @@
 [submodule "site-lisp/tabulated-list"]
 	path = site-lisp/tabulated-list
 	url = https://github.com/sigma/tabulated-list.el.git
+[submodule "site-lisp/lua-mode"]
+	path = site-lisp/lua-mode
+	url = https://github.com/immerrr/lua-mode.git

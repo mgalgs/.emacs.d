@@ -3,23 +3,24 @@
 (setq load-path
       (append (list nil
                     "~/.emacs.d/auto-install"
+                    "~/.emacs.d/python-config"
                     "~/.emacs.d/site-lisp"
+                    "~/.emacs.d/site-lisp/ace-jump-mode"
                     "~/.emacs.d/site-lisp/auto-complete"
-                    "~/.emacs.d/site-lisp/yasnippet"
-                    "~/.emacs.d/site-lisp/org-7.7/lisp"
-                    "~/.emacs.d/site-lisp/textmate"
-                    "~/.emacs.d/site-lisp/zenburn-emacs"
+                    "~/.emacs.d/site-lisp/gh"
                     "~/.emacs.d/site-lisp/gist"
                     "~/.emacs.d/site-lisp/indent-hints-mode"
-                    "~/.emacs.d/site-lisp/ace-jump-mode"
-                    "~/.emacs.d/site-lisp/markdown-mode"
-                    "~/.emacs.d/site-lisp/yaml-mode"
-                    "~/.emacs.d/site-lisp/popup"
-                    "~/.emacs.d/site-lisp/gh"
-                    "~/.emacs.d/site-lisp/pcache"
                     "~/.emacs.d/site-lisp/logito"
+                    "~/.emacs.d/site-lisp/lua-mode"
+                    "~/.emacs.d/site-lisp/markdown-mode"
+                    "~/.emacs.d/site-lisp/org-7.7/lisp"
+                    "~/.emacs.d/site-lisp/pcache"
+                    "~/.emacs.d/site-lisp/popup"
                     "~/.emacs.d/site-lisp/tabulated-list"
-                    "~/.emacs.d/python-config")
+                    "~/.emacs.d/site-lisp/textmate"
+                    "~/.emacs.d/site-lisp/yaml-mode"
+                    "~/.emacs.d/site-lisp/yasnippet"
+                    "~/.emacs.d/site-lisp/zenburn-emacs")
               load-path))
 
 (if (file-exists-p "~/private.el")
