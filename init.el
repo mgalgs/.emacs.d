@@ -1,33 +1,28 @@
 (server-start)
 
-;;; begin some misc setup
+;;; begin some misc setup. This should be first because it's
+;;; distracting to switch up UI elements later during loading.
 (if window-system
     (progn
       (tool-bar-mode 0)
       (set-scroll-bar-mode 'right)))
 
+;; load some functions that are helpful for initialization
+(load-file "~/.emacs.d/util-for-init.el")
+
 (setq load-path
-      (append (list nil
-                    "~/.emacs.d/auto-install"
-                    "~/.emacs.d/python-config"
-                    "~/.emacs.d/site-lisp"
-                    "~/.emacs.d/site-lisp/ace-jump-mode"
-                    "~/.emacs.d/site-lisp/auto-complete"
-                    "~/.emacs.d/site-lisp/gh"
-                    "~/.emacs.d/site-lisp/gist"
-                    "~/.emacs.d/site-lisp/indent-hints-mode"
-                    "~/.emacs.d/site-lisp/logito"
-                    "~/.emacs.d/site-lisp/lua-mode"
-                    "~/.emacs.d/site-lisp/markdown-mode"
-                    "~/.emacs.d/site-lisp/org-7.7/lisp"
-                    "~/.emacs.d/site-lisp/pcache"
-                    "~/.emacs.d/site-lisp/popup"
-                    "~/.emacs.d/site-lisp/tabulated-list"
-                    "~/.emacs.d/site-lisp/textmate"
-                    "~/.emacs.d/site-lisp/yaml-mode"
-                    "~/.emacs.d/site-lisp/yasnippet"
-                    "~/.emacs.d/site-lisp/zenburn-emacs")
-              load-path))
+      (append
+       ;; everyone under site-lisp:
+       (directories-in-directory "~/.emacs.d/site-lisp")
+       (list nil
+	     "~/.emacs.d/auto-install"
+	     "~/.emacs.d/python-config"
+         ;; the site-lisp directory itself has some packages
+         "~/.emacs.d/site-lisp"
+	     ;; this guy is under site-lisp but is special because
+	     ;; he's a subdirectory:
+	     "~/.emacs.d/site-lisp/org-7.7/lisp")
+       load-path))
 
 (if (file-exists-p "~/private.el")
     (load-file "~/private.el"))
@@ -224,3 +219,15 @@
 
 ;; some utility functions
 (load-file "~/.emacs.d/my-util.el")
+
+;; cool-looking mode-line
+(require 'powerline)
+;; fix up the powerline modeline colors
+(set-face-attribute 'mode-line nil
+                    :background "turquoise4"
+                    :foreground "white"
+                    :box nil)
+(set-face-attribute 'mode-line-inactive nil
+                    :background "grey15"
+                    :foreground "grey78"
+                    :box nil)
