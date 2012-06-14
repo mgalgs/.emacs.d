@@ -73,7 +73,6 @@
 ;; key chords:
 (key-chord-define-global "jr" 'jump-to-register)
 (key-chord-define-global "pw" 'pwd)
-(key-chord-define-global "tr" 'string-insert-rectangle)
 
 (define-key rfcview-mode-map "j" 'pageview-goto-next-page-break)
 (define-key rfcview-mode-map "k" 'pageview-goto-previous-page-break)
