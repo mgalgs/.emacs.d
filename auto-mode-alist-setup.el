@@ -1,5 +1,4 @@
 (add-to-list 'auto-mode-alist '("/crontab.*$" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("/PKGBUILD$" . pkgbuild-mode))
