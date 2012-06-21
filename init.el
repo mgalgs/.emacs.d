@@ -24,6 +24,9 @@
 	     "~/.emacs.d/site-lisp/org-7.7/lisp")
        load-path))
 
+;; some utility functions
+(load-file "~/.emacs.d/my-util.el")
+
 (if (file-exists-p "~/private.el")
     (load-file "~/private.el"))
 
@@ -77,7 +80,7 @@
  ;indent-tabs-mode t ; use the tab character, not spaces
  c-basic-offset 4 ; how many spaces our tab key will insert
  c-default-style "bsd" ; for nasty brace face
- tab-width 4 ; default tab-width (when there are existing tabs in files)
+ tab-width 8 ; default tab-width (when there are existing tabs in files)
  )
 
 ;;; end misc setup
@@ -216,9 +219,6 @@
 
 ;; some general advice
 (load-file "~/.emacs.d/my-advice.el")
-
-;; some utility functions
-(load-file "~/.emacs.d/my-util.el")
 
 ;; cool-looking mode-line
 (require 'powerline)

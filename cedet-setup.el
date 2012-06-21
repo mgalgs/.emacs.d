@@ -54,6 +54,13 @@ marker if tag is found"
   (local-set-key (kbd "<backtab>") 'backward-button))
 (add-hook 'semantic-symref-results-mode-hook 'my-semantic-symref-mode-hook)
 
+;; integrate with gnu global
+(when (cedet-gnu-global-version-check t)
+  (require 'semanticdb-global)
+  (semanticdb-enable-gnu-global-databases 'c-mode)
+  (semanticdb-enable-gnu-global-databases 'c++-mode))
+
+
 ;; load any cedet projects definitions:
 (if (file-exists-p "~/.cedet-projects.el")
     (load-file "~/.cedet-projects.el"))
