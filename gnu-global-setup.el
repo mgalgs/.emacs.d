@@ -34,3 +34,9 @@
   (define-key gtags-mode-map (kbd "M-*") 'semantic-pop-tag-mark))
 
 (add-hook 'gtags-mode-hook 'my-gtags-mode-hook)
+
+(defun my-gtags-regenerate-tags-file ()
+  "Regenerate the tags files"
+  (interactive)
+  (unless gtags-rootdir (gtags-visit-rootdir))
+  (shell-command (concat "cd " gtags-rootdir " && gtags -I")))

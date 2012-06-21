@@ -420,3 +420,10 @@ HOW should be `forward-page', `backward-page', or similar."
   with the page break at the top."
   (interactive)
   (pageview-navigate-page-break 'backward-page))
+
+(defun my-put-prefix-on-paths (prefix paths)
+  "Returns a list of paths with PREFIX prefixed onto each item"
+  (mapcar (lambda (el)
+            (concat (file-name-as-directory prefix)
+                    (substring el 1)))
+          paths))

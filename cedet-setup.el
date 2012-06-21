@@ -57,3 +57,14 @@ marker if tag is found"
 ;; load any cedet projects definitions:
 (if (file-exists-p "~/.cedet-projects.el")
     (load-file "~/.cedet-projects.el"))
+;; sample project definition:
+;; (let ((prj-root-file "~/src/proj/README")
+;;       (prj-name "Some Project"))
+;;   (if (file-exists-p prj-root-file)
+;;       (ede-cpp-root-project prj-name
+;;                             :name prj-name
+;;                             :file prj-root-file
+;;                             :include-path (append (directory-dirs "~/src/proj" '(".git"))
+;;                                                   '("/../src/other/include/"))
+;;                             :system-include-path '("~/src/linux/include"))
+;;     (message "project root file for %s doesn't exist. Skipping project..." prj-name)))
