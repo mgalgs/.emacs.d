@@ -3,6 +3,7 @@
 (setq default-truncate-lines t)	    ;no wrapping
 (setq ido-enable-flex-matching t) ; fuzzy matching
 (setq scroll-step 1)			;scroll step at top/bottom of page
+(setq ido-max-prospects 6)
 (setq ido-ignore-buffers ;; ignore these guys
       '("\\` " "^\*Mess" "^\*Back"
         ".*Completion" "^\*Ido" "^\*trace"
