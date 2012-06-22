@@ -447,3 +447,9 @@ Adapted from http://emacswiki.org/emacs/ElispCookbook"
                                      (directory-dirs file excludes))
                                dirs))))))
     dirs))
+
+(defun strip-leading-dir-from-each (dirs dir-to-strip)
+  "Strips leading DIR-TO-STRIP from DIRS"
+  (mapcar (lambda (el)
+            (file-name-as-directory (replace-regexp-in-string dir-to-strip "/" el)))
+          dirs))

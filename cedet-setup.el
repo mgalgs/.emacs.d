@@ -65,13 +65,14 @@ marker if tag is found"
 (if (file-exists-p "~/.cedet-projects.el")
     (load-file "~/.cedet-projects.el"))
 ;; sample project definition:
-;; (let ((prj-root-file "~/src/proj/README")
-;;       (prj-name "Some Project"))
+;; (let* ((prj-root-file "/home/mgalgs/src/libnfs/README")
+;;        (prj-root-dir (file-name-directory prj-root-file))
+;;        (prj-all-dirs (directory-dirs prj-root-dir '(".git")))
+;;        (prj-name "libnfs"))
 ;;   (if (file-exists-p prj-root-file)
 ;;       (ede-cpp-root-project prj-name
 ;;                             :name prj-name
 ;;                             :file prj-root-file
-;;                             :include-path (append (directory-dirs "~/src/proj" '(".git"))
-;;                                                   '("/../src/other/include/"))
-;;                             :system-include-path '("~/src/linux/include"))
+;;                             ;; :system-include-path '("~/src/linux/include")
+;;                             :include-path (strip-leading-dir-from-each prj-all-dirs prj-root-dir))
 ;;     (message "project root file for %s doesn't exist. Skipping project..." prj-name)))
