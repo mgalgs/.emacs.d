@@ -81,6 +81,7 @@
  c-basic-offset 4 ; how many spaces our tab key will insert
  c-default-style "bsd" ; for nasty brace face
  tab-width 8 ; default tab-width (when there are existing tabs in files)
+ set-mark-command-repeat-pop t ; repeated C-SPC after C-u C-SPC keeps popping the mark
  )
 
 ;;; end misc setup
