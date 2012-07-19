@@ -206,7 +206,14 @@
 
 ;; column marker
 (require 'column-marker)
-(add-hook 'c-mode-common-hook (lambda () (interactive) (column-marker-3 80)))
+
+(defun my-c-mode-common-hook ()
+  (interactive)
+  (column-marker-3 80)
+  (c-set-offset 'inextern-lang 0))
+
+(add-hook 'c-mode-common-hook
+          'my-c-mode-common-hook)
 
 ;; browse kill ring visually
 (require 'browse-kill-ring)
