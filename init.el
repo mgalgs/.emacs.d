@@ -222,6 +222,11 @@
 (require 'pp-c-l)
 (pretty-control-l-mode 1)
 
+;; here are some things that need to be here before we set some
+;; *-mode-map keybindings:
+(require 'doc-view)
+(require 'diff-mode)
+
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
 
