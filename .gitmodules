@@ -55,3 +55,6 @@
 [submodule "site-lisp/bbdb"]
 	path = site-lisp/bbdb
 	url = git://git.savannah.nongnu.org/bbdb.git
+[submodule "site-lisp/magit"]
+	path = site-lisp/magit
+	url = https://github.com/magit/magit.git
