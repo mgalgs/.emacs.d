@@ -78,8 +78,24 @@
 (define-key rfcview-mode-map "k" 'pageview-goto-previous-page-break)
 
 ;; global:
+(global-set-key "\C-cgn" 'my-gtags-next-result)
 (global-set-key (kbd "C-M-*") 'gtags-pop-stack)
 (global-set-key (kbd "C-M->") 'gtags-find-tag)
-
 (define-key doc-view-mode-map "j" 'doc-view-next-line-or-next-page)
 (define-key doc-view-mode-map "k" 'doc-view-previous-line-or-previous-page)
+
+(define-key gtags-select-mode-map "n" 'next-line)
+(define-key gtags-select-mode-map "p" 'previous-line)
+(define-key gtags-select-mode-map "q" 'bury-buffer)
+
+;; {wo,}man
+(add-hook 'Man-mode-hook '(lambda ()
+			    (interactive)
+			    (define-key Man-mode-map "f" 'scroll-up-command)
+			    (define-key Man-mode-map "w" 'scroll-down-command)))
+(add-hook 'woman-mode-hook '(lambda ()
+			      (define-key woman-mode-map "f" 'scroll-up-command)
+			      (define-key woman-mode-map "w" 'scroll-down-command)))
+
+;; diff
+(define-key diff-mode-map "q" 'bury-buffer)

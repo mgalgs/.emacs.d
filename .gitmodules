@@ -49,3 +49,9 @@
 [submodule "site-lisp/emacs-powerline"]
 	path = site-lisp/emacs-powerline
 	url = https://github.com/jonathanchu/emacs-powerline.git
+[submodule "site-lisp/git-commit-mode"]
+	path = site-lisp/git-commit-mode
+	url = https://github.com/rafl/git-commit-mode.git
+[submodule "site-lisp/bbdb"]
+	path = site-lisp/bbdb
+	url = git://git.savannah.nongnu.org/bbdb.git

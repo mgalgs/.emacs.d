@@ -42,7 +42,8 @@
         (("s" . "gtags-find-symbol") . gtags-find-symbol)
         (("r" . "gtags-find-rtag") . gtags-find-rtag)
         (("t" . "gtags-find-tag") . gtags-find-tag)
-        (("d" . "gtags-visit-rootdir") . gtags-visit-rootdir)))
+        (("d" . "gtags-visit-rootdir") . gtags-visit-rootdir)
+	(("u" . "my-gtags-update-tags-file-incrementally") . my-gtags-update-tags-file-incrementally)))
 
 ;;;; the menu functions
 (defun one-key-menu-misc ()

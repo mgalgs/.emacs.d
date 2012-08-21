@@ -36,8 +36,50 @@
 
   (add-hook 'gtags-mode-hook 'my-gtags-mode-hook))
 
+(defun my-gtags-regenerate-tags-file-async ()
+  "Regenerate the tags files"
+  (interactive)
+  (unless gtags-rootdir (gtags-visit-rootdir))
+  (message "Starting gtags in the background...")
+  (start-process-shell-command "gtags"
+			       (concat "*GTAGS REGENERATE* " gtags-rootdir)
+			       (concat "cd "
+				       gtags-rootdir
+				       " && gtags -I")))
+
 (defun my-gtags-regenerate-tags-file ()
   "Regenerate the tags files"
   (interactive)
   (unless gtags-rootdir (gtags-visit-rootdir))
   (shell-command (concat "cd " gtags-rootdir " && gtags -I")))
+
+(defun my-gtags-update-tags-file-incrementally ()
+  "Update the tags files incrementally"
+  (interactive)
+  (unless gtags-rootdir (gtags-visit-rootdir))
+  (shell-command (concat "cd " gtags-rootdir " && gtags -I -i")))
+
+;;; ADVICE BELOW
+
+;; some advice for vertical recentering when visiting tags...
+
+(defadvice gtags-select-it (after my-gtags-select-it-after
+				 activate)
+  "Recenter the page upon selecting a tag"
+  (recenter))
+
+(defadvice gtags-goto-tag (after my-gtags-goto-tag-after
+				 activate)
+  "Recenter the page upon selecting a tag"
+  (recenter))
+
+(defadvice gtags-pop-stack (after my-gtags-pop-stack
+				  activate)
+  "Recenter the page upon popping a tag"
+  (recenter))
+
+(defadvice gtags-current-token (before my-gtags-current-token-before
+				       activate)
+  "Fix up the default current token"
+  (unless (looking-at "[0-9A-Za-z_]")
+    (backward-sexp)))

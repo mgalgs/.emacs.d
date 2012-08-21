@@ -1,6 +1,6 @@
-(require 'ido)			    ;ido-mode:
-(ido-mode)			    ;sweet!
-(setq default-truncate-lines t)	    ;no wrapping
+(require 'ido)                      ;ido-mode:
+(ido-mode)                          ;sweet!
+(setq default-truncate-lines t)             ;no wrapping
 (setq ido-enable-flex-matching t) ; fuzzy matching
 (setq scroll-step 1)			;scroll step at top/bottom of page
 (setq ido-max-prospects 6)
@@ -11,5 +11,6 @@
         "^\*Buffer List" "^\*scratch\*"
         "^\*Shell Command Output" ;"^\*compilation\*"
         "^\*RE\-Builder\*"
-		"^\*Pymacs\*" "*Async Shell Command*"
+        "^\*Pymacs\*" "*Async Shell Command*"
+        "^\.newsrc-dribble"
         "^\*GTAGS SELECT\*"))

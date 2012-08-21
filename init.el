@@ -15,13 +15,13 @@
        ;; everyone under site-lisp:
        (directories-in-directory "~/.emacs.d/site-lisp")
        (list nil
-	     "~/.emacs.d/auto-install"
-	     "~/.emacs.d/python-config"
-         ;; the site-lisp directory itself has some packages
-         "~/.emacs.d/site-lisp"
-	     ;; this guy is under site-lisp but is special because
-	     ;; he's a subdirectory:
-	     "~/.emacs.d/site-lisp/org-7.7/lisp")
+             "~/.emacs.d/auto-install"
+             "~/.emacs.d/python-config"
+	     ;; the site-lisp directory itself has some packages
+	     "~/.emacs.d/site-lisp"
+             ;; these guys are under site-lisp but a little deeper...
+             "~/.emacs.d/site-lisp/org-7.7/lisp"
+	     "~/.emacs.d/site-lisp/bbdb/lisp")
        load-path))
 
 ;; some utility functions
@@ -30,6 +30,10 @@
 ;; parse command line arguments
 (setq my-switch-no-cedet-p (member "-no-cedet" command-line-args))
 (setq command-line-args (delete "-no-cedet" command-line-args))
+(setq my-switch-no-yas (member "-no-yas" command-line-args))
+(setq command-line-args (delete "-no-yas" command-line-args))
+(setq my-switch-no-indent-hints (member "-no-indent-hints" command-line-args))
+(setq command-line-args (delete "-no-indent-hints" command-line-args))
 
 (if (file-exists-p "~/private.el")
     (load-file "~/private.el"))
@@ -45,7 +49,8 @@
 (load-file "~/.emacs.d/gnu-global-setup.el")
 
 ;; set up yasnippet
-(load-file "~/.emacs.d/yasnippet-setup.el")
+(unless my-switch-no-yas
+  (load-file "~/.emacs.d/yasnippet-setup.el"))
 
 ;; set up org mode
 (load-file "~/.emacs.d/org-setup.el")
@@ -59,6 +64,9 @@
 
 ;; set up ido mode
 (load-file "~/.emacs.d/ido-setup.el")
+
+;; bbdb
+(load-file "~/.emacs.d/bbdb-setup.el")
 
 (show-paren-mode t)
 
@@ -81,13 +89,18 @@
  )
 
 (setq-default
- indent-tabs-mode nil ; don't use the tab character, only spaces
- ;indent-tabs-mode t ; use the tab character, not spaces
- c-basic-offset 4 ; how many spaces our tab key will insert
- c-default-style "bsd" ; for nasty brace face
- tab-width 8 ; default tab-width (when there are existing tabs in files)
+ ;; indent-tabs-mode nil ; don't use the tab character, only spaces
+ ;; c-basic-offset 1 ; how many spaces our tab key will insert
+ ;; tab-width 4 ; default tab-width (when there are existing tabs in files)
+ ;; tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)
+ ;; tab-stop-list '(8 16 24 32 40 48 56 64 72 80 88 96 104 112 120)
+ indent-tabs-mode t ; use the tab character, not spaces
  set-mark-command-repeat-pop t ; repeated C-SPC after C-u C-SPC keeps popping the mark
+ ;; c-default-style "bsd" ; for nasty brace face
  )
+
+;; linux kernel styles
+(load-file "~/.emacs.d/linux-kernel-setup.el")
 
 ;;; end misc setup
 
@@ -156,8 +169,9 @@
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
 
 ;; indent-hints minor mode
-(require 'indent-hints)
-(indent-hints-global-mode)
+(unless my-switch-no-indent-hints
+  (require 'indent-hints)
+  (indent-hints-global-mode))
 
 ;; better buffer disambiguation
 (require 'uniquify)
@@ -171,6 +185,7 @@
 
 ;; textmate clonage
 (require 'textmate)
+(setq *textmate-project-roots* '(".git"))
 (textmate-mode)
 (add-hook 'textmate-goto-symbol-hook 'push-mark)
 
@@ -249,3 +264,30 @@
                     :background "grey15"
                     :foreground "grey78"
                     :box nil)
+
+;; highlight current line
+;; (global-hl-line-mode)
+
+;; browse the web with chrom{e,ium}
+(setq browse-url-browser-function 'browse-url-chrome)
+
+;; git commit mode
+(require 'git-commit)
+
+;; auto revert (useful when switching git branches)
+(global-auto-revert-mode)
+
+;; gnus mode line notifications
+(require 'gnus-notify)
+
+;; Some advice to recenter after moving to next compile error
+(defadvice next-error (after my-next-error-after
+				 activate)
+  "Recenter the page after next-error"
+  (recenter))
+
+;; some git things
+(require 'gthings)
+;; (gthings-init)
+
+(load-file "~/.emacs.d/elisp-setup.el")

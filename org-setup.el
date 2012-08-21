@@ -13,7 +13,7 @@
         ("pC" "C-Priority todos" tags-tree "PRIORITY=\"C\"")))
 ;; TODO workflow states
 (setq org-todo-keywords
-      '((sequence "TODO" "CODE REVIEW" "|" "POSTPONE" "CANCELED" "DONE")))
+      '((sequence "TODO" "CODE REVIEW" "DONE")))
 ;; faces for todo keywords:
 (setq org-todo-keyword-faces
       '(("TODO" . (:foreground "red" :weight bold :background "honeydew2"))
@@ -22,15 +22,14 @@
         ("CANCELED" . (:foreground "dark red"))
         ("DONE" . (:foreground "dark green" :weight bold))))
 
-(setq browse-url-browser-function 'browse-url-chromium)
+;; fix some org-mode + yasnippet conflicts (if we have loaded yas):
+(unless (not (boundp 'yas/version))
+  (defun yas/org-very-safe-expand ()
+    (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
 
-;; fix some org-mode + yasnippet conflicts:
-(defun yas/org-very-safe-expand ()
-  (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
-
-(add-hook 'org-mode-hook
-          (lambda ()
-            (make-variable-buffer-local 'yas/trigger-key)
-            (setq yas/trigger-key [tab])
-            (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
-            (define-key yas/keymap [tab] 'yas/next-field)))
+  (add-hook 'org-mode-hook
+	    (lambda ()
+	      (make-variable-buffer-local 'yas/trigger-key)
+	      (setq yas/trigger-key [tab])
+	      (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
+	      (define-key yas/keymap [tab] 'yas/next-field))))
