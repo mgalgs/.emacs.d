@@ -80,3 +80,6 @@
 ;; global:
 (global-set-key (kbd "C-M-*") 'gtags-pop-stack)
 (global-set-key (kbd "C-M->") 'gtags-find-tag)
+
+(define-key doc-view-mode-map "j" 'doc-view-next-line-or-next-page)
+(define-key doc-view-mode-map "k" 'doc-view-previous-line-or-previous-page)
