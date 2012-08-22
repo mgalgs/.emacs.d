@@ -1,5 +1,5 @@
 ;; gnu global
-(autoload 'gtags-mode "gtags" "" t)
+(require 'gtags)
 ;; need this hook to run after my-cedet-hook because global hijacks
 ;; M-. and M-* which we want to use with cedet.
 (add-hook 'c-mode-common-hook
