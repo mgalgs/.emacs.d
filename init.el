@@ -27,6 +27,10 @@
 ;; some utility functions
 (load-file "~/.emacs.d/my-util.el")
 
+;; parse command line arguments
+(setq my-switch-no-cedet-p (member "-no-cedet" command-line-args))
+(setq command-line-args (delete "-no-cedet" command-line-args))
+
 (if (file-exists-p "~/private.el")
     (load-file "~/private.el"))
 
@@ -34,7 +38,8 @@
 (load-file "~/.emacs.d/python-config/epy-mitch.el")
 
 ;; set up cedet
-(load-file "~/.emacs.d/cedet-setup.el")
+(unless my-switch-no-cedet-p
+  (load-file "~/.emacs.d/cedet-setup.el"))
 
 ;; set up gnu global
 (load-file "~/.emacs.d/gnu-global-setup.el")
