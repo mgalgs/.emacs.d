@@ -27,6 +27,9 @@
 ;; some utility functions
 (load-file "~/.emacs.d/my-util.el")
 
+;; some utility macros
+(load-file "~/.emacs.d/my-macros.el")
+
 ;; parse command line arguments
 (setq my-switch-no-cedet-p (member "-no-cedet" command-line-args))
 (setq command-line-args (delete "-no-cedet" command-line-args))
@@ -291,3 +294,5 @@
 ;; (gthings-init)
 
 (load-file "~/.emacs.d/elisp-setup.el")
+
+(load-file "~/.emacs.d/magit-setup.el")

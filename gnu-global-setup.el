@@ -63,23 +63,7 @@
 
 ;; some advice for vertical recentering when visiting tags...
 
-(defadvice gtags-select-it (after my-gtags-select-it-after
-				 activate)
-  "Recenter the page upon selecting a tag"
-  (recenter))
-
-(defadvice gtags-goto-tag (after my-gtags-goto-tag-after
-				 activate)
-  "Recenter the page upon selecting a tag"
-  (recenter))
-
-(defadvice gtags-pop-stack (after my-gtags-pop-stack
-				  activate)
-  "Recenter the page upon popping a tag"
-  (recenter))
-
-(defadvice gtags-current-token (before my-gtags-current-token-before
-				       activate)
-  "Fix up the default current token"
-  (unless (looking-at "[0-9A-Za-z_]")
-    (backward-sexp)))
+(my-make-recentering-advice gtags-select-it)
+(my-make-recentering-advice gtags-goto-tag)
+(my-make-recentering-advice gtags-pop-stack)
+;; (my-make-recentering-advice gtags-current-token)
