@@ -14,6 +14,7 @@
 				  ("From" . "oit_prd@qualcomm.com")
 				  ("From" . "eecomm@qualcomm.com")
 				  ("From" . "code-review@qualcomm.com")
+				  ("From". "quiclost@quicinc.com")
 				  (("To" "CC") . "mitch.special@gmail.com")))
 
 (require 'nnir)

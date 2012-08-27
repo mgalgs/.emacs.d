@@ -8,7 +8,7 @@
       '("\\` " "^\*Mess" "^\*Back"
         ".*Completion" "^\*Ido" "^\*trace"
         "^\*Bookmark" "^\*Compile\-Log"
-        "^\*Buffer List" "^\*scratch\*"
+        "^\*Buffer List"
         "^\*Shell Command Output" ;"^\*compilation\*"
         "^\*RE\-Builder\*"
         "^\*Pymacs\*" "*Async Shell Command*"

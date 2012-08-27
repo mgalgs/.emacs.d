@@ -31,12 +31,12 @@
 (load-file "~/.emacs.d/my-macros.el")
 
 ;; parse command line arguments
-(setq my-switch-no-cedet-p (member "-no-cedet" command-line-args))
-(setq command-line-args (delete "-no-cedet" command-line-args))
-(setq my-switch-no-yas (member "-no-yas" command-line-args))
-(setq command-line-args (delete "-no-yas" command-line-args))
-(setq my-switch-no-indent-hints (member "-no-indent-hints" command-line-args))
-(setq command-line-args (delete "-no-indent-hints" command-line-args))
+(setq my-switch-with-cedet-p (member "-with-cedet" command-line-args))
+(setq command-line-args (delete "-with-cedet" command-line-args))
+(setq my-switch-with-yas (member "-with-yas" command-line-args))
+(setq command-line-args (delete "-with-yas" command-line-args))
+(setq my-switch-with-indent-hints (member "-with-indent-hints" command-line-args))
+(setq command-line-args (delete "-with-indent-hints" command-line-args))
 
 (if (file-exists-p "~/private.el")
     (load-file "~/private.el"))
@@ -45,14 +45,14 @@
 (load-file "~/.emacs.d/python-config/epy-mitch.el")
 
 ;; set up cedet
-(unless my-switch-no-cedet-p
+(if my-switch-with-cedet-p
   (load-file "~/.emacs.d/cedet-setup.el"))
 
 ;; set up gnu global
 (load-file "~/.emacs.d/gnu-global-setup.el")
 
 ;; set up yasnippet
-(unless my-switch-no-yas
+(if my-switch-with-yas
   (load-file "~/.emacs.d/yasnippet-setup.el"))
 
 ;; set up org mode
@@ -172,9 +172,10 @@
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
 
 ;; indent-hints minor mode
-(unless my-switch-no-indent-hints
-  (require 'indent-hints)
-  (indent-hints-global-mode))
+(if my-switch-with-indent-hints
+    (progn
+      (require 'indent-hints)
+      (indent-hints-global-mode)))
 
 ;; better buffer disambiguation
 (require 'uniquify)
@@ -296,3 +297,13 @@
 (load-file "~/.emacs.d/elisp-setup.el")
 
 (load-file "~/.emacs.d/magit-setup.el")
+
+;; some random advice
+(my-make-recentering-advice find-tag)
+(my-make-recentering-advice pop-tag-mark)
+
+;; footnote mode
+(autoload 'footnote-mode "footnote" nil t)
+(add-hook 'message-mode-hook 'footnote-mode)
+(setq footnote-body-tag-spacing 1
+      footnote-section-tag "")

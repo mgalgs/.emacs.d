@@ -29,12 +29,12 @@
 (global-set-key "\C-cgn" 'my-gtags-next-result)
 
 
-(unless my-switch-no-cedet-p
-  (defun my-gtags-mode-hook ()
-    (define-key gtags-mode-map (kbd "M-.") 'semantic-goto-definition) ;gtags binds to M-. and M-* which we don't want
-    (define-key gtags-mode-map (kbd "M-*") 'semantic-pop-tag-mark))
-
-  (add-hook 'gtags-mode-hook 'my-gtags-mode-hook))
+(if my-switch-with-cedet-p
+    (progn
+      (defun my-gtags-mode-hook ()
+	(define-key gtags-mode-map (kbd "M-.") 'semantic-goto-definition) ;gtags binds to M-. and M-* which we don't want
+	(define-key gtags-mode-map (kbd "M-*") 'semantic-pop-tag-mark))
+      (add-hook 'gtags-mode-hook 'my-gtags-mode-hook)))
 
 (defun my-gtags-regenerate-tags-file-async ()
   "Regenerate the tags files"
