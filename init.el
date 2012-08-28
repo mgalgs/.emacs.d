@@ -307,3 +307,5 @@
 (add-hook 'message-mode-hook 'footnote-mode)
 (setq footnote-body-tag-spacing 1
       footnote-section-tag "")
+
+(require 'lorem-ipsum)
