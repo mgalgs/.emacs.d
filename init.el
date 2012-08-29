@@ -2,10 +2,9 @@
 
 ;;; begin some misc setup. This should be first because it's
 ;;; distracting to switch up UI elements later during loading.
-(if window-system
-    (progn
-      (tool-bar-mode 0)
-      (set-scroll-bar-mode 'right)))
+(when window-system
+  (tool-bar-mode 0)
+  (set-scroll-bar-mode 'right))
 
 ;; load some functions that are helpful for initialization
 (load-file "~/.emacs.d/util-for-init.el")
@@ -38,21 +37,21 @@
 (setq my-switch-with-indent-hints (member "-with-indent-hints" command-line-args))
 (setq command-line-args (delete "-with-indent-hints" command-line-args))
 
-(if (file-exists-p "~/private.el")
+(when (file-exists-p "~/private.el")
     (load-file "~/private.el"))
 
 ;; set up python
 (load-file "~/.emacs.d/python-config/epy-mitch.el")
 
 ;; set up cedet
-(if my-switch-with-cedet-p
+(when my-switch-with-cedet-p
   (load-file "~/.emacs.d/cedet-setup.el"))
 
 ;; set up gnu global
 (load-file "~/.emacs.d/gnu-global-setup.el")
 
 ;; set up yasnippet
-(if my-switch-with-yas
+(when my-switch-with-yas
   (load-file "~/.emacs.d/yasnippet-setup.el"))
 
 ;; set up org mode
@@ -172,10 +171,9 @@
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
 
 ;; indent-hints minor mode
-(if my-switch-with-indent-hints
-    (progn
-      (require 'indent-hints)
-      (indent-hints-global-mode)))
+(when my-switch-with-indent-hints
+  (require 'indent-hints)
+  (indent-hints-global-mode))
 
 ;; better buffer disambiguation
 (require 'uniquify)
@@ -194,10 +192,9 @@
 (add-hook 'textmate-goto-symbol-hook 'push-mark)
 
 ;; zenburn theme
-(if window-system
-    (progn
-      (require 'color-theme-zenburn)
-      (color-theme-zenburn)))
+(when window-system
+  (require 'color-theme-zenburn)
+  (color-theme-zenburn))
 
 ;; gist fun
 (require 'gist)
