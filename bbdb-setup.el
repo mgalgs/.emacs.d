@@ -15,7 +15,10 @@
 				  ("From" . "eecomm@qualcomm.com")
 				  ("From" . "code-review@qualcomm.com")
 				  ("From". "quiclost@quicinc.com")
-				  (("To" "CC") . "mitch.special@gmail.com")))
+				  ("From". "jiramail@qualcomm.com")
+				  ("From". "jive_admin@qualcomm.com")
+				  (("To" "CC") . "mitch.special@gmail.com")
+				  (("X-Mailman-Version" "X-Mailing-List") . ".*")))
 
 (require 'nnir)
 ;; (setq bbdb-mua-update-interactive-p '(query . create))

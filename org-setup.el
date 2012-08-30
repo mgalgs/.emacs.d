@@ -13,12 +13,12 @@
         ("pC" "C-Priority todos" tags-tree "PRIORITY=\"C\"")))
 ;; TODO workflow states
 (setq org-todo-keywords
-      '((sequence "TODO" "CODE REVIEW" "DONE")))
+      '((sequence "TODO" "CODE REVIEW" "BLOCKED" "DONE")))
 ;; faces for todo keywords:
 (setq org-todo-keyword-faces
-      '(("TODO" . (:foreground "red" :weight bold :background "honeydew2"))
+      '(("TODO" . (:foreground "red" :weight bold))
         ("CODE REVIEW" . (:foreground "dark orange"))
-        ("POSTPONE" . shadow)
+        ("BLOCKED" . shadow)
         ("CANCELED" . (:foreground "dark red"))
         ("DONE" . (:foreground "dark green" :weight bold))))
 

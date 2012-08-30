@@ -306,3 +306,5 @@
       footnote-section-tag "")
 
 (require 'lorem-ipsum)
+
+(load-file "~/.emacs.d/mailto.el")
