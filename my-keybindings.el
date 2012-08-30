@@ -16,9 +16,9 @@
 (global-set-key (kbd "<M-up>") 'my-increment-number-decimal)
 (global-set-key (kbd "<M-down>") 'my-decrement-number-decimal)
 
-(global-set-key (kbd "C-<up>") 'my-up-a-line)
+(global-set-key (kbd "<up>") 'my-up-a-line)
 (global-set-key (kbd "M-P") 'my-up-a-line)
-(global-set-key (kbd "C-<down>") 'my-down-a-line)
+(global-set-key (kbd "<down>") 'my-down-a-line)
 (global-set-key (kbd "M-N") 'my-down-a-line)
 (global-set-key (kbd "C-S-l") 'my-horizontal-recenter)
 

@@ -251,14 +251,17 @@
           1
         (count-lines (point-min) (point))))))
 
-(defun kill-where-i-am ()
-  "put filename:linum in the kill ring"
-  (interactive)
-  (let ((x-select-enable-clipboard t))
-    (kill-new
-     (concat (file-name-nondirectory (buffer-file-name))
-             ":"
-             (number-to-string (gtags-current-lineno))))))
+(defun kill-where-i-am (&optional kill-full-path)
+  "Put filename:linum in the kill ring. With prefix, include full
+path to file."
+  (interactive "P")
+  (let ((x-select-enable-clipboard t)
+	(the-path (if kill-full-path
+		      buffer-file-name
+		    (file-name-nondirectory (buffer-file-name)))))
+    (kill-new (concat the-path
+		      ":"
+		      (number-to-string (gtags-current-lineno))))))
 
 (defun grep-what-im-on ()
   "grep whatever i'm on by passing a prefix:"
