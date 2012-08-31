@@ -456,3 +456,16 @@ Adapted from http://emacswiki.org/emacs/ElispCookbook"
   (mapcar (lambda (el)
             (file-name-as-directory (replace-regexp-in-string dir-to-strip "/" el)))
           dirs))
+
+(defun my-transpose-windows (arg)
+   "Transpose the buffers shown in two windows. From
+http://emacswiki.org/emacs/TransposeWindows"
+   (interactive "p")
+   (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
+     (while (/= arg 0)
+       (let ((this-win (window-buffer))
+             (next-win (window-buffer (funcall selector))))
+         (set-window-buffer (selected-window) next-win)
+         (set-window-buffer (funcall selector) this-win)
+         (select-window (funcall selector)))
+       (setq arg (if (plusp arg) (1- arg) (1+ arg))))))

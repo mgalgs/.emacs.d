@@ -99,3 +99,5 @@
 
 ;; diff
 (define-key diff-mode-map "q" 'bury-buffer)
+
+(define-key ctl-x-4-map (kbd "t") 'transpose-windows)
