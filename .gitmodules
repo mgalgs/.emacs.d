@@ -6,7 +6,7 @@
 	url = https://github.com/fgallina/python.el.git
 [submodule "site-lisp/auto-complete"]
 	path = site-lisp/auto-complete
-	url = https://github.com/m2ym/auto-complete.git
+	url = https://github.com/auto-complete/auto-complete.git
 [submodule "site-lisp/textmate"]
 	path = site-lisp/textmate
 	url = https://mgalgs@github.com/mgalgs/textmate.el.git
@@ -30,7 +30,7 @@
 	url = https://github.com/emacsmirror/cedet.git
 [submodule "site-lisp/popup"]
 	path = site-lisp/popup
-	url = https://github.com/m2ym/popup-el.git
+	url = https://github.com/auto-complete/popup-el.git
 [submodule "site-lisp/gh"]
 	path = site-lisp/gh
 	url = https://github.com/sigma/gh.el.git
