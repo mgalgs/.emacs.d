@@ -469,3 +469,17 @@ http://emacswiki.org/emacs/TransposeWindows"
          (set-window-buffer (funcall selector) this-win)
          (select-window (funcall selector)))
        (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
+
+(defun my-go-to-corresponding-header-or-implementation-file ()
+  "Goes to the .c or .h that corresponds to the current file"
+  (interactive)
+  (let* ((file-base-name (file-name-sans-extension (buffer-file-name)))
+	 (file-extension (file-name-extension (buffer-file-name)))
+	 (the-other-file (concat file-base-name
+				 (if (string= file-extension "c") ".h" ".c"))))
+    (if (not (or (string= file-extension "c")
+		 (string= file-extension "h")))
+	(message "%s.%s is not a .c or .h file." (file-name-nondirectory file-base-name) file-extension)
+      (if (not (file-exists-p the-other-file))
+	  (message "%s does not exist" the-other-file)
+	(find-file the-other-file)))))
