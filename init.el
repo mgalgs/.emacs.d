@@ -269,8 +269,11 @@
 ;; highlight current line
 ;; (global-hl-line-mode)
 
-;; browse the web with chrom{e,ium}
-(setq browse-url-browser-function 'browse-url-chrome)
+;; choose a web browser
+(setq browse-url-browser-function (cond
+				   ((= 0 (shell-command "which chrome >&/dev/null")) 'browse-url-chrome)
+				   ((= 0 (shell-command "which chromium >&/dev/null")) 'browse-url-chromium)
+				   ((= 0 (shell-command "which firefox >&/dev/null")) 'browse-url-firefox)))
 
 ;; git commit mode
 (require 'git-commit)
