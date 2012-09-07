@@ -4,7 +4,7 @@
 (bbdb-initialize 'gnus 'message)
 (bbdb-mua-auto-update-init 'gnus 'message)
 
-(setq bbdb-mua-update-interactive-p '(query . create)
+(setq bbdb-mua-update-interactive-p '(create . create)
       bbdb-complete-mail-allow-cycling t
       bbdb-completion-display-record nil
       bbdb-update-records-p 'create

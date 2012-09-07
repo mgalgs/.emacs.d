@@ -316,4 +316,5 @@
 (autoload 'mo-git-blame-file "mo-git-blame" nil t)
 (autoload 'mo-git-blame-current "mo-git-blame" nil t)
 
-(require 'lorem-ipsum)
+(require 'boxquote)
+(require 'thinks)

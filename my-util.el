@@ -483,3 +483,48 @@ http://emacswiki.org/emacs/TransposeWindows"
       (if (not (file-exists-p the-other-file))
 	  (message "%s does not exist" the-other-file)
 	(find-file the-other-file)))))
+
+;; (defun my-gnus-get-group-names ()
+;;   "Returns a list of currently subscribed gnus group names"
+;;   (let (choices group)
+;;     (mapatoms (lambda (symbol)
+;; 		(setq group (symbol-name symbol))
+;; 		(push (if (string-match "[^\000-\177]" group)
+;; 			  (gnus-group-decoded-name group)
+;; 			group)
+;; 		      choices))
+;; 	      gnus-active-hashtb)
+;;     choices))
+
+(defun my-gnus-get-group-names ()
+  ""
+  (with-current-buffer gnus-group-buffer
+    (save-excursion
+      (gnus-group-list-all-groups)
+      (goto-char (point-min))
+      (let ((group-names nil)
+	    (more-lines t))
+	(while more-lines
+	  (push (gnus-group-name-at-point) group-names)
+	  (setq more-lines (= 0 (forward-line 1))))
+	(cdr group-names)))))
+
+(defun my-gnus-subscribed-to-group-p (group)
+  "Checks that we are subscribed to `group'"
+  (member group (my-gnus-get-group-names)))
+
+(defun my-gnus-verify-subscriptions (groups)
+  "Verify that we are subscribed to all groups in
+  `groups'. Prompt to subscribe for any unsubscribed group."
+  (interactive)
+  (let ((group-names (my-gnus-get-group-names)))
+    (dolist (group groups)
+      (unless (member group group-names)
+	(message "Not subscribed to %s. You might want to add a subscription..." group)))))
+
+(defun my-gnus-verify-subscriptions-hook ()
+  "Just calls `my-gnus-verify-subscriptions' with the first item
+in each `nnmail-split-methods'"
+  (interactive)
+  (my-gnus-verify-subscriptions (mapcar 'first nnmail-split-methods)))
+
