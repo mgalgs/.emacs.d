@@ -315,3 +315,5 @@
 ;; mo-git-blame (since vc-annotate hangs on me sometimes...)
 (autoload 'mo-git-blame-file "mo-git-blame" nil t)
 (autoload 'mo-git-blame-current "mo-git-blame" nil t)
+
+(require 'lorem-ipsum)
