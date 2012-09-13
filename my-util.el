@@ -528,3 +528,18 @@ in each `nnmail-split-methods'"
   (interactive)
   (my-gnus-verify-subscriptions (mapcar 'first nnmail-split-methods)))
 
+(defun my-make-room-for-new-compilation-buffer ()
+  "Renames existing *compilation* buffer to something unique so
+  that a new compilation job can be run."
+  (interactive)
+  (let ((cbuf (get-buffer "*compilation*"))
+	(more-cbufs t)
+	(n 1)
+	(new-cbuf-name ""))
+    (when cbuf
+      (while more-cbufs
+	(setq new-cbuf-name (format "*compilation%d*" n))
+	(setq n (1+ n))
+	(setq more-cbufs (get-buffer new-cbuf-name)))
+      (with-current-buffer cbuf
+	(rename-buffer new-cbuf-name)))))
