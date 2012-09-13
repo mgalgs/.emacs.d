@@ -319,3 +319,5 @@
 
 (require 'boxquote)
 (require 'thinks)
+
+(load-file "~/.emacs.d/auto-install/uptime.el")
