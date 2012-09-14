@@ -23,11 +23,11 @@
 	     "~/.emacs.d/site-lisp/bbdb/lisp")
        load-path))
 
-;; some utility functions
-(load-file "~/.emacs.d/my-util.el")
-
 ;; some utility macros
 (load-file "~/.emacs.d/my-macros.el")
+
+;; some utility functions
+(load-file "~/.emacs.d/my-util.el")
 
 ;; parse command line arguments
 (setq my-switch-with-cedet-p (member "-with-cedet" command-line-args))

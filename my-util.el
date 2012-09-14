@@ -543,3 +543,34 @@ in each `nnmail-split-methods'"
 	(setq more-cbufs (get-buffer new-cbuf-name)))
       (with-current-buffer cbuf
 	(rename-buffer new-cbuf-name)))))
+
+
+(defvar my-compilers-alist nil
+  "alist to be used for compilation. Each element in the list
+  should be a cons cell of the form:
+
+(compiler-name . compile-fn)")
+
+
+(setq jb-dir  "/local/mnt/workspace/mitchelh/jb/")
+
+(setq my-compilers-alist
+      `(("android msm8960 jb" . ,(my-make-android-compiler jb-dir
+							   "1 msm8960 3"))
+	("gtags kernel jb" . ,(my-make-gtags-compiler (concat jb-dir "/kernel")))))
+
+
+(defun my-choose-and-use-compiler ()
+  "choose a compiler from `my-compilers-alist' using
+`ido-completing-read'"
+  (interactive)
+  (let* ((the-choices (mapcar 'car my-compilers-alist))
+	 (the-choice (ido-completing-read "Compiler to run: "
+					  the-choices))
+	 (the-compile-fn (cdr (assoc the-choice
+	 			     my-compilers-alist))))
+    (message "before prince")
+    (message the-choice)
+    (princ the-compile-fn)
+    (funcall the-compile-fn)))
+
