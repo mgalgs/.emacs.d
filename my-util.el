@@ -476,11 +476,19 @@ http://emacswiki.org/emacs/TransposeWindows"
   (let* ((file-base-name (file-name-sans-extension (buffer-file-name)))
 	 (file-extension (file-name-extension (buffer-file-name)))
 	 (the-other-file (concat file-base-name
-				 (if (string= file-extension "c") ".h" ".c"))))
+				 (cond
+				  ((string= file-extension "c") ".h")
+				  ((string= file-extension "cpp") ".h")
+				  ((and (string= file-extension "h")
+					(file-exists-p (concat file-base-name ".c"))) ".c")
+				  ((and (string= file-extension "h")
+					(file-exists-p (concat file-base-name ".cpp"))) ".cpp")
+				  (t nil)))))
     (if (not (or (string= file-extension "c")
+		 (string= file-extension "cpp")
 		 (string= file-extension "h")))
-	(message "%s.%s is not a .c or .h file." (file-name-nondirectory file-base-name) file-extension)
-      (if (not (file-exists-p the-other-file))
+	(message "%s.%s is not a .c, .cpp, or .h file." (file-name-nondirectory file-base-name) file-extension)
+      (if (or (not the-other-file) (not (file-exists-p the-other-file)))
 	  (message "%s does not exist" the-other-file)
 	(find-file the-other-file)))))
 
@@ -497,7 +505,7 @@ http://emacswiki.org/emacs/TransposeWindows"
 ;;     choices))
 
 (defun my-gnus-get-group-names ()
-  ""
+  "get gnus group names"
   (with-current-buffer gnus-group-buffer
     (save-excursion
       (gnus-group-list-all-groups)
@@ -573,4 +581,3 @@ in each `nnmail-split-methods'"
     (message the-choice)
     (princ the-compile-fn)
     (funcall the-compile-fn)))
-
