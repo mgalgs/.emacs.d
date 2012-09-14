@@ -565,7 +565,7 @@ in each `nnmail-split-methods'"
 (setq my-compilers-alist
       `(("android msm8960 jb" . ,(my-make-android-compiler jb-dir
 							   "1 msm8960 3"))
-	("gtags kernel jb" . ,(my-make-gtags-compiler (concat jb-dir "/kernel")))))
+	("gtags kernel jb" . ,(my-make-gtags-compiler (concat jb-dir "kernel")))))
 
 
 (defun my-choose-and-use-compiler ()
