@@ -55,7 +55,7 @@
 (defvar zenburn-fg "#dcdccc")
 (defvar zenburn-fg-1 "#656555")
 (defvar zenburn-bg-1 "#000")
-(defvar zenburn-bg "#101010")
+(defvar zenburn-bg "#010101")
 (defvar zenburn-bg+1 "#303030")
 ;; (defvar zenburn-bg "#3f3f3f")
 ;; (defvar zenburn-bg+1 "#4f4f4f")
