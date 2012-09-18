@@ -14,8 +14,8 @@
      (interactive)
      (let ((default-directory ,droid-root)
 	   (compilation-search-path ,droid-root)
-	   (compile-command (format "env $(echo_the_exports=y; cd %s; source build/envsetup.sh; choosecombo %s; ) sh -c 'd=%s; cd $d; make -j8 -C $d'"
-				    ,droid-root ,choosecombo-args ,droid-root)))
+	   (compile-command (format "d=%s; cd $d; source build/envsetup.sh; choosecombo %s; make -j8 -C $d"
+				    ,droid-root ,choosecombo-args)))
        (cd default-directory)
        (call-interactively 'compile))))
 
@@ -25,5 +25,13 @@
   `(lambda ()
      (interactive)
      (let ((compile-command (format "cd %s; gtags -iI && notify-send \"gtags regeneration SUCCESSFUL\" || notify-send \"gtags regeneration FAILED\""
+				    ,where)))
+       (call-interactively 'compile))))
+
+(defmacro my-make-kdev-compiler (where)
+  "make kdev compiler (for use in `my-compilers')."
+  `(lambda ()
+     (interactive)
+     (let ((compile-command (format "make -C %s && notify-send \"kdev compile SUCCESSFUL\" || notify-send \"kdev compile FAILED\""
 				    ,where)))
        (call-interactively 'compile))))

@@ -561,10 +561,16 @@ in each `nnmail-split-methods'"
 
 
 (setq jb-dir  "/local/mnt/workspace/mitchelh/jb/")
+(setq kdev-dir (concat jb-dir "../kdev"))
 
 (setq my-compilers-alist
       `(("android msm8960 jb" . ,(my-make-android-compiler jb-dir
 							   "1 msm8960 3"))
+	("android msm8660_surf jb" . ,(my-make-android-compiler jb-dir
+								"1 msm8660_surf 3"))
+	("android msm7627a jb" . ,(my-make-android-compiler jb-dir
+								"1 msm7627a 3"))
+	("kdev kernel buildroot" . ,(my-make-kdev-compiler kdev-dir))
 	("gtags kernel jb" . ,(my-make-gtags-compiler (concat jb-dir "kernel")))))
 
 
@@ -577,7 +583,4 @@ in each `nnmail-split-methods'"
 					  the-choices))
 	 (the-compile-fn (cdr (assoc the-choice
 	 			     my-compilers-alist))))
-    (message "before prince")
-    (message the-choice)
-    (princ the-compile-fn)
     (funcall the-compile-fn)))
