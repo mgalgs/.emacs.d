@@ -321,3 +321,5 @@
 (require 'thinks)
 
 (load-file "~/.emacs.d/auto-install/uptime.el")
+
+(load-file "~/.emacs.d/site-lisp/kconfig-mode.el")
