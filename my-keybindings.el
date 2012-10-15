@@ -52,6 +52,7 @@
 (global-set-key (kbd "C-c m l") 'my-kill-last-message)
 (global-set-key (kbd "C-c m n") 'pageview-goto-next-page-break)
 (global-set-key (kbd "C-c m p") 'pageview-goto-previous-page-break)
+(global-set-key (kbd "C-c m o") 'browse-url)
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
