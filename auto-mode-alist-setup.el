@@ -25,3 +25,4 @@
 (add-to-list 'auto-mode-alist '("/git-rebase-todo$" . conf-mode))
 
 (add-to-list 'auto-mode-alist '("/Kconfig$" . kconfig-mode))
+(add-to-list 'auto-mode-alist '("_defconfig$" . conf-mode))
