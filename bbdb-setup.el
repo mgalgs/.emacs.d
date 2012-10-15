@@ -17,6 +17,8 @@
 				  ("From". "quiclost@quicinc.com")
 				  ("From". "jiramail@qualcomm.com")
 				  ("From". "jive_admin@qualcomm.com")
+				  ("From". "itpeople@codeaurora.org")
+				  ("From". "noreply@.*")
 				  (("To" "CC") . "mitch.special@gmail.com")
 				  (("X-Mailman-Version" "X-Mailing-List") . ".*")))
 
