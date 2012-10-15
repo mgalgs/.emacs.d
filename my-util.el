@@ -559,9 +559,10 @@ in each `nnmail-split-methods'"
 
 (compiler-name . compile-fn)")
 
-
-(setq jb-dir  "/local/mnt/workspace/mitchelh/jb/")
-(setq kdev-dir (concat jb-dir "../kdev"))
+(setq workspace-dir "/local/mnt/workspace/mitchelh")
+(setq jb-dir (concat workspace-dir "/jb"))
+(setq kdev-dir (concat workspace-dir "/kdev"))
+(setq mdm-dir (concat workspace-dir "/mdm"))
 
 (setq my-compilers-alist
       `(("android msm8960 jb" . ,(my-make-android-compiler jb-dir
@@ -570,8 +571,17 @@ in each `nnmail-split-methods'"
 								"1 msm8660_surf 3"))
 	("android msm7627a jb" . ,(my-make-android-compiler jb-dir
 								"1 msm7627a 3"))
-	("kdev kernel buildroot" . ,(my-make-kdev-compiler kdev-dir))
-	("gtags kernel jb" . ,(my-make-gtags-compiler (concat jb-dir "kernel")))))
+	("android msm7630_surf jb" . ,(my-make-android-compiler jb-dir
+								"1 msm7630_surf 3"))
+	("android msm8974 jb" . ,(my-make-android-compiler jb-dir
+								"1 msm8974 3"))
+	("kdev msm8960 buildroot" . ,(my-make-kdev-compiler "msm8960_defconfig" kdev-dir))
+	("kdev msm8974 buildroot" . ,(my-make-kdev-compiler "msm8974_defconfig" kdev-dir))
+	("kdev msm9625 buildroot" . ,(my-make-kdev-compiler "msm9625_defconfig" kdev-dir))
+	("kdev msm8226 buildroot" . ,(my-make-kdev-compiler "msm8974_defconfig" kdev-dir))
+	("gtags kernel jb" . ,(my-make-gtags-compiler (concat jb-dir "/kernel")))
+	("gtags kernel-tests" . ,(my-make-gtags-compiler (concat kdev-dir "/kernel-tests")))
+	("gtags mdm" . ,(my-make-gtags-compiler (concat mdm-dir "/kernel")))))
 
 
 (defun my-choose-and-use-compiler ()

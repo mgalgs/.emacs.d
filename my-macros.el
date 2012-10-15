@@ -8,14 +8,19 @@
        ;; (message (concat "Running advice for " (symbol-name ',after-what-str)))
        (recenter))))
 
+(defun my-make-notify-send-depending-on-retval (what)
+  "to be concatenated to a shell command"
+  (format "&& { notify-send \"%s SUCCESSFUL\"; beep -f 3000 -l 50 -r 3; } || { notify-send \"%s FAILED\"; beep -f 200 -l 200 -r 2; }"
+	  what what))
+
 (defmacro my-make-android-compiler (droid-root choosecombo-args)
   "make android compiler (for use in `my-compilers')"
   `(lambda ()
      (interactive)
      (let ((default-directory ,droid-root)
-	   (compilation-search-path ,droid-root)
-	   (compile-command (format "d=%s; cd $d; source build/envsetup.sh; choosecombo %s; make -j8 -C $d"
-				    ,droid-root ,choosecombo-args)))
+	   (compilation-search-path ,droid-root))
+       (setq compile-command (format "d=%s; cd $d; source build/envsetup.sh; choosecombo %s; make -j8 -C $d %s"
+				     ,droid-root ,choosecombo-args (my-make-notify-send-depending-on-retval "android build")))
        (cd default-directory)
        (call-interactively 'compile))))
 
@@ -24,14 +29,14 @@
 -iI at `where'"
   `(lambda ()
      (interactive)
-     (let ((compile-command (format "cd %s; gtags -iI && notify-send \"gtags regeneration SUCCESSFUL\" || notify-send \"gtags regeneration FAILED\""
-				    ,where)))
-       (call-interactively 'compile))))
+     (setq compile-command (format "cd %s; gtags -iI %s"
+				   ,where (my-make-notify-send-depending-on-retval "gtags regeneration")))
+     (call-interactively 'compile)))
 
-(defmacro my-make-kdev-compiler (where)
+(defmacro my-make-kdev-compiler (kconfig where)
   "make kdev compiler (for use in `my-compilers')."
   `(lambda ()
      (interactive)
-     (let ((compile-command (format "make -C %s && notify-send \"kdev compile SUCCESSFUL\" || notify-send \"kdev compile FAILED\""
-				    ,where)))
-       (call-interactively 'compile))))
+     (setq compile-command (format "KCONFIG=%s make -C %s %s"
+				   ,kconfig ,where (my-make-notify-send-depending-on-retval "kdev compile")))
+     (call-interactively 'compile)))
