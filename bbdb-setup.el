@@ -8,8 +8,10 @@
       bbdb-complete-mail-allow-cycling t
       bbdb-completion-display-record nil
       bbdb-update-records-p 'create
-      bbdb-pop-up-window-size 10
+      ;; bbdb-pop-up-window-size 0
       bbdb-message-all-addresses t
+      bbdb-layout 'one-line
+      bbdb-message-pop-up nil
       bbdb-ignore-message-alist '(("From" . "code-review@localhost")
 				  ("From" . "oit_prd@qualcomm.com")
 				  ("From" . "eecomm@qualcomm.com")
