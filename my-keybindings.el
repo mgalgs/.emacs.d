@@ -10,7 +10,6 @@
 (global-set-key (kbd "<f7>") 'compile)
 
 (global-set-key (kbd "<C-f7>") 'rebuild-the-unit-tests)
-(global-set-key (kbd "<S-f7>") 'my-choose-and-use-compiler)
 
 (global-set-key "\C-cmm" 'woman)
 (global-set-key (kbd "<M-up>") 'my-increment-number-decimal)
