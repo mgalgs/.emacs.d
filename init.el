@@ -325,3 +325,5 @@
 (load-file "~/.emacs.d/site-lisp/kconfig-mode.el")
 
 (which-function-mode)
+
+(require 'kernel-stack-trace-mode)
