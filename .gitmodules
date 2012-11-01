@@ -61,3 +61,6 @@
 [submodule "site-lisp/mo-git-blame"]
 	path = site-lisp/mo-git-blame
 	url = http://github.com/mbunkus/mo-git-blame.git
+[submodule "site-lisp/kernel-stack-trace-mode"]
+	path = site-lisp/kernel-stack-trace-mode
+	url = git@github.com:mgalgs/kernel-stack-trace-mode.git
