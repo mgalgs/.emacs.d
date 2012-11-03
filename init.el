@@ -327,3 +327,43 @@
 (which-function-mode)
 
 (require 'kernel-stack-trace-mode)
+
+;; DIRTY HACK: PLEASE REMOVE WHEN
+;; https://github.com/defunkt/gist.el/issues/33 GETS RESOLVED.
+;;
+;; from https://gist.github.com/3127107
+(defadvice gist-region (around su/advice/gist/gist-region/around/dirty-hack
+                               a c pre)
+  "Dirty hack to prevent gist-region from choking on buffers which contain
+     `%' character"
+  (save-window-excursion
+    (let* ((delete-old-versions t)
+           (dummy "foo")
+           (beg (ad-get-arg 0))
+           (end (ad-get-arg 1))
+           (min-beg-end (min beg end))
+           (original-text (buffer-substring beg end))
+           gistid buf proc)
+      (kill-region beg end)
+      (insert-for-yank-1 dummy)
+      (ad-set-arg 0 min-beg-end)
+      (ad-set-arg 1 (point))
+      ad-do-it
+      (sleep-for 0.5) ;; deep magic
+      (dolist (buf (buffer-list))
+        (when (string-match "^\\s-\\*http api\\.github\\.com:443\\*$" (buffer-name
+                                                                       buf))
+          (setq proc (get-buffer-process buf))
+          (when proc (kill-process proc))
+          ))
+      (delete-region min-beg-end (point))
+      (insert-for-yank-1 original-text)
+      (setq gistid (car (last (split-string (car kill-ring)
+                                            "/"))))
+      (setq buf (gist-fetch gistid))
+      (with-current-buffer buf
+        (delete-region (point-min)
+                       (point-max))
+        (insert-for-yank-1 original-text)
+        (gist-mode-save-buffer)
+        (kill-buffer)))))
