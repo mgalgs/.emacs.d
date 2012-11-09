@@ -2,7 +2,27 @@
 
 (setq gthings-completing-read 'ido-completing-read)
 (setq gthings-git-diff-buffer-name "*gthings-diff*")
+(setq gthings-git-show-buffer-name-fmt "*gthings-show-at-%s*")
 
+
+(defun gthings-run-git-cmd (cmd output-buffer-name)
+  "runs a git command `CMD', placing output in
+`OUTPUT-BUFFER-NAME'."
+  (let ((current-major-mode major-mode)
+	(old-buffer (get-buffer output-buffer-name)))
+    (if old-buffer
+	(kill-buffer old-buffer))
+    (apply 'call-process
+	   "git"
+	   nil
+	   output-buffer-name
+	   t
+	   (split-string cmd " "))
+    (switch-to-buffer output-buffer-name)
+    (funcall current-major-mode)
+    (setq buffer-read-only t)
+    (view-mode)
+    (goto-char (point-min))))
 
 ;; run git diff and put it in a special diff buffer
 (defun gthings-git-diff (diff-args &optional current-buffer-only)
@@ -11,17 +31,7 @@
 			  diff-args))
 	 (diff-cmd (concat "diff " the-diff-args))
 	 (old-buffer (get-buffer gthings-git-diff-buffer-name)))
-    (message "Running git %s" diff-cmd)
-    (if old-buffer
-	(kill-buffer old-buffer))
-    (apply 'call-process
-	   "git"
-	   nil
-	   gthings-git-diff-buffer-name
-	   t
-	   (split-string diff-cmd " "))
-    (switch-to-buffer gthings-git-diff-buffer-name)
-    (goto-char (point-min))
+    (gthings-run-git-cmd diff-cmd gthings-git-diff-buffer-name)
     (diff-mode)))
 
 
@@ -37,3 +47,13 @@ prefix, only diffs the current buffer."
 						     the-cleaned-branches)))
       (gthings-git-diff selected-branch only-current-buffer)))
 
+(defun gthings-show-file-at-rev (&optional rev)
+  "Shows the current file at revision in a new buffer as it"
+  (interactive)
+  (let* ((rev (if rev rev
+		(read-from-minibuffer "Revision: ")))
+	 (show-cmd (format "show %s:./%s"
+			   rev
+			   (file-name-nondirectory (buffer-file-name)))))
+    (gthings-run-git-cmd show-cmd
+			 (format gthings-git-show-buffer-name-fmt rev))))
