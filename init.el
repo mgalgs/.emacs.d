@@ -328,6 +328,9 @@
 
 (require 'kernel-stack-trace-mode)
 
+;; some miscellaneous recentering advice:
+(my-make-recentering-advice textmate-goto-symbol)
+
 ;; DIRTY HACK: PLEASE REMOVE WHEN
 ;; https://github.com/defunkt/gist.el/issues/33 GETS RESOLVED.
 ;;
