@@ -11,18 +11,7 @@
       ;; bbdb-pop-up-window-size 0
       bbdb-message-all-addresses t
       bbdb-layout 'one-line
-      bbdb-message-pop-up nil
-      bbdb-ignore-message-alist '(("From" . "code-review@localhost")
-				  ("From" . "oit_prd@qualcomm.com")
-				  ("From" . "eecomm@qualcomm.com")
-				  ("From" . "code-review@qualcomm.com")
-				  ("From". "quiclost@quicinc.com")
-				  ("From". "jiramail@qualcomm.com")
-				  ("From". "jive_admin@qualcomm.com")
-				  ("From". "itpeople@codeaurora.org")
-				  ("From". "noreply@.*")
-				  (("To" "CC") . "mitch.special@gmail.com")
-				  (("X-Mailman-Version" "X-Mailing-List") . ".*")))
+      bbdb-message-pop-up nil)
 
 (require 'nnir)
 ;; (setq bbdb-mua-update-interactive-p '(query . create))
