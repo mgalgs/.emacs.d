@@ -12,6 +12,7 @@
 	(old-buffer (get-buffer output-buffer-name)))
     (if old-buffer
 	(kill-buffer old-buffer))
+    (message "Running gthings git command: %s" cmd)
     (apply 'call-process
 	   "git"
 	   nil
