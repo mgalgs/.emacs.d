@@ -64,6 +64,7 @@
 (global-set-key (kbd "C-c ,") 'iy-go-to-char-continue-backward)
 
 (global-set-key (kbd "C-M-S-SPC") 'one-key-menu-toplevel)
+(global-set-key (kbd "C-c m SPC") 'one-key-menu-toplevel)
 (global-set-key (kbd "M-S") 'lazy-search-menu)
 
 (global-set-key "(" 'skeleton-pair-insert-maybe)
@@ -81,7 +82,11 @@
 ;; global:
 (global-set-key "\C-cgn" 'my-gtags-next-result)
 (global-set-key (kbd "C-M-*") 'gtags-pop-stack)
-(global-set-key (kbd "C-M->") 'gtags-find-tag)
+(global-set-key (kbd "\C-cm*") 'gtags-pop-stack)
+(global-set-key (kbd "C-M-<") 'gtags-find-tag)
+(global-set-key (kbd "\C-cm,") 'gtags-find-tag)
+(global-set-key (kbd "C-M->") 'gtags-find-tag-from-here)
+(global-set-key (kbd "\C-cm.") 'gtags-find-tag-from-here)
 (define-key doc-view-mode-map "j" 'doc-view-next-line-or-next-page)
 (define-key doc-view-mode-map "k" 'doc-view-previous-line-or-previous-page)
 
