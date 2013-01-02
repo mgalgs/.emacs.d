@@ -551,3 +551,14 @@ in each `nnmail-split-methods'"
 	(setq more-cbufs (get-buffer new-cbuf-name)))
       (with-current-buffer cbuf
 	(rename-buffer new-cbuf-name)))))
+
+(defun my-once ()
+  "Insert header guards"
+  (interactive)
+  (let ((guard-txt (format "#ifndef _%s"
+			   (replace-regexp-in-string (regexp-quote ".")
+						     "_"
+						     (upcase (buffer-name))))))
+    (insert (format "%s\n\n#endif /* %s */\n" guard-txt guard-txt))
+    (previous-line 2)
+    (beginning-of-line)))
