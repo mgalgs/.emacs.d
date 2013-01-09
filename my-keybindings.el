@@ -109,3 +109,5 @@
 (define-key ctl-x-4-map (kbd "t") 'transpose-windows)
 
 (global-set-key "\C-ci" 'my-go-to-corresponding-header-or-implementation-file)
+
+(global-set-key "\C-x>" (lambda () (interactive) (other-window 1) (end-of-buffer)))
