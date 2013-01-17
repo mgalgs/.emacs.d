@@ -1,5 +1,6 @@
 (require 'org-install)
 
+(setq org-default-notes-file "~/notes.org")
 (setq org-use-property-inheritance t)   ;for inheritance in matches
 ;; handy sparse tree shortcuts:
 (setq org-agenda-custom-commands
@@ -34,3 +35,5 @@
 	      (setq yas/trigger-key [tab])
 	      (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
 	      (define-key yas/keymap [tab] 'yas/next-field))))
+
+(require 'org-gnus)

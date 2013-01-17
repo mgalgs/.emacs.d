@@ -91,7 +91,7 @@
  scroll-conservatively 100000
  scroll-preserve-screen-position 1
  inhibit-startup-screen t
- )
+ isearch-allow-scroll t)
 
 (setq-default
  ;; indent-tabs-mode nil ; don't use the tab character, only spaces
@@ -118,10 +118,10 @@
 (require 'iedit)
 
 ;; mozrepl
-(autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
-(add-hook 'espresso-mode-hook 'espresso-custom-setup)
-(defun espresso-custom-setup ()
-  (moz-minor-mode 1))
+;; (autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
+;; (add-hook 'espresso-mode-hook 'espresso-custom-setup)
+;; (defun espresso-custom-setup ()
+;;   (moz-minor-mode 1))
 
 ;; Line numbering
 ;; (global-linum-mode 1)

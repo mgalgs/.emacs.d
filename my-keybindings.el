@@ -1,6 +1,21 @@
 ;;; A few miscellaneous general keybindings: ;;;
 
-(global-set-key (kbd "C-c m k") 'kill-buffer-and-window)
+;; using a macro for location-independence. (this is pointless on its
+;; own (other pieces of my config depend on stuff being located at
+;; ~/.emacs.d) but oh well)
+(defmacro my-visit-keybindings-file-maker ()
+  "Defines a function to visit my-keybindings.el"
+  (let ((keybindings-file-name (buffer-file-name)))
+    `(defun my-visit-keybindings-file ()
+       "Visits my-keybindings.el"
+       (interactive)
+       (find-file ,keybindings-file-name))))
+
+;; define my-visit-keybindings-file by calling
+;; my-visit-keybindings-file-maker
+(my-visit-keybindings-file-maker)
+
+(global-set-key (kbd "C-c m k") 'my-visit-keybindings-file)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "<S-f5>") 'revert-and-goto-end-of-buffer)
 
@@ -11,7 +26,7 @@
 
 (global-set-key (kbd "<C-f7>") 'rebuild-the-unit-tests)
 
-(global-set-key "\C-cmm" 'woman)
+(global-set-key "\C-cmw" 'woman)
 (global-set-key (kbd "<M-up>") 'my-increment-number-decimal)
 (global-set-key (kbd "<M-down>") 'my-decrement-number-decimal)
 
@@ -47,7 +62,6 @@
 
 (global-set-key (kbd "C-c m i") 'kill-where-i-am)
 (global-set-key (kbd "C-c m g") 'grep-what-im-on)
-(global-set-key (kbd "C-c m w") 'my-make-this-buffer-writable)
 (global-set-key (kbd "C-c m l") 'my-kill-last-message)
 (global-set-key (kbd "C-c m n") 'pageview-goto-next-page-break)
 (global-set-key (kbd "C-c m p") 'pageview-goto-previous-page-break)
