@@ -68,7 +68,10 @@
 (load-file "~/.emacs.d/ido-setup.el")
 
 ;; bbdb
-(load-file "~/.emacs.d/bbdb-setup.el")
+;; (load-file "~/.emacs.d/bbdb-setup.el")
+
+;; EUDC
+(load-file "~/.emacs.d/eudc-setup.el")
 
 (show-paren-mode t)
 
