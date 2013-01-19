@@ -10,9 +10,10 @@
                                  (firstname name)
                                  (email)))
 
-(load-file "~/eudc-private.el")
+(when (file-exists-p "~/eudc-private.el")
+  (load-file "~/eudc-private.el"))
 
-;;; eudc-private.el sets these:
+;;; eudc-private.el should set these:
 ;; (setq ldap-host-parameters-alist
 ;;       (quote (("some-server" base "ou=people,o=somegroup"))))
 ;; (eudc-set-server "some-server" 'ldap t)
