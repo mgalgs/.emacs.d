@@ -25,9 +25,6 @@
 [submodule "site-lisp/yasnippet"]
 	path = site-lisp/yasnippet
 	url = https://mgalgs@github.com/mgalgs/yasnippet.git
-[submodule "site-lisp/cedet"]
-	path = site-lisp/cedet
-	url = https://github.com/emacsmirror/cedet.git
 [submodule "site-lisp/popup"]
 	path = site-lisp/popup
 	url = https://github.com/auto-complete/popup-el.git
