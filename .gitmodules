@@ -1,6 +1,6 @@
 [submodule "site-lisp/indent-hints-mode"]
 	path = site-lisp/indent-hints-mode
-	url = https://mgalgs@github.com/mgalgs/indent-hints-mode.git
+	url = https://github.com/mgalgs/indent-hints-mode.git
 [submodule "site-lisp/fgallina-python-mode"]
 	path = site-lisp/fgallina-python-mode
 	url = https://github.com/fgallina/python.el.git
@@ -9,7 +9,7 @@
 	url = https://github.com/auto-complete/auto-complete.git
 [submodule "site-lisp/textmate"]
 	path = site-lisp/textmate
-	url = https://mgalgs@github.com/mgalgs/textmate.el.git
+	url = https://github.com/mgalgs/textmate.el.git
 [submodule "site-lisp/gist"]
 	path = site-lisp/gist
 	url = https://github.com/defunkt/gist.el.git
@@ -24,7 +24,7 @@
 	url = https://github.com/yoshiki/yaml-mode.git
 [submodule "site-lisp/yasnippet"]
 	path = site-lisp/yasnippet
-	url = https://mgalgs@github.com/mgalgs/yasnippet.git
+	url = https://github.com/capitaomorte/yasnippet.git
 [submodule "site-lisp/popup"]
 	path = site-lisp/popup
 	url = https://github.com/auto-complete/popup-el.git
@@ -60,4 +60,4 @@
 	url = http://github.com/mbunkus/mo-git-blame.git
 [submodule "site-lisp/kernel-stack-trace-mode"]
 	path = site-lisp/kernel-stack-trace-mode
-	url = git@github.com:mgalgs/kernel-stack-trace-mode.git
+	url = https://github.com/mgalgs/kernel-stack-trace-mode.git
