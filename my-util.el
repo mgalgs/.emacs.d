@@ -562,3 +562,10 @@ in each `nnmail-split-methods'"
     (insert (format "%s\n\n#endif /* %s */\n" guard-txt guard-txt))
     (previous-line 2)
     (beginning-of-line)))
+
+(defun my-xdg-open-each-in-region ()
+  "Run xdg-open on each line in current region"
+  (interactive)
+  (shell-command-on-region (region-beginning)
+			   (region-end)
+			   "while read m; do xdg-open $m; done"))
