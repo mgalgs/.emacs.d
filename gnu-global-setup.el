@@ -36,28 +36,26 @@
 	(define-key gtags-mode-map (kbd "M-*") 'semantic-pop-tag-mark))
       (add-hook 'gtags-mode-hook 'my-gtags-mode-hook)))
 
-(defun my-gtags-regenerate-tags-file-async ()
-  "Regenerate the tags files"
-  (interactive)
-  (unless gtags-rootdir (gtags-visit-rootdir))
-  (message "Starting gtags in the background...")
-  (start-process-shell-command "gtags"
-			       (concat "*GTAGS REGENERATE* " gtags-rootdir)
-			       (concat "cd "
-				       gtags-rootdir
-				       " && gtags -I")))
+(defun my-gtags-do-gtags-command-at-project-root (args)
+  "Run gtags command (with `ARGS' as a command line argument) at
+the project root."
+  (let ((project-dir (or (my-find-parent-dir-that-contains ".git")
+			 (my-find-parent-dir-that-contains "GTAGS"))))
+    (if (null project-dir)
+	(message "Couldn't find project dir!")
+      (message (format "Running `gtags %s' at %s" args project-dir))
+      (shell-command (concat "cd " project-dir " && gtags " args))
+      (message "Done"))))
 
-(defun my-gtags-regenerate-tags-file ()
-  "Regenerate the tags files"
+(defun my-gtags-update-tags-file ()
+  "Update the gtags tags file"
   (interactive)
-  (unless gtags-rootdir (gtags-visit-rootdir))
-  (shell-command (concat "cd " gtags-rootdir " && gtags -I")))
+  (my-gtags-do-gtags-command-at-project-root "-i"))
 
 (defun my-gtags-update-tags-file-incrementally ()
-  "Update the tags files incrementally"
+  "Update the gtags tags file"
   (interactive)
-  (unless gtags-rootdir (gtags-visit-rootdir))
-  (shell-command (concat "cd " gtags-rootdir " && gtags -I -i")))
+  (my-gtags-do-gtags-command-at-project-root "-iI"))
 
 ;;; ADVICE BELOW
 

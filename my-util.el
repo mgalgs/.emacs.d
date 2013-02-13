@@ -583,3 +583,22 @@ in each `nnmail-split-methods'"
 					     (mark))
 			 (current-word))))
 	 (shell-command (format "%s %s" ,proggie the-word))))))
+
+(defun my-dir-contains (dir what)
+  "Returns t if `DIR' contains a file or directory named `WHAT'"
+  (not (null (member what (directory-files dir)))))
+
+(defun my-do-find-parent-dir-that-contains (what dir)
+  ;; the real meat of `my-find-parent-dir-that-contains'
+  (let ((dir-expanded (expand-file-name dir)))
+    (cond
+     ((string= dir-expanded "/") nil)
+     ((my-dir-contains dir what) dir-expanded)
+     (t (my-do-find-parent-dir-that-contains what
+					    (file-name-as-directory (concat dir "..")))))))
+
+(defun my-find-parent-dir-that-contains (what)
+  "Return the first parent directory that contains a file or
+  directory named `WHAT'."
+  (interactive)
+  (my-do-find-parent-dir-that-contains what (file-name-directory (buffer-file-name))))

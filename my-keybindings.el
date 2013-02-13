@@ -1,5 +1,10 @@
 ;;; A few miscellaneous general keybindings: ;;;
 
+;; Typical prefixes:
+;; o C-m
+;; o C-m m
+
+
 ;; using a macro for location-independence. (this is pointless on its
 ;; own (other pieces of my config depend on stuff being located at
 ;; ~/.emacs.d) but oh well)
@@ -102,6 +107,8 @@
 (global-set-key (kbd "\C-cm.") 'gtags-find-tag-from-here)
 (define-key doc-view-mode-map "j" 'doc-view-next-line-or-next-page)
 (define-key doc-view-mode-map "k" 'doc-view-previous-line-or-previous-page)
+(global-set-key (kbd "C-c m m g") 'my-gtags-update-tags-file)
+(global-set-key (kbd "C-c m m i") 'my-gtags-update-tags-file-incrementally)
 
 (define-key gtags-select-mode-map "n" 'next-line)
 (define-key gtags-select-mode-map "p" 'previous-line)
