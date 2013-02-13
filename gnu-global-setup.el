@@ -50,7 +50,7 @@ the project root."
 (defun my-gtags-update-tags-file ()
   "Update the gtags tags file"
   (interactive)
-  (my-gtags-do-gtags-command-at-project-root "-i"))
+  (my-gtags-do-gtags-command-at-project-root "-I"))
 
 (defun my-gtags-update-tags-file-incrementally ()
   "Update the gtags tags file"
