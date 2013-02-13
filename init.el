@@ -373,3 +373,14 @@
         (insert-for-yank-1 original-text)
         (gist-mode-save-buffer)
         (kill-buffer)))))
+
+;; Define functions to wrap a bunch of conversion scripts in ~/scripts
+(dolist (file (directory-files "~/scripts"))
+  ;; all files that don't end in ~, have a `2' in the name, and one of
+  ;; [hex, dec, bin]
+  (when (and (not (string-match "~$" file))
+	     (string-match "2" file)
+	     (or (string-match "hex" file)
+		 (string-match "dec" file)
+		 (string-match "bin" file)))
+    (my-make-shell-caller (file-name-nondirectory file))))

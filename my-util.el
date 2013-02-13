@@ -569,3 +569,17 @@ in each `nnmail-split-methods'"
   (shell-command-on-region (region-beginning)
 			   (region-end)
 			   "while read m; do xdg-open $m; done"))
+
+(defun my-make-shell-caller (proggie)
+  "Function to define a function that does a shell-command to
+  program `proggie' with a single argument: the current word."
+  (defalias (intern (concat "my-shell-" proggie))
+    `(lambda ()
+       ,(format "Run %s on region (if active) or (current-word)" proggie)
+       (interactive)
+       ;; (let* ((deactivate-mark nil)
+       (let ((the-word (if (region-active-p)
+			   (buffer-substring (point)
+					     (mark))
+			 (current-word))))
+	 (shell-command (format "%s %s" ,proggie the-word))))))
