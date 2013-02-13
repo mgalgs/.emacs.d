@@ -10,7 +10,7 @@
 ;; ~/.emacs.d) but oh well)
 (defmacro my-visit-keybindings-file-maker ()
   "Defines a function to visit my-keybindings.el"
-  (let ((keybindings-file-name (buffer-file-name)))
+  (let ((keybindings-file-name load-file-name))
     `(defun my-visit-keybindings-file ()
        "Visits my-keybindings.el"
        (interactive)
