@@ -384,3 +384,5 @@
 		 (string-match "dec" file)
 		 (string-match "bin" file)))
     (my-make-shell-caller (file-name-nondirectory file))))
+
+(require 'diffview)

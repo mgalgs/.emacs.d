@@ -64,3 +64,6 @@
 [submodule "site-lisp/make-readme-markdown"]
 	path = site-lisp/make-readme-markdown
 	url = https://github.com/mgalgs/make-readme-markdown.git
+[submodule "site-lisp/diffview-mode"]
+	path = site-lisp/diffview-mode
+	url = https://github.com/mgalgs/diffview-mode.git
