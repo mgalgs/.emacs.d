@@ -131,3 +131,6 @@
 (global-set-key "\C-ci" 'my-go-to-corresponding-header-or-implementation-file)
 
 (global-set-key "\C-x>" (lambda () (interactive) (other-window 1) (end-of-buffer)))
+
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-c m =") 'er/expand-region)

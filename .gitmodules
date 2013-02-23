@@ -67,3 +67,6 @@
 [submodule "site-lisp/diffview-mode"]
 	path = site-lisp/diffview-mode
 	url = https://github.com/mgalgs/diffview-mode.git
+[submodule "site-lisp/expand-region"]
+	path = site-lisp/expand-region
+	url = https://github.com/magnars/expand-region.el.git

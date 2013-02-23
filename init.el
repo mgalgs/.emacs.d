@@ -386,3 +386,5 @@
     (my-make-shell-caller (file-name-nondirectory file))))
 
 (require 'diffview)
+
+(require 'expand-region)
