@@ -134,3 +134,6 @@
 
 (global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C-c m =") 'er/expand-region)
+
+;; magit
+(global-set-key (kbd "C-c m t") 'magit-status)
