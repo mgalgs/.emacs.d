@@ -251,6 +251,9 @@
 (require 'doc-view)
 (require 'diff-mode)
 
+(require 'magit)
+(require 'rebase-mode)
+
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
 
@@ -299,8 +302,6 @@
 ;; (gthings-init)
 
 (load-file "~/.emacs.d/elisp-setup.el")
-
-(load-file "~/.emacs.d/magit-setup.el")
 
 ;; some random advice
 (my-make-recentering-advice find-tag)
