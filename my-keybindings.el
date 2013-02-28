@@ -137,3 +137,4 @@
 
 ;; magit
 (global-set-key (kbd "C-c m t") 'magit-status)
+(define-key magit-mode-map (kbd "u") 'magit-goto-parent-section)
