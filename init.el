@@ -115,6 +115,7 @@
   (local-set-key "\C-\M-a" 'beginning-of-defun))
 (add-hook 'c++-mode-hook 'my-c++-mode-keybindings-hook)
 
+(setq iedit-auto-recenter nil)
 (require 'iedit)
 
 ;; mozrepl
