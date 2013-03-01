@@ -389,3 +389,15 @@
 (require 'diffview)
 
 (require 'expand-region)
+
+(defmacro my-visit-init-file-maker ()
+  "Defines a function to visit init.el"
+  (let ((init-file-name load-file-name))
+    `(defun my-visit-init-file ()
+       "Visits init.el"
+       (interactive)
+       (find-file ,init-file-name))))
+
+;; define my-visit-init-file by calling
+;; my-visit-init-file-maker
+(my-visit-init-file-maker)

@@ -66,8 +66,6 @@
 (global-set-key (kbd "C-c m i") 'kill-where-i-am)
 (global-set-key (kbd "C-c m g") 'grep-what-im-on)
 (global-set-key (kbd "C-c m l") 'my-kill-last-message)
-(global-set-key (kbd "C-c m n") 'pageview-goto-next-page-break)
-(global-set-key (kbd "C-c m p") 'pageview-goto-previous-page-break)
 (global-set-key (kbd "C-c m o") 'browse-url)
 (global-set-key (kbd "C-c m r") 'align-regexp)
 (global-set-key (kbd "C-c m x") 'my-xdg-open-each-in-region)
@@ -138,3 +136,5 @@
 ;; magit
 (global-set-key (kbd "C-c m t") 'magit-status)
 (define-key magit-mode-map (kbd "u") 'magit-goto-parent-section)
+
+(global-set-key (kbd "C-c m n") 'my-visit-init-file)
