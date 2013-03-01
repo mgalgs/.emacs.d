@@ -401,3 +401,7 @@
 ;; define my-visit-init-file by calling
 ;; my-visit-init-file-maker
 (my-visit-init-file-maker)
+
+;;; This line should be last:
+(when (file-exists-p "~/local_overrides.el")
+    (load-file "~/local_overrides.el"))
