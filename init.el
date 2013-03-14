@@ -41,7 +41,7 @@
     (load-file "~/private.el"))
 
 ;; set up python
-(load-file "~/.emacs.d/python-config/epy-mitch.el")
+;; (load-file "~/.emacs.d/python-config/epy-mitch.el")
 
 ;; set up cedet
 (when my-switch-with-cedet-p
