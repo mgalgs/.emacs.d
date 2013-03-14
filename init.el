@@ -17,10 +17,7 @@
              "~/.emacs.d/auto-install"
              "~/.emacs.d/python-config"
 	     ;; the site-lisp directory itself has some packages
-	     "~/.emacs.d/site-lisp"
-             ;; these guys are under site-lisp but a little deeper...
-             "~/.emacs.d/site-lisp/org-7.7/lisp"
-	     "~/.emacs.d/site-lisp/bbdb/lisp")
+	     "~/.emacs.d/site-lisp")
        load-path))
 
 ;; some utility macros
@@ -66,9 +63,6 @@
 
 ;; set up ido mode
 (load-file "~/.emacs.d/ido-setup.el")
-
-;; bbdb
-;; (load-file "~/.emacs.d/bbdb-setup.el")
 
 ;; EUDC
 ;; (load-file "~/.emacs.d/eudc-setup.el")
