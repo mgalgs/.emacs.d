@@ -356,6 +356,8 @@
 ;; my-visit-init-file-maker
 (my-visit-init-file-maker)
 
+(delete-selection-mode)
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
