@@ -95,6 +95,7 @@
  ;; tab-stop-list '(8 16 24 32 40 48 56 64 72 80 88 96 104 112 120)
  set-mark-command-repeat-pop t ; repeated C-SPC after C-u C-SPC keeps popping the mark
  ;; c-default-style "bsd" ; for nasty brace face
+ indicate-buffer-boundaries 'right
  )
 
 ;; linux kernel styles
