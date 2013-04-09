@@ -20,6 +20,10 @@
 	     "~/.emacs.d/site-lisp")
        load-path))
 
+(setq custom-theme-load-path
+      (append (directories-in-directory "~/.emacs.d/color-themes")
+	      custom-theme-load-path))
+
 ;; some utility macros
 (load-file "~/.emacs.d/my-macros.el")
 
@@ -191,9 +195,16 @@
 (add-hook 'textmate-goto-symbol-hook 'push-mark)
 
 ;; zenburn theme
-(when window-system
+(defun my-init-load-zenburn ()
   (require 'color-theme-zenburn)
   (color-theme-zenburn))
+
+(defun my-init-load-solarized ()
+  (load-theme 'solarized-dark t))
+
+(when window-system
+  ;; (my-init-load-zenburn)
+  (my-init-load-solarized))
 
 ;; gist fun
 (require 'gist)

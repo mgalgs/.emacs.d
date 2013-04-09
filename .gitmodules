@@ -67,3 +67,6 @@
 [submodule "site-lisp/iedit"]
 	path = site-lisp/iedit
 	url = https://github.com/victorhge/iedit.git
+[submodule "color-themes/emacs-color-theme-solarized"]
+	path = color-themes/emacs-color-theme-solarized
+	url = git://github.com/sellout/emacs-color-theme-solarized.git
