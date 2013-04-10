@@ -194,17 +194,15 @@
 (textmate-mode)
 (add-hook 'textmate-goto-symbol-hook 'push-mark)
 
-;; zenburn theme
-(defun my-init-load-zenburn ()
-  (require 'color-theme-zenburn)
-  (color-theme-zenburn))
 
-(defun my-init-load-solarized ()
-  (load-theme 'solarized-dark t))
+;; Color theming
+;; (setq my-theme-to-use 'solarized-dark)
+;; (setq my-theme-to-use 'solarized-light)
+;; (setq my-theme-to-use 'zenburn)
+(setq my-theme-to-use 'wombat)
 
 (when window-system
-  ;; (my-init-load-zenburn)
-  (my-init-load-solarized))
+  (load-theme my-theme-to-use))
 
 ;; gist fun
 (require 'gist)
