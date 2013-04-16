@@ -555,11 +555,11 @@ in each `nnmail-split-methods'"
 (defun my-once ()
   "Insert header guards"
   (interactive)
-  (let ((guard-txt (format "#ifndef _%s"
+  (let ((guard-txt (format "__%s__"
 			   (replace-regexp-in-string (regexp-quote ".")
 						     "_"
 						     (upcase (buffer-name))))))
-    (insert (format "%s\n\n#endif /* %s */\n" guard-txt guard-txt))
+    (insert (format "#ifndef %s\n#define %s\n\n#endif /* %s */\n" guard-txt guard-txt guard-txt))
     (previous-line 2)
     (beginning-of-line)))
 
