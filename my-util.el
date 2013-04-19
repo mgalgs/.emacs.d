@@ -626,3 +626,21 @@ in each `nnmail-split-methods'"
       (isearch-search-and-update))))
 
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
+
+(defun my-bit-numberer (arg numstring)
+  "Numbers the bits in `num' (expected to be a string
+representing a binary number)."
+  (interactive "P\nsBinary number: ")
+  (let (output-list output-string)
+    (loop for i downfrom (1- (length numstring)) to 0
+	  do
+	  (setq output-list (cons (format "|%-3d" i) output-list)))
+    (setq output-list (cons "\n" output-list))
+    (dolist (ch (mapcar 'identity numstring))
+      (setq output-list (cons (format "|%-3c" ch) output-list)))
+    (setq output-string (mapconcat 'identity
+				   (reverse output-list)
+				   ""))
+    (if arg
+	(insert output-string)
+      (message output-string))))
