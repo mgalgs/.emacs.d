@@ -659,8 +659,9 @@
     (setq flag-char (string-to-char flag))
     ; Use always ctags-x format.
     (setq option "-x")
-    (if case-fold-search
-        (setq option (concat option "i")))
+    ;; MITCH:
+    ;; (if case-fold-search
+    ;;     (setq option (concat option "i")))
     (if (char-equal flag-char ?C)
         (setq context (concat "--from-here=" (number-to-string (gtags-current-lineno)) ":" (gtags-buffer-file-name)))
         (setq option (concat option flag)))
