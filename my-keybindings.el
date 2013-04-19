@@ -135,9 +135,12 @@
 
 ;; magit
 (global-set-key (kbd "C-c m t") 'magit-status)
+(global-set-key (kbd "C-c m c") 'magit-show-commit)
 (define-key magit-mode-map (kbd "u") 'magit-goto-parent-section)
 
 (global-set-key (kbd "C-c m n") 'my-visit-init-file)
 
 (eval-after-load "gnus"
   '(define-key gnus-article-mode-map (kbd "C-c m m l") 'gnus-article-fill-long-lines))
+
+(global-set-key (kbd "C-c m m d") 'mark-defun)
