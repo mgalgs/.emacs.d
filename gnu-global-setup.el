@@ -63,5 +63,5 @@ the project root."
 
 (my-make-recentering-advice gtags-select-it)
 (my-make-recentering-advice gtags-goto-tag)
-(my-make-recentering-advice gtags-pop-stack)
+;; (my-make-recentering-advice gtags-pop-stack)
 ;; (my-make-recentering-advice gtags-current-token)
