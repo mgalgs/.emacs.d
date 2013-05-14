@@ -144,3 +144,5 @@
   '(define-key gnus-article-mode-map (kbd "C-c m m l") 'gnus-article-fill-long-lines))
 
 (global-set-key (kbd "C-c m m d") 'mark-defun)
+(global-set-key (kbd "C-c m ;") 'iedit-mode)
+(global-set-key (kbd "C-c m m t") 'my-find-file-in-another-tree)
