@@ -18,7 +18,7 @@
 	   nil
 	   output-buffer-name
 	   t
-	   (split-string cmd " "))
+	   (split-string-and-unquote cmd " "))
     (switch-to-buffer output-buffer-name)
     (funcall current-major-mode)
     (setq buffer-read-only t)
@@ -53,7 +53,7 @@ prefix, only diffs the current buffer."
   (interactive)
   (let* ((rev (if rev rev
 		(read-from-minibuffer "Revision: ")))
-	 (show-cmd (format "show %s:./%s"
+	 (show-cmd (format "show \"%s:./%s\""
 			   rev
 			   (file-name-nondirectory (buffer-file-name)))))
     (gthings-run-git-cmd show-cmd
