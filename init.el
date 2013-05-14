@@ -201,8 +201,11 @@
 ;; (setq my-theme-to-use 'zenburn)
 (setq my-theme-to-use 'wombat)
 
-(when window-system
-  (load-theme my-theme-to-use))
+(load-theme my-theme-to-use)
+
+;; (when window-system
+;;   (load-theme my-theme-to-use))
+
 
 ;; gist fun
 (require 'gist)
