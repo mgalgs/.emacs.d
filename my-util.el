@@ -269,6 +269,16 @@ path to file."
   (setq current-prefix-arg '(4))
   (call-interactively 'grep))
 
+(defun my-grep-from-gitroot ()
+  "grep for something from the root of the current git repo"
+  (interactive)
+  (let ((gitdir (my-find-parent-dir-that-contains ".git")))
+    (if (not gitdir)
+	(message "Couldn't find .git from here...")
+      (let* ((grep-cmd (format "grep -R %s %s*" (thing-at-point 'symbol) gitdir))
+	     (grep-cmd (read-string "Grep command: " grep-cmd)))
+	(grep grep-cmd)))))
+
 (defun my-make-this-buffer-writable ()
   (interactive)
   (let* ((currmodes (file-modes (buffer-name)))
