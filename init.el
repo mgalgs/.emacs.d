@@ -174,7 +174,8 @@
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
 
 ;; indent-hints minor mode
-(when my-switch-with-indent-hints
+;; (when my-switch-with-indent-hints
+(when t
   (require 'indent-hints)
   (indent-hints-global-mode))
 
