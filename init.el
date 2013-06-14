@@ -260,8 +260,7 @@
 (require 'doc-view)
 (require 'diff-mode)
 
-(require 'magit)
-(require 'rebase-mode)
+(load-file "~/.emacs.d/magit-setup.el")
 
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
