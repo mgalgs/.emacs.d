@@ -127,7 +127,7 @@
 ;; (global-linum-mode 1)
 
 ;; espresso mode
-(autoload 'espresso-mode "espresso" nil t)
+;; (autoload 'espresso-mode "espresso" nil t)
 
 ;; pkgbuild mode
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
