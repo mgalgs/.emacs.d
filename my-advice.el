@@ -9,3 +9,9 @@
   uses it"
   (let ((fill-column (window-width (get-buffer-window (current-buffer)))))
     ad-do-it))
+
+(defadvice shell-command (around my-shell-command-advice activate)
+  "Put `*Shell Command Output*' buffers into `view-mode'."
+  ad-do-it
+  (with-current-buffer "*Shell Command Output*"
+    (view-mode)))
