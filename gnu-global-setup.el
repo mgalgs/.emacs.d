@@ -36,6 +36,11 @@
 	(define-key gtags-mode-map (kbd "M-*") 'semantic-pop-tag-mark))
       (add-hook 'gtags-mode-hook 'my-gtags-mode-hook)))
 
+(defun my-gtags-command-finished (process event)
+  (message "%s: %s" process (replace-regexp-in-string (regexp-quote "\n")
+						      ""
+						      event)))
+
 (defun my-gtags-do-gtags-command-at-project-root (args)
   "Run gtags command (with `ARGS' as a command line argument) at
 the project root."
@@ -44,8 +49,12 @@ the project root."
     (if (null project-dir)
 	(message "Couldn't find project dir!")
       (message (format "Running `gtags %s' at %s" args project-dir))
-      (shell-command (concat "cd " project-dir " && gtags " args))
-      (message "Done"))))
+      (let ((update-process (start-process-shell-command "gtags-update"
+							 nil
+							 (format "cd %s && gtags %s"
+								 project-dir
+								 args))))
+	(set-process-sentinel update-process 'my-gtags-command-finished)))))
 
 (defun my-gtags-update-tags-file ()
   "Update the gtags tags file"
