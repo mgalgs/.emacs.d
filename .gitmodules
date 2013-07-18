@@ -73,3 +73,6 @@
 [submodule "color-themes/zenburn-emacs"]
 	path = color-themes/zenburn-emacs
 	url = git://github.com/bbatsov/zenburn-emacs.git
+[submodule "site-lisp/emacs-google-this"]
+	path = site-lisp/emacs-google-this
+	url = https://github.com/Bruce-Connor/emacs-google-this.git
