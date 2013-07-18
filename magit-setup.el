@@ -22,3 +22,4 @@ only go back as far as the git history) to pass to magit-log."
           (my-git-get-rev-nrevs-back 100)))
 
 (setq magit-log-default-log-range 'my-git-get-log-range)
+(setq magit-diff-refine-hunk 'all)
