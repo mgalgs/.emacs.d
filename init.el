@@ -380,6 +380,11 @@
 (require 'google-this)
 (google-this-mode 1)
 
+;; `Edit with Emacs' chrome extension:
+;; https://chrome.google.com/webstore/detail/edit-with-emacs/ljobjlafonikaiipfkggjbhkghgicgoh
+(require 'edit-server)
+(edit-server-start)
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
