@@ -1,81 +1,106 @@
 [submodule "site-lisp/indent-hints-mode"]
 	path = site-lisp/indent-hints-mode
 	url = https://github.com/mgalgs/indent-hints-mode.git
+	branch = master
 [submodule "site-lisp/auto-complete"]
 	path = site-lisp/auto-complete
 	url = https://github.com/auto-complete/auto-complete.git
+	branch = master
 [submodule "site-lisp/textmate"]
 	path = site-lisp/textmate
 	url = https://github.com/mgalgs/textmate.el.git
+	branch = master
 [submodule "site-lisp/gist"]
 	path = site-lisp/gist
 	url = https://github.com/defunkt/gist.el.git
+	branch = master
 [submodule "site-lisp/ace-jump-mode"]
 	path = site-lisp/ace-jump-mode
 	url = https://github.com/winterTTr/ace-jump-mode.git
+	branch = master
 [submodule "site-lisp/markdown-mode"]
 	path = site-lisp/markdown-mode
 	url = https://github.com/defunkt/markdown-mode.git
+	branch = master
 [submodule "site-lisp/yaml-mode"]
 	path = site-lisp/yaml-mode
 	url = https://github.com/yoshiki/yaml-mode.git
+	branch = master
 [submodule "site-lisp/yasnippet"]
 	path = site-lisp/yasnippet
 	url = https://github.com/capitaomorte/yasnippet.git
+	branch = master
 [submodule "site-lisp/popup"]
 	path = site-lisp/popup
 	url = https://github.com/auto-complete/popup-el.git
+	branch = master
 [submodule "site-lisp/gh"]
 	path = site-lisp/gh
 	url = https://github.com/sigma/gh.el.git
+	branch = master
 [submodule "site-lisp/pcache"]
 	path = site-lisp/pcache
 	url = https://github.com/sigma/pcache.git
+	branch = master
 [submodule "site-lisp/logito"]
 	path = site-lisp/logito
 	url = https://github.com/sigma/logito.git
+	branch = master
 [submodule "site-lisp/tabulated-list"]
 	path = site-lisp/tabulated-list
 	url = https://github.com/sigma/tabulated-list.el.git
 [submodule "site-lisp/lua-mode"]
 	path = site-lisp/lua-mode
 	url = https://github.com/immerrr/lua-mode.git
+	branch = master
 [submodule "site-lisp/emacs-powerline"]
 	path = site-lisp/emacs-powerline
 	url = https://github.com/jonathanchu/emacs-powerline.git
+	branch = master
 [submodule "site-lisp/git-commit-mode"]
 	path = site-lisp/git-commit-mode
 	url = https://github.com/rafl/git-commit-mode.git
+	branch = master
 [submodule "site-lisp/magit"]
 	path = site-lisp/magit
 	url = https://github.com/magit/magit.git
+	branch = master
 [submodule "site-lisp/mo-git-blame"]
 	path = site-lisp/mo-git-blame
 	url = http://github.com/mbunkus/mo-git-blame.git
+	branch = master
 [submodule "site-lisp/kernel-stack-trace-mode"]
 	path = site-lisp/kernel-stack-trace-mode
 	url = https://github.com/mgalgs/kernel-stack-trace-mode.git
+	branch = master
 [submodule "site-lisp/make-readme-markdown"]
 	path = site-lisp/make-readme-markdown
 	url = https://github.com/mgalgs/make-readme-markdown.git
+	branch = master
 [submodule "site-lisp/diffview-mode"]
 	path = site-lisp/diffview-mode
 	url = https://github.com/mgalgs/diffview-mode.git
+	branch = master
 [submodule "site-lisp/expand-region"]
 	path = site-lisp/expand-region
 	url = https://github.com/magnars/expand-region.el.git
+	branch = master
 [submodule "site-lisp/iedit"]
 	path = site-lisp/iedit
 	url = https://github.com/victorhge/iedit.git
+	branch = master
 [submodule "color-themes/emacs-color-theme-solarized"]
 	path = color-themes/emacs-color-theme-solarized
 	url = git://github.com/sellout/emacs-color-theme-solarized.git
+	branch = master
 [submodule "color-themes/zenburn-emacs"]
 	path = color-themes/zenburn-emacs
 	url = git://github.com/bbatsov/zenburn-emacs.git
+	branch = master
 [submodule "site-lisp/emacs-google-this"]
 	path = site-lisp/emacs-google-this
 	url = https://github.com/Bruce-Connor/emacs-google-this.git
+	branch = master
 [submodule "site-lisp/ggtags"]
 	path = site-lisp/ggtags
 	url = https://github.com/leoliu/ggtags.git
