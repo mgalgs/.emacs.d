@@ -37,7 +37,6 @@
 [submodule "site-lisp/gh"]
 	path = site-lisp/gh
 	url = https://github.com/sigma/gh.el.git
-	branch = master
 [submodule "site-lisp/pcache"]
 	path = site-lisp/pcache
 	url = https://github.com/sigma/pcache.git
