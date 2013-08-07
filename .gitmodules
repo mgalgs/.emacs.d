@@ -76,3 +76,7 @@
 [submodule "site-lisp/emacs-google-this"]
 	path = site-lisp/emacs-google-this
 	url = https://github.com/Bruce-Connor/emacs-google-this.git
+[submodule "site-lisp/ggtags"]
+	path = site-lisp/ggtags
+	url = https://github.com/leoliu/ggtags.git
+	branch = master
