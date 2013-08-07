@@ -285,7 +285,7 @@
                     :box nil)
 
 ;; highlight current line
-;; (global-hl-line-mode)
+(global-hl-line-mode)
 
 ;; choose a web browser
 (setq browse-url-browser-function (cond
