@@ -23,3 +23,4 @@ only go back as far as the git history) to pass to magit-log."
 
 (setq magit-log-default-log-range 'my-git-get-log-range)
 (setq magit-diff-refine-hunk 'all)
+(setq rebase-mode-auto-advance t)
