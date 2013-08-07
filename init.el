@@ -90,7 +90,8 @@
  scroll-preserve-screen-position 1
  inhibit-startup-screen t
  isearch-allow-scroll t
- kill-whole-line t)
+ kill-whole-line t
+ show-trailing-whitespace t)
 
 (setq-default
  indent-tabs-mode nil ; don't use the tab character, only spaces
