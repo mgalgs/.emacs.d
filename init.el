@@ -204,6 +204,9 @@
 (setq my-theme-to-use 'wombat)
 
 (load-theme my-theme-to-use)
+;; work-around for a hl-line-mode issue where the foreground colors
+;; get lost http://stackoverflow.com/a/15746070/209050
+(set-face-attribute 'highlight nil :foreground 'unspecified)
 
 ;; (when window-system
 ;;   (load-theme my-theme-to-use))
