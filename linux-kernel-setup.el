@@ -22,8 +22,10 @@
             (let ((filename (buffer-file-name)))
               ;; Enable kernel mode for the appropriate files
               (when (and filename
-                         (string-match (expand-file-name "/local/mnt/workspace/mitchelh/.*/kernel")
-                                       filename))
+                         (or (string-match (expand-file-name "/local/mnt/workspace/mitchelh/.*/kernel")
+                                           filename)
+                             (string-match "/local/mnt/workspace/mitchelh/msm-kvm"
+                                           filename)))
                 (setq indent-tabs-mode t)
-				(message "Setting up indentation for the linux kernel")
+                (message "Setting up indentation for the linux kernel")
                 (c-set-style "linux-tabs-only")))))
