@@ -103,14 +103,16 @@
 (global-set-key (kbd "\C-cm,") 'gtags-find-tag)
 (global-set-key (kbd "C-M->") 'gtags-find-tag-from-here)
 (global-set-key (kbd "\C-cm.") 'gtags-find-tag-from-here)
-(define-key doc-view-mode-map "j" 'doc-view-next-line-or-next-page)
-(define-key doc-view-mode-map "k" 'doc-view-previous-line-or-previous-page)
 (global-set-key (kbd "C-c m m G") 'my-gtags-update-tags-file)
 (global-set-key (kbd "C-c m m g") 'my-gtags-update-tags-file-incrementally)
 
 (define-key gtags-select-mode-map "n" 'next-line)
 (define-key gtags-select-mode-map "p" 'previous-line)
 (define-key gtags-select-mode-map "q" 'bury-buffer)
+
+;; doc view
+(define-key doc-view-mode-map "j" 'doc-view-next-line-or-next-page)
+(define-key doc-view-mode-map "k" 'doc-view-previous-line-or-previous-page)
 
 ;; {wo,}man
 (add-hook 'Man-mode-hook '(lambda ()
