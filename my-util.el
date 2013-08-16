@@ -654,3 +654,11 @@ representing a binary number)."
     (if arg
 	(insert output-string)
       (message output-string))))
+
+(defun my-recompile ()
+  "Switch to *compilation* and do a recompile"
+  (interactive)
+  (when (get-buffer "*compilation*")
+    (switch-to-buffer "*compilation*")
+    (recompile)
+    (end-of-buffer)))

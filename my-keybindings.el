@@ -148,3 +148,5 @@
 (global-set-key (kbd "C-c m m d") 'mark-defun)
 (global-set-key (kbd "C-c m ;") 'iedit-mode)
 (define-key iedit-lib-keymap (kbd "C-c m '") 'iedit-toggle-unmatched-lines-visible)
+
+(global-set-key (kbd "C-c m `") 'my-recompile)
