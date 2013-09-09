@@ -89,8 +89,8 @@
 (global-set-key "\"" 'skeleton-pair-insert-maybe)
 
 ;; key chords:
-(key-chord-define-global "jr" 'jump-to-register)
-(key-chord-define-global "pw" 'pwd)
+;; (key-chord-define-global "jr" 'jump-to-register)
+;; (key-chord-define-global "pw" 'pwd)
 
 (define-key rfcview-mode-map "j" 'pageview-goto-next-page-break)
 (define-key rfcview-mode-map "k" 'pageview-goto-previous-page-break)
@@ -150,3 +150,5 @@
 (define-key iedit-lib-keymap (kbd "C-c m '") 'iedit-toggle-unmatched-lines-visible)
 
 (global-set-key (kbd "C-c m `") 'my-recompile)
+
+(global-set-key (kbd "C-c m p") 'pwd)

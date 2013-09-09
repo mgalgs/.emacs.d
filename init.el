@@ -50,6 +50,11 @@
 
 ;; set up gnu global
 (load-file "~/.emacs.d/gnu-global-setup.el")
+;; (require 'ggtags)
+;; (add-hook 'c-mode-common-hook
+;;           (lambda ()
+;;             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+;;               (ggtags-mode 1))))
 
 ;; set up yasnippet
 (when my-switch-with-yas
