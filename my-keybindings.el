@@ -152,3 +152,5 @@
 (global-set-key (kbd "C-c m `") 'my-recompile)
 
 (global-set-key (kbd "C-c m p") 'pwd)
+(global-set-key (kbd "C-c m m k") 'textmate-clear-cache)
+(global-set-key (kbd "C-c m m o") 'my-occur-symbol-at-point)

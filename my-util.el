@@ -662,3 +662,8 @@ representing a binary number)."
     (switch-to-buffer "*compilation*")
     (recompile)
     (end-of-buffer)))
+
+(defun my-occur-symbol-at-point ()
+  "Run `occur' with `symbol-at-point'"
+  (interactive)
+  (occur (substring-no-properties (thing-at-point 'symbol))))
