@@ -584,15 +584,18 @@ in each `nnmail-split-methods'"
   "Function to define a function that does a shell-command to
   program `proggie' with a single argument: the current word."
   (defalias (intern (concat "my-shell-" proggie))
-    `(lambda ()
-       ,(format "Run %s on region (if active) or (current-word)" proggie)
+    `(lambda (&optional in)
+       ,(format "Run %s on region (if active) or (current-word) or the supplied argument." proggie)
        (interactive)
-       ;; (let* ((deactivate-mark nil)
-       (let ((the-word (if (region-active-p)
-			   (buffer-substring (point)
-					     (mark))
-			 (current-word))))
-	 (shell-command (format "%s %s" ,proggie the-word))))))
+       (let* ((the-word (or in
+                            (if (region-active-p)
+                                (buffer-substring (point)
+                                                  (mark))
+                              (current-word))))
+              (cmd (format "%s %s" ,proggie the-word))
+              (output (shell-command-to-string cmd))
+              (output-clean (car (split-string output "\n"))))
+         output-clean))))
 
 (defun my-dir-contains (dir what)
   "Returns t if `DIR' contains a file or directory named `WHAT'"
