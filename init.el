@@ -233,10 +233,6 @@
 (require 'one-key)
 (load-file "~/.emacs.d/one-key-setup.el")
 
-;; lazy search
-(require 'lazy-search)
-(setq-default lazy-search-keep-region nil)
-
 ;; tbemail for thunderbird composition
 (require 'tbemail)
 
