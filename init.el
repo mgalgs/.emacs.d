@@ -96,7 +96,8 @@
  inhibit-startup-screen t
  isearch-allow-scroll t
  kill-whole-line t
- show-trailing-whitespace t)
+ show-trailing-whitespace t
+ ring-bell-function 'ignore)
 
 (setq-default
  indent-tabs-mode nil ; don't use the tab character, only spaces
