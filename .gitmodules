@@ -56,10 +56,6 @@
 	path = site-lisp/emacs-powerline
 	url = https://github.com/jonathanchu/emacs-powerline.git
 	branch = master
-[submodule "site-lisp/git-commit-mode"]
-	path = site-lisp/git-commit-mode
-	url = https://github.com/rafl/git-commit-mode.git
-	branch = master
 [submodule "site-lisp/magit"]
 	path = site-lisp/magit
 	url = https://github.com/magit/magit.git

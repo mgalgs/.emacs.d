@@ -1,5 +1,4 @@
 (require 'magit)
-(require 'rebase-mode)
 
 (defun my-git-nrevs-gate (nrevs)
   "Returns `nrevs' or `git rev-parse --max-count=num HEAD | wc -l',

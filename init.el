@@ -299,9 +299,6 @@
 				   ((= 0 (shell-command "which chromium-browser >&/dev/null")) 'browse-url-chromium)
 				   ((= 0 (shell-command "which firefox >&/dev/null")) 'browse-url-firefox)))
 
-;; git commit mode
-(require 'git-commit)
-
 ;; auto revert (useful when switching git branches)
 (global-auto-revert-mode)
 
