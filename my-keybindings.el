@@ -88,10 +88,6 @@
 (global-set-key "{" 'skeleton-pair-insert-maybe)
 (global-set-key "\"" 'skeleton-pair-insert-maybe)
 
-;; key chords:
-;; (key-chord-define-global "jr" 'jump-to-register)
-;; (key-chord-define-global "pw" 'pwd)
-
 (define-key rfcview-mode-map "j" 'pageview-goto-next-page-break)
 (define-key rfcview-mode-map "k" 'pageview-goto-previous-page-break)
 

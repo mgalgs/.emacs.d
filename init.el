@@ -66,10 +66,6 @@
 ;; set up a bunch of auto-mode-alist stuff
 (load-file "~/.emacs.d/auto-mode-alist-setup.el")
 
-;; key chord
-(require 'key-chord)
-(key-chord-mode 1)
-
 ;; set up ido mode
 (load-file "~/.emacs.d/ido-setup.el")
 
