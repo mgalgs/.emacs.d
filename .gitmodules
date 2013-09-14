@@ -104,3 +104,6 @@
 	path = site-lisp/ggtags
 	url = https://github.com/leoliu/ggtags.git
 	branch = master
+[submodule "site-lisp/git-modes"]
+	path = site-lisp/git-modes
+	url = https://github.com/magit/git-modes.git
