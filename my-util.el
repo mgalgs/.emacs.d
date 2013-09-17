@@ -1,4 +1,5 @@
 (require 'cl)
+(require 'thingatpt)
 
 (defun fill-out-to-column (&optional width fill-char)
   "Insert FILL-CHAR at the end of the current line until the line
@@ -673,3 +674,8 @@ representing a binary number)."
          (if (numberp nlines)
              nlines
            0)))
+
+(defun my-show-commit-at-point ()
+  "Run `magit-show-commit` with `word-at-point`."
+  (interactive)
+  (magit-show-commit (word-at-point)))

@@ -134,6 +134,7 @@
 ;; magit
 (global-set-key (kbd "C-c m t") 'magit-status)
 (global-set-key (kbd "C-c m c") 'magit-show-commit)
+(global-set-key (kbd "C-c m m c") 'my-show-commit-at-point)
 (define-key magit-mode-map (kbd "u") 'magit-goto-parent-section)
 
 (global-set-key (kbd "C-c m n") 'my-visit-init-file)
