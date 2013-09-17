@@ -666,7 +666,10 @@ representing a binary number)."
     (recompile)
     (end-of-buffer)))
 
-(defun my-occur-symbol-at-point ()
+(defun my-occur-symbol-at-point (&optional nlines)
   "Run `occur' with `symbol-at-point'"
-  (interactive)
-  (occur (substring-no-properties (thing-at-point 'symbol))))
+  (interactive "P")
+  (occur (substring-no-properties (thing-at-point 'symbol))
+         (if (numberp nlines)
+             nlines
+           0)))
