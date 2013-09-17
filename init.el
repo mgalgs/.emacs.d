@@ -382,6 +382,8 @@
 (require 'edit-server)
 (edit-server-start)
 
+(require 'highlight-symbol)
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))

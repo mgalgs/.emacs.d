@@ -103,3 +103,6 @@
 [submodule "site-lisp/git-modes"]
 	path = site-lisp/git-modes
 	url = https://github.com/magit/git-modes.git
+[submodule "site-lisp/highlight-symbol"]
+	path = site-lisp/highlight-symbol
+	url = https://github.com/nschum/highlight-symbol.el.git
