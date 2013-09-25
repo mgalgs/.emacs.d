@@ -384,6 +384,14 @@
 
 (require 'highlight-symbol)
 
+;; don't open a new dired buffer when I go up a directory. Note that
+;; to prevent opening a new buffer when browsing to directories
+;; normally, just use `a' instead of `enter'.
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (define-key dired-mode-map (kbd "^")
+              (lambda () (interactive) (find-alternate-file "..")))))
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
