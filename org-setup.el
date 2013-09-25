@@ -38,3 +38,6 @@
 	      (define-key yas/keymap [tab] 'yas/next-field))))
 
 (require 'org-gnus)
+
+;; fontify code in code blocks
+(setq org-src-fontify-natively t)
