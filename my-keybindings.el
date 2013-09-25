@@ -150,7 +150,7 @@
 
 (global-set-key (kbd "C-c m p") 'pwd)
 (global-set-key (kbd "C-c m m k") 'textmate-clear-cache)
-(global-set-key (kbd "C-c m m o") 'my-occur-symbol-at-point)
+(global-set-key (kbd "C-c m m o") 'my-occur-region-or-symbol-at-point)
 (global-set-key (kbd "M-s h .") 'highlight-symbol-at-point)
 (global-set-key (kbd "M-s h n") 'highlight-symbol-next)
 (global-set-key (kbd "M-s h p") 'highlight-symbol-prev)

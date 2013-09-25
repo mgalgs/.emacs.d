@@ -667,10 +667,13 @@ representing a binary number)."
     (recompile)
     (end-of-buffer)))
 
-(defun my-occur-symbol-at-point (&optional nlines)
-  "Run `occur' with `symbol-at-point'"
-  (interactive "P")
-  (occur (substring-no-properties (thing-at-point 'symbol))
+(defun my-occur-region-or-symbol-at-point (&optional nlines the-point the-mark)
+  "Run `occur' with `symbol-at-point' or the region, if active."
+  (interactive "P\nr")
+  (occur (substring-no-properties (if (use-region-p)
+                                      (buffer-substring-no-properties the-point
+                                                                      the-mark)
+                                    (thing-at-point 'symbol)))
          (if (numberp nlines)
              nlines
            0)))
