@@ -7,7 +7,8 @@
 (defadvice article-fill-long-lines (around my-article-fill-long-lines-advice activate)
   "override `fill-column' due to the way article-fill-long-lines
   uses it"
-  (let ((fill-column (window-width (get-buffer-window (current-buffer)))))
+  (let ((fill-column (- (window-width (get-buffer-window (current-buffer)))
+                        5)))
     ad-do-it))
 
 (defadvice shell-command (around my-shell-command-advice activate)
