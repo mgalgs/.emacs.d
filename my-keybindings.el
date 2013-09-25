@@ -154,3 +154,4 @@
 (global-set-key (kbd "M-s h .") 'highlight-symbol-at-point)
 (global-set-key (kbd "M-s h n") 'highlight-symbol-next)
 (global-set-key (kbd "M-s h p") 'highlight-symbol-prev)
+(global-set-key (kbd "M-s h a") 'highlight-symbol-remove-all)
