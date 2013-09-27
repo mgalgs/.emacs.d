@@ -156,3 +156,4 @@
 (global-set-key (kbd "M-s h p") 'highlight-symbol-prev)
 (global-set-key (kbd "M-s h a") 'highlight-symbol-remove-all)
 (global-set-key (kbd "C-S-t") 'transpose-words)
+(global-set-key (kbd "C-c m m v") 'vc-git-grep)
