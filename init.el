@@ -392,6 +392,9 @@
             (define-key dired-mode-map (kbd "^")
               (lambda () (interactive) (find-alternate-file "..")))))
 
+(require 'wgrep)
+(setq wgrep-save-all-buffers)
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
