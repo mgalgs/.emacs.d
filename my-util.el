@@ -682,3 +682,8 @@ representing a binary number)."
   "Run `magit-show-commit` with `word-at-point`."
   (interactive)
   (magit-show-commit (word-at-point)))
+
+(defun my-switch-to-buffer-and-shrink (buf)
+  "Switch to buffer and call `shrink-window-if-larger-than-buffer'"
+  (interactive "b")
+  (shrink-window-if-larger-than-buffer (get-buffer-window buf)))

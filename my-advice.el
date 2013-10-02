@@ -16,3 +16,9 @@
   ad-do-it
   (with-current-buffer "*Shell Command Output*"
     (view-mode)))
+
+;; Shrink *Occur* buffer if smallish:
+(defadvice occur (around my-occur-advice activate)
+  "Make *Occur* buffer small if possible"
+  ad-do-it
+  (my-switch-to-buffer-and-shrink "*Occur*"))
