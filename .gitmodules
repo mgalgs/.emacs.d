@@ -109,3 +109,6 @@
 [submodule "site-lisp/wgrep"]
 	path = site-lisp/wgrep
 	url = https://github.com/mhayashi1120/Emacs-wgrep.git
+[submodule "site-lisp/dash.el"]
+	path = site-lisp/dash.el
+	url = https://github.com/magnars/dash.el.git
