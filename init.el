@@ -395,6 +395,8 @@
 (require 'wgrep)
 (setq wgrep-save-all-buffers)
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
