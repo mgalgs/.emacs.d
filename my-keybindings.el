@@ -159,5 +159,6 @@
 (global-set-key (kbd "C-c m m v") 'vc-git-grep)
 
 (global-set-key (kbd "C-c h") 'helm-mini)
+(global-set-key (kbd "C-c m m f") 'helm-ls-git-ls)
 
 (global-set-key (kbd "C-c m b") 'eval-buffer)
