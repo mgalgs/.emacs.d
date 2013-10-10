@@ -107,6 +107,7 @@
  set-mark-command-repeat-pop t ; repeated C-SPC after C-u C-SPC keeps popping the mark
  ;; c-default-style "bsd" ; for nasty brace face
  indicate-buffer-boundaries 'right
+ truncate-lines t
  )
 
 ;; linux kernel styles
