@@ -121,3 +121,15 @@
 [submodule "site-lisp/helm-ls-git"]
 	path = site-lisp/helm-ls-git
 	url = https://github.com/emacs-helm/helm-ls-git.git
+[submodule "site-lisp/emacs-jedi"]
+	path = site-lisp/emacs-jedi
+	url = https://github.com/tkf/emacs-jedi.git
+[submodule "site-lisp/emacs-epc"]
+	path = site-lisp/emacs-epc
+	url = https://github.com/kiwanami/emacs-epc.git
+[submodule "site-lisp/emacs-ctable"]
+	path = site-lisp/emacs-ctable
+	url = https://github.com/kiwanami/emacs-ctable.git
+[submodule "site-lisp/emacs-deferred"]
+	path = site-lisp/emacs-deferred
+	url = https://github.com/kiwanami/emacs-deferred.git

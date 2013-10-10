@@ -402,6 +402,8 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(load-file "~/.emacs.d/jedi-setup.el")
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
