@@ -658,3 +658,11 @@ representing a binary number)."
   "Switch to buffer and call `shrink-window-if-larger-than-buffer'"
   (interactive "b")
   (shrink-window-if-larger-than-buffer (get-buffer-window buf)))
+
+(defun my-rescan-and-add-to-load-path ()
+  "Re-scans ~/.emacs.d/site-lisp and adds missing directories to
+load-path"
+  (interactive)
+  (setq load-path (append (-union load-path
+                                  (directories-in-directory "~/.emacs.d/site-lisp"))
+                          load-path)))

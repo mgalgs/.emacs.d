@@ -402,6 +402,8 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(require 'dash)
+
 (load-file "~/.emacs.d/jedi-setup.el")
 
 ;;; This line should be last:
