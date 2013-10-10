@@ -16,6 +16,7 @@
        (list nil
              "~/.emacs.d/auto-install"
              "~/.emacs.d/python-config"
+             "~/.emacs.d/site-lisp/bbdb/lisp"
 	     ;; the site-lisp directory itself has some packages
 	     "~/.emacs.d/site-lisp")
        load-path))
