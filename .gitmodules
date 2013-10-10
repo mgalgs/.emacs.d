@@ -112,3 +112,6 @@
 [submodule "site-lisp/dash.el"]
 	path = site-lisp/dash.el
 	url = https://github.com/magnars/dash.el.git
+[submodule "site-lisp/helm"]
+	path = site-lisp/helm
+	url = https://github.com/emacs-helm/helm.git
