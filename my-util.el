@@ -270,16 +270,6 @@ path to file."
   (setq current-prefix-arg '(4))
   (call-interactively 'grep))
 
-(defun my-grep-from-gitroot ()
-  "grep for something from the root of the current git repo"
-  (interactive)
-  (let ((gitdir (my-find-parent-dir-that-contains ".git")))
-    (if (not gitdir)
-	(message "Couldn't find .git from here...")
-      (let* ((grep-cmd (format "grep -R %s %s*" (thing-at-point 'symbol) gitdir))
-	     (grep-cmd (read-string "Grep command: " grep-cmd)))
-	(grep grep-cmd)))))
-
 (defun my-make-this-buffer-writable ()
   (interactive)
   (let* ((currmodes (file-modes (buffer-name)))
@@ -597,25 +587,6 @@ in each `nnmail-split-methods'"
               (output (shell-command-to-string cmd))
               (output-clean (car (split-string output "\n"))))
          output-clean))))
-
-(defun my-dir-contains (dir what)
-  "Returns t if `DIR' contains a file or directory named `WHAT'"
-  (not (null (member what (directory-files dir)))))
-
-(defun my-do-find-parent-dir-that-contains (what dir)
-  ;; the real meat of `my-find-parent-dir-that-contains'
-  (let ((dir-expanded (expand-file-name dir)))
-    (cond
-     ((string= dir-expanded "/") nil)
-     ((my-dir-contains dir what) dir-expanded)
-     (t (my-do-find-parent-dir-that-contains what
-					    (file-name-as-directory (concat dir "..")))))))
-
-(defun my-find-parent-dir-that-contains (what)
-  "Return the first parent directory that contains a file or
-  directory named `WHAT'."
-  (interactive)
-  (my-do-find-parent-dir-that-contains what (file-name-directory (buffer-file-name))))
 
 (defun my-isearch-word-at-point ()
   (interactive)

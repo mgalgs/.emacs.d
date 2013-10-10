@@ -44,7 +44,7 @@
 (defun my-gtags-do-gtags-command-at-project-root (args)
   "Run gtags command (with `ARGS' as a command line argument) at
 the project root."
-  (let ((project-dir (or (my-find-parent-dir-that-contains ".git")
+  (let ((project-dir (or (locate-dominating-file (file-name-directory (buffer-file-name)) ".git")
 			 (my-find-parent-dir-that-contains "GTAGS"))))
     (if (null project-dir)
 	(message "Couldn't find project dir!")
