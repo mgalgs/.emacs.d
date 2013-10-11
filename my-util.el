@@ -663,6 +663,10 @@ representing a binary number)."
   "Re-scans ~/.emacs.d/site-lisp and adds missing directories to
 load-path"
   (interactive)
-  (setq load-path (append (-union load-path
-                                  (directories-in-directory "~/.emacs.d/site-lisp"))
-                          load-path)))
+  (let ((new-dirs (-difference (directories-in-directory "~/.emacs.d/site-lisp")
+                               load-path)))
+    (message "Adding to load-path: %s" (if new-dirs
+                                           new-dirs
+                                         "NOTHING! All sync'd up."))
+    (setq load-path (-distinct (append load-path
+                                       new-dirs)))))
