@@ -1,2 +1,2 @@
-(autoload 'jedi:setup "jedi" nil t)
+(require 'jedi)
 (add-hook 'python-mode-hook 'jedi:ac-setup)
