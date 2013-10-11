@@ -133,3 +133,6 @@
 [submodule "site-lisp/emacs-deferred"]
 	path = site-lisp/emacs-deferred
 	url = https://github.com/kiwanami/emacs-deferred.git
+[submodule "site-lisp/w3m"]
+	path = site-lisp/w3m
+	url = https://github.com/emacsmirror/w3m.git
