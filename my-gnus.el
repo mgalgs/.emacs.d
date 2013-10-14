@@ -36,3 +36,37 @@
   (setq gnus-sum-thread-tree-vertical        "│")
   (setq gnus-sum-thread-tree-leaf-with-other "├─► ")
   (setq gnus-sum-thread-tree-single-leaf     "╰─► "))
+
+;; Reply styles
+(defun my-set-style-outlook ()
+  (interactive)
+  (set (make-local-variable 'message-cite-style)
+       message-cite-style-outlook))
+
+(defun my-set-cite-reply-position (where)
+  (set (make-local-variable 'message-cite-reply-position) 'where))
+
+(defun my-set-style-traditional ()
+  (interactive)
+  (my-set-cite-reply-position 'traditional))
+
+(defun my-set-style-above ()
+  (interactive)
+  (my-set-cite-reply-position 'above))
+
+(defun my-set-style-below ()
+  (interactive)
+  (my-set-cite-reply-position 'below))
+
+(setq my-reply-style-one-key-menu-alist
+  '((("o" . "Outlook") . my-set-style-outlook)
+    (("t" . "Traditional") . my-set-style-traditional)
+    (("a" . "Above") . my-set-style-above)
+    (("b" . "Below") . my-set-style-below)
+    (("m" . "Just hair") . my-set-style-traditional)))
+
+;; Sigs
+(setq gnus-posting-styles
+      '((".*"
+	 (signature "Mitch")
+         (eval (one-key-menu "reply" my-reply-style-one-key-menu-alist t)))))
