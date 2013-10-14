@@ -1,4 +1,6 @@
-(server-start)
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 ;;; begin some misc setup. This should be first because it's
 ;;; distracting to switch up UI elements later during loading.
