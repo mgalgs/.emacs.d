@@ -670,3 +670,15 @@ load-path"
                                          "NOTHING! All sync'd up."))
     (setq load-path (-distinct (append load-path
                                        new-dirs)))))
+
+;; Credit:
+;; https://github.com/magnars/.emacs.d/blob/master/defuns/lisp-defuns.el
+(defun eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
+           (insert (current-kill 0)))))

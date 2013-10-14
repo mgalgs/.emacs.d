@@ -165,3 +165,5 @@
                                   (interactive)
                                   (eval-buffer)
                                   (message "eval'd buffer")))
+
+(global-set-key (kbd "C-c m C-x C-e") 'eval-and-replace)
