@@ -45,7 +45,7 @@
   "Run gtags command (with `ARGS' as a command line argument) at
 the project root."
   (let ((project-dir (or (locate-dominating-file (file-name-directory (buffer-file-name)) ".git")
-			 (my-find-parent-dir-that-contains "GTAGS"))))
+			 (locate-dominating-file (file-name-directory (buffer-file-name)) "GTAGS"))))
     (if (null project-dir)
 	(message "Couldn't find project dir!")
       (message (format "Running `gtags %s' at %s" args project-dir))
