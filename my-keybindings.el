@@ -167,3 +167,6 @@
                                   (message "eval'd buffer")))
 
 (global-set-key (kbd "C-c m C-x C-e") 'eval-and-replace)
+
+(global-set-key (kbd "C-*") 'evil-search-symbol-forward)
+(global-set-key (kbd "C-#") 'evil-search-symbol-backward)

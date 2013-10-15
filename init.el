@@ -410,6 +410,9 @@
 
 (load-file "~/.emacs.d/w3m-setup.el")
 
+;; for the mighty `*'
+(require 'evil)
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
