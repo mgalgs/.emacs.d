@@ -413,6 +413,8 @@
 ;; for the mighty `*'
 (require 'evil)
 
+(require 'litable)
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
