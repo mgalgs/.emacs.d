@@ -682,3 +682,27 @@ load-path"
              (current-buffer))
     (error (message "Invalid expression")
            (insert (current-kill 0)))))
+
+(defun my-get-buffer-point-function (el)
+  "Get the name of the function at point in buffer. el should be
+a cons cell of the form (buffer . point)"
+  (let ((buffer (car el))
+        (the-point (cdr el)))
+    (with-current-buffer buffer
+      (when (equal major-mode 'c-mode)
+        (goto-char the-point)
+        (c-defun-name)))))
+
+(defun my-show-current-gtags-call-flow ()
+  "Displays gtags call flow"
+  (interactive)
+  (switch-to-buffer-other-window "*Call Flow*")
+  (erase-buffer)
+  (insert (mapconcat 'identity
+                     (delete nil
+                             (mapcar 'my-get-buffer-point-function
+                                     (-zip gtags-buffer-stack
+                                           gtags-point-stack)))
+                     "\n"))
+  (shrink-window-if-larger-than-buffer (get-buffer-window))
+  (view-mode))
