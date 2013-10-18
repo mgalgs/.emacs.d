@@ -706,3 +706,10 @@ a cons cell of the form (buffer . point)"
                      "\n"))
   (shrink-window-if-larger-than-buffer (get-buffer-window))
   (view-mode))
+
+(defun my-add-footnote (footnote)
+  "Add a footnote (read from minibuffer)"
+  (interactive "sFootnote: ")
+  (Footnote-add-footnote)
+  (insert footnote)
+  (Footnote-back-to-message))
