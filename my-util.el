@@ -723,3 +723,10 @@ a cons cell of the form (buffer . point)"
   (Footnote-add-footnote)
   (insert footnote)
   (Footnote-back-to-message))
+
+(defun my-open-line-after-this-line ()
+  "Like vim's `O' command"
+  (interactive)
+  (let ((next-line-add-newlines t))
+    (next-line))
+  (open-line 1))
