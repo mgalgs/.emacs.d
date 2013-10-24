@@ -693,7 +693,7 @@ a cons cell of the form (buffer . point)"
         (goto-char the-point)
         (c-defun-name)))))
 
-(defun my-show-current-gtags-call-flow ()
+(defun my-gtags-show-current-gtags-call-flow ()
   "Displays gtags call flow"
   (interactive)
   (switch-to-buffer-other-window "*Call Flow*")
@@ -706,6 +706,16 @@ a cons cell of the form (buffer . point)"
                      "\n"))
   (shrink-window-if-larger-than-buffer (get-buffer-window))
   (view-mode))
+
+(defun my-gtags-pop-deleted-buffers ()
+  "Clean up the gtags context stack by popping any deleted buffers"
+  (interactive)
+  (let (cnt)
+    (while (and gtags-buffer-stack
+                (not (buffer-live-p (car gtags-buffer-stack))))
+      (message "Popping killed buffer (%d)" cnt)
+      (gtags-pop-context)
+      (setq cnt (1+ cnt)))))
 
 (defun my-add-footnote (footnote)
   "Add a footnote (read from minibuffer)"
