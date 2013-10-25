@@ -710,10 +710,19 @@ a cons cell of the form (buffer . point)"
 (defun my-gtags-pop-deleted-buffers ()
   "Clean up the gtags context stack by popping any deleted buffers"
   (interactive)
-  (let (cnt)
+  (let ((cnt 1))
     (while (and gtags-buffer-stack
                 (not (buffer-live-p (car gtags-buffer-stack))))
       (message "Popping killed buffer (%d)" cnt)
+      (gtags-pop-context)
+      (setq cnt (1+ cnt)))))
+
+(defun my-gtags-pop-all-buffers ()
+  "Clean up the entire gtags context stack"
+  (interactive)
+  (let ((cnt 1))
+    (while gtags-buffer-stack
+      (message "Popping buffer (%d) (%s)" cnt (car gtags-buffer-stack))
       (gtags-pop-context)
       (setq cnt (1+ cnt)))))
 
