@@ -328,6 +328,7 @@
 (autoload 'footnote-mode "footnote" nil t)
 (add-hook 'message-mode-hook 'footnote-mode)
 (setq footnote-body-tag-spacing 1
+      footnote-spaced-footnotes nil
       footnote-section-tag "")
 
 (require 'lorem-ipsum)
