@@ -271,6 +271,8 @@
 (require 'doc-view)
 (require 'diff-mode)
 
+(load-file "~/.emacs.d/smartparens-setup.el")
+
 (load-file "~/.emacs.d/magit-setup.el")
 
 ;; some keybindings
