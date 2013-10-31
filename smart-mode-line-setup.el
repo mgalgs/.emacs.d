@@ -9,6 +9,7 @@
 
 (add-to-list 'sml/replacer-regexp-list '("/local/mnt/workspace/mitchelh" ":WS:") t)
 (add-to-list 'sml/replacer-regexp-list '(":WS:/jb_mr2" ":J2:") t)
+(add-to-list 'sml/replacer-regexp-list '(":WS:/jb_3.2" ":J3.2:") t)
 (add-to-list 'sml/replacer-regexp-list '(":J2:/kernel/drivers/gpu/ion" ":J2ion:") t)
 (add-to-list 'sml/hidden-modes " AC")
 (add-to-list 'sml/hidden-modes " SP")
