@@ -178,3 +178,5 @@
 (define-key footnote-mode-map (kbd "n") 'my-add-footnote)
 
 (global-set-key (kbd "C-S-o") 'my-open-line-after-this-line)
+
+(define-key ctl-x-4-map "t" 'transpose-frame)
