@@ -11,6 +11,8 @@
 (add-to-list 'sml/replacer-regexp-list '(":WS:/jb_mr2" ":J2:") t)
 (add-to-list 'sml/replacer-regexp-list '(":WS:/jb_3.2" ":J3.2:") t)
 (add-to-list 'sml/replacer-regexp-list '(":J2:/kernel/drivers/gpu/ion" ":J2ion:") t)
+(add-to-list 'sml/replacer-regexp-list '(":J2:/kernel/arch/arm" ":J2aarm:") t)
+(add-to-list 'sml/replacer-regexp-list '(":J2aarm:/boot/dts" ":J2dts:") t)
 (add-to-list 'sml/hidden-modes " AC")
 (add-to-list 'sml/hidden-modes " SP")
 (add-to-list 'sml/hidden-modes " mate")
