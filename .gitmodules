@@ -145,3 +145,6 @@
 [submodule "site-lisp/smartparens"]
 	path = site-lisp/smartparens
 	url = https://github.com/Fuco1/smartparens.git
+[submodule "site-lisp/smart-mode-line"]
+	path = site-lisp/smart-mode-line
+	url = https://github.com/Bruce-Connor/smart-mode-line.git
