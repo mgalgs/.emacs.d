@@ -384,6 +384,7 @@
 
 (delete-selection-mode)
 
+(setq google-this-modeline-indicator "")
 (require 'google-this)
 (google-this-mode 1)
 
