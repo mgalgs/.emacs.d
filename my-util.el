@@ -734,7 +734,7 @@ a cons cell of the form (buffer . point)"
   (Footnote-back-to-message))
 
 (defun my-open-line-after-this-line ()
-  "Like vim's `O' command"
+  "Like vim's `o' command"
   (interactive)
   (let ((next-line-add-newlines t))
     (next-line))
