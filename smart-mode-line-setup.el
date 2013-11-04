@@ -19,3 +19,4 @@
 (add-to-list 'sml/hidden-modes " Plugged")
 (add-to-list 'sml/hidden-modes " Gtags")
 (add-to-list 'sml/hidden-modes " Abbrev")
+(add-to-list 'sml/hidden-modes " Fill")
