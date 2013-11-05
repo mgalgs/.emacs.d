@@ -7,12 +7,6 @@
 (setq sml/name-width 30)
 (setq sml/mode-width 'full)
 
-(add-to-list 'sml/replacer-regexp-list '("/local/mnt/workspace/mitchelh" ":WS:") t)
-(add-to-list 'sml/replacer-regexp-list '(":WS:/jb_mr2" ":J2:") t)
-(add-to-list 'sml/replacer-regexp-list '(":WS:/jb_3.2" ":J3.2:") t)
-(add-to-list 'sml/replacer-regexp-list '(":J2:/kernel/drivers/gpu/ion" ":J2ion:") t)
-(add-to-list 'sml/replacer-regexp-list '(":J2:/kernel/arch/arm" ":J2aarm:") t)
-(add-to-list 'sml/replacer-regexp-list '(":J2aarm:/boot/dts" ":J2dts:") t)
 (add-to-list 'sml/hidden-modes " AC")
 (add-to-list 'sml/hidden-modes " SP")
 (add-to-list 'sml/hidden-modes " mate")
@@ -20,3 +14,8 @@
 (add-to-list 'sml/hidden-modes " Gtags")
 (add-to-list 'sml/hidden-modes " Abbrev")
 (add-to-list 'sml/hidden-modes " Fill")
+
+;;; put sml/replacer-regexp-list items in ~/private.el. Stuff like
+;;; this:
+;;     (add-to-list 'sml/replacer-regexp-list '("/home/mgalgs/workspace" ":WS:") t)
+;;     (add-to-list 'sml/replacer-regexp-list '(":WS:/stuff" ":st:") t)
