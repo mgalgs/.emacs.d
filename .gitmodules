@@ -148,3 +148,6 @@
 [submodule "site-lisp/smart-mode-line"]
 	path = site-lisp/smart-mode-line
 	url = https://github.com/Bruce-Connor/smart-mode-line.git
+[submodule "site-lisp/flx"]
+	path = site-lisp/flx
+	url = https://github.com/lewang/flx.git

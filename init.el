@@ -71,6 +71,7 @@
 
 ;; set up ido mode
 (load-file "~/.emacs.d/ido-setup.el")
+(load-file "~/.emacs.d/flx-setup.el")
 
 ;; set up helm
 (load-file "~/.emacs.d/helm-setup.el")
