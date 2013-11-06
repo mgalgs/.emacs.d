@@ -4,7 +4,7 @@
 
 (setq sml/shorten-directory t)
 (setq sml/shorten-modes t)
-(setq sml/name-width 30)
+(setq sml/name-width 25)
 (setq sml/mode-width 'full)
 
 (add-to-list 'sml/hidden-modes " AC")
