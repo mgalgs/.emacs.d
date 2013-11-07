@@ -744,4 +744,5 @@ a cons cell of the form (buffer . point)"
   "Like vim's `O' command"
   (interactive)
   (beginning-of-line)
-  (open-line 1))
+  (open-line 1)
+  (indent-for-tab-command))
