@@ -739,3 +739,9 @@ a cons cell of the form (buffer . point)"
   (let ((next-line-add-newlines t))
     (next-line))
   (open-line 1))
+
+(defun my-open-line-before-this-line ()
+  "Like vim's `O' command"
+  (interactive)
+  (beginning-of-line)
+  (open-line 1))
