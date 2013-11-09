@@ -154,3 +154,6 @@
 [submodule "site-lisp/diff-hl"]
 	path = site-lisp/diff-hl
 	url = https://github.com/dgutov/diff-hl.git
+[submodule "site-lisp/helm-swoop"]
+	path = site-lisp/helm-swoop
+	url = https://github.com/ShingoFukuyama/helm-swoop.git

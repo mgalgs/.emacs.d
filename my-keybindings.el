@@ -181,3 +181,5 @@
 (global-set-key (kbd "C-M-S-o") 'my-open-line-before-this-line)
 
 (define-key ctl-x-4-map "t" 'transpose-frame)
+
+(global-set-key (kbd "C-c m m w") 'helm-swoop)

@@ -426,6 +426,8 @@
 
 (load-file "~/.emacs.d/diff-hl-setup.el")
 
+(require 'helm-swoop)
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
