@@ -424,6 +424,8 @@
 
 (require 'transpose-frame)
 
+(load-file "~/.emacs.d/diff-hl-setup.el")
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
