@@ -184,3 +184,9 @@
 (define-key ctl-x-4-map "t" 'transpose-frame)
 
 (global-set-key (kbd "C-c m m w") 'helm-swoop)
+
+(global-set-key (kbd "C-c m 4") (lambda ()
+                                  (interactive)
+                                  (string-rectangle (region-beginning)
+                                                    (region-end)
+                                                    "    ")))
