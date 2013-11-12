@@ -147,6 +147,7 @@
 (define-key iedit-lib-keymap (kbd "C-c m '") 'iedit-toggle-unmatched-lines-visible)
 
 (global-set-key (kbd "C-c m `") 'my-recompile)
+(global-set-key (kbd "C-c m m `") 'my-open-compilation-buffer)
 
 (global-set-key (kbd "C-c m p") 'pwd)
 (global-set-key (kbd "C-c m m k") 'textmate-clear-cache)

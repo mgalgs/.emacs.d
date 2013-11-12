@@ -746,3 +746,8 @@ a cons cell of the form (buffer . point)"
   (beginning-of-line)
   (open-line 1)
   (indent-for-tab-command))
+
+(defun my-open-compilation-buffer ()
+  (interactive)
+  (when (get-buffer "*compilation*")
+    (switch-to-buffer "*compilation*")))
