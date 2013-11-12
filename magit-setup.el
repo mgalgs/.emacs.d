@@ -24,3 +24,4 @@ only go back as far as the git history) to pass to magit-log."
 (setq magit-diff-refine-hunk 'all)
 (setq git-rebase-auto-advance t)
 (setq magit-stage-all-confirm nil)
+(setq magit-commit-squash-commit 'marked-or-current)
