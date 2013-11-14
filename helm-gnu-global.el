@@ -26,3 +26,5 @@
   (interactive)
   (helm :sources '(helm-source-gnu-global-symbols)
         :buffer "*helm gnu global*"))
+
+(provide 'helm-gnu-global)
