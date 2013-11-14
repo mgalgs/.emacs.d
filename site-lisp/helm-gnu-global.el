@@ -20,7 +20,9 @@
 (setq helm-source-gnu-global-symbols
       '((name . "Gnu Global Symbols")
         (candidates . helm-gnu-global-get-symbols)
-        (action . (("Visit" . helm-gnu-global-visit)))))
+        (action . (("Visit" . helm-gnu-global-visit)))
+        (requires-pattern . 2)
+        (delayed . 1)))
 
 (defun helm-gnu-global ()
   (interactive)
