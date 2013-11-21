@@ -190,3 +190,4 @@
                                   (string-rectangle (region-beginning)
                                                     (region-end)
                                                     "    ")))
+(global-set-key (kbd "C-c m u") 'browse-url-emacs)
