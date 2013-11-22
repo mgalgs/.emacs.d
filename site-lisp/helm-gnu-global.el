@@ -15,7 +15,8 @@
     (split-string (buffer-string))))
 
 (defun helm-gnu-global-visit (el)
-  (message "got %s" el))
+  (gtags-push-context)
+  (gtags-goto-tag el "C"))
 
 (setq helm-source-gnu-global-symbols
       '((name . "Gnu Global Symbols")
