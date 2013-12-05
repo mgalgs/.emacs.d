@@ -436,6 +436,8 @@
 
 (load-file "~/.emacs.d/diff-hl-setup.el")
 
+(load-file "~/.emacs.d/guide-key-setup.el")
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))

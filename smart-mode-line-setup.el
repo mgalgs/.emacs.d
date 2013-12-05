@@ -14,6 +14,7 @@
 (add-to-list 'sml/hidden-modes " Gtags")
 (add-to-list 'sml/hidden-modes " Abbrev")
 (add-to-list 'sml/hidden-modes " Fill")
+(add-to-list 'sml/hidden-modes " Guide")
 
 ;;; put sml/replacer-regexp-list items in ~/private.el. Stuff like
 ;;; this:
