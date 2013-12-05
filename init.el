@@ -308,12 +308,12 @@
 ;; (global-hl-line-mode)
 
 ;; choose a web browser
-(setq browse-url-browser-function (cond
-				   ((= 0 (shell-command "which google-chrome >&/dev/null")) 'browse-url-chrome)
-				   ((= 0 (shell-command "which chrome >&/dev/null")) 'browse-url-chrome)
-				   ((= 0 (shell-command "which chromium >&/dev/null")) 'browse-url-chromium)
-				   ((= 0 (shell-command "which chromium-browser >&/dev/null")) 'browse-url-chromium)
-				   ((= 0 (shell-command "which firefox >&/dev/null")) 'browse-url-firefox)))
+;; (setq browse-url-browser-function (cond
+;; 				   ((= 0 (shell-command "which google-chrome >&/dev/null")) 'browse-url-chrome)
+;; 				   ((= 0 (shell-command "which chrome >&/dev/null")) 'browse-url-chrome)
+;; 				   ((= 0 (shell-command "which chromium >&/dev/null")) 'browse-url-chromium)
+;; 				   ((= 0 (shell-command "which chromium-browser >&/dev/null")) 'browse-url-chromium)
+;; 				   ((= 0 (shell-command "which firefox >&/dev/null")) 'browse-url-firefox)))
 
 ;; auto revert (useful when switching git branches)
 (global-auto-revert-mode)
