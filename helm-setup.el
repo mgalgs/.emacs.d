@@ -3,3 +3,4 @@
 (require 'helm-swoop)
 (require 'helm-gnu-global)
 (setq helm-minibuffer-history-key nil)
+(setq helm-truncate-lines t)
