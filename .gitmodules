@@ -157,3 +157,6 @@
 [submodule "site-lisp/helm-swoop"]
 	path = site-lisp/helm-swoop
 	url = https://github.com/ShingoFukuyama/helm-swoop.git
+[submodule "site-lisp/popwin-el"]
+	path = site-lisp/popwin-el
+	url = https://github.com/m2ym/popwin-el.git
