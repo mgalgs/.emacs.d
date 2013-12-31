@@ -166,3 +166,6 @@
 [submodule "site-lisp/emacs-helm-gtags"]
 	path = site-lisp/emacs-helm-gtags
 	url = https://github.com/syohex/emacs-helm-gtags.git
+[submodule "site-lisp/guide-key"]
+	path = site-lisp/guide-key
+	url = https://github.com/kbkbkbkb1/guide-key.git
