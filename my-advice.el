@@ -14,8 +14,9 @@
 (defadvice shell-command (around my-shell-command-advice activate)
   "Put `*Shell Command Output*' buffers into `view-mode'."
   ad-do-it
-  (with-current-buffer "*Shell Command Output*"
-    (view-mode)))
+  (when (get-buffer "*Shell Command Output*")
+    (with-current-buffer "*Shell Command Output*"
+      (view-mode))))
 
 ;; Shrink *Occur* buffer if smallish:
 (defadvice occur (around my-occur-advice activate)
