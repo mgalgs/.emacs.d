@@ -160,3 +160,6 @@
 [submodule "site-lisp/popwin-el"]
 	path = site-lisp/popwin-el
 	url = https://github.com/m2ym/popwin-el.git
+[submodule "site-lisp/ack-and-a-half"]
+	path = site-lisp/ack-and-a-half
+	url = https://github.com/jhelwig/ack-and-a-half.git

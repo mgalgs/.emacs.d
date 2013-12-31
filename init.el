@@ -439,6 +439,8 @@
 
 (load-file "~/.emacs.d/guide-key-setup.el")
 
+(load-file "~/.emacs.d/ack-and-a-half-setup.el")
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
