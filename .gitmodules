@@ -163,3 +163,6 @@
 [submodule "site-lisp/ack-and-a-half"]
 	path = site-lisp/ack-and-a-half
 	url = https://github.com/jhelwig/ack-and-a-half.git
+[submodule "site-lisp/emacs-helm-gtags"]
+	path = site-lisp/emacs-helm-gtags
+	url = https://github.com/syohex/emacs-helm-gtags.git
