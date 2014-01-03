@@ -25,6 +25,8 @@
  gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
  gnus-thread-sort-functions '(gnus-thread-sort-by-date))
 
+(setq message-citation-line-function 'message-insert-formatted-citation-line)
+(setq message-citation-line-format "On %a, %b %d %Y at %r, %f wrote:")
 (setq message-confirm-send t)
 
 ;; eye-candy for the summary view
