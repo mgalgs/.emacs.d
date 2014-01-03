@@ -46,7 +46,7 @@
        message-cite-style-outlook))
 
 (defun my-set-cite-reply-position (where)
-  (set (make-local-variable 'message-cite-reply-position) 'where))
+  (set (make-local-variable 'message-cite-reply-position) where))
 
 (defun my-set-style-traditional ()
   (interactive)
