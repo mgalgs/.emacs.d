@@ -27,6 +27,8 @@
 
 (setq message-citation-line-function 'message-insert-formatted-citation-line)
 (setq message-citation-line-format "On %a, %b %d %Y at %r, %f wrote:")
+(setq gnus-thread-hide-subtree t)
+
 (setq message-confirm-send t)
 
 ;; eye-candy for the summary view
