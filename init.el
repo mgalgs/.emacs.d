@@ -441,6 +441,9 @@
 
 (load-file "~/.emacs.d/ack-and-a-half-setup.el")
 
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
