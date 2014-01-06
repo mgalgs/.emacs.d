@@ -193,3 +193,5 @@
 (global-set-key (kbd "C-c m u") 'browse-url-emacs)
 
 (global-set-key (kbd "M-.") 'helm-etags-select)
+
+(global-set-key (kbd "C-c m m y") 'bury-buffer)
