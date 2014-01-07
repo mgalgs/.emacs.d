@@ -751,3 +751,10 @@ a cons cell of the form (buffer . point)"
   (interactive)
   (when (get-buffer "*compilation*")
     (switch-to-buffer "*compilation*")))
+
+(defun my-helm-completing-read-must-match (prompt choices &optional require-match
+                                    initial-input history def)
+    "Wrapper for `helm-comp-read' that also sets :must-match to t"
+    (helm-comp-read prompt
+                    choices
+                    :must-match t))
