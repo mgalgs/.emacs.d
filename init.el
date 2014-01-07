@@ -445,6 +445,10 @@
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
+(when (file-exists-p "~/.emacs.d/bbdb")
+  (load-file "~/.emacs.d/bbdb-setup.el"))
+
+
 ;;; This line should be last:
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
