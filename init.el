@@ -100,7 +100,8 @@
  isearch-allow-scroll t
  kill-whole-line t
  show-trailing-whitespace t
- ring-bell-function 'ignore)
+ ring-bell-function 'ignore
+ history-length 300)
 
 ;; backups
 (setq
