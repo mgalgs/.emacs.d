@@ -169,3 +169,6 @@
 [submodule "site-lisp/guide-key"]
 	path = site-lisp/guide-key
 	url = https://github.com/kbkbkbkb1/guide-key.git
+[submodule "site-lisp/jade-mode"]
+	path = site-lisp/jade-mode
+	url = https://github.com/brianc/jade-mode.git
