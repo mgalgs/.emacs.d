@@ -13,5 +13,8 @@
       bbdb-layout 'one-line
       bbdb-message-pop-up nil)
 
+(setq bbdb-ignore-message-alist
+      '((("To" "CC") . "emacs-devel@gnu\\.org")))
+
 (require 'nnir)
 ;; (setq bbdb-mua-update-interactive-p '(query . create))
