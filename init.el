@@ -445,7 +445,8 @@
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
-(when (file-exists-p "~/.emacs.d/bbdb")
+(when (or (file-exists-p "~/.emacs.d/bbdb")
+          (file-exists-p "~/.bbdb"))
   (load-file "~/.emacs.d/bbdb-setup.el"))
 
 (load-file "~/.emacs.d/jade-mode-setup.el")
