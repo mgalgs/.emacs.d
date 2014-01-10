@@ -14,7 +14,8 @@
       bbdb-message-pop-up nil)
 
 (setq bbdb-ignore-message-alist
-      '((("To" "CC") . "emacs-devel@gnu\\.org")))
+      '((("To" "CC") . "emacs-devel@gnu\\.org")
+        ("From" . "notifications@github\\.com")))
 
 (require 'nnir)
 ;; (setq bbdb-mua-update-interactive-p '(query . create))
