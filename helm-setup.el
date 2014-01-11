@@ -4,4 +4,6 @@
 (require 'helm-gnu-global)
 (setq helm-minibuffer-history-key nil)
 (setq helm-truncate-lines t)
-(setq helm-move-to-line-cycle-in-source t)
+;; todo: make cycling global (not per-source):
+;; https://github.com/emacs-helm/helm/issues/387
+(setq helm-move-to-line-cycle-in-source nil)
