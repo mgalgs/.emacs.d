@@ -439,7 +439,8 @@
 
 (load-file "~/.emacs.d/ack-and-a-half-setup.el")
 
-(add-hook 'text-mode-hook 'flyspell-mode)
+(load-file "~/.emacs.d/flyspell-setup.el")
+
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
 (when (or (file-exists-p "~/.emacs.d/bbdb")
