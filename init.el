@@ -449,8 +449,9 @@
 
 (load-file "~/.emacs.d/jade-mode-setup.el")
 
-;;; These lines should be last:
+(load-file "~/.emacs.d/web-mode-setup.el")
 
+;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
 
