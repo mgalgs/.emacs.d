@@ -4,3 +4,4 @@
 (require 'helm-gnu-global)
 (setq helm-minibuffer-history-key nil)
 (setq helm-truncate-lines t)
+(setq helm-move-to-line-cycle-in-source t)
