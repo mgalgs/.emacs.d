@@ -74,3 +74,5 @@
       '((".*"
 	 (signature "Mitch")
          (eval (one-key-menu "reply" my-reply-style-one-key-menu-alist t)))))
+
+(setq gnus-completing-read-function 'my-helm-completing-read-must-match)
