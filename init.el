@@ -287,9 +287,6 @@
 
 (load-file "~/.emacs.d/magit-setup.el")
 
-;; some keybindings
-(load-file "~/.emacs.d/my-keybindings.el")
-
 ;; some general advice
 (load-file "~/.emacs.d/my-advice.el")
 
@@ -451,6 +448,10 @@
 
 (load-file "~/.emacs.d/jade-mode-setup.el")
 
-;;; This line should be last:
+;;; These lines should be last:
+
+;; some keybindings
+(load-file "~/.emacs.d/my-keybindings.el")
+
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))
