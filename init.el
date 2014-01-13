@@ -449,6 +449,8 @@
 
 (load-file "~/.emacs.d/jade-mode-setup.el")
 
+(savehist-mode 1)
+
 (load-file "~/.emacs.d/web-mode-setup.el")
 
 ;;; These lines should be last:
