@@ -177,8 +177,8 @@
 
 (global-set-key (kbd "C-c m C-x C-e") 'eval-and-replace)
 
-(global-set-key (kbd "C-*") 'evil-search-symbol-forward)
-(global-set-key (kbd "C-#") 'evil-search-symbol-backward)
+;; (global-set-key (kbd "C-*") 'evil-search-symbol-forward)
+;; (global-set-key (kbd "C-#") 'evil-search-symbol-backward)
 
 (global-set-key (kbd "C-c m m b") 'mo-git-blame-current)
 (global-set-key (kbd "C-c m m l") 'magit-file-log)
