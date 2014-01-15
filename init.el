@@ -422,7 +422,7 @@
 
 (load-file "~/.emacs.d/jedi-setup.el")
 
-(load-file "~/.emacs.d/w3m-setup.el")
+;; (load-file "~/.emacs.d/w3m-setup.el")
 
 ;; for the mighty `*'
 (require 'evil)
