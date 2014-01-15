@@ -2,6 +2,7 @@
 (require 'helm-ls-git)
 (require 'helm-swoop)
 (require 'helm-gnu-global)
+(require 'helm-gtags)
 (setq helm-minibuffer-history-key nil)
 (setq helm-truncate-lines t)
 ;; todo: make cycling global (not per-source):
