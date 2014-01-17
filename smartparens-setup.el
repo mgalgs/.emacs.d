@@ -34,3 +34,5 @@
 ;; don't pair "'" if we're at the end of a word (like when typing an
 ;; apostrophe)
 (sp-pair "'" nil :unless '(sp-point-after-word-p))
+
+(sp-local-pair 'web-mode "{" "}" :actions nil)
