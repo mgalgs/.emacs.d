@@ -89,7 +89,7 @@
 
 
 (setq
- skeleton-pair t
+ ;; skeleton-pair t
  display-time-day-and-date t
  nxml-sexp-element-flag t
  linum-format "%4d"
