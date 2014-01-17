@@ -203,3 +203,7 @@
 (global-set-key (kbd "M-.") 'helm-etags-select)
 
 (global-set-key (kbd "C-c m m y") 'bury-buffer)
+
+;; new default for C-j is electric-indent-just-newline but I want C-j
+;; to do indentation
+(global-set-key (kbd "C-j") 'newline)
