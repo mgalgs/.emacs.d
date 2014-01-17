@@ -758,3 +758,8 @@ a cons cell of the form (buffer . point)"
     (helm-comp-read prompt
                     choices
                     :must-match t))
+
+(defun strip-text-properties(txt)
+  "Does what it sayd. http://stackoverflow.com/a/8377127/209050"
+  (set-text-properties 0 (length txt) nil txt)
+  txt)
