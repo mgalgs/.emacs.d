@@ -763,3 +763,39 @@ a cons cell of the form (buffer . point)"
   "Does what it sayd. http://stackoverflow.com/a/8377127/209050"
   (set-text-properties 0 (length txt) nil txt)
   txt)
+
+(defun my--extract-field-from-region (start end N delimiter)
+  "Extract field `N' delimited by `delimiter' from region
+specified by `start' and `end'"
+  (goto-char start)
+  (beginning-of-line)
+  (let ((current-point (point))
+        (result))
+    (while (< current-point end)
+      (push (nth N
+                 (split-string (strip-text-properties (thing-at-point 'line))
+                               delimiter))
+            result)
+      (forward-line)
+      (setq current-point (point)))
+    (reverse result)))
+
+(defun my-mapcfield (fn N &optional delimiter)
+  "Like `mapc' but evaluates `fn' for each field in the region defined by
+`N' (field number) and `delimiter' (using `my--extract-field-from-region')."
+  (setq delimiter (or delimiter " "))
+  (mapc fn (my--extract-field-from-region (region-beginning)
+                                          (region-end)
+                                          N
+                                          delimiter)))
+
+(defun my-extract-field-from-region (start end)
+  "Like cut -dD -fN where D and N are read from the user"
+  (interactive "r")
+  (let ((res (my--extract-field-from-region start
+                                            end
+                                            (string-to-number (read-from-minibuffer "Field: "
+                                                                                    "0"))
+                                            (read-from-minibuffer "Field [default=\" \"]: "
+                                                                  " "))))
+    (message "%s" (mapconcat 'identity res "\n"))))
