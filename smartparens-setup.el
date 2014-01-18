@@ -91,6 +91,8 @@
 (define-key sp-keymap (kbd "H-s j") 'sp-join-sexp)
 (define-key sp-keymap (kbd "H-s s") 'sp-split-sexp)
 
+(require 'cc-mode)
+(require 'js)
 ;; adapted from from
 ;; https://github.com/Fuco1/smartparens/wiki/Working-with-expressions
 (dolist (m '(c-mode-map c++-mode-map js-mode-map))
