@@ -4,6 +4,11 @@
   (push-mark (point) t)
   ad-do-it)
 
+(defadvice sp-backward-up-sexp (around my-sp-backward-up-sexp-advice activate)
+  "stuffs"
+  (push-mark (point) t)
+  ad-do-it)
+
 (defadvice article-fill-long-lines (around my-article-fill-long-lines-advice activate)
   "override `fill-column' due to the way article-fill-long-lines
   uses it"
