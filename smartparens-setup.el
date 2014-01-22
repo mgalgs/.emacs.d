@@ -59,7 +59,7 @@
 (define-key sp-keymap (kbd "C-M-p") 'sp-previous-sexp)
 
 (define-key sp-keymap (kbd "C-M-k") 'sp-kill-sexp)
-(define-key sp-keymap (kbd "C-M-w") 'sp-copy-sexp)
+;; (define-key sp-keymap (kbd "C-M-w") 'sp-copy-sexp)
 
 (define-key sp-keymap (kbd "C-c m M-d") 'sp-unwrap-sexp)
 (define-key sp-keymap (kbd "C-c m M-<backspace>") 'sp-backward-unwrap-sexp)
