@@ -175,3 +175,6 @@
 [submodule "site-lisp/web-mode"]
 	path = site-lisp/web-mode
 	url = https://github.com/fxbois/web-mode.git
+[submodule "site-lisp/s.el"]
+	path = site-lisp/s.el
+	url = https://github.com/magnars/s.el.git
