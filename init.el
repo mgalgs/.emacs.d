@@ -453,6 +453,8 @@
 
 (load-file "~/.emacs.d/web-mode-setup.el")
 
+(require 'multiple-cursors)
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")

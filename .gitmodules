@@ -178,3 +178,6 @@
 [submodule "site-lisp/s.el"]
 	path = site-lisp/s.el
 	url = https://github.com/magnars/s.el.git
+[submodule "site-lisp/multiple-cursors"]
+	path = site-lisp/multiple-cursors
+	url = https://github.com/magnars/multiple-cursors.el.git
