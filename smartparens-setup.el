@@ -62,7 +62,7 @@
 ;; (define-key sp-keymap (kbd "C-M-w") 'sp-copy-sexp)
 
 (define-key sp-keymap (kbd "C-c m M-d") 'sp-unwrap-sexp)
-(define-key sp-keymap (kbd "C-c m M-<backspace>") 'sp-backward-unwrap-sexp)
+(define-key sp-keymap (kbd "C-c m <M-backspace>") 'sp-backward-unwrap-sexp)
 
 (define-key sp-keymap (kbd "C-<right>") 'sp-forward-slurp-sexp)
 (define-key sp-keymap (kbd "C-<left>") 'sp-forward-barf-sexp)
