@@ -4,5 +4,6 @@
         "C-x 4"
         "C-c m"
         "C-c m m"
-        "C-x C-k"))
+        "C-x C-k"
+        "C-c g"))
 (guide-key-mode 1)
