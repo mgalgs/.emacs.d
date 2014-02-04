@@ -67,7 +67,7 @@
 (global-set-key (kbd "C-c m g") 'grep-what-im-on)
 (global-set-key (kbd "C-c m l") 'my-kill-last-message)
 (global-set-key (kbd "C-c m o") 'browse-url)
-(global-set-key (kbd "C-c m r") 'align-regexp)
+;; (global-set-key (kbd "C-c m r") 'align-regexp)
 (global-set-key (kbd "C-c m x") 'my-xdg-open-each-in-region)
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
