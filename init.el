@@ -441,7 +441,7 @@
 
 (load-file "~/.emacs.d/flyspell-setup.el")
 
-(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+(load-file "~/.emacs.d/eldoc-setup.el")
 
 (when (or (file-exists-p "~/.emacs.d/bbdb")
           (file-exists-p "~/.bbdb"))
