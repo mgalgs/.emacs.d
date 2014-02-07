@@ -41,3 +41,6 @@
 
 ;; fontify code in code blocks
 (setq org-src-fontify-natively t)
+
+;; don't say `days' in clocksums
+(setq org-time-clocksum-format "%d :%02d")
