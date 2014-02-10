@@ -25,3 +25,20 @@ only go back as far as the git history) to pass to magit-log."
 (setq git-rebase-auto-advance t)
 (setq magit-stage-all-confirm nil)
 (setq magit-commit-squash-commit 'marked-or-current)
+
+(setq magit-status-sections-hook
+      '(magit-insert-status-local-line
+        magit-insert-status-remote-line
+        magit-insert-status-head-line
+        magit-insert-status-tags-line
+        magit-insert-status-merge-line
+        magit-insert-status-rebase-lines
+        magit-insert-empty-line
+        magit-insert-pending-changes
+        magit-insert-pending-commits
+        magit-insert-unstaged-changes
+        magit-insert-staged-changes
+        magit-insert-untracked-files
+        magit-insert-unpushed-cherries
+        magit-insert-unpulled-cherries
+        magit-insert-stashes))
