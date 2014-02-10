@@ -8,6 +8,7 @@
 
 (setq web-mode-engines-alist
       '(("django". "\\.djhtml")
-        ("django" . my-current-buffer-django-p)))
+        ("django" . my-current-buffer-django-p)
+        ("php" . "\\.php")))
 
 (define-key web-mode-map (kbd "C-;") nil)
