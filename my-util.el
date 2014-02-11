@@ -810,3 +810,15 @@ specified by `start' and `end'"
   (view-echo-area-messages)
   (other-window 1)
   (end-of-buffer))
+
+(defun my-indent-last-kill ()
+  (interactive)
+  (with-temp-buffer
+    (yank)
+    (let ((txt (replace-regexp-in-string "\t" "    " (buffer-string))))
+      (erase-buffer)
+      (insert (mapconcat (lambda (el) (concat "    " el))
+                         (split-string txt "\n")
+                         "\n")))
+    (delete-trailing-whitespace)
+    (kill-new (buffer-string))))
