@@ -804,3 +804,9 @@ specified by `start' and `end'"
                                             (read-from-minibuffer "Field [default=\" \"]: "
                                                                   " "))))
     (message "%s" (mapconcat 'identity res "\n"))))
+
+(defun my-view-and-switch-to-echo-area-messages ()
+  (interactive)
+  (view-echo-area-messages)
+  (other-window 1)
+  (end-of-buffer))
