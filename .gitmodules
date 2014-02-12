@@ -184,3 +184,6 @@
 [submodule "site-lisp/pkgbuild-mode"]
 	path = site-lisp/pkgbuild-mode
 	url = https://github.com/juergenhoetzel/pkgbuild-mode.git
+[submodule "site-lisp/nyan-mode"]
+	path = site-lisp/nyan-mode
+	url = https://github.com/TeMPOraL/nyan-mode.git
