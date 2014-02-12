@@ -181,3 +181,6 @@
 [submodule "site-lisp/multiple-cursors"]
 	path = site-lisp/multiple-cursors
 	url = https://github.com/magnars/multiple-cursors.el.git
+[submodule "site-lisp/pkgbuild-mode"]
+	path = site-lisp/pkgbuild-mode
+	url = https://github.com/juergenhoetzel/pkgbuild-mode.git
