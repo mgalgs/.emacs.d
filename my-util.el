@@ -822,3 +822,12 @@ specified by `start' and `end'"
                          "\n")))
     (delete-trailing-whitespace)
     (kill-new (buffer-string))))
+
+(defun my-hours-minutes-to-decimal (hours-minutes)
+  "Convert `hours-mintes' (which should be a string like
+\"1:45\") to a decimal representation (so \"1:45\" => 1.75)."
+  (save-match-data
+    (let* ((parts (split-string hours-minutes ":"))
+           (hours (string-to-number (nth 0 parts)))
+           (minutes (string-to-number (nth 1 parts))))
+      (+ hours (/ minutes 60.0)))))
