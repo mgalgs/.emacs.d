@@ -457,7 +457,7 @@
 
 (require 'nyan-mode)
 (nyan-mode)
-(nyan-start-animation)
+;; (nyan-start-animation)
 
 ;;; These lines should be last:
 ;; some keybindings
