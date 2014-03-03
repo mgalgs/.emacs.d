@@ -413,8 +413,7 @@
             (define-key dired-mode-map (kbd "^")
               (lambda () (interactive) (find-alternate-file "..")))))
 
-(require 'wgrep)
-(setq wgrep-save-all-buffers)
+(load-file "~/.emacs.d/wgrep-setup.el")
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
