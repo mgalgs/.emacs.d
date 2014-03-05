@@ -25,7 +25,8 @@
 
 (setq custom-theme-load-path
       (append (directories-in-directory "~/.emacs.d/color-themes")
-	      custom-theme-load-path))
+              '("~/.emacs.d/site-lisp/moe-theme.el")
+              custom-theme-load-path))
 
 ;; some utility macros
 (load-file "~/.emacs.d/my-macros.el")
@@ -222,14 +223,16 @@
 ;; (setq my-theme-to-use 'solarized-dark)
 ;; (setq my-theme-to-use 'solarized-light)
 ;; (setq my-theme-to-use 'zenburn)
-(setq my-theme-to-use 'wombat)
+;; (setq my-theme-to-use 'wombat)
 
-(load-theme my-theme-to-use)
+;; (load-theme my-theme-to-use)
 ;; work-around for a hl-line-mode issue where the foreground colors
 ;; get lost http://stackoverflow.com/a/15746070/209050
 ;; put this in ~/.emacs:
 ;; (set-face-attribute 'highlight nil :foreground 'unspecified)
 
+(require 'moe-theme)
+(moe-light)
 
 ;; (when window-system
 ;;   (load-theme my-theme-to-use))
