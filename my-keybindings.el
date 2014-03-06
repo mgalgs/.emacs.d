@@ -216,3 +216,5 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 (global-set-key (kbd "C-h e") 'my-view-and-switch-to-echo-area-messages)
+
+(global-set-key (kbd "C-c m M-/") 'my-expand-file-name-at-point)

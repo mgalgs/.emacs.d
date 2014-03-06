@@ -830,3 +830,12 @@ specified by `start' and `end'"
            (hours (string-to-number (nth 0 parts)))
            (minutes (string-to-number (nth 1 parts))))
       (+ hours (/ minutes 60.0)))))
+
+(defun my-expand-file-name-at-point ()
+  "Use hippie-expand to expand the filename.
+
+From http://superuser.com/a/68648/70130"
+  (interactive)
+  (let ((hippie-expand-try-functions-list '(try-complete-file-name-partially
+                                            try-complete-file-name)))
+    (call-interactively 'hippie-expand)))
