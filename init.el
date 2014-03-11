@@ -102,7 +102,8 @@
  kill-whole-line t
  show-trailing-whitespace t
  ring-bell-function 'ignore
- history-length 300)
+ history-length 300
+ compile-command "make")
 
 ;; backups
 (setq
