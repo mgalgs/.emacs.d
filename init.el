@@ -458,9 +458,7 @@
 
 (require 'multiple-cursors)
 
-(require 'nyan-mode)
-(nyan-mode)
-;; (nyan-start-animation)
+(load-file "~/.emacs.d/nyan-mode-setup.el")
 
 ;;; These lines should be last:
 ;; some keybindings
