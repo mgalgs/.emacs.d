@@ -31,6 +31,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl" . web-mode))
 (add-to-list 'auto-mode-alist '("/.gitconfig". conf-mode))
 (add-to-list 'auto-mode-alist '("\.zsh" . sh-mode))
 (add-to-list 'auto-mode-alist '("\.install" . sh-mode))
