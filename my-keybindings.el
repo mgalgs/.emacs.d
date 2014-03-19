@@ -218,3 +218,5 @@
 (global-set-key (kbd "C-h e") 'my-view-and-switch-to-echo-area-messages)
 
 (global-set-key (kbd "C-c m M-/") 'my-expand-file-name-at-point)
+
+(global-set-key (kbd "C-c m m >") 'diffview-current)
