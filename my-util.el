@@ -839,3 +839,9 @@ From http://superuser.com/a/68648/70130"
   (let ((hippie-expand-try-functions-list '(try-complete-file-name-partially
                                             try-complete-file-name)))
     (call-interactively 'hippie-expand)))
+
+(defun my-nth-match (st regexp n)
+  "Returns the nth match of `regexp' on string `st', saving match data."
+  (save-match-data
+    (when (string-match regexp st)
+      (match-string-no-properties n st))))
