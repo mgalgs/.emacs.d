@@ -190,3 +190,6 @@
 [submodule "site-lisp/moe-theme.el"]
 	path = site-lisp/moe-theme.el
 	url = https://github.com/kuanyui/moe-theme.el.git
+[submodule "site-lisp/emacs-python-environment"]
+	path = site-lisp/emacs-python-environment
+	url = https://github.com/tkf/emacs-python-environment.git
