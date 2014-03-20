@@ -845,3 +845,27 @@ From http://superuser.com/a/68648/70130"
   (save-match-data
     (when (string-match regexp st)
       (match-string-no-properties n st))))
+
+(defun my-ftrace-log-split ()
+  "Split current buffer (an ftrace function_graph tracer log)
+into columns based on the CPU number. This should really be more
+generic (split into columns based on regex)."
+  (interactive)
+  (let* ((lines (split-string (buffer-string) "\n"))
+         (max-line-len (apply 'max (mapcar 'length (-filter (lambda (el) (string-match "^ \\([[:digit:]]\\)" el))
+                                                            lines)))))
+    (message "max-line-len is %d" max-line-len)
+    (with-current-buffer (get-buffer-create "*ftrace-log-split*")
+      (erase-buffer)
+      (dolist (line lines)
+        (-if-let (cpu (my-nth-match line
+                                    "^ \\([[:digit:]]\\)"
+                                    1))
+            (insert (format "%s%s"
+                            (make-string (+ (* (string-to-number cpu) max-line-len)
+                                            4)
+                                         ?\ )
+                            line))
+          (insert line))
+        (insert "\n"))))
+  (switch-to-buffer "*ftrace-log-split*"))
