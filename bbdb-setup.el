@@ -15,6 +15,7 @@
 
 (setq bbdb-ignore-message-alist
       '((("To" "CC") . "emacs-devel@gnu\\.org")
+        (("To" "CC") . "help-gnu-emacs@gnu\\.org")
         ("From" . "notifications@github\\.com")))
 
 (require 'nnir)
