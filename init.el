@@ -460,6 +460,8 @@
 
 (load-file "~/.emacs.d/nyan-mode-setup.el")
 
+(require 'phi-search)
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")

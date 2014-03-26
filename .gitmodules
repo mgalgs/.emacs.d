@@ -193,3 +193,6 @@
 [submodule "site-lisp/emacs-python-environment"]
 	path = site-lisp/emacs-python-environment
 	url = https://github.com/tkf/emacs-python-environment.git
+[submodule "site-lisp/phi-search"]
+	path = site-lisp/phi-search
+	url = https://github.com/zk-phi/phi-search.git
