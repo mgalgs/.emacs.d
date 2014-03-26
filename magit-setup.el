@@ -25,6 +25,7 @@ only go back as far as the git history) to pass to magit-log."
 (setq git-rebase-auto-advance t)
 (setq magit-stage-all-confirm nil)
 (setq magit-commit-squash-commit 'marked-or-current)
+(setq magit-status-buffer-switch-function 'switch-to-buffer)
 
 (setq magit-status-sections-hook
       '(magit-insert-status-local-line
