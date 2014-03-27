@@ -16,7 +16,8 @@
 (setq bbdb-ignore-message-alist
       '((("To" "CC") . "emacs-devel@gnu\\.org")
         (("To" "CC") . "help-gnu-emacs@gnu\\.org")
-        ("From" . "notifications@github\\.com")))
+        ("From" . "notifications@github\\.com")
+        ("X-Mailman-Version" . ".*")))
 
 (require 'nnir)
 ;; (setq bbdb-mua-update-interactive-p '(query . create))
