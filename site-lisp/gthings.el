@@ -48,13 +48,18 @@ prefix, only diffs the current buffer."
 						     the-cleaned-branches)))
       (gthings-git-diff selected-branch only-current-buffer)))
 
-(defun gthings-show-file-at-rev (&optional rev)
+(defun gthings-show-file-at-rev (&optional rev file)
   "Shows the current file at revision in a new buffer as it"
   (interactive)
   (let* ((rev (if rev rev
 		(read-from-minibuffer "Revision: ")))
 	 (show-cmd (format "show \"%s:./%s\""
 			   rev
-			   (file-name-nondirectory (buffer-file-name)))))
+			   (if file
+                               file
+                             (if current-prefix-arg
+                                 (file-relative-name (read-file-name "File: " nil nil t)
+                                                     (file-name-directory (buffer-file-name)))
+                               (file-name-nondirectory (buffer-file-name)))))))
     (gthings-run-git-cmd show-cmd
 			 (format gthings-git-show-buffer-name-fmt rev))))
