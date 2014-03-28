@@ -58,7 +58,7 @@ prefix, only diffs the current buffer."
 			   (if file
                                file
                              (if current-prefix-arg
-                                 (file-relative-name (read-file-name "File: " nil nil t)
+                                 (file-relative-name (read-file-name "File: ")
                                                      (file-name-directory (buffer-file-name)))
                                (file-name-nondirectory (buffer-file-name)))))))
     (gthings-run-git-cmd show-cmd
