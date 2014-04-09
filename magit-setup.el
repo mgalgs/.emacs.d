@@ -35,7 +35,6 @@ only go back as far as the git history) to pass to magit-log."
         magit-insert-status-merge-line
         magit-insert-status-rebase-lines
         magit-insert-empty-line
-        magit-insert-pending-changes
         magit-insert-pending-commits
         magit-insert-unstaged-changes
         magit-insert-staged-changes
