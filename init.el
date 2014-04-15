@@ -462,6 +462,8 @@
 
 (require 'phi-search)
 
+(load-file "~/.emacs.d/ace-link-setup.el")
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
