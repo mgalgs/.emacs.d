@@ -17,7 +17,8 @@ whichever is less"
 (defun my-git-get-log-range (n)
   "Get something like HEAD~n.. (with the `n' sanitized to
 only go back as far as the git history) to pass to magit-log."
-  (format "%s.."
+  (format "--max-count=%d %s.."
+          n
           (my-git-get-rev-nrevs-back n)))
 
 ;; (setq magit-log-default-log-range 'my-git-get-log-range)
@@ -46,7 +47,7 @@ only go back as far as the git history) to pass to magit-log."
     ;; (concat "--pretty=format:%h%d "
     ;;         (and magit-log-show-gpg-status "%G?")
     ;;         "[%an][%at]%s")
-    (my-git-get-log-range 20)))
+    (my-git-get-log-range 15)))
 
 (setq magit-status-sections-hook
       '(magit-insert-status-local-line
