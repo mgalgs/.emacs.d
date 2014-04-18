@@ -14,18 +14,39 @@ whichever is less"
                                               (1- (my-git-nrevs-gate nrevs))))
              0 -1))
 
-(defun my-git-get-log-range ()
-  "Get something like HEAD~100.. (with the `100' sanitized to
+(defun my-git-get-log-range (n)
+  "Get something like HEAD~n.. (with the `n' sanitized to
 only go back as far as the git history) to pass to magit-log."
   (format "%s.."
-          (my-git-get-rev-nrevs-back 100)))
+          (my-git-get-rev-nrevs-back n)))
 
-(setq magit-log-default-log-range 'my-git-get-log-range)
+;; (setq magit-log-default-log-range 'my-git-get-log-range)
 (setq magit-diff-refine-hunk 'all)
 (setq git-rebase-auto-advance t)
 (setq magit-stage-all-confirm nil)
 (setq magit-commit-squash-commit 'marked-or-current)
 (setq magit-status-buffer-switch-function 'switch-to-buffer)
+
+(defun my-magit-insert-recent-log ()
+  (magit-git-insert-section (recent "Recent log:")
+      (lambda ()
+        (ansi-color-apply-on-region (point-min) (point-max))
+        ;; (insert (buffer-string))
+        )
+    ;; (apply-partially 'magit-wash-log 'oneline 'color t)
+    ;; (lambda () (message "Recent'ing") (insert (buffer-string)))
+    ;; (apply-partially 'magit-wash-log 'unique)
+    "log"
+    ;; "--decorate=full"
+    ;; "--color"
+    "--graph"
+    "--oneline"
+    "--decorate"
+    "--color"
+    ;; (concat "--pretty=format:%h%d "
+    ;;         (and magit-log-show-gpg-status "%G?")
+    ;;         "[%an][%at]%s")
+    (my-git-get-log-range 20)))
 
 (setq magit-status-sections-hook
       '(magit-insert-status-local-line
@@ -41,4 +62,8 @@ only go back as far as the git history) to pass to magit-log."
         magit-insert-untracked-files
         magit-insert-unpushed-cherries
         magit-insert-unpulled-cherries
+        my-magit-insert-recent-log
         magit-insert-stashes))
+
+(font-lock-add-keywords 'emacs-lisp-mode
+                        magit-font-lock-keywords)
