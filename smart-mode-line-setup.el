@@ -18,5 +18,7 @@
 
 ;;; put sml/replacer-regexp-list items in ~/private.el. Stuff like
 ;;; this:
-;;     (add-to-list 'sml/replacer-regexp-list '("/home/mgalgs/workspace" ":WS:") t)
-;;     (add-to-list 'sml/replacer-regexp-list '(":WS:/stuff" ":st:") t)
+;; (eval-after-load 'smart-mode-line
+;;   '(progn
+;;      (add-to-list 'sml/replacer-regexp-list '("/home/mgalgs/workspace" ":WS:") t)
+;;      (add-to-list 'sml/replacer-regexp-list '(":WS:/stuff" ":st:") t)))
