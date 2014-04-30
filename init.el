@@ -465,6 +465,8 @@
 
 (load-file "~/.emacs.d/ace-link-setup.el")
 
+(require 's)
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
