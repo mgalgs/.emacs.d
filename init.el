@@ -103,7 +103,8 @@
  show-trailing-whitespace t
  ring-bell-function 'ignore
  history-length 300
- compile-command "make")
+ compile-command "make"
+ read-file-name-completion-ignore-case t)
 
 ;; backups
 (setq
