@@ -467,6 +467,8 @@
 
 (require 's)
 
+(require 'ov)
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
