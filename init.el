@@ -469,6 +469,8 @@
 
 (require 'ov)
 
+;; (load-file "~/.emacs.d/gnus-summary-overlays-setup.el")
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
