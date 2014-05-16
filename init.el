@@ -186,8 +186,8 @@
 (autoload 'browse-kill-ring "browse-kill-ring" nil t)
 
 ;; autopair
-;; (require 'autopair)
-;; (autopair-global-mode) ;; to enable in all buffers
+(require 'autopair)
+(autopair-global-mode) ;; to enable in all buffers
 
 ;; gpg use the minibuffer for passphrase, not GUI
 (setenv "GPG_AGENT_INFO" nil)
@@ -288,7 +288,7 @@
 (require 'doc-view)
 (require 'diff-mode)
 
-(load-file "~/.emacs.d/smartparens-setup.el")
+;; (load-file "~/.emacs.d/smartparens-setup.el")
 
 (load-file "~/.emacs.d/magit-setup.el")
 

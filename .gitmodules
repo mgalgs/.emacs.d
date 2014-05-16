@@ -202,3 +202,6 @@
 [submodule "site-lisp/ov.el"]
 	path = site-lisp/ov.el
 	url = https://github.com/ShingoFukuyama/ov.el.git
+[submodule "site-lisp/autopair"]
+	path = site-lisp/autopair
+	url = https://github.com/capitaomorte/autopair.git
