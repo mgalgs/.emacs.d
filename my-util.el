@@ -873,4 +873,4 @@ generic (split into columns based on regex)."
 (defun my-open-in-atom ()
   "Open the current buffer in the Atom editor"
   (interactive)
-  (start-process "open-in-atom" nil "atom" "-f" (buffer-name)))
+  (start-process "open-in-atom" nil "atom" "-f" (buffer-file-name)))
