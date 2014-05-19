@@ -869,3 +869,8 @@ generic (split into columns based on regex)."
           (insert line))
         (insert "\n"))))
   (switch-to-buffer "*ftrace-log-split*"))
+
+(defun my-open-in-atom ()
+  "Open the current buffer in the Atom editor"
+  (interactive)
+  (start-process "open-in-atom" nil "atom" "-f" (buffer-name)))

@@ -220,3 +220,5 @@
 (global-set-key (kbd "C-c m M-/") 'my-expand-file-name-at-point)
 
 (global-set-key (kbd "C-c m m >") 'diffview-current)
+
+(global-set-key (kbd "C-c m a") 'my-open-in-atom)
