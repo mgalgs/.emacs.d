@@ -459,7 +459,8 @@
 
 (require 'multiple-cursors)
 
-(load-file "~/.emacs.d/nyan-mode-setup.el")
+(when window-system
+  (load-file "~/.emacs.d/nyan-mode-setup.el"))
 
 (require 'phi-search)
 
