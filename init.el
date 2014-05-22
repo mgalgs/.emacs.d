@@ -469,7 +469,9 @@
 
 (require 'ov)
 
-;; (load-file "~/.emacs.d/gnus-summary-overlays-setup.el")
+(load-file "~/.emacs.d/gnus-summary-overlays-setup.el")
+
+(load-file "~/.emacs.d/rainbow-delimiters-setup.el")
 
 ;;; These lines should be last:
 ;; some keybindings
