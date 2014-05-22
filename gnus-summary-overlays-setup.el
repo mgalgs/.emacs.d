@@ -1,5 +1,3 @@
-;; Doesn't work yet!
-
 (defun my-ov-whole-buffer (regexp color-spec)
   (let (face-plist)
     (if (stringp color-spec)
@@ -21,4 +19,5 @@
     (dolist (r regspecs)
       (my-ov-whole-buffer (car r) (cadr r)))))
 
-(add-hook 'gnus-summary-mode-hook 'my-overlays-for-mailing-lists)
+;; Doesn't work yet!
+;; (add-hook 'gnus-summary-mode-hook 'my-overlays-for-mailing-lists)
