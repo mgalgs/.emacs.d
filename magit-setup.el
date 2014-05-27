@@ -32,6 +32,32 @@ upstream (i.e. branch.<name>.merge) is set to something else."
 
 (setq magit-push-hook 'magit-push-dwis)
 
+(setq my-magit-recent-log-max-count 15)
+
+(defun my-magit-insert-recent-commits-graph ()
+  ;; doesn't work if there aren't any commits yet. If `git rev-parse HEAD'
+  ;; fails then there aren't any commits.
+  (when (= 0 (call-process "git" nil nil nil "rev-parse" "HEAD"))
+    (let ((revs (magit-git-lines "rev-list"
+                                 (format "--max-count=%d" (1+ my-magit-recent-log-max-count))
+                                 "HEAD")))
+      (magit-git-insert-section (recent "Recent commits:")
+          (lambda ()
+            (ansi-color-apply-on-region (point-min) (point-max)))
+        "log"
+        "--graph"
+        "--oneline"
+        "--decorate"
+        "--color"
+        (if (> (length revs) my-magit-recent-log-max-count)
+            ;; here we are. the reason we go through all this
+            ;; `rev-list' effort is for this range. This results in a
+            ;; dramatic performance improvement over --graph
+            ;; --max-count for repos with lots of commits.
+            (format "%s.." (car (last revs)))
+          "HEAD")
+        (format "--max-count=%d" my-magit-recent-log-max-count)))))
+
 (setq magit-status-sections-hook
       '(magit-insert-status-local-line
         magit-insert-status-remote-line
@@ -46,7 +72,7 @@ upstream (i.e. branch.<name>.merge) is set to something else."
         magit-insert-untracked-files
         magit-insert-unpushed-cherries
         magit-insert-unpulled-cherries
-        magit-insert-recent-commits-graph
+        my-magit-insert-recent-commits-graph
         magit-insert-stashes))
 
 (font-lock-add-keywords 'emacs-lisp-mode
