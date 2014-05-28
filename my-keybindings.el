@@ -220,5 +220,8 @@
 (global-set-key (kbd "C-c m M-/") 'my-expand-file-name-at-point)
 
 (global-set-key (kbd "C-c m m >") 'diffview-current)
+(global-set-key (kbd "C-c m m e") 'my-overlays-for-mailing-lists)
 
 (global-set-key (kbd "C-c m a") 'my-open-in-atom)
+
+(global-set-key (kbd "C-c C-b") 'ibuffer)
