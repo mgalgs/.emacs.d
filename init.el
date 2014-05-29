@@ -474,6 +474,8 @@
 
 (load-file "~/.emacs.d/rainbow-delimiters-setup.el")
 
+(load-file "~/.emacs.d/erc-setup.el")
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
