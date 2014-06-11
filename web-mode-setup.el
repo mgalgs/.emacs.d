@@ -2,7 +2,7 @@
 
 (defun my-current-buffer-django-p ()
   (save-excursion
-    (search-forward-regexp "{% base\\|{% if\\|{% for\\|{% include\\|{% block\\|{% csrf_token %}\\|{% url"
+    (search-forward-regexp "{% base\\|{% if\\|{% for\\|{% include\\|{% block\\|{% csrf_token %}\\|{% url\\|{{ "
                            nil
                            t)))
 
