@@ -206,6 +206,7 @@
 
 ;; better buffer disambiguation
 (require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; ace mode jumping
 (require 'ace-jump-mode)
