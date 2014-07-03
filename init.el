@@ -23,6 +23,8 @@
 	     "~/.emacs.d/site-lisp")
        load-path))
 
+(setq custom-safe-themes t)
+
 (setq custom-theme-load-path
       (append (directories-in-directory "~/.emacs.d/color-themes")
               '("~/.emacs.d/site-lisp/moe-theme.el")
