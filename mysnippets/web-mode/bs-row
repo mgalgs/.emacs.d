@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: bootstrap 3.0 row
+# key: bs-row
+# --
+<div class="row">
+  $0
+</div>

@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: django-if
+# key: if
+# --
+{% if ${1:condition} %}
+$0
+{% endif %}

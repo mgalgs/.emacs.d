@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: bootstrap 3.0 col-md-N
+# key: bs-col-md
+# --
+<div class="col-md-$1">
+  $0
+</div>

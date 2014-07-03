@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: bootstrap 3.0 input type=text
+# key: bs-input-text
+# http://getbootstrap.com/css/#forms-controls
+# --
+<input type="text" class="form-control" placeholder="${1:Text input}">

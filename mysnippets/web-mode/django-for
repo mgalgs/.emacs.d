@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: django-for
+# key: for
+# --
+{% for ${1:var} in ${2:iterator} %}
+$0
+{% endfor %}

@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: bootstrap 3.0 textarea
+# key: bs-textarea
+# http://getbootstrap.com/css/#forms-controls
+# --
+<textarea class="form-control" rows="3">$0</textarea>

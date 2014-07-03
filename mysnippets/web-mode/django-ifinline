@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: django-ifinline
+# key: ifinline
+# --
+{% if ${1:condition} %}$0{% endif %}

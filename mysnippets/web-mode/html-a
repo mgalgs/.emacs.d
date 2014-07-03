@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: html-a
+# key: a
+# --
+<a href="${1:http://www.google.com}">$0</a>
