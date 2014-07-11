@@ -20,6 +20,11 @@
 ;; my-visit-keybindings-file-maker
 (my-visit-keybindings-file-maker)
 
+(when (eq system-type 'darwin)
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'super)
+  (setq mac-function-modifier 'control))
+
 (global-set-key (kbd "C-c m k") 'my-visit-keybindings-file)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "<S-f5>") 'revert-and-goto-end-of-buffer)
