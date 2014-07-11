@@ -230,3 +230,6 @@
 (global-set-key (kbd "C-c m a") 'my-open-in-atom)
 
 (global-set-key (kbd "C-c C-b") 'ibuffer)
+
+(global-set-key (kbd "C-v") 'my-smooth-scroll-down)
+(global-set-key (kbd "M-v") 'my-smooth-scroll-up)

@@ -874,3 +874,27 @@ generic (split into columns based on regex)."
   "Open the current buffer in the Atom editor"
   (interactive)
   (start-process "open-in-atom" nil "atom" "-f" (buffer-file-name)))
+
+(defun my-checkpatch-current ()
+  "Runs the kernel scripts/checkpatch.pl script on the current file"
+  (interactive)
+  (compile (concat "$(git rev-parse --show-toplevel)/scripts/checkpatch.pl --emacs --file "
+                   (file-name-nondirectory (buffer-file-name)))))
+
+;; adapted from http://pastie.org/9374830
+(defun my-smooth-scroll (how top)
+  (while (> top 10)
+    (sit-for (/ 1.0 (+ top 20)))
+    (funcall how top)
+    (setq top (/ top 2)))
+  (dolist (n '(8 4 2 1))
+    (sit-for (/ 1.0 (+ n 20)))
+    (funcall how n)))
+
+(defun my-smooth-scroll-down ()
+  (interactive)
+  (my-smooth-scroll 'scroll-up (- (window-height) 10)))
+
+(defun my-smooth-scroll-up ()
+  (interactive)
+  (my-smooth-scroll 'scroll-down (- (window-height) 10)))
