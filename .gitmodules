@@ -214,3 +214,6 @@
 [submodule "site-lisp/org-mode"]
 	path = site-lisp/org-mode
 	url = git://orgmode.org/org-mode.git
+[submodule "site-lisp/org-reveal"]
+	path = site-lisp/org-reveal
+	url = https://github.com/yjwen/org-reveal.git
