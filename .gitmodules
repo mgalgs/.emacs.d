@@ -211,3 +211,6 @@
 [submodule "site-lisp/emacs-noflet"]
 	path = site-lisp/emacs-noflet
 	url = https://github.com/nicferrier/emacs-noflet.git
+[submodule "site-lisp/org-mode"]
+	path = site-lisp/org-mode
+	url = git://orgmode.org/org-mode.git

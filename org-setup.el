@@ -1,4 +1,5 @@
 ;; (require 'org-install)
+(require 'htmlize)
 
 (setq org-default-notes-file "~/notes.org")
 (setq org-use-property-inheritance t)   ;for inheritance in matches
