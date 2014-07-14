@@ -884,8 +884,8 @@ generic (split into columns based on regex)."
 ;; adapted from http://pastie.org/9374830
 (defun my-smooth-scroll (how top)
   (while (> top 10)
-    (sit-for (/ 1.0 (+ top 20)))
     (funcall how top)
+    (sit-for (/ 1.0 (* top 3)))
     (setq top (/ top 2)))
   (dolist (n '(8 4 2 1))
     (sit-for (/ 1.0 (+ n 20)))
@@ -893,8 +893,8 @@ generic (split into columns based on regex)."
 
 (defun my-smooth-scroll-down ()
   (interactive)
-  (my-smooth-scroll 'scroll-up (- (window-height) 10)))
+  (my-smooth-scroll 'scroll-up (/ (window-height) 2)))
 
 (defun my-smooth-scroll-up ()
   (interactive)
-  (my-smooth-scroll 'scroll-down (- (window-height) 10)))
+  (my-smooth-scroll 'scroll-down (/ (window-height) 2)))
