@@ -45,3 +45,5 @@
 
 ;; don't say `days' in clocksums
 (setq org-time-clocksum-format "%d :%02d")
+
+(require 'ox-reveal)
