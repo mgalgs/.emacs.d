@@ -25,6 +25,9 @@
 	     "~/.emacs.d/site-lisp")
        load-path))
 
+(when (eq system-type 'darwin)
+  (add-to-list 'exec-path "/usr/local/bin"))
+
 (setq custom-safe-themes t)
 
 (setq custom-theme-load-path
