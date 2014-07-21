@@ -1,4 +1,4 @@
-(provide 'gthings)
+(require 'magit)
 
 (setq gthings-completing-read 'ido-completing-read)
 (setq gthings-git-diff-buffer-name "*gthings-diff*")
@@ -52,7 +52,7 @@ prefix, only diffs the current buffer."
   "Shows the current file at revision in a new buffer as it"
   (interactive)
   (let* ((rev (if rev rev
-		(read-from-minibuffer "Revision: ")))
+		(magit-read-rev "Revision")))
 	 (show-cmd (format "show \"%s:./%s\""
 			   rev
 			   (if file
@@ -63,3 +63,5 @@ prefix, only diffs the current buffer."
                                (file-name-nondirectory (buffer-file-name)))))))
     (gthings-run-git-cmd show-cmd
 			 (format gthings-git-show-buffer-name-fmt rev))))
+
+(provide 'gthings)
