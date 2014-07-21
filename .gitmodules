@@ -220,3 +220,6 @@
 [submodule "site-lisp/dts-mode"]
 	path = site-lisp/dts-mode
 	url = https://github.com/morbidrsa/dts-mode.git
+[submodule "site-lisp/orgmode-mediawiki"]
+	path = site-lisp/orgmode-mediawiki
+	url = https://github.com/craftkiller/orgmode-mediawiki.git
