@@ -6,6 +6,9 @@
 (setq magit-commit-squash-commit 'marked-or-current)
 (setq magit-status-buffer-switch-function 'switch-to-buffer)
 
+(add-to-list 'git-commit-known-pseudo-headers "Change-Id")
+(add-to-list 'git-commit-known-pseudo-headers "CRs-Fixed")
+
 (defun magit-push-dwis (arg)
   "Like `magit-push-dwim' but doesn't mess with setting upstream
 branches or push to branch.<name>.merge by default. The goal here
