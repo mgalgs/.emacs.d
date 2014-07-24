@@ -484,6 +484,8 @@
 
 (load-file "~/.emacs.d/erc-setup.el")
 
+(require 'dts-mode)
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
