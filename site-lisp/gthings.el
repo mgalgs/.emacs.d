@@ -36,17 +36,16 @@
     (diff-mode)))
 
 
-(defun gthings-diff-buffer-against-branch (&optional only-current-buffer)
-  "Diff the current buffer against another branch in git. With
-prefix, only diffs the current buffer."
-  (interactive "P")
-    (let* ((the-branches-command-output (shell-command-to-string (concat "git branch")))
-	   (the-branches (delete "" (split-string the-branches-command-output "\n")))
-	   (the-cleaned-branches (mapcar (lambda (branch)
-						(substring branch 2)) the-branches))
-	   (selected-branch (ido-completing-read "Branch: "
-						     the-cleaned-branches)))
-      (gthings-git-diff selected-branch only-current-buffer)))
+(defun gthings-diff-buffer-against-branch ()
+  "Diff the current buffer against another branch in git."
+  (interactive)
+  (let* ((the-branches-command-output (shell-command-to-string (concat "git branch")))
+         (the-branches (delete "" (split-string the-branches-command-output "\n")))
+         (the-cleaned-branches (mapcar (lambda (branch)
+                                         (substring branch 2)) the-branches))
+         (selected-branch (ido-completing-read "Branch: "
+                                               the-cleaned-branches)))
+    (gthings-git-diff selected-branch t)))
 
 (defun gthings-show-file-at-rev (&optional rev file)
   "Shows the current file at revision in a new buffer as it"
