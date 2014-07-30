@@ -108,7 +108,8 @@
  ring-bell-function 'ignore
  history-length 300
  compile-command "make"
- read-file-name-completion-ignore-case t)
+ read-file-name-completion-ignore-case t
+ mouse-yank-at-point t)
 
 ;; backups
 (setq
