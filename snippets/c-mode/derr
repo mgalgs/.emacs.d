@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: dnotice
+# key: dnotice
+# --
+dev_notice(${1:dev}, "$0\n");

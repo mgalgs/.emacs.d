@@ -44,8 +44,6 @@
 ;; parse command line arguments
 (setq my-switch-with-cedet-p (member "-with-cedet" command-line-args))
 (setq command-line-args (delete "-with-cedet" command-line-args))
-(setq my-switch-with-yas (member "-with-yas" command-line-args))
-(setq command-line-args (delete "-with-yas" command-line-args))
 (setq my-switch-with-indent-hints (member "-with-indent-hints" command-line-args))
 (setq command-line-args (delete "-with-indent-hints" command-line-args))
 
@@ -68,8 +66,7 @@
 ;;               (ggtags-mode 1))))
 
 ;; set up yasnippet
-(when my-switch-with-yas
-  (load-file "~/.emacs.d/yasnippet-setup.el"))
+(load-file "~/.emacs.d/yasnippet-setup.el")
 
 ;; set up org mode
 (load-file "~/.emacs.d/org-setup.el")

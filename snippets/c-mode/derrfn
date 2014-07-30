@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: derrfn
+# key: derrfn
+# --
+dev_err(${1:dev}, "%s\n", __func__);$0
