@@ -8,6 +8,8 @@
 
 (add-to-list 'git-commit-known-pseudo-headers "Change-Id")
 (add-to-list 'git-commit-known-pseudo-headers "CRs-Fixed")
+(add-to-list 'git-commit-known-pseudo-headers "Git-commit")
+(add-to-list 'git-commit-known-pseudo-headers "Git-repo")
 
 (defun magit-push-dwis (arg)
   "Like `magit-push-dwim' but doesn't mess with setting upstream
