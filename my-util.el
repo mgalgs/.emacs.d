@@ -630,11 +630,25 @@ representing a binary number)."
 	(insert output-string)
       (message output-string))))
 
+(defun my-buffer-list ()
+  "Shamelessly lifted from helm-buffers.el.
+
+Return the current list of buffers.
+Currently visible buffers are put at the end of the list.
+See `ido-make-buffer-list' for more infos."
+  (require 'ido)
+  (let ((ido-process-ignore-lists t)
+        ido-ignored-list
+        ido-use-virtual-buffers)
+    (ido-make-buffer-list nil)))
+
 (defun my-recompile ()
   "Switch to *compilation* and do a recompile"
   (interactive)
-  (when (get-buffer "*compilation*")
-    (switch-to-buffer "*compilation*")
+  (-when-let (candidate-buffer (first (-filter (lambda (s)
+                                                 (string-match-p "*compilation" s))
+                                               (my-buffer-list))))
+    (switch-to-buffer candidate-buffer)
     (recompile)
     (end-of-buffer)))
 
