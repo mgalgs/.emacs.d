@@ -223,3 +223,6 @@
 [submodule "site-lisp/orgmode-mediawiki"]
 	path = site-lisp/orgmode-mediawiki
 	url = https://github.com/craftkiller/orgmode-mediawiki.git
+[submodule "site-lisp/erc-hl-nicks"]
+	path = site-lisp/erc-hl-nicks
+	url = https://github.com/leathekd/erc-hl-nicks.git
