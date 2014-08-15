@@ -630,18 +630,6 @@ representing a binary number)."
 	(insert output-string)
       (message output-string))))
 
-(defvar my-last-compilation-buffer)
-(add-hook 'compilation-start-hook (lambda (process)
-                                    (setq my-last-compilation-buffer (buffer-name))))
-
-(defun my-recompile ()
-  "Switch to *compilation* and do a recompile"
-  (interactive)
-  (-when-let (candidate-buffer (get-buffer my-last-compilation-buffer))
-    (switch-to-buffer candidate-buffer)
-    (recompile)
-    (end-of-buffer)))
-
 (defun my-occur-region-or-symbol-at-point (&optional nlines the-point the-mark)
   "Run `occur' with `symbol-at-point' or the region, if active."
   (interactive "P\nr")
@@ -751,10 +739,28 @@ a cons cell of the form (buffer . point)"
   (open-line 1)
   (indent-for-tab-command))
 
+(defun my-make-current-buffer-last-compilation-buffer ()
+  (interactive)
+  (setq my-last-compilation-buffer (current-buffer)))
+
+(defvar my-last-compilation-buffer nil)
+(add-hook 'compilation-start-hook (lambda (process)
+                                    (my-make-current-buffer-last-compilation-buffer)))
+
+(defun my-recompile ()
+  "Switch to *compilation-XXX* and do a recompile"
+  (interactive)
+  (if my-last-compilation-buffer
+    (-when-let (candidate-buffer (get-buffer my-last-compilation-buffer))
+      (switch-to-buffer candidate-buffer)
+      (recompile)
+      (end-of-buffer))
+    (message "No recent compilation. Run `M-x compile' first")))
+
 (defun my-open-compilation-buffer ()
   (interactive)
-  (when (get-buffer "*compilation*")
-    (switch-to-buffer "*compilation*")))
+  (-when-let (candidate (or my-last-compilation-buffer (get-buffer "*compilation*")))
+    (switch-to-buffer candidate)))
 
 (defun my-helm-completing-read-must-match (prompt choices &optional require-match
                                     initial-input history def inherit-input-method)
