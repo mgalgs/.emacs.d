@@ -226,3 +226,6 @@
 [submodule "site-lisp/erc-hl-nicks"]
 	path = site-lisp/erc-hl-nicks
 	url = https://github.com/leathekd/erc-hl-nicks.git
+[submodule "site-lisp/jumbobuffer"]
+	path = site-lisp/jumbobuffer
+	url = git://github.com/mgalgs/jumbobuffer.git

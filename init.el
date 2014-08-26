@@ -484,6 +484,8 @@
 
 (require 'dts-mode)
 
+(require 'jumbobuffer)
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
