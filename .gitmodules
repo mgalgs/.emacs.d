@@ -229,3 +229,6 @@
 [submodule "site-lisp/jumbobuffer"]
 	path = site-lisp/jumbobuffer
 	url = git://github.com/mgalgs/jumbobuffer.git
+[submodule "site-lisp/rich-minority"]
+	path = site-lisp/rich-minority
+	url = https://github.com/Bruce-Connor/rich-minority.git

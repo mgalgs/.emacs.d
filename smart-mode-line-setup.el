@@ -1,4 +1,6 @@
 (require 'smart-mode-line)
+(require 'rich-minority)
+
 (if after-init-time (sml/setup)
   (add-hook 'after-init-hook 'sml/setup))
 
@@ -7,14 +9,7 @@
 (setq sml/name-width 25)
 (setq sml/mode-width 'full)
 
-(add-to-list 'sml/hidden-modes " AC")
-(add-to-list 'sml/hidden-modes " SP")
-(add-to-list 'sml/hidden-modes " mate")
-(add-to-list 'sml/hidden-modes " Plugged")
-(add-to-list 'sml/hidden-modes " Gtags")
-(add-to-list 'sml/hidden-modes " Abbrev")
-(add-to-list 'sml/hidden-modes " Fill")
-(add-to-list 'sml/hidden-modes " Guide")
+(setq rm-blacklist '(" AC" " SP" " mate" " Plugged" " Gtags" " Abbrev" " Fill" " Guide"))
 
 ;;; put sml/replacer-regexp-list items in ~/private.el. Stuff like
 ;;; this:
