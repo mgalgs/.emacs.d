@@ -1,7 +1,7 @@
 ;; (require 'org-install)
 (require 'htmlize)
 
-(setq org-default-notes-file "~/notes.org")
+(setq org-default-notes-file "~/notes/notes.org")
 (setq org-use-property-inheritance t)   ;for inheritance in matches
 ;; handy sparse tree shortcuts:
 (setq org-agenda-custom-commands
