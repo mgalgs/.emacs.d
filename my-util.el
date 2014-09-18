@@ -908,3 +908,10 @@ generic (split into columns based on regex)."
 (defun my-smooth-scroll-up ()
   (interactive)
   (my-smooth-scroll 'scroll-down (/ (window-height) 2)))
+
+(defun my-gnus-patch-save-name (newsgroup headers &optional last-file)
+  (let* ((subject-stripped (cadr (s-match "\\[PATCH.*\\] \\(.*\\)"
+                                          (mail-header-subject headers))))
+         (subject (replace-regexp-in-string "[^a-z]" "-" (downcase subject-stripped)))
+         (from-email (cadr (s-match "<\\(.*\\)@" (mail-header-from test-headers)))))
+    (concat from-email "-" subject ".patch")))

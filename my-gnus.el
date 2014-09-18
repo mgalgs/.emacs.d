@@ -76,3 +76,12 @@
          (eval (one-key-menu "reply" my-reply-style-one-key-menu-alist t)))))
 
 (setq gnus-completing-read-function 'my-helm-completing-read-must-match)
+
+(require 'gnus-article-treat-patch)
+(setq gnus-article-patch-conditions
+      '("^@@ -[0-9]+,[0-9]+ \\+[0-9]+,[0-9]+ @@"))
+
+(setq gnus-file-save-name 'my-gnus-patch-save-name)
+(setq gnus-default-article-saver 'gnus-summary-write-to-file)
+;; prevent "X-Gnus-Coding-System: -*- coding: utf-8; -*-" header:
+(setq gnus-article-save-coding-system nil)
