@@ -739,13 +739,13 @@ a cons cell of the form (buffer . point)"
   (open-line 1)
   (indent-for-tab-command))
 
-(defun my-make-current-buffer-last-compilation-buffer ()
-  (interactive)
-  (setq my-last-compilation-buffer (current-buffer)))
+(defun my-compilation-start-hook-to-remember-last (process)
+  (when (s-starts-with? "*compilation"
+                        (buffer-name))
+    (setq my-last-compilation-buffer (current-buffer))))
 
 (defvar my-last-compilation-buffer nil)
-(add-hook 'compilation-start-hook (lambda (process)
-                                    (my-make-current-buffer-last-compilation-buffer)))
+(add-hook 'compilation-start-hook 'my-compilation-start-hook-to-remember-last)
 
 (defun my-recompile ()
   "Switch to *compilation-XXX* and do a recompile"
