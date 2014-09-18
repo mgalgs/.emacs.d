@@ -79,10 +79,8 @@
 
 (global-set-key "\C-xp" 'my-previous-window)
 
-(global-set-key (kbd "C-c f") 'iy-go-to-char)
-(global-set-key (kbd "C-c F") 'iy-go-to-char-backward)
-(global-set-key (kbd "C-c ;") 'iy-go-to-char-continue)
-(global-set-key (kbd "C-c ,") 'iy-go-to-char-continue-backward)
+(global-set-key (kbd "C-c f") 'jump-char-forward)
+(global-set-key (kbd "C-c F") 'jump-char-backward)
 
 (global-set-key (kbd "C-M-S-SPC") 'one-key-menu-toplevel)
 (global-set-key (kbd "C-c m SPC") 'one-key-menu-toplevel)

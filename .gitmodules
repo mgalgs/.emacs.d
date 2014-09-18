@@ -232,3 +232,6 @@
 [submodule "site-lisp/rich-minority"]
 	path = site-lisp/rich-minority
 	url = https://github.com/Bruce-Connor/rich-minority.git
+[submodule "site-lisp/jump-char"]
+	path = site-lisp/jump-char
+	url = git://github.com/lewang/jump-char.git
