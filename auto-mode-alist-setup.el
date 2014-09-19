@@ -35,4 +35,4 @@
 (add-to-list 'auto-mode-alist '("\.zsh" . sh-mode))
 (add-to-list 'auto-mode-alist '("\.install" . sh-mode))
 
-(add-to-list 'auto-mode-alist '("\.dtsi?" . dts-mode))
+(add-to-list 'auto-mode-alist '("\\.dtsi?$" . dts-mode))
