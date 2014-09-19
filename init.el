@@ -486,6 +486,8 @@
 
 (require 'jumbobuffer)
 
+(require 'numbers)
+
 (load-file "~/.emacs.d/recentf-setup.el")
 
 ;;; These lines should be last:
