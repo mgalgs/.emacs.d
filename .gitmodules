@@ -232,3 +232,6 @@
 [submodule "site-lisp/jump-char"]
 	path = site-lisp/jump-char
 	url = git://github.com/lewang/jump-char.git
+[submodule "site-lisp/dts-mode"]
+	path = site-lisp/dts-mode
+	url = git://github.com/bgamari/dts-mode.git
