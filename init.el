@@ -250,7 +250,9 @@
 (require 'gist)
 
 ;; iy go to char motion helper
-(require 'iy-go-to-char)
+;; (require 'iy-go-to-char)
+;; (now using jump-char):
+(require 'jump-char)
 
 ;; auto install
 (require 'auto-install)
