@@ -81,6 +81,7 @@
 (setq gnus-article-patch-conditions
       '("^@@ -[0-9]+,[0-9]+ \\+[0-9]+,[0-9]+ @@"))
 
+;; save message by hitting `o'
 (setq gnus-file-save-name 'my-gnus-patch-save-name)
 (setq gnus-default-article-saver 'gnus-summary-write-to-file)
 ;; prevent "X-Gnus-Coding-System: -*- coding: utf-8; -*-" header:

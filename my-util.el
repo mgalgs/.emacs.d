@@ -913,5 +913,5 @@ generic (split into columns based on regex)."
   (let* ((subject-stripped (cadr (s-match "\\[PATCH.*\\] \\(.*\\)"
                                           (mail-header-subject headers))))
          (subject (replace-regexp-in-string "[^a-z]" "-" (downcase subject-stripped)))
-         (from-email (cadr (s-match "<\\(.*\\)@" (mail-header-from test-headers)))))
+         (from-email (cadr (s-match "<\\(.*\\)@" (mail-header-from headers)))))
     (concat from-email "-" subject ".patch")))
