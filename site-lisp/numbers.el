@@ -1,3 +1,4 @@
+(require 's)
 (require 'calc-bin)
 
 ;; TODO: generate these with a macro...
@@ -39,6 +40,26 @@
          (res (/ (/ bytes 1024.0) 1024.0)))
     (if (called-interactively-p)
         (message "%g" res)
+      res)))
+
+(defun bin2dec (bin)
+  "Convert `bin' to a decimal number"
+  (interactive "sBinary Number: ")
+  (when (stringp bin)
+    (setq bin (string-to-number (s-chop-prefix "0b" bin) 2)))
+  (let ((res (format "%d" bin)))
+    (if (called-interactively-p)
+        (message res)
+      (string-to-number res))))
+
+(defun bin2hex (bin)
+  "Convert `bin' to a hex string."
+  (interactive "sBinary Number: ")
+  (setq bin (bin2dec bin))
+  (let* ((calc-number-radix 16)
+         (res (concat "0x" (math-format-radix bin))))
+    (if (called-interactively-p)
+        (message res)
       res)))
 
 (provide 'numbers)
