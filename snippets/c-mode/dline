@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: dline
+# key: dline
+# --
+dev_err(${1:dev}, "[l: %d]$0\n", __LINE__);
