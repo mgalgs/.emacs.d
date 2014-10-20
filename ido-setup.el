@@ -15,3 +15,8 @@
         "^\*Pymacs\*" "*Async Shell Command*"
         "^\.newsrc-dribble"
         "^\*GTAGS SELECT\*"))
+
+(defun mgalgs/ido-keys ()
+  (define-key ido-completion-map " " 'ido-restrict-to-matches))
+
+(add-hook 'ido-setup-hook 'mgalgs/ido-keys)

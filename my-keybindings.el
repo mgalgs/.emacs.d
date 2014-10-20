@@ -231,3 +231,5 @@
 
 (global-set-key (kbd "C-v") 'my-smooth-scroll-down)
 (global-set-key (kbd "M-v") 'my-smooth-scroll-up)
+
+;; ido keybindings are in ido-setup.el
