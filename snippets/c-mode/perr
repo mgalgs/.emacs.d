@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: perr
+# key: perr
+# --
+pr_err("%s: $0\n", __func__);
