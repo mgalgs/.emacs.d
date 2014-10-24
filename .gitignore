@@ -25,3 +25,4 @@ eshell/
 /.mc-lists.el
 .python-environments
 /url/
+elpa/
