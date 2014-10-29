@@ -9,7 +9,20 @@
 (setq sml/name-width 25)
 (setq sml/mode-width 'full)
 
-(setq rm-blacklist '(" AC" " SP" " mate" " Plugged" " Gtags" " Abbrev" " Fill" " Guide"))
+(setq rm-blacklist '(" AC"
+                     " SP"
+                     " mate"
+                     " Plugged"
+                     " Gtags"
+                     " Abbrev"
+                     " Fill"
+                     " Guide"
+                     " pair"
+                     " yas"
+                     " MRev"
+                     " FN"
+                     " Fly"
+                     " MML"))
 
 ;;; put sml/replacer-regexp-list items in ~/private.el. Stuff like
 ;;; this:
