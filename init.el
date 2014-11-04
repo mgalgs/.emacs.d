@@ -15,8 +15,7 @@
       (append
        ;; everyone under site-lisp:
        (directories-in-directory "~/.emacs.d/site-lisp")
-       (list nil
-             "~/.emacs.d/auto-install"
+       (list "~/.emacs.d/auto-install"
              "~/.emacs.d/python-config"
              "~/.emacs.d/site-lisp/bbdb/lisp"
              "~/.emacs.d/site-lisp/org-mode/lisp"
