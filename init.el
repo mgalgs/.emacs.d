@@ -464,12 +464,10 @@
 
 (load-file "~/.emacs.d/web-mode-setup.el")
 
-(require 'multiple-cursors)
+(load-file "~/.emacs.d/multiple-cursors-setup.el")
 
 (when window-system
   (load-file "~/.emacs.d/nyan-mode-setup.el"))
-
-(require 'phi-search)
 
 (load-file "~/.emacs.d/ace-link-setup.el")
 
