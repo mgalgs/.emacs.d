@@ -252,17 +252,34 @@
           1
         (count-lines (point-min) (point))))))
 
-(defun kill-where-i-am (&optional kill-full-path)
-  "Put filename:linum in the kill ring. With prefix, include full
-path to file."
+(defun mgalgs--get-where-i-am (include-line-number)
+  (let ((the-path buffer-file-name)
+        (suffix (if include-line-number
+                    (concat ":"
+                            (number-to-string (gtags-current-lineno)))
+                  "")))
+    (concat the-path suffix)))
+
+(defun mgalgs/kill-where-i-am (&optional include-line-number)
+  "Put filename in the kill ring. With prefix, include the line
+number."
+  (interactive "P")
+  (let ((x-select-enable-clipboard t))
+    (kill-new (concat the-path suffix))))
+
+;; for string-remove-prefix and friends
+;; http://ergoemacs.org/emacs/elisp_trim_string.html
+(require 'subr-x)
+
+(defun mgalgs/kill-where-i-am-relative-to-gitroot (include-line-number)
+  "Like `mgalgs/kill-where-i-am' but is relative to the gitroot
+rather than the absolute path"
   (interactive "P")
   (let ((x-select-enable-clipboard t)
-	(the-path (if kill-full-path
-		      buffer-file-name
-		    (file-name-nondirectory (buffer-file-name)))))
-    (kill-new (concat the-path
-		      ":"
-		      (number-to-string (gtags-current-lineno))))))
+        (gitroot (concat (string-trim-right (shell-command-to-string "git rev-parse --show-toplevel"))
+                         "/")))
+    (kill-new (string-remove-prefix gitroot
+                                    (mgalgs--get-where-i-am include-line-number)))))
 
 (defun grep-what-im-on ()
   "grep whatever i'm on by passing a prefix:"

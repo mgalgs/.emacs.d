@@ -68,7 +68,8 @@
 (global-set-key (kbd "C-c r g") 'get-rfc-grep-rfc-index)
 (global-set-key (kbd "C-c r l") 'get-rfc-list-downloaded-rfcs)
 
-(global-set-key (kbd "C-c m i") 'kill-where-i-am)
+(global-set-key (kbd "C-c m i") 'mgalgs/kill-where-i-am)
+(global-set-key (kbd "C-c m m i") 'mgalgs/kill-where-i-am-relative-to-gitroot)
 (global-set-key (kbd "C-c m g") 'grep-what-im-on)
 (global-set-key (kbd "C-c m l") 'my-kill-last-message)
 (global-set-key (kbd "C-c m o") 'browse-url)

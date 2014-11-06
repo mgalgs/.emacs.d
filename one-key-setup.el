@@ -12,7 +12,7 @@
       '(
         (("d" . "Lookup word") . my-lookup-current-word)
         (("u" . "Toggle tab width") . my-toggle-tab-width-setting)
-        (("i" . "Kill where I am") . kill-where-i-am)
+        (("i" . "Kill where I am") . mgalgs/kill-where-i-am)
         (("g" . "Grep what I'm on") . grep-what-im-on)
         (("w" . "Make this buffer writable") . my-make-this-buffer-writable)
         (("k" . "Kill buffer and window") . kill-buffer-and-window)
