@@ -34,11 +34,15 @@
       res)))
 
 (defun hex2mb (hex)
-  "Convert `hex' to MB"
+  "Convert `hex' (in bytes) to MB"
   (interactive "sHex Number: ")
-  (let* ((bytes (hex2dec hex))
-         (res (/ (/ bytes 1024.0) 1024.0)))
-    (if (called-interactively-p)
+  (dec2mb (hex2dec hex) (called-interactively-p)))
+
+(defun dec2mb (dec &optional force-print)
+  "Convert `dec' (in bytes) to MB"
+  (interactive "nDec Number: ")
+  (let ((res (/ (/ dec 1024.0) 1024.0)))
+    (if (or (called-interactively-p) force-print)
         (message "%g" res)
       res)))
 
