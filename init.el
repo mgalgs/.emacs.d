@@ -43,8 +43,6 @@
 ;; parse command line arguments
 (setq my-switch-with-cedet-p (member "-with-cedet" command-line-args))
 (setq command-line-args (delete "-with-cedet" command-line-args))
-(setq my-switch-with-indent-hints (member "-with-indent-hints" command-line-args))
-(setq command-line-args (delete "-with-indent-hints" command-line-args))
 
 (when (file-exists-p "~/private.el")
     (load-file "~/private.el"))
@@ -203,10 +201,7 @@
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
 
 ;; indent-hints minor mode
-;; (when my-switch-with-indent-hints
-(when t
-  (require 'indent-hints)
-  (indent-hints-global-mode))
+(load-file "~/.emacs.d/indent-hints-setup.el")
 
 ;; better buffer disambiguation
 (require 'uniquify)
