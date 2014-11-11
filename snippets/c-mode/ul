@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ul
+# key: ul
+# --
+unsigned long $0
