@@ -265,7 +265,7 @@
 number."
   (interactive "P")
   (let ((x-select-enable-clipboard t))
-    (kill-new (concat the-path suffix))))
+    (kill-new (mgalgs--get-where-i-am include-line-number))))
 
 ;; for string-remove-prefix and friends
 ;; http://ergoemacs.org/emacs/elisp_trim_string.html
