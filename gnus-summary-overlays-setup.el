@@ -15,7 +15,8 @@
                     ("\\[PATCH.*\\]" "dark turquoise")
                     ("\\b[^[:blank:]]+: " "tomato1")
                     ("\\[GIT PULL\\]" "red4")
-                    ("\\b\\(iommu\\|smmu\\|ion\\)\\b" ("dark green" "hot pink")))))
+                    ("\\b\\(iommu\\|smmu\\|ion\\)\\b" ("dark green" "green"))
+                    ("\\biommu/arm-smmu\\b" "cyan"))))
     (dolist (r regspecs)
       (my-ov-whole-buffer (car r) (cadr r)))))
 
