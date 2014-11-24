@@ -1,3 +1,5 @@
+(setq load-prefer-newer t)
+
 (require 'server)
 (unless (server-running-p)
   (server-start))
