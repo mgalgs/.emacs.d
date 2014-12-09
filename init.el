@@ -269,13 +269,12 @@
 ;; transpose split windows
 (load-file "~/.emacs.d/auto-install/transpose.el")
 
-;; column marker
-(require 'column-marker)
+(load-file "~/.emacs.d/auto-install/whitespace-setup.el")
 
 (defun my-c-mode-common-hook ()
   (interactive)
-  (column-marker-3 80)
-  (c-set-offset 'inextern-lang 0))
+  (c-set-offset 'inextern-lang 0)
+  (whitespace-mode 1))
 
 (add-hook 'c-mode-common-hook
           'my-c-mode-common-hook)
