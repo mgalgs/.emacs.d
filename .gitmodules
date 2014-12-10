@@ -235,3 +235,6 @@
 [submodule "site-lisp/dts-mode"]
 	path = site-lisp/dts-mode
 	url = git://github.com/bgamari/dts-mode.git
+[submodule "site-lisp/dockerfile-mode"]
+	path = site-lisp/dockerfile-mode
+	url = git://github.com/spotify/dockerfile-mode.git

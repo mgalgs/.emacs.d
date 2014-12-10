@@ -269,7 +269,7 @@
 ;; transpose split windows
 (load-file "~/.emacs.d/auto-install/transpose.el")
 
-(load-file "~/.emacs.d/auto-install/whitespace-setup.el")
+(load-file "~/.emacs.d/whitespace-setup.el")
 
 (defun my-c-mode-common-hook ()
   (interactive)
@@ -484,6 +484,9 @@
 (require 'numbers)
 
 (load-file "~/.emacs.d/recentf-setup.el")
+
+(require 'dockerfile-mode)
+
 
 ;;; These lines should be last:
 ;; some keybindings
