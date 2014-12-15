@@ -1,4 +1,5 @@
 ;; (require 'org-install)
+(require 'org)
 (require 'htmlize)
 
 (setq org-default-notes-file "~/notes/notes.org")
