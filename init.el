@@ -330,6 +330,15 @@
   "Recenter the page after next-error"
   (recenter))
 
+;; handle ANSI color escape sequences in compilation output (like for
+;; Android builds) Credit: http://stackoverflow.com/a/20788581/209050
+(ignore-errors
+  (require 'ansi-color)
+  (defun my-colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+
 ;; some git things
 (require 'gthings)
 ;; (gthings-init)
