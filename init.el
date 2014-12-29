@@ -208,8 +208,7 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; ace mode jumping
-(require 'ace-jump-mode)
-(add-hook 'ace-jump-mode-before-jump-hook 'push-mark)
+(load-file "~/.emacs.d/ace-jump-mode-setup.el")
 
 ;; batch files
 (autoload 'bat-mode "bat-mode" "DOS and WIndows BAT files" t)
