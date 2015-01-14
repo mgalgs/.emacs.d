@@ -1,6 +1,4 @@
 (which-function-mode)
-(setq-default header-line-format
-              '((which-func-mode ("" which-func-format " "))))
 (setq which-func-unknown "-")
 (set-face-attribute 'which-func nil
                     :foreground "deep sky blue")
