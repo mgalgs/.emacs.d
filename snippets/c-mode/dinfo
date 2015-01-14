@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: dinfo
+# key: dinfo
+# --
+dev_info(${1:dev}, "$0\n");
