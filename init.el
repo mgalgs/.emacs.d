@@ -375,6 +375,8 @@
 
 (load-file "~/.emacs.d/which-function-mode-setup.el")
 
+(load-file "~/.emacs.d/header-line-setup.el")
+
 (require 'kernel-stack-trace-mode)
 
 ;; some miscellaneous recentering advice:
