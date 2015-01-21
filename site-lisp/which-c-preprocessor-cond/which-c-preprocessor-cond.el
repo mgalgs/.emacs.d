@@ -20,9 +20,12 @@
   :group 'which-c-preprocessor-cond)
 
 (defconst which-c-preprocessor-cond-current
-  '(:eval (replace-regexp-in-string
-	   "%" "%%"
-	   (which-c-preprocessor-cond))))
+  '(:eval (let ((the-cond (which-c-preprocessor-cond)))
+            (if the-cond
+                (replace-regexp-in-string
+                 "%" "%%"
+                 the-cond)
+              ""))))
 
 (defun which-c-preprocessor-cond ()
   (save-excursion
