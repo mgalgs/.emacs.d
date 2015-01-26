@@ -48,3 +48,8 @@
 (setq org-time-clocksum-format "%d :%02d")
 
 (require 'ox-reveal)
+
+(setq org-capture-templates
+      '(("t" "Todo item (including gnus links)" entry
+         (file+headline "~/notes/notes.org" "Tasks")
+         "* TODO %?\n  Link: %a\n\n  %i")))
