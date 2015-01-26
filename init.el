@@ -214,12 +214,6 @@
 ;; batch files
 (autoload 'bat-mode "bat-mode" "DOS and WIndows BAT files" t)
 
-;; textmate clonage
-(require 'textmate)
-(setq *textmate-project-roots* '(".git"))
-(textmate-mode)
-(add-hook 'textmate-goto-symbol-hook 'push-mark)
-
 
 ;; Color theming
 ;; (setq my-theme-to-use 'solarized-dark)
@@ -378,9 +372,6 @@
 (load-file "~/.emacs.d/header-line-setup.el")
 
 (require 'kernel-stack-trace-mode)
-
-;; some miscellaneous recentering advice:
-(my-make-recentering-advice textmate-goto-symbol)
 
 ;; Define functions to wrap a bunch of conversion scripts in ~/scripts
 (dolist (file (directory-files "~/scripts"))
