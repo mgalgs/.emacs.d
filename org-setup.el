@@ -52,4 +52,7 @@
 (setq org-capture-templates
       '(("t" "Todo item (including gnus links)" entry
          (file+headline "~/notes/notes.org" "Tasks")
-         "* TODO %?\n  Link: %a\n\n  %i")))
+         "* TODO %?\n  Link: %a\n\n  %i" :prepend t)
+        ("c" "Todo item (no link)" entry
+         (file+headline "~/notes/notes.org" "Tasks")
+         "* TODO %?\n  %i" :prepend t)))
