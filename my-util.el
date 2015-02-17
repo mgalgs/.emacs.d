@@ -915,12 +915,14 @@ generic (split into columns based on regex)."
          (from-email (cadr (s-match "<\\(.*\\)@" (mail-header-from headers)))))
     (concat from-email "-" subject ".patch")))
 
-(defun my-search-web-for-message-by-message-id (message-id)
-  "Currently just looks up the message on gmane using
-http://mid.gmane.org/message-id"
-  (browse-url (concat "http://mid.gmane.org/" message-id)))
+(defun my-article-get-message-url ()
+  (interactive)
+  (let ((url (concat "http://mid.gmane.org/" (mail-header-message-id gnus-current-headers))))
+    (when (called-interactively-p)
+      (message url))
+    url))
 
 (defun my-article-open-on-the-web ()
   "Opens the current article on the web"
   (interactive)
-  (my-search-web-for-message-by-message-id (mail-header-message-id gnus-current-headers)))
+  (browse-url (my-article-get-message-url)))
