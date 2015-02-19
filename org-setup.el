@@ -13,7 +13,8 @@
         ("pb" "B-Priority todos (TODO)" tags-tree "PRIORITY=\"B\"/TODO")
         ("pB" "B-Priority todos" tags-tree "PRIORITY=\"B\"")
         ("pc" "C-Priority todos (TODO)" tags-tree "PRIORITY=\"C\"/TODO")
-        ("pC" "C-Priority todos" tags-tree "PRIORITY=\"C\"")))
+        ("pC" "C-Priority todos" tags-tree "PRIORITY=\"C\"")
+        ("d" "[d]eadline-less tasks" tags "-DEADLINE={.+}/!+TODO")))
 ;; TODO workflow states
 (setq org-todo-keywords
       '((sequence "TODO" "NEED DV" "CODE REVIEW" "BLOCKED" "DEFERRED" "DONE")))
