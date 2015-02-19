@@ -402,9 +402,7 @@
 
 (delete-selection-mode)
 
-(setq google-this-modeline-indicator "")
-(require 'google-this)
-(google-this-mode 1)
+(load-file "~/.emacs.d/google-this-setup.el")
 
 ;; `Edit with Emacs' chrome extension:
 ;; https://chrome.google.com/webstore/detail/edit-with-emacs/ljobjlafonikaiipfkggjbhkghgicgoh
