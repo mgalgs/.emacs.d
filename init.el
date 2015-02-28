@@ -485,6 +485,7 @@
 
 (require 'dockerfile-mode)
 
+(require 'fold-this)
 
 ;;; These lines should be last:
 ;; some keybindings
