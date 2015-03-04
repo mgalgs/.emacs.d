@@ -129,7 +129,8 @@
  ;; c-default-style "bsd" ; for nasty brace face
  indicate-buffer-boundaries 'right
  truncate-lines t
- fill-column 75)
+ fill-column 75
+ ediff-show-clashes-only t)
 
 ;; linux kernel styles
 (load-file "~/.emacs.d/linux-kernel-setup.el")
