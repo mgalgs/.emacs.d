@@ -12,3 +12,4 @@
         ("php" . "\\.php")))
 
 (define-key web-mode-map (kbd "C-;") nil)
+(setq-default web-mode-markup-indent-offset 2)
