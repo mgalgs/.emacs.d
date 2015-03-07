@@ -7,3 +7,4 @@
 
 (require 'jedi)
 (add-hook 'python-mode-hook 'jedi:ac-setup)
+(autoload 'jedi:setup "jedi" nil t)
