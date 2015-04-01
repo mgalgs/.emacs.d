@@ -488,6 +488,8 @@
 
 (require 'fold-this)
 
+(load-file "~/.emacs.d/helm-ag-setup.el")
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
