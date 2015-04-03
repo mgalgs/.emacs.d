@@ -490,6 +490,8 @@
 
 (load-file "~/.emacs.d/helm-ag-setup.el")
 
+(require 'graphviz-dot-mode)
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")
