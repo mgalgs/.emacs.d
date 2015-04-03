@@ -492,6 +492,10 @@
 
 (require 'graphviz-dot-mode)
 
+(require 'calfw)
+
+(require 'excorporate)
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")

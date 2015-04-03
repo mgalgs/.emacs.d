@@ -244,3 +244,6 @@
 [submodule "site-lisp/graphviz-dot-mode"]
 	path = site-lisp/graphviz-dot-mode
 	url = https://github.com/ppareit/graphviz-dot-mode.git
+[submodule "site-lisp/emacs-calfw"]
+	path = site-lisp/emacs-calfw
+	url = https://github.com/kiwanami/emacs-calfw.git
