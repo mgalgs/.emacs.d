@@ -151,6 +151,7 @@
 (define-key magit-mode-map (kbd "u") 'magit-goto-parent-section)
 
 (global-set-key (kbd "C-c m n") 'my-visit-init-file)
+(global-set-key (kbd "C-c m m n") 'my-switch-to-notes-buffer)
 
 (eval-after-load "gnus"
   '(define-key gnus-article-mode-map (kbd "C-c m m l") 'gnus-article-fill-long-lines))
