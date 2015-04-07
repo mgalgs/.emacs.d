@@ -1,3 +1,5 @@
+(setq magit-last-seen-setup-instructions "1.4.0")
+
 (require 'magit)
 
 (setq magit-diff-refine-hunk 'all)
