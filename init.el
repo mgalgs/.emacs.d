@@ -495,6 +495,7 @@
 (require 'calfw)
 
 (require 'excorporate)
+(require 'excorporate-calendar)
 
 ;;; These lines should be last:
 ;; some keybindings
