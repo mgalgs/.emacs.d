@@ -497,6 +497,8 @@
 (require 'excorporate)
 (require 'excorporate-calendar)
 
+(require 'go-mode-autoloads)
+
 ;;; These lines should be last:
 ;; some keybindings
 (load-file "~/.emacs.d/my-keybindings.el")

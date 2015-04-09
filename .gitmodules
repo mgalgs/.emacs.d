@@ -247,3 +247,6 @@
 [submodule "site-lisp/emacs-calfw"]
 	path = site-lisp/emacs-calfw
 	url = https://github.com/kiwanami/emacs-calfw.git
+[submodule "site-lisp/go-mode"]
+	path = site-lisp/go-mode
+	url = https://github.com/dominikh/go-mode.el.git
