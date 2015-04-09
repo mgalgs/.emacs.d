@@ -15,6 +15,7 @@
         "^\*Pymacs\*" "*Async Shell Command*"
         "^\.newsrc-dribble"
         "^\*GTAGS SELECT\*"))
+(setq ido-default-buffer-method 'maybe-frame)
 
 (defun mgalgs/ido-keys ()
   (define-key ido-completion-map " " 'ido-restrict-to-matches))
