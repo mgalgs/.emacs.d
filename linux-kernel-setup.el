@@ -27,7 +27,7 @@
                                  filename)
                    (locate-dominating-file filename "Kbuild")
                    (save-excursion (goto-char 0)
-                                   (search-forward-regexp "^#include <linux/\\(module\\|kernel\\)\\.h>$"))))
+                                   (search-forward-regexp "^#include <linux/\\(module\\|kernel\\)\\.h>$" nil t))))
       (setq indent-tabs-mode t)
       (setq tab-width 8)
       (message "Setting up indentation for the linux kernel")
