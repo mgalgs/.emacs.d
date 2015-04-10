@@ -13,6 +13,7 @@
 (add-to-list 'git-commit-known-pseudo-headers "Git-commit")
 (add-to-list 'git-commit-known-pseudo-headers "Git-repo")
 (add-to-list 'git-commit-known-pseudo-headers "Fixes")
+(add-to-list 'git-commit-known-pseudo-headers "Tested-by")
 
 (defun magit-push-dwis (arg)
   "Like `magit-push-dwim' but doesn't mess with setting upstream
