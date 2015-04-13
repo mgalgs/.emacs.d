@@ -130,7 +130,8 @@
  indicate-buffer-boundaries 'right
  truncate-lines t
  fill-column 75
- ediff-show-clashes-only t)
+ ediff-show-clashes-only t
+ term-buffer-maximum-size 15000)
 
 ;; linux kernel styles
 (load-file "~/.emacs.d/linux-kernel-setup.el")
