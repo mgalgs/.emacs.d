@@ -494,8 +494,9 @@
 
 (require 'calfw)
 
-(require 'excorporate)
-(require 'excorporate-calendar)
+;; TODO: re-enable when exco gets support for 24.5
+;; (require 'excorporate)
+;; (require 'excorporate-calendar)
 
 (require 'go-mode-autoloads)
 
