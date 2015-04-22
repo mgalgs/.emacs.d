@@ -34,8 +34,6 @@
 (global-set-key (kbd "<S-f6>") 'previous-error)
 (global-set-key (kbd "<f7>") 'compile)
 
-(global-set-key (kbd "<C-f7>") 'rebuild-the-unit-tests)
-
 (global-set-key "\C-cmw" 'woman)
 (global-set-key (kbd "<M-up>") 'my-increment-number-decimal)
 (global-set-key (kbd "<M-down>") 'my-decrement-number-decimal)
