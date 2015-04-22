@@ -26,11 +26,13 @@
                    (string-match "/local/mnt/workspace/mitchelh/msm-kvm"
                                  filename)
                    (locate-dominating-file filename "Kbuild")
+                   (locate-dominating-file filename "Kconfig")
                    (save-excursion (goto-char 0)
                                    (search-forward-regexp "^#include <linux/\\(module\\|kernel\\)\\.h>$" nil t))))
-      (setq indent-tabs-mode t)
-      (setq tab-width 8)
+      ;; (setq indent-tabs-mode t)
+      ;; (setq c-basic-offset 8)
+      ;; (setq tab-width 8)
       (message "Setting up indentation for the linux kernel")
-      (c-set-style "linux-tabs-only"))))
+      (c-set-style "linux"))))
 
 (add-hook 'c-mode-hook 'my-kernel-source-hook)
