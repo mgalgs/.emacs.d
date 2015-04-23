@@ -119,6 +119,7 @@
  version-control t)       ; use versioned backups
 
 (setq-default
+ indent-tabs-mode nil ; don't use the tab character, only spaces
  ;; tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)
  ;; tab-stop-list '(8 16 24 32 40 48 56 64 72 80 88 96 104 112 120)
  set-mark-command-repeat-pop t ; repeated C-SPC after C-u C-SPC keeps popping the mark
