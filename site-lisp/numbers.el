@@ -38,10 +38,23 @@
   (interactive "sHex Number: ")
   (dec2mb (hex2dec hex) (called-interactively-p)))
 
+(defun hex2kb (hex)
+  "Convert `hex' (in bytes) to KB"
+  (interactive "sHex Number: ")
+  (dec2kb (hex2dec hex) (called-interactively-p)))
+
 (defun dec2mb (dec &optional force-print)
   "Convert `dec' (in bytes) to MB"
   (interactive "nDec Number: ")
   (let ((res (/ (/ dec 1024.0) 1024.0)))
+    (if (or (called-interactively-p) force-print)
+        (message "%g" res)
+      res)))
+
+(defun dec2kb (dec &optional force-print)
+  "Convert `dec' (in bytes) to KB"
+  (interactive "nDec Number: ")
+  (let ((res (/ dec 1024.0)))
     (if (or (called-interactively-p) force-print)
         (message "%g" res)
       res)))
