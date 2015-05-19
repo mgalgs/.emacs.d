@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: phys
+# key: phys
+# --
+phys_addr_t $0

@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: slist
+# key: slist
+# --
+struct scatterlist $0
