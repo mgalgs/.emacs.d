@@ -237,6 +237,7 @@
 
 
 ;; gist fun
+(setq gist-created-fmt "%s")
 (require 'gist)
 
 ;; iy go to char motion helper
