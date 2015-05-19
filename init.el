@@ -211,7 +211,7 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; ace mode jumping
-(load-file "~/.emacs.d/ace-jump-mode-setup.el")
+;; (load-file "~/.emacs.d/ace-jump-mode-setup.el")
 
 ;; batch files
 (autoload 'bat-mode "bat-mode" "DOS and WIndows BAT files" t)
@@ -466,6 +466,7 @@
 (when window-system
   (load-file "~/.emacs.d/nyan-mode-setup.el"))
 
+(load-file "~/.emacs.d/avy-setup.el")
 (load-file "~/.emacs.d/ace-link-setup.el")
 
 (require 's)

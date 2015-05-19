@@ -74,15 +74,12 @@
 ;; (global-set-key (kbd "C-c m r") 'align-regexp)
 (global-set-key (kbd "C-c m x") 'my-xdg-open-each-in-region)
 
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
 (global-set-key "\C-xp" 'my-previous-window)
 
 (global-set-key (kbd "C-c f") 'jump-char-forward)
 (global-set-key (kbd "C-c F") 'jump-char-backward)
 
 (global-set-key (kbd "C-M-S-SPC") 'one-key-menu-toplevel)
-(global-set-key (kbd "C-c m SPC") 'one-key-menu-toplevel)
 (global-set-key (kbd "M-S") 'lazy-search-menu)
 
 (global-set-key "(" 'skeleton-pair-insert-maybe)
@@ -162,7 +159,6 @@
 (global-set-key (kbd "C-c m m `") 'my-open-compilation-buffer)
 
 (global-set-key (kbd "C-c m p") 'pwd)
-(global-set-key (kbd "C-c m m k") 'textmate-clear-cache)
 (global-set-key (kbd "C-c m m o") 'my-occur-region-or-symbol-at-point)
 (global-set-key (kbd "M-s h .") 'highlight-symbol-at-point)
 (global-set-key (kbd "M-s h n") 'highlight-symbol-next)

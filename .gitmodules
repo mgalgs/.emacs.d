@@ -250,3 +250,6 @@
 [submodule "site-lisp/go-mode"]
 	path = site-lisp/go-mode
 	url = https://github.com/dominikh/go-mode.el.git
+[submodule "site-lisp/avy"]
+	path = site-lisp/avy
+	url = https://github.com/abo-abo/avy.git
