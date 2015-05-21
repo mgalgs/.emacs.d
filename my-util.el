@@ -926,8 +926,3 @@ generic (split into columns based on regex)."
   "Opens the current article on the web"
   (interactive)
   (browse-url (my-article-get-message-url)))
-
-(defun my-switch-to-notes-buffer ()
-  "Switches to the *notes* buffer"
-  (interactive)
-  (switch-to-buffer "*notes*"))
