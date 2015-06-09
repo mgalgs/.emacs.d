@@ -20,6 +20,7 @@
              "~/.emacs.d/site-lisp/bbdb/lisp"
              "~/.emacs.d/site-lisp/org-mode/lisp"
              "~/.emacs.d/site-lisp/org-mode/contrib/lisp"
+             "~/.emacs.d/site-lisp/muse/lisp"
 	     ;; the site-lisp directory itself has some packages
 	     "~/.emacs.d/site-lisp")
        load-path))
@@ -502,6 +503,9 @@
 ;; (require 'excorporate-calendar)
 
 (require 'go-mode-autoloads)
+
+;; (setq outlook-style-format-helper-location "~/bin/format_quoted_mail")
+;; (require 'outlook-style)
 
 ;;; These lines should be last:
 ;; some keybindings

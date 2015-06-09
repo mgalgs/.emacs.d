@@ -253,3 +253,9 @@
 [submodule "site-lisp/avy"]
 	path = site-lisp/avy
 	url = https://github.com/abo-abo/avy.git
+[submodule "site-lisp/gnus-outlook-style"]
+	path = site-lisp/gnus-outlook-style
+	url = https://github.com/lokedhs/gnus-outlook-style.git
+[submodule "site-lisp/muse"]
+	path = site-lisp/muse
+	url = https://github.com/alexott/muse.git
