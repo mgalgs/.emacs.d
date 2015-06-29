@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: tpk
+# key: tpk
+# --
+trace_printk("$0\n");
