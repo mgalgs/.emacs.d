@@ -21,6 +21,7 @@
              "~/.emacs.d/site-lisp/org-mode/lisp"
              "~/.emacs.d/site-lisp/org-mode/contrib/lisp"
              "~/.emacs.d/site-lisp/muse/lisp"
+             "~/.emacs.d/site-lisp/magit/lisp"
 	     ;; the site-lisp directory itself has some packages
 	     "~/.emacs.d/site-lisp")
        load-path))
