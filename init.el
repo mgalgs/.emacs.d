@@ -22,6 +22,7 @@
              "~/.emacs.d/site-lisp/org-mode/contrib/lisp"
              "~/.emacs.d/site-lisp/muse/lisp"
              "~/.emacs.d/site-lisp/magit/lisp"
+             "~/.emacs.d/site-lisp/gocode/emacs"
 	     ;; the site-lisp directory itself has some packages
 	     "~/.emacs.d/site-lisp")
        load-path))
@@ -504,6 +505,10 @@
 ;; (require 'excorporate-calendar)
 
 (require 'go-mode-autoloads)
+
+(require 'go-autocomplete)
+(require 'auto-complete-config)
+(ac-config-default)
 
 ;; (setq outlook-style-format-helper-location "~/bin/format_quoted_mail")
 ;; (require 'outlook-style)

@@ -256,3 +256,6 @@
 [submodule "site-lisp/muse"]
 	path = site-lisp/muse
 	url = https://github.com/alexott/muse.git
+[submodule "site-lisp/gocode"]
+	path = site-lisp/gocode
+	url = https://github.com/nsf/gocode.git
