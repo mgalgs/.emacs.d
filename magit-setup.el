@@ -44,8 +44,29 @@ upstream (i.e. branch.<name>.merge) is set to something else."
 (setq magit-log-section-commit-count' 15)
 
 (setq magit-status-sections-hook
-      (append magit-status-sections-hook
-              '(magit-insert-recent-commits)))
+      '(magit-insert-status-headers
+        magit-insert-merge-log
+        magit-insert-rebase-sequence
+        magit-insert-am-sequence
+        magit-insert-sequencer-sequence
+        magit-insert-bisect-output
+        magit-insert-bisect-rest
+        magit-insert-bisect-log
+        magit-insert-untracked-files
+        magit-insert-unstaged-changes
+        magit-insert-staged-changes
+        magit-insert-unpushed-commits
+        magit-insert-unpulled-commits
+        magit-insert-recent-commits-graph
+        magit-insert-stashes))
+
+(defun my-magit-file-log ()
+  (interactive)
+  (magit-log '("HEAD") nil (list (magit-file-relative-name))))
+
+;; (setq magit-status-sections-hook
+;;       (append magit-status-sections-hook
+;;               '(magit-insert-recent-commits)))
 
 (font-lock-add-keywords 'emacs-lisp-mode
                         magit-font-lock-keywords)
