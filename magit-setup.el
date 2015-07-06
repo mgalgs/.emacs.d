@@ -42,6 +42,7 @@ upstream (i.e. branch.<name>.merge) is set to something else."
 ;; (setq magit-push-hook 'magit-push-dwis)
 
 (setq magit-log-section-commit-count' 15)
+(setq magit-log-section-arguments '("--graph" "--decorate" "--color"))
 
 (setq magit-status-sections-hook
       '(magit-insert-status-headers
@@ -57,7 +58,7 @@ upstream (i.e. branch.<name>.merge) is set to something else."
         magit-insert-staged-changes
         magit-insert-unpushed-commits
         magit-insert-unpulled-commits
-        magit-insert-recent-commits-graph
+        magit-insert-recent-commits
         magit-insert-stashes))
 
 (defun my-magit-file-log ()
