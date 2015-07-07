@@ -491,8 +491,6 @@
 
 (require 'dockerfile-mode)
 
-(require 'fold-this)
-
 (load-file "~/.emacs.d/helm-ag-setup.el")
 
 (require 'graphviz-dot-mode)
