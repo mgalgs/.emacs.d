@@ -181,7 +181,7 @@
 ;; (global-set-key (kbd "C-*") 'evil-search-symbol-forward)
 ;; (global-set-key (kbd "C-#") 'evil-search-symbol-backward)
 
-(global-set-key (kbd "C-c m m b") 'mo-git-blame-current)
+(global-set-key (kbd "C-c m m b") 'magit-blame)
 (global-set-key (kbd "C-c m m l") 'my-magit-file-log)
 
 (require 'footnote)
