@@ -108,7 +108,7 @@
  kill-whole-line t
  show-trailing-whitespace t
  ring-bell-function 'ignore
- history-length 300
+ history-length 3000
  compile-command "make"
  read-file-name-completion-ignore-case t
  mouse-yank-at-point t)
