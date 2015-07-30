@@ -256,7 +256,7 @@
   (let ((the-path buffer-file-name)
         (suffix (if include-line-number
                     (concat ":"
-                            (number-to-string (gtags-current-lineno)))
+                            (number-to-string (line-number-at-pos)))
                   "")))
     (concat the-path suffix)))
 
