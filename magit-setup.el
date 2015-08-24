@@ -56,7 +56,7 @@ upstream (i.e. branch.<name>.merge) is set to something else."
         magit-insert-untracked-files
         magit-insert-unstaged-changes
         magit-insert-staged-changes
-        magit-insert-unpushed-commits
+        magit-insert-unpushed-cherries
         magit-insert-unpulled-commits
         magit-insert-recent-commits
         magit-insert-stashes))
