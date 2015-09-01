@@ -507,7 +507,7 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
-(load-file "~/.emacs.d/org-jira-setup.el")
+;; (load-file "~/.emacs.d/org-jira-setup.el")
 
 (setq dired-listing-switches "-alh")
 
