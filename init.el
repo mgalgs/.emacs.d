@@ -509,6 +509,8 @@
 
 (load-file "~/.emacs.d/org-jira-setup.el")
 
+(setq dired-listing-switches "-alh")
+
 ;; (setq outlook-style-format-helper-location "~/bin/format_quoted_mail")
 ;; (require 'outlook-style)
 
