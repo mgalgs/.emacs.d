@@ -51,7 +51,7 @@
   "Shows the current file at revision in a new buffer as it"
   (interactive)
   (let* ((rev (if rev rev
-		(magit-read-rev "Revision")))
+		(magit-read-branch-or-commit "Revision")))
 	 (show-cmd (format "show \"%s:./%s\""
 			   rev
 			   (if file
