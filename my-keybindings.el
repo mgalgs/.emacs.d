@@ -144,6 +144,7 @@
 (global-set-key (kbd "C-c m m c") 'my-show-commit-at-point)
 (global-set-key (kbd "C-c m :") 'magit-git-command)
 (define-key magit-mode-map (kbd "u") 'magit-goto-parent-section)
+(define-key git-commit-mode-map (kbd "C-c C-m") 'my-suggest-commit-message-prefix)
 
 (global-set-key (kbd "C-c m n") 'my-visit-init-file)
 (global-set-key (kbd "C-c m m n") (lambda () (interactive) (switch-to-buffer "*notes*")))

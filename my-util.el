@@ -930,3 +930,22 @@ generic (split into columns based on regex)."
   "Opens the current article on the web"
   (interactive)
   (browse-url (my-article-get-message-url)))
+
+(defun my-suggest-commit-message-prefix ()
+  "Looks at recent commits for the currently staged files and
+suggests some commit message prefixes."
+  (interactive)
+  (magit-with-toplevel
+    (let ((choices (-uniq (mapcar (lambda (el) (s-match ".*:"
+                                                        (substring el 1)))
+                                  (magit-git-lines "log"
+                                                   "--pretty=\"%s\""
+                                                   "-7"
+                                                   "--"
+                                                   (magit-git-lines "diff"
+                                                                    "--cached"
+                                                                    "--name-only"))))))
+      (message "choices is %s" choices)
+      (when (> (length choices) 0)
+        (insert   (helm-comp-read "Commit message prefix: "
+                                  choices))))))
