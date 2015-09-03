@@ -511,6 +511,8 @@
 
 (setq dired-listing-switches "-alh")
 
+(load-file "~/.emacs.d/python-setup.el")
+
 ;; (setq outlook-style-format-helper-location "~/bin/format_quoted_mail")
 ;; (require 'outlook-style)
 
