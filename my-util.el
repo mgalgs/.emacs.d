@@ -939,6 +939,7 @@ suggests some commit message prefixes."
     (let ((choices (-uniq (mapcar (lambda (el) (s-match ".*:"
                                                         (substring el 1)))
                                   (magit-git-lines "log"
+                                                   "--no-merges"
                                                    "--pretty=\"%s\""
                                                    "-7"
                                                    "--"
