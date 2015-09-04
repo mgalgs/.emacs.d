@@ -936,16 +936,17 @@ generic (split into columns based on regex)."
 suggests some commit message prefixes."
   (interactive)
   (magit-with-toplevel
-    (let ((choices (-uniq (mapcar (lambda (el) (s-match ".*:"
-                                                        (substring el 1)))
-                                  (magit-git-lines "log"
-                                                   "--no-merges"
-                                                   "--pretty=\"%s\""
-                                                   "-7"
-                                                   "--"
-                                                   (magit-git-lines "diff"
-                                                                    "--cached"
-                                                                    "--name-only"))))))
+    (let ((choices (delete nil
+                           (-uniq (mapcar (lambda (el) (s-match ".*:"
+                                                                (substring el 1)))
+                                          (magit-git-lines "log"
+                                                           "--no-merges"
+                                                           "--pretty=\"%s\""
+                                                           "-7"
+                                                           "--"
+                                                           (magit-git-lines "diff"
+                                                                            "--cached"
+                                                                            "--name-only")))))))
       (message "choices is %s" choices)
       (when (> (length choices) 0)
         (insert (helm-comp-read "Commit message prefix: "
