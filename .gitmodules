@@ -256,3 +256,6 @@
 [submodule "site-lisp/gocode"]
 	path = site-lisp/gocode
 	url = https://github.com/nsf/gocode.git
+[submodule "site-lisp/nginx-mode"]
+	path = site-lisp/nginx-mode
+	url = https://github.com/ajc/nginx-mode.git

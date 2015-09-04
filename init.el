@@ -513,6 +513,8 @@
 
 (load-file "~/.emacs.d/python-setup.el")
 
+(require 'nginx-mode)
+
 ;; (setq outlook-style-format-helper-location "~/bin/format_quoted_mail")
 ;; (require 'outlook-style)
 
