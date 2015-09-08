@@ -259,3 +259,6 @@
 [submodule "site-lisp/nginx-mode"]
 	path = site-lisp/nginx-mode
 	url = https://github.com/ajc/nginx-mode.git
+[submodule "site-lisp/xcscope.el"]
+	path = site-lisp/xcscope.el
+	url = https://github.com/dkogan/xcscope.el.git
