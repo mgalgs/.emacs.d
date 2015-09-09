@@ -7,6 +7,7 @@
 (setq magit-stage-all-confirm nil)
 (setq magit-commit-squash-commit 'marked-or-current)
 (setq magit-status-buffer-switch-function 'switch-to-buffer)
+(setq magit-push-always-verify nil)     ; cuz it says so
 
 (add-to-list 'git-commit-known-pseudo-headers "Change-Id")
 (add-to-list 'git-commit-known-pseudo-headers "CRs-Fixed")
