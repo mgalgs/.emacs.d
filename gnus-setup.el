@@ -1,3 +1,8 @@
+;; gnus mode line notifications
+(require 'gnus-notify)
+
+(setq shr-use-fonts nil)
+
 (defun my-ov-whole-buffer (regexp color-spec)
   (let (face-plist)
     (if (stringp color-spec)

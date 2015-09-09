@@ -326,9 +326,6 @@
 ;; auto revert (useful when switching git branches)
 (global-auto-revert-mode)
 
-;; gnus mode line notifications
-(require 'gnus-notify)
-
 ;; Some advice to recenter after moving to next compile error
 (defadvice next-error (after my-next-error-after
 				 activate)
@@ -479,8 +476,6 @@
 (require 's)
 
 (require 'ov)
-
-(load-file "~/.emacs.d/gnus-summary-overlays-setup.el")
 
 (load-file "~/.emacs.d/rainbow-delimiters-setup.el")
 
