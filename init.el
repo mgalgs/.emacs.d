@@ -2,6 +2,11 @@
 (unless (server-running-p)
   (server-start))
 
+;; workaround for https://lists.gnu.org/archive/html/emacs-devel/2015-07/msg00251.html
+;; remove once http://lists.gnu.org/archive/html/emacs-diffs/2015-03/msg00137.html is included in a stable release
+(setq tramp-ssh-controlmaster-options nil)
+
+
 ;;; begin some misc setup. This should be first because it's
 ;;; distracting to switch up UI elements later during loading.
 (when window-system
