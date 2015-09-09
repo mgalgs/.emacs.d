@@ -2,6 +2,9 @@
 
 (require 'magit)
 
+;; avoid conflicts with vc:
+(remove-hook 'find-file-hooks 'vc-find-file-hook)
+
 (setq magit-diff-refine-hunk 'all)
 (setq git-rebase-auto-advance t)
 (setq magit-stage-all-confirm nil)
