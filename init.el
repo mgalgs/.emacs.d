@@ -517,6 +517,8 @@
 
 (load-file "~/.emacs.d/xcscope-setup.el")
 
+(load-file "~/.emacs.d/gnus-setup.el")
+
 ;; (setq outlook-style-format-helper-location "~/bin/format_quoted_mail")
 ;; (require 'outlook-style)
 
