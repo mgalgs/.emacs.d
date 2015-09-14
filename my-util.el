@@ -684,9 +684,16 @@ a cons cell of the form (buffer . point)"
   (let ((buffer (car el))
         (the-point (cdr el)))
     (with-current-buffer buffer
-      (when (equal major-mode 'c-mode)
+      (cond
+       ((equal major-mode 'c-mode)
         (goto-char the-point)
-        (c-defun-name)))))
+        (c-defun-name))
+       ((equal major-mode 'asm-mode)
+        (goto-char the-point)
+        (buffer-substring-no-properties the-point
+                                        (save-excursion
+                                          (end-of-line)
+                                          (point))))))))
 
 (defun my-gtags-show-current-gtags-call-flow ()
   "Displays gtags call flow"
