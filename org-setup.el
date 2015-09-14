@@ -57,3 +57,13 @@
         ("c" "Todo item (no link)" entry
          (file+headline "~/notes/notes.org" "Tasks")
          "* TODO %?\n  %i" :prepend t)))
+
+;; enable graphviz dot
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t)
+   (emacs-lisp . t)))
+
+(add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))
+
+(setq org-confirm-babel-evaluate nil)
