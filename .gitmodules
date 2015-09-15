@@ -64,17 +64,9 @@
 	path = site-lisp/mo-git-blame
 	url = http://github.com/mbunkus/mo-git-blame.git
 	branch = master
-[submodule "site-lisp/kernel-stack-trace-mode"]
-	path = site-lisp/kernel-stack-trace-mode
-	url = https://github.com/mgalgs/kernel-stack-trace-mode.git
-	branch = master
 [submodule "site-lisp/make-readme-markdown"]
 	path = site-lisp/make-readme-markdown
 	url = https://github.com/mgalgs/make-readme-markdown.git
-	branch = master
-[submodule "site-lisp/diffview-mode"]
-	path = site-lisp/diffview-mode
-	url = https://github.com/mgalgs/diffview-mode.git
 	branch = master
 [submodule "site-lisp/expand-region"]
 	path = site-lisp/expand-region
@@ -262,3 +254,9 @@
 [submodule "site-lisp/xcscope.el"]
 	path = site-lisp/xcscope.el
 	url = https://github.com/dkogan/xcscope.el.git
+[submodule "lisp/kernel-stack-trace-mode"]
+	path = lisp/kernel-stack-trace-mode
+	url = https://github.com/mgalgs/kernel-stack-trace-mode.git
+[submodule "lisp/diffview-mode"]
+	path = lisp/diffview-mode
+	url = https://github.com/mgalgs/diffview-mode.git

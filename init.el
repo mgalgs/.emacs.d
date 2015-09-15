@@ -25,8 +25,8 @@
 (when (eq system-type 'darwin)
   (add-to-list 'exec-path "/usr/local/bin"))
 
-;; some utility macros
-(m/l "my-macros.el")
+;; some general advice
+(m/l "my-advice.el")
 
 ;; some utility functions
 (m/l "my-util.el")
@@ -71,6 +71,9 @@
 	      ediff-show-clashes-only t
 	      term-buffer-maximum-size 15000)
 
+;; auto revert (useful when switching git branches)
+(global-auto-revert-mode)
+
 (use-package s)
 
 (use-package dash)
@@ -84,19 +87,19 @@
     (add-hook hook #'whitespace-mode)))
 
 (use-package yasnippet
-  :init
+  :config
   (yas-reload-all)
+  :init
   (dolist (hook '(c-mode-common-hook))
     (add-hook hook #'yas-minor-mode)))
 
 (use-package org
-  :init
-  (use-package ox-reveal)
   :bind
   (("C-c l" . org-store-link)
    ("C-c c" . org-capture)
    ("C-c a" . org-agenda))
   :config
+  (use-package ox-reveal)
   (use-package htmlize)
   (m/l "org-setup.el"))
 
@@ -153,7 +156,9 @@
 
 (use-package pkgbuild-mode)
 
-(require 'no-word)
+(use-package no-word
+  :ensure nil
+  :load-path "lisp/")
 
 (use-package lua-mode)
 
@@ -187,3 +192,55 @@
     (bind-key "C-c C-e" 'm/suggest-commit-message-prefix))
   :config
   (m/l "magit-setup.el"))
+
+(use-package ansi-color
+  :init
+  ;; handle ANSI color escape sequences in compilation output (like for
+  ;; Android builds) Credit: http://stackoverflow.com/a/20788581/209050
+  (defun my-colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+
+(use-package gthings
+  :ensure nil
+  :load-path "lisp/")
+
+(use-package kconfig
+  :ensure nil
+  :load-path "lisp/")
+
+(use-package which-func
+  :config
+  (setq which-func-unknown "-")
+  (set-face-attribute 'which-func nil
+                      :foreground "deep sky blue")
+  (setq mode-line-misc-info
+        ;; We remove Which Function Mode from the mode line, because it's mostly
+        ;; invisible here anyway.
+        (assq-delete-all 'which-func-mode mode-line-misc-info))
+  (setq which-func-non-auto-modes '(gnus-group-mode
+                                    gnus-summary-mode
+                                    gnus-article-mode
+                                    text-mode
+                                    fundamental-mode
+                                    help-mode
+                                    git-commit-mode
+                                    magit-mode)))
+
+(use-package which-c-preprocessor-cond
+  :load-path "lisp/"
+  :ensure nil
+  :config
+  (which-c-preprocessor-cond-mode)
+  (setq-default header-line-format
+                `((which-func-mode ("" which-func-format " "))
+                  (which-c-preprocessor-cond-mode ,which-c-preprocessor-cond-format))))
+
+(use-package kernel-stack-trace-mode
+  :load-path "lisp/kernel-stack-trace-mode"
+  :ensure nil)
+
+(use-package diffview
+  :load-path "lisp/diffview-mode"
+  :ensure nil)
