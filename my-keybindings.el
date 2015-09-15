@@ -237,3 +237,5 @@
 (global-set-key (kbd "M-v") 'my-smooth-scroll-up)
 
 ;; ido keybindings are in ido-setup.el
+
+(global-set-key (kbd "C-c m m u") 'my-underline-previous-line)

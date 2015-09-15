@@ -959,3 +959,14 @@ suggests some commit message prefixes."
         (insert (helm-comp-read "Commit message prefix: "
                                 choices)
                 " ")))))
+
+(defun my-underline-previous-line ()
+  "Adds an ascii underline to the previous line using `='
+characters.  TODO: add support for different characters."
+  (interactive)
+  (let ((line-len (save-excursion
+                    (forward-line -1)
+                    (let ((col (current-column)))
+                      (end-of-line)
+                      (- (current-column) col)))))
+    (insert (make-string line-len ?=) "\n")))
