@@ -2,10 +2,19 @@
 (unless (server-running-p)
   (server-start))
 
+(defun m/l (file)
+  "loads a file from the `user-emacs-directory'"
+  (load-file (concat user-emacs-directory file)))
+
+(m/l "init-package.el")
+
+(setq load-path
+      (append (list "~/.emacs.d/lisp")
+              load-path))
+
 ;; workaround for https://lists.gnu.org/archive/html/emacs-devel/2015-07/msg00251.html
 ;; remove once http://lists.gnu.org/archive/html/emacs-diffs/2015-03/msg00137.html is included in a stable release
 (setq tramp-ssh-controlmaster-options nil)
-
 
 ;;; begin some misc setup. This should be first because it's
 ;;; distracting to switch up UI elements later during loading.
@@ -13,387 +22,74 @@
   (tool-bar-mode 0)
   (set-scroll-bar-mode 'right))
 
-;; load some functions that are helpful for initialization
-(load-file "~/.emacs.d/util-for-init.el")
-
-(setq load-path
-      (append
-       ;; everyone under site-lisp:
-       (directories-in-directory "~/.emacs.d/site-lisp")
-       (list "~/.emacs.d/auto-install"
-             "~/.emacs.d/python-config"
-             "~/.emacs.d/site-lisp/bbdb/lisp"
-             "~/.emacs.d/site-lisp/org-mode/lisp"
-             "~/.emacs.d/site-lisp/org-mode/contrib/lisp"
-             "~/.emacs.d/site-lisp/muse/lisp"
-             "~/.emacs.d/site-lisp/magit/lisp"
-             "~/.emacs.d/site-lisp/gocode/emacs"
-	     ;; the site-lisp directory itself has some packages
-	     "~/.emacs.d/site-lisp")
-       load-path))
-
 (when (eq system-type 'darwin)
-  (add-to-list 'exec-path "/usr/local/bin"))
+  (add-to-list 'exec-path "/usr/local/bin")
+  (setq mac-command-modifier 'meta
+        setq mac-option-modifier 'super
+        mac-function-modifier 'control))
 
-(setq custom-safe-themes t)
-
-(setq custom-theme-load-path
-      (append (directories-in-directory "~/.emacs.d/color-themes")
-              '("~/.emacs.d/site-lisp/moe-theme.el")
-              custom-theme-load-path))
-
-;; some utility macros
-(load-file "~/.emacs.d/my-macros.el")
+;; some general advice
+(m/l "my-advice.el")
 
 ;; some utility functions
-(load-file "~/.emacs.d/my-util.el")
-
-;; parse command line arguments
-(setq my-switch-with-cedet-p (member "-with-cedet" command-line-args))
-(setq command-line-args (delete "-with-cedet" command-line-args))
+(m/l "my-util.el")
 
 (when (file-exists-p "~/private.el")
     (load-file "~/private.el"))
 
-;; set up python
-;; (load-file "~/.emacs.d/python-config/epy-mitch.el")
+
+;;; misc settings
+(setq scroll-step 1
+      default-truncate-lines t
+      display-time-day-and-date t
+      nxml-sexp-element-flag t
+      linum-format "%4d"
+      scroll-margin 0
+      scroll-conservatively 100000
+      scroll-preserve-screen-position 1
+      inhibit-startup-screen t
+      isearch-allow-scroll t
+      kill-whole-line t
+      show-trailing-whitespace t
+      ring-bell-function 'ignore
+      history-length 6000
+      compile-command "make"
+      read-file-name-completion-ignore-case t
+      mouse-yank-at-point t
+      backup-by-copying t      ; don't clobber symlinks
+      backup-directory-alist
+      '(("." . "~/.backups-emacs-saves"))
+      delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t
+      custom-safe-themes t
+      dired-listing-switches "-alh"
+      uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-;; set up cedet
-(when my-switch-with-cedet-p
-  (load-file "~/.emacs.d/cedet-setup.el"))
+(setq-default indent-tabs-mode nil ; don't use the tab character, only spaces
+	      ;; tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)
+	      ;; tab-stop-list '(8 16 24 32 40 48 56 64 72 80 88 96 104 112 120)
+	      set-mark-command-repeat-pop t ; repeated C-SPC after C-u C-SPC keeps popping the mark
+	      ;; c-default-style "bsd" ; for nasty brace face
+	      indicate-buffer-boundaries 'right
+	      truncate-lines t
+	      fill-column 75
+	      ediff-show-clashes-only t
+	      term-buffer-maximum-size 15000)
 
-;; set up gnu global
-(load-file "~/.emacs.d/gnu-global-setup.el")
-;; (require 'ggtags)
-;; (add-hook 'c-mode-common-hook
-;;           (lambda ()
-;;             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-;;               (ggtags-mode 1))))
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (whitespace-mode 1)))
-
-;; set up yasnippet
-(load-file "~/.emacs.d/yasnippet-setup.el")
-
-;; set up org mode
-(load-file "~/.emacs.d/org-setup.el")
-
-;; set up a bunch of auto-mode-alist stuff
-(load-file "~/.emacs.d/auto-mode-alist-setup.el")
-
-;; set up ido mode
-(load-file "~/.emacs.d/ido-setup.el")
-;; (load-file "~/.emacs.d/flx-setup.el")
-
-;; set up helm
-(load-file "~/.emacs.d/helm-setup.el")
-
-;; EUDC
-;; (load-file "~/.emacs.d/eudc-setup.el")
-
-(show-paren-mode t)
-
-; display date and time in status bar
-(display-time)
-
-;; ansi color escape codes fun:
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
-(setq
- ;; skeleton-pair t
- display-time-day-and-date t
- nxml-sexp-element-flag t
- linum-format "%4d"
- scroll-margin 0
- scroll-conservatively 100000
- scroll-preserve-screen-position 1
- inhibit-startup-screen t
- isearch-allow-scroll t
- kill-whole-line t
- show-trailing-whitespace t
- ring-bell-function 'ignore
- history-length 3000
- compile-command "make"
- read-file-name-completion-ignore-case t
- mouse-yank-at-point t)
-
-;; backups
-(setq
- backup-by-copying t      ; don't clobber symlinks
- backup-directory-alist
- '(("." . "~/.backups-emacs-saves"))    ; don't litter my fs tree
- delete-old-versions t
- kept-new-versions 6
- kept-old-versions 2
- version-control t)       ; use versioned backups
-
-(setq-default
- indent-tabs-mode nil ; don't use the tab character, only spaces
- ;; tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)
- ;; tab-stop-list '(8 16 24 32 40 48 56 64 72 80 88 96 104 112 120)
- set-mark-command-repeat-pop t ; repeated C-SPC after C-u C-SPC keeps popping the mark
- ;; c-default-style "bsd" ; for nasty brace face
- indicate-buffer-boundaries 'right
- truncate-lines t
- fill-column 75
- ediff-show-clashes-only t
- term-buffer-maximum-size 15000)
-
-;; linux kernel styles
-(load-file "~/.emacs.d/linux-kernel-setup.el")
-
-;;; end misc setup
-
-;; force some c++ keybindings
-(defun my-c++-mode-keybindings-hook ()
-  (local-set-key "\C-\M-e" 'end-of-defun)
-  (local-set-key "\C-\M-a" 'beginning-of-defun))
-(add-hook 'c++-mode-hook 'my-c++-mode-keybindings-hook)
-
-(setq iedit-auto-recenter nil)
-(require 'iedit)
-
-;; mozrepl
-;; (autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
-;; (add-hook 'espresso-mode-hook 'espresso-custom-setup)
-;; (defun espresso-custom-setup ()
-;;   (moz-minor-mode 1))
-
-;; Line numbering
-;; (global-linum-mode 1)
-
-;; espresso mode
-;; (autoload 'espresso-mode "espresso" nil t)
-
-;; pkgbuild mode
-(autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
-
-;; mode to read word documents
-(require 'no-word)
-
-;; lua mode
-(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
-(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
-
-;; rfcview mode
-;; (autoload 'rfcview-mode "rfcview" nil t)
-(require 'rfcview)
-
-;; rfc downloader:
-(autoload 'get-rfc-view-rfc "get-rfc" "Get and view an RFC" t nil)
-(autoload 'get-rfc-view-rfc-at-point "get-rfc" "View the RFC at point" t nil)
-(autoload 'get-rfc-grep-rfc-index "get-rfc" "Grep rfc-index.txt" t nil)
-(setq get-rfc-rfcs-local-flag t)
-(setq get-rfc-open-in-new-frame nil)
-
-;; bc mode
-(autoload 'bc-mode "bc-mode.el" "bc-mode" t 'nil)
-(add-to-list 'interpreter-mode-alist '("bc" . bc-mode))
-
-;; c-sharp mode:
-(autoload 'csharp-mode "csharp-mode" nil t)
-
-;; kill ring usefulness:
-(autoload 'browse-kill-ring "browse-kill-ring" nil t)
-
-;; autopair
-(require 'autopair)
-(autopair-global-mode) ;; to enable in all buffers
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; gpg use the minibuffer for passphrase, not GUI
 (setenv "GPG_AGENT_INFO" nil)
 
-;; show column number in status bar:
-(column-number-mode)
-
-;; pkgbuild mode
-(autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
-
-;; indent-hints minor mode
-(load-file "~/.emacs.d/indent-hints-setup.el")
-
-;; better buffer disambiguation
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-
-;; ace mode jumping
-;; (load-file "~/.emacs.d/ace-jump-mode-setup.el")
-
-;; batch files
-(autoload 'bat-mode "bat-mode" "DOS and WIndows BAT files" t)
-
-
-;; Color theming
-;; (setq my-theme-to-use 'solarized-dark)
-;; (setq my-theme-to-use 'solarized-light)
-;; (setq my-theme-to-use 'zenburn)
-(setq my-theme-to-use 'wombat)
-
-(load-theme my-theme-to-use)
-;; work-around for a hl-line-mode issue where the foreground colors
-;; get lost http://stackoverflow.com/a/15746070/209050
-;; put this in ~/.emacs:
-;; (set-face-attribute 'highlight nil :foreground 'unspecified)
-
-;; (require 'moe-theme)
-;; (moe-light)
-
-;; (when window-system
-;;   (load-theme my-theme-to-use))
-
-
-;; gist fun
-(setq gist-created-fmt "%s")
-(require 'gist)
-
-;; iy go to char motion helper
-;; (require 'iy-go-to-char)
-;; (now using jump-char):
-(require 'jump-char)
-
-;; auto install
-(require 'auto-install)
-
-;; one key
-(require 'one-key)
-(load-file "~/.emacs.d/one-key-setup.el")
-
-;; tbemail for thunderbird composition
-(require 'tbemail)
-
-;; markdown mode
-(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
-
-;; yaml mode
-(autoload 'yaml-mode "yaml-mode" "Major mode for editing yaml files" t)
-
-;; transpose split windows
-(load-file "~/.emacs.d/auto-install/transpose.el")
-
-(load-file "~/.emacs.d/whitespace-setup.el")
-
-;; (defun my-c-mode-common-hook ()
-;;   (interactive)
-;;   (c-set-offset 'inextern-lang 0)
-;;   (whitespace-mode 1))
-
-;; (add-hook 'c-mode-common-hook
-;;           'my-c-mode-common-hook)
-
-;; browse kill ring visually
-(require 'browse-kill-ring)
-
-;; pretty control L page breaks
-(require 'pp-c-l)
-(pretty-control-l-mode 1)
-
-;; here are some things that need to be here before we set some
-;; *-mode-map keybindings:
-(require 'doc-view)
-(require 'diff-mode)
-
-;; (load-file "~/.emacs.d/smartparens-setup.el")
-
-(load-file "~/.emacs.d/magit-setup.el")
-
-;; some general advice
-(load-file "~/.emacs.d/my-advice.el")
-
-;; cool-looking mode-line
-;; (require 'powerline)
-;; fix up the powerline modeline colors
-(set-face-attribute 'mode-line nil
-                    :background "turquoise4"
-                    :foreground "white"
-                    :box nil)
-(set-face-attribute 'mode-line-inactive nil
-                    :background "grey15"
-                    :foreground "grey78"
-                    :box nil)
-
-;; highlight current line
-;; (global-hl-line-mode)
-
-;; choose a web browser
-;; (setq browse-url-browser-function (cond
-;; 				   ((= 0 (shell-command "which google-chrome >&/dev/null")) 'browse-url-chrome)
-;; 				   ((= 0 (shell-command "which chrome >&/dev/null")) 'browse-url-chrome)
-;; 				   ((= 0 (shell-command "which chromium >&/dev/null")) 'browse-url-chromium)
-;; 				   ((= 0 (shell-command "which chromium-browser >&/dev/null")) 'browse-url-chromium)
-;; 				   ((= 0 (shell-command "which firefox >&/dev/null")) 'browse-url-firefox)))
+
+;;; misc modes
 
 ;; auto revert (useful when switching git branches)
 (global-auto-revert-mode)
-
-;; Some advice to recenter after moving to next compile error
-(defadvice next-error (after my-next-error-after
-				 activate)
-  "Recenter the page after next-error"
-  (recenter))
-
-;; handle ANSI color escape sequences in compilation output (like for
-;; Android builds) Credit: http://stackoverflow.com/a/20788581/209050
-(ignore-errors
-  (require 'ansi-color)
-  (defun my-colorize-compilation-buffer ()
-    (when (eq major-mode 'compilation-mode)
-      (ansi-color-apply-on-region compilation-filter-start (point-max))))
-  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
-
-;; some git things
-(require 'gthings)
-;; (gthings-init)
-
-(load-file "~/.emacs.d/elisp-setup.el")
-
-;; some random advice
-(my-make-recentering-advice find-tag)
-(my-make-recentering-advice pop-tag-mark)
-
-;; footnote mode
-(autoload 'footnote-mode "footnote" nil t)
-(add-hook 'message-mode-hook 'footnote-mode)
-(setq footnote-body-tag-spacing 1
-      footnote-spaced-footnotes nil
-      footnote-section-tag "")
-
-(require 'lorem-ipsum)
-
-(load-file "~/.emacs.d/mailto.el")
-
-;; mo-git-blame (since vc-annotate hangs on me sometimes...)
-(autoload 'mo-git-blame-file "mo-git-blame" nil t)
-(autoload 'mo-git-blame-current "mo-git-blame" nil t)
-(autoload 'mo-git-blame-current-for-revision "mo-git-blame" nil t)
-
-(require 'boxquote)
-(require 'thinks)
-
-(load-file "~/.emacs.d/auto-install/uptime.el")
-
-(load-file "~/.emacs.d/site-lisp/kconfig-mode.el")
-
-(load-file "~/.emacs.d/which-function-mode-setup.el")
-
-(load-file "~/.emacs.d/header-line-setup.el")
-
-(require 'kernel-stack-trace-mode)
-
-;; Define functions to wrap a bunch of conversion scripts in ~/scripts
-(dolist (file (directory-files "~/scripts"))
-  ;; all files that don't end in ~, have a `2' in the name, and one of
-  ;; [hex, dec, bin]
-  (when (and (not (string-match "~$" file))
-	     (string-match "2" file)
-	     (or (string-match "hex" file)
-		 (string-match "dec" file)
-		 (string-match "bin" file)))
-    (my-make-shell-caller (file-name-nondirectory file))))
-
-(require 'diffview)
-
-(require 'expand-region)
+(delete-selection-mode)
+(savehist-mode 1)
 
 (defmacro my-visit-init-file-maker ()
   "Defines a function to visit init.el"
@@ -407,124 +103,499 @@
 ;; my-visit-init-file-maker
 (my-visit-init-file-maker)
 
-(delete-selection-mode)
+(load-theme 'wombat)
 
-(load-file "~/.emacs.d/google-this-setup.el")
+
+;;; *** PACKAGES ***
 
-;; `Edit with Emacs' chrome extension:
-;; https://chrome.google.com/webstore/detail/edit-with-emacs/ljobjlafonikaiipfkggjbhkghgicgoh
-(require 'edit-server)
-(edit-server-start)
+(use-package s)
 
-(require 'highlight-symbol)
+(use-package dash)
 
-;; don't open a new dired buffer when I go up a directory. Note that
-;; to prevent opening a new buffer when browsing to directories
-;; normally, just use `a' instead of `enter'.
-(add-hook 'dired-mode-hook
-          (lambda ()
-            (define-key dired-mode-map (kbd "^")
-              (lambda () (interactive) (find-alternate-file "..")))))
+(use-package diminish)
 
-(load-file "~/.emacs.d/wgrep-setup.el")
+(use-package auto-complete
+  :config
+  (ac-config-default))
 
-(fset 'yes-or-no-p 'y-or-n-p)
+(use-package ggtags)
 
-(require 'dash)
+(use-package whitespace
+  :init
+  (global-whitespace-mode 0)
+  (dolist (hook '(c-mode-common-hook))
+    (add-hook hook #'whitespace-mode)))
 
-(load-file "~/.emacs.d/jedi-setup.el")
+(use-package yasnippet
+  :config
+  (yas-reload-all)
+  :init
+  (dolist (hook '(c-mode-common-hook))
+    (add-hook hook #'yas-minor-mode)))
 
-;; (load-file "~/.emacs.d/w3m-setup.el")
+(use-package org
+  :bind
+  (("C-c l" . org-store-link)
+   ("C-c c" . org-capture)
+   ("C-c a" . org-agenda))
+  :config
+  (use-package ox-reveal)
+  (use-package htmlize)
+  (m/l "init-org.el"))
 
-;; for the mighty `*'
-;; (require 'evil)
+(use-package ido
+  :init
+  (ido-mode)
+  (add-hook 'ido-setup-hook
+	    (lambda () (define-key ido-completion-map
+			 " "
+			 'ido-restrict-to-matches)))
+  :config
+  (setq ido-enable-flex-matching t
+	ido-max-prospects 6
+	ido-auto-merge-work-directories-length -1
+	ido-default-buffer-method 'maybe-frame
+	ido-ignore-buffers
+	'("\\` " "^\*Back"
+	  ".*Completion" "^\*Ido" "^\*trace"
+	  "^\*Bookmark" "^\*Compile\-Log"
+	  "^\*Buffer List"
+	  "^\*Shell Command Output" ;"^\*compilation\*"
+	  "^\*RE\-Builder\*"
+	  "^\*Pymacs\*" "*Async Shell Command*"
+	  "^\.newsrc-dribble"
+	  "^\*GTAGS SELECT\*")))
 
-(require 'litable)
+(use-package helm
+  :bind
+  (("C-x C-b" . helm-buffers-list)
+   ("C-x r h" . helm-bookmarks))
+  :init
+  (require 'helm)
+  (require 'helm-config)
+  (use-package helm-ls-git
+    :bind
+    ("C-c m f" . helm-ls-git-ls))
+  (use-package helm-swoop)
+  (require 'helm-bookmark)
+  (setq helm-minibuffer-history-key nil
+	helm-truncate-lines t)
+  ;; todo: make cycling global (not per-source):
+  ;; https://github.com/emacs-helm/helm/issues/387
+  (setq helm-move-to-line-cycle-in-source t)
+  (setq helm-ls-git-show-abs-or-relative 'relative))
 
-(load-file "~/.emacs.d/smart-mode-line-setup.el")
+(use-package shell
+  :config
+  (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on))
 
-(require 'transpose-frame)
+(use-package cc-mode
+  :config
+  (m/l "init-linux-kernel.el"))
 
-(load-file "~/.emacs.d/diff-hl-setup.el")
+(use-package iedit
+  :bind
+  (("C-;" . iedit-mode)
+   ("C-c m ;" . iedit-mode))
+  :config
+  (setq iedit-auto-recenter nil)
+  (define-key iedit-lib-keymap (kbd "C-c m '") 'iedit-toggle-unmatched-lines-visible))
 
-(load-file "~/.emacs.d/guide-key-setup.el")
+(use-package pkgbuild-mode)
 
-(load-file "~/.emacs.d/ack-and-a-half-setup.el")
+(use-package no-word
+  :ensure nil
+  :load-path "lisp/"
+  :mode ("\\.doc\\'" . no-word))
 
-(load-file "~/.emacs.d/flyspell-setup.el")
+(use-package lua-mode)
 
-(load-file "~/.emacs.d/eldoc-setup.el")
+(use-package csharp-mode)
 
-(when (or (file-exists-p "~/.emacs.d/bbdb")
-          (file-exists-p "~/.bbdb"))
-  (load-file "~/.emacs.d/bbdb-setup.el"))
+(use-package browse-kill-ring
+  :bind
+  ("C-c k" . browse-kill-ring))
 
-(load-file "~/.emacs.d/jade-mode-setup.el")
+(use-package paredit
+  :init
+  (dolist (hook '(emacs-lisp-mode-hook
+                  eval-expression-minibuffer-setup-hook
+                  ielm-mode-hook
+                  lisp-mode-hook
+                  lisp-interaction-mode-hook
+                  scheme-mode-hook))
+    (add-hook hook #'enable-paredit-mode))
+  :diminish paredit-mode)
 
-(savehist-mode 1)
+(use-package magit
+  :bind
+  (("C-c m t" . magit-status)
+   ("C-c m c" . magit-show-commit)
+   ("C-c m m c" . m/show-commit-at-point)
+   ("C-c m :" . magit-git-command)
+   ("C-c m m b" . magit-blame)
+   ("C-c m m l" . m/magit-file-log))
+  :init
+  (use-package git-commit
+    :init
+    (bind-key "C-c C-e" 'm/suggest-commit-message-prefix))
+  :config
+  (m/l "init-magit.el"))
 
-(load-file "~/.emacs.d/web-mode-setup.el")
+(use-package ansi-color
+  :init
+  ;; handle ANSI color escape sequences in compilation output (like for
+  ;; Android builds) Credit: http://stackoverflow.com/a/20788581/209050
+  (defun my-colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
 
-(load-file "~/.emacs.d/multiple-cursors-setup.el")
+(use-package gthings
+  :ensure nil
+  :load-path "lisp/")
 
-(when window-system
-  (load-file "~/.emacs.d/nyan-mode-setup.el"))
+(use-package kconfig
+  :ensure nil
+  :mode (("/Kconfig$" . kconfig-mode)
+         ("/Kconfig\\..*$" . kconfig-mode))
+  :load-path "lisp/")
 
-(load-file "~/.emacs.d/avy-setup.el")
-(load-file "~/.emacs.d/ace-link-setup.el")
+(use-package which-func
+  :config
+  (setq which-func-unknown "-")
+  (set-face-attribute 'which-func nil
+                      :foreground "deep sky blue")
+  (setq mode-line-misc-info
+        ;; We remove Which Function Mode from the mode line, because it's mostly
+        ;; invisible here anyway.
+        (assq-delete-all 'which-func-mode mode-line-misc-info))
+  (setq which-func-non-auto-modes '(gnus-group-mode
+                                    gnus-summary-mode
+                                    gnus-article-mode
+                                    text-mode
+                                    fundamental-mode
+                                    help-mode
+                                    git-commit-mode
+                                    magit-mode)))
 
-(require 's)
+(use-package which-c-preprocessor-cond
+  :load-path "lisp/"
+  :ensure nil
+  :config
+  (which-c-preprocessor-cond-mode)
+  (setq-default header-line-format
+                `((which-func-mode ("" which-func-format " "))
+                  (which-c-preprocessor-cond-mode ,which-c-preprocessor-cond-format))))
 
-(require 'ov)
+(use-package kernel-stack-trace-mode
+  :load-path "lisp/kernel-stack-trace-mode"
+  :ensure nil)
 
-(load-file "~/.emacs.d/rainbow-delimiters-setup.el")
+(use-package diffview
+  :bind
+  ("C-c m m >" . diffview-current)
+  :load-path "lisp/diffview-mode"
+  :ensure nil)
 
-(load-file "~/.emacs.d/erc-setup.el")
+(use-package diff-mode
+  :config
+  (define-key diff-mode-map "q" 'bury-buffer))
 
-(require 'dts-mode)
+(use-package expand-region
+  :bind
+  (("C-=" . er/expand-region)
+   ("C-c m =" . er/expand-region)))
 
-(require 'jumbobuffer)
+(use-package google-this
+  :bind-keymap ("C-c m /" . google-this-mode-submap)
+  :diminish google-this-mode)
 
-(require 'numbers)
+(use-package highlight-symbol
+  :bind
+  (("C-c M-s h ." . highlight-symbol-at-point)
+   ("C-c M-s h n" . highlight-symbol-next)
+   ("C-c M-s h p" . highlight-symbol-prev)
+   ("C-c M-s h a" . highlight-symbol-remove-all)))
 
-(load-file "~/.emacs.d/recentf-setup.el")
+(use-package multiple-cursors
+  :bind
+  (("C-S-c C-S-c" . mc/edit-lines)
+   ("C-c m C" . mc/edit-lines)
+   ("C->" . mc/mark-next-like-this)
+   ("C-c m >" . mc/mark-next-like-this)
+   ("C-<" . mc/mark-previous-like-this)
+   ("C-c m <" . mc/mark-previous-like-this)
+   ("C-c C-<" . mc/mark-all-like-this)
+   ("C-c m m <" . mc/mark-all-like-this))
+  :init
+  (use-package phi-search
+    :config
+    ;; credit to @jonebird for the following 
+    ;; Allow isearch functionality with multipl-cursors
+    (add-hook 'multiple-cursors-mode-enabled-hook
+              (lambda ()
+                (interactive)
+                (global-set-key (kbd "C-s") 'phi-search)
+                (global-set-key (kbd "C-r") 'phi-search-backward)))
 
-(require 'dockerfile-mode)
+    (add-hook 'multiple-cursors-mode-disabled-hook
+              (lambda ()
+                (interactive)
+                (global-set-key (kbd "C-s") 'isearch-forward)
+                (global-set-key (kbd "C-r") 'isearch-backward)))))
 
-(load-file "~/.emacs.d/helm-ag-setup.el")
+(use-package wgrep)
+(use-package wgrep-ack)
 
-(require 'graphviz-dot-mode)
+;;; make sure you `pacman -S python2-jedi python-jedi'
+(use-package jedi
+  :config
+  (add-hook 'python-mode-hook 'jedi:setup))
 
-(require 'calfw)
+(use-package litable
+  :defer t)
 
-;; TODO: re-enable when exco gets support for 24.5
-;; (require 'excorporate)
-;; (require 'excorporate-calendar)
+(use-package smart-mode-line
+  :config
+  (setq sml/theme 'dark)
+  (sml/setup)
+  (setq sml/shorten-directory t)
+  (setq sml/shorten-modes t)
+  (setq sml/name-width 25)
+  (setq sml/mode-width 'full)
+  ;;; put sml/replacer-regexp-list items in ~/private.el. Stuff like
+  ;;; this:
+  ;; (eval-after-load 'smart-mode-line
+  ;;   '(progn
+  ;;      (add-to-list 'sml/replacer-regexp-list '("/home/mgalgs/workspace" ":WS:") t)
+  ;;      (add-to-list 'sml/replacer-regexp-list '(":WS:/stuff" ":st:") t)))
+  (use-package rich-minority
+    :config
+    (setq rm-blacklist '(" AC"
+                         " SP"
+                         " mate"
+                         " Plugged"
+                         " Gtags"
+                         " Abbrev"
+                         " Fill"
+                         " Guide"
+                         " pair"
+                         " yas"
+                         " MRev"
+                         " FN"
+                         " Fly"
+                         " MML"))))
 
-(require 'go-mode-autoloads)
+(use-package diff-hl
+  :config (global-diff-hl-mode))
 
-(require 'go-autocomplete)
-(require 'auto-complete-config)
-(ac-config-default)
+(use-package guide-key
+  :init
+  (setq guide-key/guide-key-sequence
+      '("C-x r"
+        "C-x 4"
+        "C-c m"
+        "C-c m m"
+        "C-x C-k"
+        "C-c g"
+        "C-c g g"))
+  :config
+  (guide-key-mode 1))
 
-;; (load-file "~/.emacs.d/org-jira-setup.el")
+(use-package ack-and-a-half
+  :load-path "lisp/ack-and-a-half"
+  :ensure nil
+  :config
+  (defalias 'ack 'ack-and-a-half)
+  (defalias 'ack-same 'ack-and-a-half-same)
+  (defalias 'ack-find-file 'ack-and-a-half-find-file)
+  (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
+  (defalias 'ack-with-args 'ack-and-a-half-with-args))
 
-(setq dired-listing-switches "-alh")
+(use-package flyspell
+  :config
+  (add-hook 'git-commit-mode-hook 'flyspell-mode)
+  (add-hook 'message-mode-hook 'flyspell-mode)
+  ;; unbind C-; since we use it for iedit
+  (define-key flyspell-mode-map (kbd "C-;") nil))
 
-(load-file "~/.emacs.d/python-setup.el")
+(use-package bbdb
+  :config
+  (when (or (file-exists-p "~/.emacs.d/bbdb")
+            (file-exists-p "~/.bbdb"))
+    (bbdb-initialize 'gnus 'message)
+    (bbdb-mua-auto-update-init 'gnus 'message)
+    (setq bbdb-mua-update-interactive-p '(create . create)
+          bbdb-complete-mail-allow-cycling t
+          bbdb-completion-display-record nil
+          bbdb-update-records-p 'create
+          ;; bbdb-pop-up-window-size 0
+          bbdb-message-all-addresses t
+          bbdb-layout 'one-line
+          bbdb-message-pop-up nil)
 
-(require 'nginx-mode)
+    (setq bbdb-ignore-message-alist
+          '((("To" "CC") . "emacs-devel@gnu\\.org")
+            (("To" "CC") . "help-gnu-emacs@gnu\\.org")
+            ("From" . "notifications@github\\.com")
+            ("X-Mailman-Version" . ".*")))))
 
-(load-file "~/.emacs.d/xcscope-setup.el")
+(use-package jade-mode
+  :mode ("\\.jade$" . jade-mode))
 
-(load-file "~/.emacs.d/gnus-setup.el")
+(use-package sws-mode
+  :mode ("\\.styl$" . sws-mode))
 
-;; (setq outlook-style-format-helper-location "~/bin/format_quoted_mail")
-;; (require 'outlook-style)
+(use-package web-mode
+  :mode (("\\.html?\\'" . web-mode)
+         ("\\.djhtml?\\'" . web-mode)
+         ("\\.tpl" . web-mode))
+  :config
+  (defun my-current-buffer-django-p ()
+    (save-excursion
+      (search-forward-regexp "{% base\\|{% if\\|{% for\\|{% include\\|{% block\\|{% csrf_token %}\\|{% url\\|{{ "
+                             nil
+                             t)))
+  (setq web-mode-engines-alist
+        '(("django". "\\.djhtml")
+          ("django" . my-current-buffer-django-p)
+          ("php" . "\\.php")))
+  (define-key web-mode-map (kbd "C-;") nil)
+  (setq-default web-mode-markup-indent-offset 2))
 
+(use-package nyan-mode
+  :config
+  (when window-system
+    (nyan-mode)
+    (setq nyan-bar-length 10)))
+
+(use-package avy
+  :bind
+  (("C-c SPC" . avy-goto-char)
+   ("C-c m SPC" . avy-goto-char-2)
+   ("C-c m m SPC" . avy-goto-word-1)
+   ("M-g g" . avy-goto-line)))
+
+(use-package ov)
+
+(use-package rainbow-delimiters
+  :config
+  (set-face-attribute 'rainbow-delimiters-depth-1-face nil :foreground "#2aa198")
+  (set-face-attribute 'rainbow-delimiters-depth-2-face nil :foreground "#b58900")
+  (set-face-attribute 'rainbow-delimiters-depth-3-face nil :foreground "#268bd2")
+  (set-face-attribute 'rainbow-delimiters-depth-4-face nil :foreground "#dc322f")
+  (set-face-attribute 'rainbow-delimiters-depth-5-face nil :foreground "#859900")
+  (set-face-attribute 'rainbow-delimiters-depth-6-face nil :foreground "#268bd2")
+  (set-face-attribute 'rainbow-delimiters-depth-7-face nil :foreground "#cb4b16")
+  (set-face-attribute 'rainbow-delimiters-depth-8-face nil :foreground "#d33682")
+  (set-face-attribute 'rainbow-delimiters-depth-9-face nil :foreground "#839496")
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'ielm-mode-hook 'rainbow-delimiters-mode))
+
+(use-package erc
+  :config
+  (defun my-erc-ansi-colors ()
+    "For ansi color escape sequences"
+    (ansi-color-apply-on-region (point-min) (point-max)))
+  (add-hook 'erc-insert-modify-hook 'my-erc-ansi-colors)
+  (use-package erc-hl-nicks))
+
+(use-package dts-mode
+  :pin gnu)
+
+(use-package numbers
+  :ensure nil
+  :load-path "lisp/")
+
+(use-package recentf
+  :config
+  (recentf-mode 1)
+  (setq recentf-max-menu-items 25))
+
+(use-package dockerfile-mode
+  :mode (("Dockerfile\\'" . dockerfile-mode)))
+
+(use-package graphviz-dot-mode)
+
+(use-package go-mode)
+
+(use-package go-autocomplete)
+
+(use-package python
+  :config
+  (setq python-fill-docstring-style 'pep-257-nn)
+
+  (add-hook 'python-mode-hook
+            #'(lambda ()
+                (setq autopair-handle-action-fns
+                      (list #'autopair-default-handle-action
+                            #'autopair-python-triple-quote-action)))))
+
+(use-package nginx-mode)
+
+(use-package xcscope
+  :config
+  (add-hook 'python-mode-hook (function cscope-minor-mode))
+  (setq cscope-index-recursively t))
+
+(use-package gnus
+  :config
+  (setq shr-use-fonts nil)
+  (define-key gnus-article-mode-map (kbd "C-c m m l") 'gnus-article-fill-long-lines)
+
+  (defun my-ov-whole-buffer (regexp color-spec)
+    (let (face-plist)
+      (if (stringp color-spec)
+          (setq face-plist `(:foreground ,color-spec))
+        (setq face-plist `(:foreground ,(car color-spec)
+                                       :background ,(cadr color-spec))))
+      (ov-set (ov-regexp regexp)
+              (point-min)
+              (point-max)
+              'face face-plist)))
+
+  (defun my-overlays-for-mailing-lists ()
+    (interactive)
+    (let ((regspecs '(("\\[RFC.*\\]" "chartreuse1")
+                      ("\\[PATCH.*\\]" "dark turquoise")
+                      ("\\b[^[:blank:]]+: " "tomato1")
+                      ("\\[GIT PULL\\]" "red4")
+                      ("\\bion\\b" ("dark green" "green"))
+                      ("\\biommu/arm-smmu\\b" ("dark red" "green")))))
+      (dolist (r regspecs)
+        (my-ov-whole-buffer (car r) (cadr r))))))
+
+(use-package indent-hints
+  :ensure nil
+  :load-path "lisp/indent-hints-mode"
+  :config
+  (setq indent-hints-profile-switching-enabled t)
+  (indent-hints-global-mode))
+
+(use-package conf-mode
+  :mode (("/crontab.*$" . conf-mode)
+         ("_defconfig$" . conf-mode)
+         ("/.gitconfig". conf-mode)))
+
+(use-package markdown-mode
+  :mode (("\\.md" . markdown-mode)
+         ("\\.markdown" . markdown-mode)))
+
+(use-package yaml-mode
+  :mode ("\\.yml$" . yaml-mode))
+
+(use-package cmake-mode
+  :mode (("\\.cmake$" . cmake-mode)
+         ("CMakeLists\\.txt$" . cmake-mode)))
+
+(use-package sh-script
+  :mode ("\.install" . sh-mode))
+
+
 ;;; These lines should be last:
 ;; some keybindings
-(load-file "~/.emacs.d/my-keybindings.el")
+(m/l "my-keybindings.el")
 
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))

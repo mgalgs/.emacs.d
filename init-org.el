@@ -1,5 +1,5 @@
 ;; (require 'org-install)
-(require 'org)
+;; (require 'org)
 (require 'htmlize)
 
 (setq org-default-notes-file "~/notes/notes.org")
@@ -29,16 +29,15 @@
         ("DONE" . (:foreground "dark green" :weight bold))))
 
 ;; fix some org-mode + yasnippet conflicts (if we have loaded yas):
-(unless (not (boundp 'yas/version))
-  (defun yas/org-very-safe-expand ()
-    (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
-
-  (add-hook 'org-mode-hook
-	    (lambda ()
-	      (make-variable-buffer-local 'yas/trigger-key)
-	      (setq yas/trigger-key [tab])
-	      (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
-	      (define-key yas/keymap [tab] 'yas/next-field))))
+;; (unless (not (boundp 'yas/version))
+;;   (defun yas/org-very-safe-expand ()
+;;     (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
+;;   (add-hook 'org-mode-hook
+;; 	    (lambda ()
+;; 	      (make-variable-buffer-local 'yas/trigger-key)
+;; 	      (setq yas/trigger-key [tab])
+;; 	      (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
+;; 	      (define-key yas/keymap [tab] 'yas/next-field))))
 
 (require 'org-gnus)
 

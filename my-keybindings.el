@@ -8,169 +8,59 @@
 ;; using a macro for location-independence. (this is pointless on its
 ;; own (other pieces of my config depend on stuff being located at
 ;; ~/.emacs.d) but oh well)
-(defmacro my-visit-keybindings-file-maker ()
-  "Defines a function to visit my-keybindings.el"
+(defmacro m/visit-keybindings-file-maker ()
+  "Defines a function to visit m/keybindings.el"
   (let ((keybindings-file-name load-file-name))
-    `(defun my-visit-keybindings-file ()
-       "Visits my-keybindings.el"
+    `(defun m/visit-keybindings-file ()
+       "Visits m/keybindings.el"
        (interactive)
        (find-file ,keybindings-file-name))))
 
-;; define my-visit-keybindings-file by calling
-;; my-visit-keybindings-file-maker
-(my-visit-keybindings-file-maker)
+;; define m/visit-keybindings-file by calling
+;; m/visit-keybindings-file-maker
+(m/visit-keybindings-file-maker)
 
-(when (eq system-type 'darwin)
-  (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'super)
-  (setq mac-function-modifier 'control))
-
-(global-set-key (kbd "C-c m k") 'my-visit-keybindings-file)
+(global-set-key (kbd "C-c m k") 'm/visit-keybindings-file)
 (global-set-key (kbd "<f5>") 'revert-buffer)
-(global-set-key (kbd "<S-f5>") 'revert-and-goto-end-of-buffer)
 
-(global-set-key (kbd "M-/") 'dabbrev-expand)
 (global-set-key (kbd "<f6>") 'next-error)
-(global-set-key (kbd "<S-f6>") 'previous-error)
 (global-set-key (kbd "<f7>") 'compile)
 
 (global-set-key "\C-cmw" 'woman)
-(global-set-key (kbd "<M-up>") 'my-increment-number-decimal)
-(global-set-key (kbd "<M-down>") 'my-decrement-number-decimal)
+(global-set-key (kbd "<M-up>") 'm/increment-number-decimal)
+(global-set-key (kbd "<M-down>") 'm/decrement-number-decimal)
 
-(global-set-key (kbd "M-P") 'my-up-a-line)
-(global-set-key (kbd "M-N") 'my-down-a-line)
-(global-set-key (kbd "C-S-l") 'my-horizontal-recenter)
+(global-set-key (kbd "M-P") 'm/up-a-line)
+(global-set-key (kbd "M-N") 'm/down-a-line)
+(global-set-key (kbd "C-S-l") 'm/horizontal-recenter)
 
-(define-key global-map (kbd "C-;") 'iedit-mode)
-(define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
+(global-set-key (kbd "C-c m d") 'm/lookup-current-word)
+(global-set-key (kbd "<f8>") 'm/toggle-tab-width-setting)
+(global-set-key (kbd "C-c m s") 'm/search-all-buffers)
 
-(global-set-key "\M-Y" 'yank-pop-forwards)
-(global-set-key [(shift delete)] 'clipboard-kill-region)
-(global-set-key [(control insert)] 'clipboard-kill-ring-save)
-(global-set-key [(shift insert)] 'clipboard-yank)
-
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cv" 'org-export-visible)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-
-(global-set-key (kbd "C-c k") 'browse-kill-ring)
-(global-set-key (kbd "C-c m d") 'my-lookup-current-word)
-(global-set-key (kbd "<f8>") 'my-toggle-tab-width-setting)
-(global-set-key (kbd "C-c m s") 'my-search-all-buffers)
-
-(global-set-key (kbd "C-c r r") 'get-rfc-view-rfc)
-(global-set-key (kbd "C-c r .") 'get-rfc-view-rfc-at-point)
-(global-set-key (kbd "C-c r g") 'get-rfc-grep-rfc-index)
-(global-set-key (kbd "C-c r l") 'get-rfc-list-downloaded-rfcs)
-
-(global-set-key (kbd "C-c m i") 'mgalgs/kill-where-i-am)
-(global-set-key (kbd "C-c m m i") 'mgalgs/kill-where-i-am-relative-to-gitroot)
-(global-set-key (kbd "C-c m g") 'grep-what-im-on)
-(global-set-key (kbd "C-c m l") 'my-kill-last-message)
+(global-set-key (kbd "C-c m i") 'm/kill-where-i-am)
+(global-set-key (kbd "C-c m m i") 'm/kill-where-i-am-relative-to-gitroot)
+(global-set-key (kbd "C-c m g") 'm/grep-what-im-on)
+(global-set-key (kbd "C-c m l") 'm/kill-last-message)
 (global-set-key (kbd "C-c m o") 'browse-url)
-;; (global-set-key (kbd "C-c m r") 'align-regexp)
-(global-set-key (kbd "C-c m x") 'my-xdg-open-each-in-region)
+(global-set-key (kbd "C-c m x") 'm/xdg-open-each-in-region)
 
-(global-set-key "\C-xp" 'my-previous-window)
+(global-set-key (kbd "C-c m m G") 'm/gtags-update-tags-file)
+(global-set-key (kbd "C-c m m g") 'm/gtags-update-tags-file-incrementally)
 
-(global-set-key (kbd "C-c f") 'jump-char-forward)
-(global-set-key (kbd "C-c F") 'jump-char-backward)
-
-(global-set-key (kbd "C-M-S-SPC") 'one-key-menu-toplevel)
-(global-set-key (kbd "M-S") 'lazy-search-menu)
-
-(global-set-key "(" 'skeleton-pair-insert-maybe)
-(global-set-key "[" 'skeleton-pair-insert-maybe)
-(global-set-key "{" 'skeleton-pair-insert-maybe)
-(global-set-key "\"" 'skeleton-pair-insert-maybe)
-
-(define-key rfcview-mode-map "j" 'pageview-goto-next-page-break)
-(define-key rfcview-mode-map "k" 'pageview-goto-previous-page-break)
-
-;; global:
-(global-set-key "\C-cgn" 'my-gtags-next-result)
-(global-set-key (kbd "C-M-*") 'gtags-pop-stack)
-(global-set-key (kbd "\C-cm*") 'gtags-pop-stack)
-(global-set-key (kbd "C-M-<") 'gtags-find-tag)
-(global-set-key (kbd "\C-cm,") 'gtags-find-tag)
-(global-set-key (kbd "C-M->") 'gtags-find-tag-from-here)
-(global-set-key (kbd "\C-cm.") 'gtags-find-tag-from-here)
-(global-set-key "\C-cgn" 'my-gtags-next-result)
-;; (global-set-key (kbd "C-M-*") 'helm-gtags-pop-stack)
-;; (global-set-key (kbd "\C-cm*") 'helm-gtags-pop-stack)
-;; (global-set-key (kbd "C-M-<") 'helm-gtags-find-tag)
-;; (global-set-key (kbd "\C-cm,") 'helm-gtags-find-tag)
-;; (global-set-key (kbd "C-M->") 'helm-gtags-find-tag)
-;; (global-set-key (kbd "\C-cm.") 'helm-gtags-find-tag)
-
-(global-set-key (kbd "C-c m m G") 'my-gtags-update-tags-file)
-(global-set-key (kbd "C-c m m g") 'my-gtags-update-tags-file-incrementally)
-
-(define-key gtags-select-mode-map "n" 'next-line)
-(define-key gtags-select-mode-map "p" 'previous-line)
-(define-key gtags-select-mode-map "q" 'bury-buffer)
-
-;; doc view
-(define-key doc-view-mode-map "j" 'doc-view-next-line-or-next-page)
-(define-key doc-view-mode-map "k" 'doc-view-previous-line-or-previous-page)
-
-;; {wo,}man
-(add-hook 'Man-mode-hook '(lambda ()
-			    (interactive)
-			    (define-key Man-mode-map "f" 'scroll-up-command)
-			    (define-key Man-mode-map "w" 'scroll-down-command)))
-(add-hook 'woman-mode-hook '(lambda ()
-			      (define-key woman-mode-map "f" 'scroll-up-command)
-			      (define-key woman-mode-map "w" 'scroll-down-command)))
-
-;; diff
-(define-key diff-mode-map "q" 'bury-buffer)
-
-(define-key ctl-x-4-map (kbd "t") 'transpose-windows)
-
-(global-set-key "\C-ci" 'my-go-to-corresponding-header-or-implementation-file)
+(global-set-key "\C-ci" 'm/go-to-corresponding-header-or-implementation-file)
 
 (global-set-key "\C-x>" (lambda () (interactive) (other-window 1) (end-of-buffer)))
 
-(global-set-key (kbd "C-=") 'er/expand-region)
-(global-set-key (kbd "C-c m =") 'er/expand-region)
-
-;; magit
-(global-set-key (kbd "C-c m t") 'magit-status)
-(global-set-key (kbd "C-c m c") 'magit-show-commit)
-(global-set-key (kbd "C-c m m c") 'my-show-commit-at-point)
-(global-set-key (kbd "C-c m :") 'magit-git-command)
-(define-key magit-mode-map (kbd "u") 'magit-goto-parent-section)
-(define-key git-commit-mode-map (kbd "C-c C-e") 'my-suggest-commit-message-prefix)
-
-(global-set-key (kbd "C-c m n") 'my-visit-init-file)
+(global-set-key (kbd "C-c m n") 'm/visit-init-file)
 (global-set-key (kbd "C-c m m n") (lambda () (interactive) (switch-to-buffer "*notes*")))
 (global-set-key (kbd "C-c m m s") (lambda () (interactive) (switch-to-buffer "*scratch*")))
 
-(eval-after-load "gnus"
-  '(define-key gnus-article-mode-map (kbd "C-c m m l") 'gnus-article-fill-long-lines))
-
-(global-set-key (kbd "C-c m m d") 'mark-defun)
-(global-set-key (kbd "C-c m ;") 'iedit-mode)
-(define-key iedit-lib-keymap (kbd "C-c m '") 'iedit-toggle-unmatched-lines-visible)
-
-(global-set-key (kbd "C-c m `") 'my-recompile)
-(global-set-key (kbd "C-c m m `") 'my-open-compilation-buffer)
+(global-set-key (kbd "C-c m `") 'm/recompile)
+(global-set-key (kbd "C-c m m `") 'm/open-compilation-buffer)
 
 (global-set-key (kbd "C-c m p") 'pwd)
-(global-set-key (kbd "C-c m m o") 'my-occur-region-or-symbol-at-point)
-(global-set-key (kbd "M-s h .") 'highlight-symbol-at-point)
-(global-set-key (kbd "M-s h n") 'highlight-symbol-next)
-(global-set-key (kbd "M-s h p") 'highlight-symbol-prev)
-(global-set-key (kbd "M-s h a") 'highlight-symbol-remove-all)
-(global-set-key (kbd "C-S-t") 'transpose-words)
-(global-set-key (kbd "C-c m m v") 'vc-git-grep)
-
-(global-set-key (kbd "C-c h") 'helm-mini)
-(global-set-key (kbd "C-c m f") 'helm-ls-git-ls)
+(global-set-key (kbd "C-c m m o") 'm/occur-region-or-symbol-at-point)
 
 (global-set-key (kbd "C-c m b") (lambda ()
                                   (interactive)
@@ -179,63 +69,23 @@
 
 (global-set-key (kbd "C-c m C-x C-e") 'eval-and-replace)
 
-;; (global-set-key (kbd "C-*") 'evil-search-symbol-forward)
-;; (global-set-key (kbd "C-#") 'evil-search-symbol-backward)
-
-(global-set-key (kbd "C-c m m b") 'magit-blame)
-(global-set-key (kbd "C-c m m l") 'my-magit-file-log)
-
-(require 'footnote)
-(define-key footnote-mode-map (kbd "n") 'my-add-footnote)
-
-(global-set-key (kbd "C-S-o") 'my-open-line-after-this-line)
-(global-set-key (kbd "C-M-S-o") 'my-open-line-before-this-line)
-
-(define-key ctl-x-4-map "t" 'transpose-frame)
-
-(global-set-key (kbd "C-c m m w") 'helm-swoop)
+(global-set-key (kbd "C-S-o") 'm/open-line-after-this-line)
+(global-set-key (kbd "C-M-S-o") 'm/open-line-before-this-line)
 
 (global-set-key (kbd "C-c m 4") (lambda ()
                                   (interactive)
                                   (string-rectangle (region-beginning)
                                                     (region-end)
                                                     "    ")))
-(global-set-key (kbd "C-c m u") 'browse-url-emacs)
-
-(global-set-key (kbd "M-.") 'helm-etags-select)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-(global-set-key (kbd "C-x r h") 'helm-bookmarks)
-
-
 (global-set-key (kbd "C-c m m y") 'bury-buffer)
 
-;; new default for C-j is electric-indent-just-newline but I want C-j
-;; to do indentation
-(global-set-key (kbd "C-j") 'newline)
+(global-set-key (kbd "C-h e") 'm/view-and-switch-to-echo-area-messages)
 
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C-c m C")     'mc/edit-lines)
-(global-set-key (kbd "C->")         'mc/mark-next-like-this)
-(global-set-key (kbd "C-c m >")     'mc/mark-next-like-this)
-(global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c m <")     'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
-(global-set-key (kbd "C-c m m <")   'mc/mark-all-like-this) ;unfortunate
+(global-set-key (kbd "C-c m M-/") 'm/expand-file-name-at-point)
 
-(global-set-key (kbd "C-h e") 'my-view-and-switch-to-echo-area-messages)
+(global-set-key (kbd "C-c m m e") 'm/overlays-for-mailing-lists)
 
-(global-set-key (kbd "C-c m M-/") 'my-expand-file-name-at-point)
+(global-set-key (kbd "C-v") 'm/smooth-scroll-down)
+(global-set-key (kbd "M-v") 'm/smooth-scroll-up)
 
-(global-set-key (kbd "C-c m m >") 'diffview-current)
-(global-set-key (kbd "C-c m m e") 'my-overlays-for-mailing-lists)
-
-(global-set-key (kbd "C-c m a") 'my-open-in-atom)
-
-(global-set-key (kbd "C-c C-b") 'ibuffer)
-
-(global-set-key (kbd "C-v") 'my-smooth-scroll-down)
-(global-set-key (kbd "M-v") 'my-smooth-scroll-up)
-
-;; ido keybindings are in ido-setup.el
-
-(global-set-key (kbd "C-c m m u") 'my-underline-previous-line)
+(global-set-key (kbd "C-c m m u") 'm/underline-previous-line)
