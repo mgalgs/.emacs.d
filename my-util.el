@@ -1,6 +1,18 @@
 (require 'cl)
 (require 'thingatpt)
 
+(defun directories-in-directory (directory)
+  "Returns a list of all directories contained in DIRECTORY"
+  (let* ((all-files (mapcar (lambda (el)
+                              (concat (file-name-as-directory directory) el))
+                            (directory-files directory)))
+         ;; remove '.', '..' and all non-directories
+         (filtered-files (remove-if (lambda (el)
+                                      (or (string= "." (substring el -1))
+                                          (not (file-directory-p el))))
+                                    all-files)))
+    filtered-files))
+
 (defun fill-out-to-column (&optional width fill-char)
   "Insert FILL-CHAR at the end of the current line until the line
   is WIDTH columns wide. WIDTH defaults to 80 and FILL-CHAR
@@ -20,7 +32,7 @@
   (find pattern (buffer-list) :key 'buffer-name :test 'string-match-p))
 
 ;; function call face
-(defun my-match-function-call (&optional limit)
+(defun m/match-function-call (&optional limit)
   (message "Trying the matcher function fun from %d to %d" (point) limit)
   (while (and (search-forward-regexp "\\(\\w+\\)\\s-*\(" limit 'no-error)
               (not (save-match-data
@@ -38,32 +50,32 @@
 ;; ("\\(\\w+\\)\\s-*\(" (1 font-lock-function-call-face))
 ;; could use a match function:
 ;; (font-lock-add-keywords 'c++-mode
-;;                         '((my-match-function-call . font-lock-function-call-face)))
+;;                         '((m/match-function-call . font-lock-function-call-face)))
 ;; could use a regexp:
 (font-lock-add-keywords 'c++-mode
                         '(("\\(\\w+\\)\\s-*\(" (1 font-lock-function-call-face))))
 
 
 ;; one-line scrollers:
-(defun my-up-a-line ()
+(defun m/up-a-line ()
   (interactive)
   (previous-line)
   (recenter))
 
-(defun my-down-a-line ()
+(defun m/down-a-line ()
   (interactive)
   (next-line)
   (recenter))
 
-(defun my-up-5-lines ()
+(defun m/up-5-lines ()
   (interactive)
   (previous-line 5))
 
-(defun my-down-5-lines ()
+(defun m/down-5-lines ()
   (interactive)
   (next-line 5))
 
-(defun my-horizontal-recenter ()
+(defun m/horizontal-recenter ()
   "make the point horizontally centered in the window"
   (interactive)
   (let ((mid (/ (window-width) 2))
@@ -85,7 +97,7 @@
   (call-interactively 'grep))
 
 ;; increment number at point:
-(defun my-increment-number-decimal (&optional arg)
+(defun m/increment-number-decimal (&optional arg)
   "Increment the number forward from point by 'arg'."
   (interactive "p*")
   (save-excursion
@@ -101,27 +113,27 @@
 	  (replace-match (format (concat "%0" (int-to-string field-width) "d")
 				 answer)))))))
 
-(defun my-decrement-number-decimal (&optional arg)
+(defun m/decrement-number-decimal (&optional arg)
   "Decrement"
   (interactive "p*")
   (if arg
-      (my-increment-number-decimal (- 0 arg)) ;true
-    (my-increment-number-decimal -1) ;else
+      (m/increment-number-decimal (- 0 arg)) ;true
+    (m/increment-number-decimal -1) ;else
     ))
 
 
-(defun my-compile-unit-tests (test-loc what-to-do)
+(defun m/compile-unit-tests (test-loc what-to-do)
   "compile unit tests"
   (interactive)
   (message (concat "Compiling unit tests at " test-loc))
   (compile (concat "cd " test-loc " && " what-to-do)))
 
 
-(defun my-run-unit-tests ()
+(defun m/run-unit-tests ()
   "Run specific unit tests"
   (interactive)
   (message "Getting available unit tests...")
-  (let* ((the-test-loc (file-name-as-directory my-test-loc))
+  (let* ((the-test-loc (file-name-as-directory m/test-loc))
          (the-listing-command-output
           (shell-command-to-string (concat "schroot -p -- " the-test-loc "build/unittest -l")))
          (the-choices
@@ -150,7 +162,7 @@
      this name at the end of your .emacs"
   (interactive "SName of the macro: ")  ; ask for the name of the macro    
   (kmacro-name-last-macro name)         ; use this name for the macro    
-  (find-file "~/.emacs.d/my-kmacros.el")                   ; open ~/.emacs or other user init file 
+  (find-file "~/.emacs.d/m/kmacros.el")                   ; open ~/.emacs or other user init file 
   (goto-char (point-max))               ; go to the end of the .emacs
   (newline)                             ; insert a newline
   (insert-kbd-macro name)               ; copy the macro 
@@ -189,7 +201,7 @@
     res
     ))
 
-(defun my-is-elf-executable-p (filename)
+(defun m/is-elf-executable-p (filename)
   "Returns t if the file is an elf executable"
   (string-match ".*ELF \\(32\\)*\\(64\\)*-bit LSB executable.*"
                 (shell-command-to-string (concat "file " filename))))
@@ -202,11 +214,11 @@
 
 (defun rebuild-the-unit-tests ()
   (interactive)
-  (my-compile-unit-tests my-test-loc "schroot -p -- ./rebuild.sh"))
+  (m/compile-unit-tests m/test-loc "schroot -p -- ./rebuild.sh"))
 
 (defun build-the-unit-tests ()
   (interactive)
-  (my-compile-unit-tests my-test-loc "schroot -p -- ./build.sh"))
+  (m/compile-unit-tests m/test-loc "schroot -p -- ./build.sh"))
 
 (defun browse-url-chrome (url &rest args)
   "Use chrome to browse urls"
@@ -223,7 +235,7 @@
         (browse-url-generic-program "chromium"))
     (apply #'browse-url url args)))
 
-(defun my-lookup-current-word ()
+(defun m/lookup-current-word ()
   "look up word in dictionary"
   (interactive)
   (let ((tmpbufname "*WORD LOOKUP*")
@@ -231,13 +243,13 @@
     (with-output-to-temp-buffer tmpbufname
       (shell-command shellcmd tmpbufname))))
 
-(defun my-toggle-tab-width-setting ()
+(defun m/toggle-tab-width-setting ()
   "Toggle setting tab widths between 4 and 8"
   (interactive)
   (setq tab-width (if (= tab-width 8) 4 8))
   (redraw-display))
 
-(defun my-search-all-buffers (regexp)
+(defun m/search-all-buffers (regexp)
   "From http://www.emacswiki.org/emacs/SearchBuffers#toc9"
   (interactive "sRegexp: ")
   (multi-occur-in-matching-buffers "." regexp t))
@@ -287,7 +299,7 @@ rather than the absolute path"
   (setq current-prefix-arg '(4))
   (call-interactively 'grep))
 
-(defun my-make-this-buffer-writable ()
+(defun m/make-this-buffer-writable ()
   (interactive)
   (let* ((currmodes (file-modes (buffer-name)))
          (newmodes (file-modes-symbolic-to-number "a+w")))
@@ -301,12 +313,12 @@ rather than the absolute path"
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
 
-(defun my-previous-window ()
+(defun m/previous-window ()
   (interactive)
   (setq current-prefix-arg '(-1))
   (call-interactively 'other-window))
 
-(defun my-thousands-separate (num)
+(defun m/thousands-separate (num)
   "Formats the (possibly floating point) number with a thousands
 separator."
   (let* ((nstr (number-to-string num))
@@ -326,7 +338,7 @@ separator."
       (setq cnt (1+ cnt)))
     (concat pretty nrest)))
 
-(defun my-prettify-number (n)
+(defun m/prettify-number (n)
   "Prints a number to the minibuffer in a few delicious
 formats. If `current-word' is a number, that's what is used,
 otherwise we prompt the user."
@@ -339,10 +351,10 @@ otherwise we prompt the user."
                (read-number "Number: ")))))
      (list default)))
   (let ((nstr (number-to-string n))
-        (npretty (my-thousands-separate n)))
+        (npretty (m/thousands-separate n)))
     (message "%s | %g | %d | %s" npretty n n nstr)))
 
-(defun my-kill-last-message ()
+(defun m/kill-last-message ()
   "Puts the last line from the *Messages* buffer onto the kill
 ring"
   (interactive)
@@ -354,7 +366,7 @@ ring"
                                         (point)
                                         (line-end-position)))))
 
-(defun my-make-buffer-a-scratch-buffer (buf loc)
+(defun m/make-buffer-a-scratch-buffer (buf loc)
   "Copy the contents of BUF into a temporary buffer, switch to
 that buffer, and move point to LOC in the new buffer."
   (let ((new-buf (generate-new-buffer
@@ -363,9 +375,9 @@ that buffer, and move point to LOC in the new buffer."
     (insert-buffer buf)
     (goto-char loc)))
 
-(defun my-make-this-a-scratch-buffer ()
+(defun m/make-this-a-scratch-buffer ()
   (interactive)
-  (my-make-buffer-a-scratch-buffer (current-buffer) (point)))
+  (m/make-buffer-a-scratch-buffer (current-buffer) (point)))
 
 (defun convert-size-to-bytes (s)
   "Given a size with suffix K or M, returns the size in bytes"
@@ -442,7 +454,7 @@ HOW should be `forward-page', `backward-page', or similar."
   (interactive)
   (pageview-navigate-page-break 'backward-page))
 
-(defun my-put-prefix-on-paths (prefix paths)
+(defun m/put-prefix-on-paths (prefix paths)
   "Returns a list of paths with PREFIX prefixed onto each item"
   (mapcar (lambda (el)
             (concat (file-name-as-directory prefix)
@@ -475,7 +487,7 @@ Adapted from http://emacswiki.org/emacs/ElispCookbook"
             (file-name-as-directory (replace-regexp-in-string dir-to-strip "/" el)))
           dirs))
 
-(defun my-transpose-windows (arg)
+(defun m/transpose-windows (arg)
    "Transpose the buffers shown in two windows. From
 http://emacswiki.org/emacs/TransposeWindows"
    (interactive "p")
@@ -488,7 +500,7 @@ http://emacswiki.org/emacs/TransposeWindows"
          (select-window (funcall selector)))
        (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
 
-(defun my-go-to-corresponding-header-or-implementation-file ()
+(defun m/go-to-corresponding-header-or-implementation-file ()
   "Goes to the .c or .h that corresponds to the current file"
   (interactive)
   (let* ((file-base-name (file-name-sans-extension (buffer-file-name)))
@@ -510,7 +522,7 @@ http://emacswiki.org/emacs/TransposeWindows"
 	  (message "%s does not exist" the-other-file)
 	(find-file the-other-file)))))
 
-;; (defun my-gnus-get-group-names ()
+;; (defun m/gnus-get-group-names ()
 ;;   "Returns a list of currently subscribed gnus group names"
 ;;   (let (choices group)
 ;;     (mapatoms (lambda (symbol)
@@ -522,7 +534,7 @@ http://emacswiki.org/emacs/TransposeWindows"
 ;; 	      gnus-active-hashtb)
 ;;     choices))
 
-(defun my-gnus-get-group-names ()
+(defun m/gnus-get-group-names ()
   "get gnus group names"
   (with-current-buffer gnus-group-buffer
     (save-excursion
@@ -535,26 +547,26 @@ http://emacswiki.org/emacs/TransposeWindows"
 	  (setq more-lines (= 0 (forward-line 1))))
 	(cdr group-names)))))
 
-(defun my-gnus-subscribed-to-group-p (group)
+(defun m/gnus-subscribed-to-group-p (group)
   "Checks that we are subscribed to `group'"
-  (member group (my-gnus-get-group-names)))
+  (member group (m/gnus-get-group-names)))
 
-(defun my-gnus-verify-subscriptions (groups)
+(defun m/gnus-verify-subscriptions (groups)
   "Verify that we are subscribed to all groups in
   `groups'. Prompt to subscribe for any unsubscribed group."
   (interactive)
-  (let ((group-names (my-gnus-get-group-names)))
+  (let ((group-names (m/gnus-get-group-names)))
     (dolist (group groups)
       (unless (member group group-names)
 	(message "Not subscribed to %s. You might want to add a subscription..." group)))))
 
-(defun my-gnus-verify-subscriptions-hook ()
-  "Just calls `my-gnus-verify-subscriptions' with the first item
+(defun m/gnus-verify-subscriptions-hook ()
+  "Just calls `m/gnus-verify-subscriptions' with the first item
 in each `nnmail-split-methods'"
   (interactive)
-  (my-gnus-verify-subscriptions (mapcar 'first nnmail-split-methods)))
+  (m/gnus-verify-subscriptions (mapcar 'first nnmail-split-methods)))
 
-(defun my-once ()
+(defun m/once ()
   "Insert header guards"
   (interactive)
   (let ((guard-txt (format "__%s__"
@@ -565,17 +577,17 @@ in each `nnmail-split-methods'"
     (previous-line 2)
     (beginning-of-line)))
 
-(defun my-xdg-open-each-in-region ()
+(defun m/xdg-open-each-in-region ()
   "Run xdg-open on each line in current region"
   (interactive)
   (shell-command-on-region (region-beginning)
 			   (region-end)
 			   "while read m; do xdg-open $m; done"))
 
-(defun my-make-shell-caller (proggie)
+(defun m/make-shell-caller (proggie)
   "Function to define a function that does a shell-command to
   program `proggie' with a single argument: the current word."
-  (defalias (intern (concat "my-shell-" proggie))
+  (defalias (intern (concat "m/shell-" proggie))
     `(lambda (&optional in)
        ,(format "Run %s on region (if active) or (current-word) or the supplied argument." proggie)
        (interactive)
@@ -589,12 +601,12 @@ in each `nnmail-split-methods'"
               (output-clean (car (split-string output "\n"))))
          output-clean))))
 
-(defun my-isearch-word-at-point ()
+(defun m/isearch-word-at-point ()
   (interactive)
   (call-interactively 'isearch-forward-regexp))
 
-(defun my-isearch-yank-word-hook ()
-  (when (equal this-command 'my-isearch-word-at-point)
+(defun m/isearch-yank-word-hook ()
+  (when (equal this-command 'm/isearch-word-at-point)
     (let ((string (concat "\\<"
                           (buffer-substring-no-properties
                            (progn (skip-syntax-backward "w_") (point))
@@ -611,9 +623,9 @@ in each `nnmail-split-methods'"
             isearch-yank-flag t)
       (isearch-search-and-update))))
 
-(add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
+(add-hook 'isearch-mode-hook 'm/isearch-yank-word-hook)
 
-(defun my-bit-numberer (numstring &optional arg)
+(defun m/bit-numberer (numstring &optional arg)
   "Numbers the bits in `num' (expected to be a string
 representing a binary number)."
   (interactive "sBinary or hex number: \nP")
@@ -633,7 +645,7 @@ representing a binary number)."
     (when arg
       (insert-string output-string))))
 
-(defun my-occur-region-or-symbol-at-point (&optional nlines the-point the-mark)
+(defun m/occur-region-or-symbol-at-point (&optional nlines the-point the-mark)
   "Run `occur' with `symbol-at-point' or the region, if active."
   (interactive "P\nr")
   (occur (substring-no-properties (if (use-region-p)
@@ -644,17 +656,17 @@ representing a binary number)."
              nlines
            0)))
 
-(defun my-show-commit-at-point ()
+(defun m/show-commit-at-point ()
   "Run `magit-show-commit` with `word-at-point`."
   (interactive)
   (magit-show-commit (word-at-point)))
 
-(defun my-switch-to-buffer-and-shrink (buf)
+(defun m/switch-to-buffer-and-shrink (buf)
   "Switch to buffer and call `shrink-window-if-larger-than-buffer'"
   (interactive "b")
   (shrink-window-if-larger-than-buffer (get-buffer-window buf)))
 
-(defun my-rescan-and-add-to-load-path ()
+(defun m/rescan-and-add-to-load-path ()
   "Re-scans ~/.emacs.d/site-lisp and adds missing directories to
 load-path"
   (interactive)
@@ -678,7 +690,7 @@ load-path"
     (error (message "Invalid expression")
            (insert (current-kill 0)))))
 
-(defun my-get-buffer-point-function (el)
+(defun m/get-buffer-point-function (el)
   "Get the name of the function at point in buffer. el should be
 a cons cell of the form (buffer . point)"
   (let ((buffer (car el))
@@ -695,21 +707,21 @@ a cons cell of the form (buffer . point)"
                                           (end-of-line)
                                           (point))))))))
 
-(defun my-gtags-show-current-gtags-call-flow ()
+(defun m/gtags-show-current-gtags-call-flow ()
   "Displays gtags call flow"
   (interactive)
   (switch-to-buffer-other-window "*Call Flow*")
   (erase-buffer)
   (insert (mapconcat 'identity
                      (delete nil
-                             (mapcar 'my-get-buffer-point-function
+                             (mapcar 'm/get-buffer-point-function
                                      (-zip gtags-buffer-stack
                                            gtags-point-stack)))
                      "\n"))
   (shrink-window-if-larger-than-buffer (get-buffer-window))
   (view-mode))
 
-(defun my-gtags-pop-deleted-buffers ()
+(defun m/gtags-pop-deleted-buffers ()
   "Clean up the gtags context stack by popping any deleted buffers"
   (interactive)
   (let ((cnt 1))
@@ -719,7 +731,7 @@ a cons cell of the form (buffer . point)"
       (gtags-pop-context)
       (setq cnt (1+ cnt)))))
 
-(defun my-gtags-pop-all-buffers ()
+(defun m/gtags-pop-all-buffers ()
   "Clean up the entire gtags context stack"
   (interactive)
   (let ((cnt 1))
@@ -728,51 +740,51 @@ a cons cell of the form (buffer . point)"
       (gtags-pop-context)
       (setq cnt (1+ cnt)))))
 
-(defun my-add-footnote (footnote)
+(defun m/add-footnote (footnote)
   "Add a footnote (read from minibuffer)"
   (interactive "sFootnote: ")
   (Footnote-add-footnote)
   (insert footnote)
   (Footnote-back-to-message))
 
-(defun my-open-line-after-this-line ()
+(defun m/open-line-after-this-line ()
   "Like vim's `o' command"
   (interactive)
   (let ((next-line-add-newlines t))
     (next-line))
   (open-line 1))
 
-(defun my-open-line-before-this-line ()
+(defun m/open-line-before-this-line ()
   "Like vim's `O' command"
   (interactive)
   (beginning-of-line)
   (open-line 1)
   (indent-for-tab-command))
 
-(defun my-compilation-start-hook-to-remember-last (process)
+(defun m/compilation-start-hook-to-remember-last (process)
   (when (s-starts-with? "*compilation"
                         (buffer-name))
-    (setq my-last-compilation-buffer (current-buffer))))
+    (setq m/last-compilation-buffer (current-buffer))))
 
-(defvar my-last-compilation-buffer nil)
-(add-hook 'compilation-start-hook 'my-compilation-start-hook-to-remember-last)
+(defvar m/last-compilation-buffer nil)
+(add-hook 'compilation-start-hook 'm/compilation-start-hook-to-remember-last)
 
-(defun my-recompile ()
+(defun m/recompile ()
   "Switch to *compilation-XXX* and do a recompile"
   (interactive)
-  (if my-last-compilation-buffer
-    (-when-let (candidate-buffer (get-buffer my-last-compilation-buffer))
+  (if m/last-compilation-buffer
+    (-when-let (candidate-buffer (get-buffer m/last-compilation-buffer))
       (switch-to-buffer candidate-buffer)
       (recompile)
       (end-of-buffer))
     (message "No recent compilation. Run `M-x compile' first")))
 
-(defun my-open-compilation-buffer ()
+(defun m/open-compilation-buffer ()
   (interactive)
-  (-when-let (candidate (or my-last-compilation-buffer (get-buffer "*compilation*")))
+  (-when-let (candidate (or m/last-compilation-buffer (get-buffer "*compilation*")))
     (switch-to-buffer candidate)))
 
-(defun my-helm-completing-read-must-match (prompt choices &optional require-match
+(defun m/helm-completing-read-must-match (prompt choices &optional require-match
                                     initial-input history def inherit-input-method)
     "Wrapper for `helm-comp-read' that also sets :must-match to t"
     (helm-comp-read prompt
@@ -788,7 +800,7 @@ a cons cell of the form (buffer . point)"
   (set-text-properties 0 (length txt) nil txt)
   txt)
 
-(defun my--extract-field-from-region (start end N delimiter)
+(defun m/-extract-field-from-region (start end N delimiter)
   "Extract field `N' delimited by `delimiter' from region
 specified by `start' and `end'"
   (goto-char start)
@@ -804,19 +816,19 @@ specified by `start' and `end'"
       (setq current-point (point)))
     (reverse result)))
 
-(defun my-mapcfield (fn N &optional delimiter)
+(defun m/mapcfield (fn N &optional delimiter)
   "Like `mapc' but evaluates `fn' for each field in the region defined by
-`N' (field number) and `delimiter' (using `my--extract-field-from-region')."
+`N' (field number) and `delimiter' (using `m/-extract-field-from-region')."
   (setq delimiter (or delimiter " "))
-  (mapc fn (my--extract-field-from-region (region-beginning)
+  (mapc fn (m/-extract-field-from-region (region-beginning)
                                           (region-end)
                                           N
                                           delimiter)))
 
-(defun my-extract-field-from-region (start end)
+(defun m/extract-field-from-region (start end)
   "Like cut -dD -fN where D and N are read from the user"
   (interactive "r")
-  (let ((res (my--extract-field-from-region start
+  (let ((res (m/-extract-field-from-region start
                                             end
                                             (string-to-number (read-from-minibuffer "Field: "
                                                                                     "0"))
@@ -824,13 +836,13 @@ specified by `start' and `end'"
                                                                   " "))))
     (message "%s" (mapconcat 'identity res "\n"))))
 
-(defun my-view-and-switch-to-echo-area-messages ()
+(defun m/view-and-switch-to-echo-area-messages ()
   (interactive)
   (view-echo-area-messages)
   (other-window 1)
   (end-of-buffer))
 
-(defun my-indent-last-kill ()
+(defun m/indent-last-kill ()
   (interactive)
   (with-temp-buffer
     (yank)
@@ -842,7 +854,7 @@ specified by `start' and `end'"
     (delete-trailing-whitespace)
     (kill-new (buffer-string))))
 
-(defun my-hours-minutes-to-decimal (hours-minutes)
+(defun m/hours-minutes-to-decimal (hours-minutes)
   "Convert `hours-mintes' (which should be a string like
 \"1:45\") to a decimal representation (so \"1:45\" => 1.75)."
   (save-match-data
@@ -851,7 +863,7 @@ specified by `start' and `end'"
            (minutes (string-to-number (nth 1 parts))))
       (+ hours (/ minutes 60.0)))))
 
-(defun my-expand-file-name-at-point ()
+(defun m/expand-file-name-at-point ()
   "Use hippie-expand to expand the filename.
 
 From http://superuser.com/a/68648/70130"
@@ -860,13 +872,13 @@ From http://superuser.com/a/68648/70130"
                                             try-complete-file-name)))
     (call-interactively 'hippie-expand)))
 
-(defun my-nth-match (st regexp n)
+(defun m/nth-match (st regexp n)
   "Returns the nth match of `regexp' on string `st', saving match data."
   (save-match-data
     (when (string-match regexp st)
       (match-string-no-properties n st))))
 
-(defun my-ftrace-log-split ()
+(defun m/ftrace-log-split ()
   "Split current buffer (an ftrace function_graph tracer log)
 into columns based on the CPU number. This should really be more
 generic (split into columns based on regex)."
@@ -878,7 +890,7 @@ generic (split into columns based on regex)."
     (with-current-buffer (get-buffer-create "*ftrace-log-split*")
       (erase-buffer)
       (dolist (line lines)
-        (-if-let (cpu (my-nth-match line
+        (-if-let (cpu (m/nth-match line
                                     "^ \\([[:digit:]]\\)"
                                     1))
             (insert (format "%s%s"
@@ -890,19 +902,19 @@ generic (split into columns based on regex)."
         (insert "\n"))))
   (switch-to-buffer "*ftrace-log-split*"))
 
-(defun my-open-in-atom ()
+(defun m/open-in-atom ()
   "Open the current buffer in the Atom editor"
   (interactive)
   (start-process "open-in-atom" nil "atom" "-f" (buffer-file-name)))
 
-(defun my-checkpatch-current ()
+(defun m/checkpatch-current ()
   "Runs the kernel scripts/checkpatch.pl script on the current file"
   (interactive)
   (compile (concat "$(git rev-parse --show-toplevel)/scripts/checkpatch.pl --emacs --file "
                    (file-name-nondirectory (buffer-file-name)))))
 
 ;; adapted from http://pastie.org/9374830
-(defun my-smooth-scroll (how top)
+(defun m/smooth-scroll (how top)
   (while (> top 10)
     (funcall how top)
     (sit-for (/ 1.0 (* top 3)))
@@ -911,34 +923,34 @@ generic (split into columns based on regex)."
     (sit-for (/ 1.0 (+ n 20)))
     (funcall how n)))
 
-(defun my-smooth-scroll-down ()
+(defun m/smooth-scroll-down ()
   (interactive)
-  (my-smooth-scroll 'scroll-up (/ (window-height) 2)))
+  (m/smooth-scroll 'scroll-up (/ (window-height) 2)))
 
-(defun my-smooth-scroll-up ()
+(defun m/smooth-scroll-up ()
   (interactive)
-  (my-smooth-scroll 'scroll-down (/ (window-height) 2)))
+  (m/smooth-scroll 'scroll-down (/ (window-height) 2)))
 
-(defun my-gnus-patch-save-name (newsgroup headers &optional last-file)
+(defun m/gnus-patch-save-name (newsgroup headers &optional last-file)
   (let* ((subject-stripped (cadr (s-match "\\[PATCH.*\\] \\(.*\\)"
                                           (mail-header-subject headers))))
          (subject (replace-regexp-in-string "[^a-z]" "-" (downcase subject-stripped)))
          (from-email (cadr (s-match "<\\(.*\\)@" (mail-header-from headers)))))
     (concat from-email "-" subject ".patch")))
 
-(defun my-article-get-message-url ()
+(defun m/article-get-message-url ()
   (interactive)
   (let ((url (concat "http://mid.gmane.org/" (mail-header-message-id gnus-current-headers))))
     (when (called-interactively-p)
       (message url))
     url))
 
-(defun my-article-open-on-the-web ()
+(defun m/article-open-on-the-web ()
   "Opens the current article on the web"
   (interactive)
-  (browse-url (my-article-get-message-url)))
+  (browse-url (m/article-get-message-url)))
 
-(defun my-suggest-commit-message-prefix ()
+(defun m/suggest-commit-message-prefix ()
   "Looks at recent commits for the currently staged files and
 suggests some commit message prefixes."
   (interactive)
@@ -960,7 +972,7 @@ suggests some commit message prefixes."
                                 choices)
                 " ")))))
 
-(defun my-underline-previous-line ()
+(defun m/underline-previous-line ()
   "Adds an ascii underline to the previous line using `='
 characters.  TODO: add support for different characters."
   (interactive)
