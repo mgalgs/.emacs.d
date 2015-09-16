@@ -6,7 +6,7 @@
   "loads a file from the `user-emacs-directory'"
   (load-file (concat user-emacs-directory file)))
 
-(m/l "package-setup.el")
+(m/l "init-package.el")
 
 (setq load-path
       (append (list "~/.emacs.d/lisp")
@@ -23,7 +23,10 @@
   (set-scroll-bar-mode 'right))
 
 (when (eq system-type 'darwin)
-  (add-to-list 'exec-path "/usr/local/bin"))
+  (add-to-list 'exec-path "/usr/local/bin")
+  (setq mac-command-modifier 'meta
+        setq mac-option-modifier 'super
+        mac-function-modifier 'control))
 
 ;; some general advice
 (m/l "my-advice.el")
@@ -61,7 +64,8 @@
       kept-old-versions 2
       version-control t
       custom-safe-themes t
-      dired-listing-switches "-alh")
+      dired-listing-switches "-alh"
+      uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 (setq-default indent-tabs-mode nil ; don't use the tab character, only spaces
 	      ;; tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)
@@ -75,6 +79,9 @@
 	      term-buffer-maximum-size 15000)
 
 (fset 'yes-or-no-p 'y-or-n-p)
+
+;; gpg use the minibuffer for passphrase, not GUI
+(setenv "GPG_AGENT_INFO" nil)
 
 
 ;;; misc modes
@@ -134,7 +141,7 @@
   :config
   (use-package ox-reveal)
   (use-package htmlize)
-  (m/l "org-setup.el"))
+  (m/l "init-org.el"))
 
 (use-package ido
   :init
@@ -160,10 +167,15 @@
 	  "^\*GTAGS SELECT\*")))
 
 (use-package helm
+  :bind
+  (("C-x C-b" . helm-buffers-list)
+   ("C-x r h" . helm-bookmarks))
   :init
   (require 'helm)
   (require 'helm-config)
-  (use-package helm-ls-git)
+  (use-package helm-ls-git
+    :bind
+    ("C-c m f" . helm-ls-git-ls))
   (use-package helm-swoop)
   (require 'helm-bookmark)
   (setq helm-minibuffer-history-key nil
@@ -179,20 +191,22 @@
 
 (use-package cc-mode
   :config
-  (m/l "linux-kernel-setup.el"))
+  (m/l "init-linux-kernel.el"))
 
 (use-package iedit
   :bind
   (("C-;" . iedit-mode)
    ("C-c m ;" . iedit-mode))
   :config
-  (setq iedit-auto-recenter nil))
+  (setq iedit-auto-recenter nil)
+  (define-key iedit-lib-keymap (kbd "C-c m '") 'iedit-toggle-unmatched-lines-visible))
 
 (use-package pkgbuild-mode)
 
 (use-package no-word
   :ensure nil
-  :load-path "lisp/")
+  :load-path "lisp/"
+  :mode ("\\.doc\\'" . no-word))
 
 (use-package lua-mode)
 
@@ -226,7 +240,7 @@
     :init
     (bind-key "C-c C-e" 'm/suggest-commit-message-prefix))
   :config
-  (m/l "magit-setup.el"))
+  (m/l "init-magit.el"))
 
 (use-package ansi-color
   :init
@@ -243,6 +257,8 @@
 
 (use-package kconfig
   :ensure nil
+  :mode (("/Kconfig$" . kconfig-mode)
+         ("/Kconfig\\..*$" . kconfig-mode))
   :load-path "lisp/")
 
 (use-package which-func
@@ -277,8 +293,14 @@
   :ensure nil)
 
 (use-package diffview
+  :bind
+  ("C-c m m >" . diffview-current)
   :load-path "lisp/diffview-mode"
   :ensure nil)
+
+(use-package diff-mode
+  :config
+  (define-key diff-mode-map "q" 'bury-buffer))
 
 (use-package expand-region
   :bind
@@ -520,6 +542,7 @@
 (use-package gnus
   :config
   (setq shr-use-fonts nil)
+  (define-key gnus-article-mode-map (kbd "C-c m m l") 'gnus-article-fill-long-lines)
 
   (defun my-ov-whole-buffer (regexp color-spec)
     (let (face-plist)
@@ -543,10 +566,36 @@
       (dolist (r regspecs)
         (my-ov-whole-buffer (car r) (cadr r))))))
 
+(use-package indent-hints
+  :ensure nil
+  :load-path "lisp/indent-hints-mode"
+  :config
+  (setq indent-hints-profile-switching-enabled t)
+  (indent-hints-global-mode))
+
+(use-package conf-mode
+  :mode (("/crontab.*$" . conf-mode)
+         ("_defconfig$" . conf-mode)
+         ("/.gitconfig". conf-mode)))
+
+(use-package markdown-mode
+  :mode (("\\.md" . markdown-mode)
+         ("\\.markdown" . markdown-mode)))
+
+(use-package yaml-mode
+  :mode ("\\.yml$" . yaml-mode))
+
+(use-package cmake-mode
+  :mode (("\\.cmake$" . cmake-mode)
+         ("CMakeLists\\.txt$" . cmake-mode)))
+
+(use-package sh-script
+  :mode ("\.install" . sh-mode))
+
 
 ;;; These lines should be last:
 ;; some keybindings
-;; (load-file "~/.emacs.d/my-keybindings.el")
+(m/l "my-keybindings.el")
 
 (when (file-exists-p "~/local_overrides.el")
     (load-file "~/local_overrides.el"))

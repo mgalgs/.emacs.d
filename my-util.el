@@ -272,7 +272,7 @@
                   "")))
     (concat the-path suffix)))
 
-(defun mgalgs/kill-where-i-am (&optional include-line-number)
+(defun m/kill-where-i-am (&optional include-line-number)
   "Put filename in the kill ring. With prefix, include the line
 number."
   (interactive "P")
@@ -283,8 +283,8 @@ number."
 ;; http://ergoemacs.org/emacs/elisp_trim_string.html
 (require 'subr-x)
 
-(defun mgalgs/kill-where-i-am-relative-to-gitroot (include-line-number)
-  "Like `mgalgs/kill-where-i-am' but is relative to the gitroot
+(defun m/kill-where-i-am-relative-to-gitroot (include-line-number)
+  "Like `m/kill-where-i-am' but is relative to the gitroot
 rather than the absolute path"
   (interactive "P")
   (let ((x-select-enable-clipboard t)
@@ -293,7 +293,7 @@ rather than the absolute path"
     (kill-new (string-remove-prefix gitroot
                                     (mgalgs--get-where-i-am include-line-number)))))
 
-(defun grep-what-im-on ()
+(defun m/grep-what-im-on ()
   "grep whatever i'm on by passing a prefix:"
   (interactive)
   (setq current-prefix-arg '(4))
