@@ -34,7 +34,8 @@
 (when (file-exists-p "~/private.el")
     (load-file "~/private.el"))
 
-;; misc settings
+
+;;; misc settings
 (setq scroll-step 1
       default-truncate-lines t
       display-time-day-and-date t
@@ -58,7 +59,8 @@
       delete-old-versions t
       kept-new-versions 6
       kept-old-versions 2
-      version-control t)
+      version-control t
+      custom-safe-themes t)
 
 (setq-default indent-tabs-mode nil ; don't use the tab character, only spaces
 	      ;; tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)
@@ -71,12 +73,37 @@
 	      ediff-show-clashes-only t
 	      term-buffer-maximum-size 15000)
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
+
+;;; misc modes
+
 ;; auto revert (useful when switching git branches)
 (global-auto-revert-mode)
+(delete-selection-mode)
+
+(defmacro my-visit-init-file-maker ()
+  "Defines a function to visit init.el"
+  (let ((init-file-name load-file-name))
+    `(defun my-visit-init-file ()
+       "Visits init.el"
+       (interactive)
+       (find-file ,init-file-name))))
+
+;; define my-visit-init-file by calling
+;; my-visit-init-file-maker
+(my-visit-init-file-maker)
+
+(load-theme 'wombat)
+
+
+;;; *** PACKAGES ***
 
 (use-package s)
 
 (use-package dash)
+
+(use-package diminish)
 
 (use-package ggtags)
 
@@ -176,7 +203,8 @@
                   lisp-mode-hook
                   lisp-interaction-mode-hook
                   scheme-mode-hook))
-    (add-hook hook #'enable-paredit-mode)))
+    (add-hook hook #'enable-paredit-mode))
+  :diminish paredit-mode)
 
 (use-package magit
   :bind
@@ -244,3 +272,91 @@
 (use-package diffview
   :load-path "lisp/diffview-mode"
   :ensure nil)
+
+(use-package expand-region
+  :bind
+  (("C-=" . er/expand-region)
+   ("C-c m =" . er/expand-region)))
+
+(use-package google-this
+  :bind-keymap ("C-c m /" . google-this-mode-submap)
+  :diminish google-this-mode)
+
+(use-package highlight-symbol
+  :bind
+  (("C-c M-s h ." . highlight-symbol-at-point)
+   ("C-c M-s h n" . highlight-symbol-next)
+   ("C-c M-s h p" . highlight-symbol-prev)
+   ("C-c M-s h a" . highlight-symbol-remove-all)))
+
+(use-package multiple-cursors
+  :bind
+  (("C-S-c C-S-c" . mc/edit-lines)
+   ("C-c m C" . mc/edit-lines)
+   ("C->" . mc/mark-next-like-this)
+   ("C-c m >" . mc/mark-next-like-this)
+   ("C-<" . mc/mark-previous-like-this)
+   ("C-c m <" . mc/mark-previous-like-this)
+   ("C-c C-<" . mc/mark-all-like-this)
+   ("C-c m m <" . mc/mark-all-like-this))
+  :init
+  (use-package phi-search
+    :config
+    ;; credit to @jonebird for the following 
+    ;; Allow isearch functionality with multipl-cursors
+    (add-hook 'multiple-cursors-mode-enabled-hook
+              (lambda ()
+                (interactive)
+                (global-set-key (kbd "C-s") 'phi-search)
+                (global-set-key (kbd "C-r") 'phi-search-backward)))
+
+    (add-hook 'multiple-cursors-mode-disabled-hook
+              (lambda ()
+                (interactive)
+                (global-set-key (kbd "C-s") 'isearch-forward)
+                (global-set-key (kbd "C-r") 'isearch-backward)))))
+
+(use-package wgrep)
+(use-package wgrep-ack)
+
+;;; make sure you `pacman -S python2-jedi python-jedi'
+(use-package jedi
+  :config
+  (add-hook 'python-mode-hook 'jedi:setup))
+
+(use-package litable
+  :defer t)
+
+(use-package smart-mode-line
+  :config
+  (setq sml/theme 'dark)
+  (sml/setup)
+  (setq sml/shorten-directory t)
+  (setq sml/shorten-modes t)
+  (setq sml/name-width 25)
+  (setq sml/mode-width 'full)
+  ;;; put sml/replacer-regexp-list items in ~/private.el. Stuff like
+  ;;; this:
+  ;; (eval-after-load 'smart-mode-line
+  ;;   '(progn
+  ;;      (add-to-list 'sml/replacer-regexp-list '("/home/mgalgs/workspace" ":WS:") t)
+  ;;      (add-to-list 'sml/replacer-regexp-list '(":WS:/stuff" ":st:") t)))
+  (use-package rich-minority
+    :config
+    (setq rm-blacklist '(" AC"
+                         " SP"
+                         " mate"
+                         " Plugged"
+                         " Gtags"
+                         " Abbrev"
+                         " Fill"
+                         " Guide"
+                         " pair"
+                         " yas"
+                         " MRev"
+                         " FN"
+                         " Fly"
+                         " MML"))))
+
+(use-package diff-hl
+  :config (global-diff-hl-mode))

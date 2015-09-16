@@ -47,3 +47,6 @@
 
 (my-make-recentering-advice find-tag)
 (my-make-recentering-advice pop-tag-mark)
+
+(advice-add #'backward-page :after #'recenter)
+(advice-add #'forward-page  :after #'recenter)
