@@ -57,7 +57,6 @@ installed/loaded.")
       inhibit-startup-screen t
       isearch-allow-scroll t
       kill-whole-line t
-      show-trailing-whitespace t
       ring-bell-function 'ignore
       history-length 6000
       compile-command "make"
@@ -75,15 +74,15 @@ installed/loaded.")
       uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 (setq-default indent-tabs-mode nil ; don't use the tab character, only spaces
-	      ;; tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)
-	      ;; tab-stop-list '(8 16 24 32 40 48 56 64 72 80 88 96 104 112 120)
-	      set-mark-command-repeat-pop t ; repeated C-SPC after C-u C-SPC keeps popping the mark
-	      ;; c-default-style "bsd" ; for nasty brace face
-	      indicate-buffer-boundaries 'right
-	      truncate-lines t
-	      fill-column 75
-	      ediff-show-clashes-only t
-	      term-buffer-maximum-size 15000)
+              ;; tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)
+              ;; tab-stop-list '(8 16 24 32 40 48 56 64 72 80 88 96 104 112 120)
+              set-mark-command-repeat-pop t ; repeated C-SPC after C-u C-SPC keeps popping the mark
+              ;; c-default-style "bsd" ; for nasty brace face
+              indicate-buffer-boundaries 'right
+              truncate-lines t
+              fill-column 75
+              ediff-show-clashes-only t
+              term-buffer-maximum-size 15000)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -128,7 +127,8 @@ installed/loaded.")
 (use-package ggtags)
 
 (use-package whitespace
-  :init
+  :config
+  (setq whitespace-style '(face lines-tail empty indentation::tab))
   (global-whitespace-mode 0)
   (dolist (hook '(c-mode-common-hook))
     (add-hook hook #'whitespace-mode)))
