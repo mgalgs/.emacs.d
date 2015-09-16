@@ -60,7 +60,8 @@
       kept-new-versions 6
       kept-old-versions 2
       version-control t
-      custom-safe-themes t)
+      custom-safe-themes t
+      dired-listing-switches "-alh")
 
 (setq-default indent-tabs-mode nil ; don't use the tab character, only spaces
 	      ;; tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)
@@ -81,6 +82,7 @@
 ;; auto revert (useful when switching git branches)
 (global-auto-revert-mode)
 (delete-selection-mode)
+(savehist-mode 1)
 
 (defmacro my-visit-init-file-maker ()
   "Defines a function to visit init.el"
@@ -104,6 +106,10 @@
 (use-package dash)
 
 (use-package diminish)
+
+(use-package auto-complete
+  :config
+  (ac-config-default))
 
 (use-package ggtags)
 
@@ -177,7 +183,8 @@
 
 (use-package iedit
   :bind
-  ("C-c m ;" . iedit-mode)
+  (("C-;" . iedit-mode)
+   ("C-c m ;" . iedit-mode))
   :config
   (setq iedit-auto-recenter nil))
 
@@ -360,3 +367,186 @@
 
 (use-package diff-hl
   :config (global-diff-hl-mode))
+
+(use-package guide-key
+  :init
+  (setq guide-key/guide-key-sequence
+      '("C-x r"
+        "C-x 4"
+        "C-c m"
+        "C-c m m"
+        "C-x C-k"
+        "C-c g"
+        "C-c g g"))
+  :config
+  (guide-key-mode 1))
+
+(use-package ack-and-a-half
+  :load-path "lisp/ack-and-a-half"
+  :ensure nil
+  :config
+  (defalias 'ack 'ack-and-a-half)
+  (defalias 'ack-same 'ack-and-a-half-same)
+  (defalias 'ack-find-file 'ack-and-a-half-find-file)
+  (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
+  (defalias 'ack-with-args 'ack-and-a-half-with-args))
+
+(use-package flyspell
+  :config
+  (add-hook 'git-commit-mode-hook 'flyspell-mode)
+  (add-hook 'message-mode-hook 'flyspell-mode)
+  ;; unbind C-; since we use it for iedit
+  (define-key flyspell-mode-map (kbd "C-;") nil))
+
+(use-package bbdb
+  :config
+  (when (or (file-exists-p "~/.emacs.d/bbdb")
+            (file-exists-p "~/.bbdb"))
+    (bbdb-initialize 'gnus 'message)
+    (bbdb-mua-auto-update-init 'gnus 'message)
+    (setq bbdb-mua-update-interactive-p '(create . create)
+          bbdb-complete-mail-allow-cycling t
+          bbdb-completion-display-record nil
+          bbdb-update-records-p 'create
+          ;; bbdb-pop-up-window-size 0
+          bbdb-message-all-addresses t
+          bbdb-layout 'one-line
+          bbdb-message-pop-up nil)
+
+    (setq bbdb-ignore-message-alist
+          '((("To" "CC") . "emacs-devel@gnu\\.org")
+            (("To" "CC") . "help-gnu-emacs@gnu\\.org")
+            ("From" . "notifications@github\\.com")
+            ("X-Mailman-Version" . ".*")))))
+
+(use-package jade-mode
+  :mode ("\\.jade$" . jade-mode))
+
+(use-package sws-mode
+  :mode ("\\.styl$" . sws-mode))
+
+(use-package web-mode
+  :mode (("\\.html?\\'" . web-mode)
+         ("\\.djhtml?\\'" . web-mode)
+         ("\\.tpl" . web-mode))
+  :config
+  (defun my-current-buffer-django-p ()
+    (save-excursion
+      (search-forward-regexp "{% base\\|{% if\\|{% for\\|{% include\\|{% block\\|{% csrf_token %}\\|{% url\\|{{ "
+                             nil
+                             t)))
+  (setq web-mode-engines-alist
+        '(("django". "\\.djhtml")
+          ("django" . my-current-buffer-django-p)
+          ("php" . "\\.php")))
+  (define-key web-mode-map (kbd "C-;") nil)
+  (setq-default web-mode-markup-indent-offset 2))
+
+(use-package nyan-mode
+  :config
+  (when window-system
+    (nyan-mode)
+    (setq nyan-bar-length 10)))
+
+(use-package avy
+  :bind
+  (("C-c SPC" . avy-goto-char)
+   ("C-c m SPC" . avy-goto-char-2)
+   ("C-c m m SPC" . avy-goto-word-1)
+   ("M-g g" . avy-goto-line)))
+
+(use-package ov)
+
+(use-package rainbow-delimiters
+  :config
+  (set-face-attribute 'rainbow-delimiters-depth-1-face nil :foreground "#2aa198")
+  (set-face-attribute 'rainbow-delimiters-depth-2-face nil :foreground "#b58900")
+  (set-face-attribute 'rainbow-delimiters-depth-3-face nil :foreground "#268bd2")
+  (set-face-attribute 'rainbow-delimiters-depth-4-face nil :foreground "#dc322f")
+  (set-face-attribute 'rainbow-delimiters-depth-5-face nil :foreground "#859900")
+  (set-face-attribute 'rainbow-delimiters-depth-6-face nil :foreground "#268bd2")
+  (set-face-attribute 'rainbow-delimiters-depth-7-face nil :foreground "#cb4b16")
+  (set-face-attribute 'rainbow-delimiters-depth-8-face nil :foreground "#d33682")
+  (set-face-attribute 'rainbow-delimiters-depth-9-face nil :foreground "#839496")
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'ielm-mode-hook 'rainbow-delimiters-mode))
+
+(use-package erc
+  :config
+  (defun my-erc-ansi-colors ()
+    "For ansi color escape sequences"
+    (ansi-color-apply-on-region (point-min) (point-max)))
+  (add-hook 'erc-insert-modify-hook 'my-erc-ansi-colors)
+  (use-package erc-hl-nicks))
+
+(use-package dts-mode
+  :pin gnu)
+
+(use-package numbers
+  :ensure nil
+  :load-path "lisp/")
+
+(use-package recentf
+  :config
+  (recentf-mode 1)
+  (setq recentf-max-menu-items 25))
+
+(use-package dockerfile-mode
+  :mode (("Dockerfile\\'" . dockerfile-mode)))
+
+(use-package graphviz-dot-mode)
+
+(use-package go-mode)
+
+(use-package go-autocomplete)
+
+(use-package python
+  :config
+  (setq python-fill-docstring-style 'pep-257-nn)
+
+  (add-hook 'python-mode-hook
+            #'(lambda ()
+                (setq autopair-handle-action-fns
+                      (list #'autopair-default-handle-action
+                            #'autopair-python-triple-quote-action)))))
+
+(use-package nginx-mode)
+
+(use-package xcscope
+  :config
+  (add-hook 'python-mode-hook (function cscope-minor-mode))
+  (setq cscope-index-recursively t))
+
+(use-package gnus
+  :config
+  (setq shr-use-fonts nil)
+
+  (defun my-ov-whole-buffer (regexp color-spec)
+    (let (face-plist)
+      (if (stringp color-spec)
+          (setq face-plist `(:foreground ,color-spec))
+        (setq face-plist `(:foreground ,(car color-spec)
+                                       :background ,(cadr color-spec))))
+      (ov-set (ov-regexp regexp)
+              (point-min)
+              (point-max)
+              'face face-plist)))
+
+  (defun my-overlays-for-mailing-lists ()
+    (interactive)
+    (let ((regspecs '(("\\[RFC.*\\]" "chartreuse1")
+                      ("\\[PATCH.*\\]" "dark turquoise")
+                      ("\\b[^[:blank:]]+: " "tomato1")
+                      ("\\[GIT PULL\\]" "red4")
+                      ("\\bion\\b" ("dark green" "green"))
+                      ("\\biommu/arm-smmu\\b" ("dark red" "green")))))
+      (dolist (r regspecs)
+        (my-ov-whole-buffer (car r) (cadr r))))))
+
+
+;;; These lines should be last:
+;; some keybindings
+;; (load-file "~/.emacs.d/my-keybindings.el")
+
+(when (file-exists-p "~/local_overrides.el")
+    (load-file "~/local_overrides.el"))

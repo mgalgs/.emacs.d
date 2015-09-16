@@ -146,9 +146,6 @@
 [submodule "site-lisp/popwin-el"]
 	path = site-lisp/popwin-el
 	url = https://github.com/m2ym/popwin-el.git
-[submodule "site-lisp/ack-and-a-half"]
-	path = site-lisp/ack-and-a-half
-	url = https://github.com/mgalgs/ack-and-a-half.git
 [submodule "site-lisp/emacs-helm-gtags"]
 	path = site-lisp/emacs-helm-gtags
 	url = https://github.com/syohex/emacs-helm-gtags.git
@@ -260,3 +257,6 @@
 [submodule "lisp/diffview-mode"]
 	path = lisp/diffview-mode
 	url = https://github.com/mgalgs/diffview-mode.git
+[submodule "lisp/ack-and-a-half"]
+	path = lisp/ack-and-a-half
+	url = https://github.com/mgalgs/ack-and-a-half.git
