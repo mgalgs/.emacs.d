@@ -34,6 +34,13 @@
 ;; some utility functions
 (m/l "my-util.el")
 
+(defvar m/init-complete-hook nil
+  "Runs when ~/.emacs.d/init.el finishes loading.  Useful for
+local overrides.  For example, anything in ~/private.el should
+probably run in this hook rather than running at load time, since
+it might contain configuration that relies on packages yet to be
+installed/loaded.")
+
 (when (file-exists-p "~/private.el")
     (load-file "~/private.el"))
 
@@ -597,5 +604,4 @@
 ;; some keybindings
 (m/l "my-keybindings.el")
 
-(when (file-exists-p "~/local_overrides.el")
-    (load-file "~/local_overrides.el"))
+(run-hooks 'm/init-complete-hook)
