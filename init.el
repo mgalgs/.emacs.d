@@ -98,17 +98,17 @@ installed/loaded.")
 (delete-selection-mode)
 (savehist-mode 1)
 
-(defmacro my-visit-init-file-maker ()
+(defmacro m/visit-init-file-maker ()
   "Defines a function to visit init.el"
   (let ((init-file-name load-file-name))
-    `(defun my-visit-init-file ()
+    `(defun m/visit-init-file ()
        "Visits init.el"
        (interactive)
        (find-file ,init-file-name))))
 
-;; define my-visit-init-file by calling
-;; my-visit-init-file-maker
-(my-visit-init-file-maker)
+;; define m/visit-init-file by calling
+;; m/visit-init-file-maker
+(m/visit-init-file-maker)
 
 (load-theme 'wombat)
 
