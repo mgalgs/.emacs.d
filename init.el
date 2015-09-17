@@ -124,7 +124,11 @@ installed/loaded.")
   :config
   (ac-config-default))
 
-(use-package ggtags)
+(use-package ggtags
+  :bind
+  ("M-*" . pop-tag-mark)
+  :config
+  (m/l "init-gnu-global.el"))
 
 (use-package whitespace
   :config
@@ -134,11 +138,9 @@ installed/loaded.")
     (add-hook hook #'whitespace-mode)))
 
 (use-package yasnippet
-  :config
-  (yas-reload-all)
   :init
-  (dolist (hook '(c-mode-common-hook))
-    (add-hook hook #'yas-minor-mode)))
+  (yas-reload-all)
+  (add-hook 'c-mode-common-hook 'yas-minor-mode))
 
 (use-package org
   :bind
@@ -198,7 +200,8 @@ installed/loaded.")
 
 (use-package cc-mode
   :config
-  (m/l "init-linux-kernel.el"))
+  (m/l "init-linux-kernel.el")
+  (add-hook 'c-mode-common-hook 'electric-pair-mode))
 
 (use-package iedit
   :bind
