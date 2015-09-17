@@ -536,6 +536,12 @@ installed/loaded.")
   :config
   (setq python-fill-docstring-style 'pep-257-nn)
 
+  (defun m/pyscope-current-repo ()
+    (interactive)
+    (magit-with-toplevel
+      (shell-command "find . -name '*.py' > cscope.files")
+      (shell-command "~/src/pycscope/venv/bin/pycscope -i cscope.files")))
+
   (add-hook 'python-mode-hook
             #'(lambda ()
                 (setq autopair-handle-action-fns
