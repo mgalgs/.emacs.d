@@ -256,10 +256,10 @@ installed/loaded.")
   :init
   ;; handle ANSI color escape sequences in compilation output (like for
   ;; Android builds) Credit: http://stackoverflow.com/a/20788581/209050
-  (defun my-colorize-compilation-buffer ()
+  (defun m/colorize-compilation-buffer ()
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
-  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+  (add-hook 'compilation-filter-hook 'm/colorize-compilation-buffer))
 
 (use-package gthings
   :ensure nil
@@ -462,14 +462,14 @@ installed/loaded.")
          ("\\.djhtml?\\'" . web-mode)
          ("\\.tpl" . web-mode))
   :config
-  (defun my-current-buffer-django-p ()
+  (defun m/current-buffer-django-p ()
     (save-excursion
       (search-forward-regexp "{% base\\|{% if\\|{% for\\|{% include\\|{% block\\|{% csrf_token %}\\|{% url\\|{{ "
                              nil
                              t)))
   (setq web-mode-engines-alist
         '(("django". "\\.djhtml")
-          ("django" . my-current-buffer-django-p)
+          ("django" . m/current-buffer-django-p)
           ("php" . "\\.php")))
   (define-key web-mode-map (kbd "C-;") nil)
   (setq-default web-mode-markup-indent-offset 2))
@@ -505,10 +505,10 @@ installed/loaded.")
 
 (use-package erc
   :config
-  (defun my-erc-ansi-colors ()
+  (defun m/erc-ansi-colors ()
     "For ansi color escape sequences"
     (ansi-color-apply-on-region (point-min) (point-max)))
-  (add-hook 'erc-insert-modify-hook 'my-erc-ansi-colors)
+  (add-hook 'erc-insert-modify-hook 'm/erc-ansi-colors)
   (use-package erc-hl-nicks))
 
 (use-package dts-mode
@@ -554,7 +554,7 @@ installed/loaded.")
   (setq shr-use-fonts nil)
   (define-key gnus-article-mode-map (kbd "C-c m m l") 'gnus-article-fill-long-lines)
 
-  (defun my-ov-whole-buffer (regexp color-spec)
+  (defun m/ov-whole-buffer (regexp color-spec)
     (let (face-plist)
       (if (stringp color-spec)
           (setq face-plist `(:foreground ,color-spec))
@@ -565,7 +565,7 @@ installed/loaded.")
               (point-max)
               'face face-plist)))
 
-  (defun my-overlays-for-mailing-lists ()
+  (defun m/overlays-for-mailing-lists ()
     (interactive)
     (let ((regspecs '(("\\[RFC.*\\]" "chartreuse1")
                       ("\\[PATCH.*\\]" "dark turquoise")
@@ -574,7 +574,7 @@ installed/loaded.")
                       ("\\bion\\b" ("dark green" "green"))
                       ("\\biommu/arm-smmu\\b" ("dark red" "green")))))
       (dolist (r regspecs)
-        (my-ov-whole-buffer (car r) (cadr r))))))
+        (m/ov-whole-buffer (car r) (cadr r))))))
 
 (use-package indent-hints
   :ensure nil
