@@ -138,7 +138,7 @@ installed/loaded.")
     (add-hook hook #'whitespace-mode)))
 
 (use-package yasnippet
-  :init
+  :config
   (yas-reload-all)
   (add-hook 'c-mode-common-hook 'yas-minor-mode))
 
