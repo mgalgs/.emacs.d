@@ -191,7 +191,7 @@ installed/loaded.")
 	helm-truncate-lines t)
   ;; todo: make cycling global (not per-source):
   ;; https://github.com/emacs-helm/helm/issues/387
-  (setq helm-move-to-line-cycle-in-source t)
+  ;; (setq helm-move-to-line-cycle-in-source t)
   (setq helm-ls-git-show-abs-or-relative 'relative))
 
 (use-package shell
