@@ -409,7 +409,8 @@ installed/loaded.")
         "C-c m m"
         "C-x C-k"
         "C-c g"
-        "C-c g g"))
+        "C-c g g"
+        "C-c s"))
   :config
   (guide-key-mode 1))
 
