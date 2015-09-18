@@ -540,7 +540,7 @@ installed/loaded.")
     (interactive)
     (magit-with-toplevel
       (shell-command "find . -name '*.py' > cscope.files")
-      (shell-command "~/src/pycscope/venv/bin/pycscope -i cscope.files")))
+      (shell-command "~/virtualenvs/pycscope/bin/pycscope -i cscope.files")))
 
   (add-hook 'python-mode-hook
             #'(lambda ()
