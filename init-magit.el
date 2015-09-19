@@ -1,7 +1,7 @@
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; avoid conflicts with vc:
-(remove-hook 'find-file-hooks 'vc-find-file-hook)
+;; (remove-hook 'find-file-hooks 'vc-find-file-hook)
 
 (setq magit-diff-refine-hunk 'all)
 (setq git-rebase-auto-advance t)
