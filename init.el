@@ -619,8 +619,9 @@ installed/loaded.")
   :ensure nil
   :load-path "lisp/indent-hints-mode"
   :config
-  (setq indent-hints-profile-switching-enabled t)
-  (indent-hints-global-mode))
+  (setq indent-hints-profile-switching-enabled t
+        indent-hints-ignore-c-styles '("linux"))
+  (add-hook 'c-mode-common-hook 'indent-hints-activate))
 
 (use-package conf-mode
   :mode (("/crontab.*$" . conf-mode)
