@@ -156,10 +156,11 @@ installed/loaded.")
 (use-package ggtags
   :bind
   ("M-*" . pop-tag-mark)
-  :config
-  (m/l "init-gnu-global.el")
+  :init
   (dolist (hook '(c-mode-common-hook dired-mode-hook))
-    (add-hook hook 'ggtags-mode)))
+    (add-hook hook 'ggtags-mode))
+  :config
+  (m/l "init-gnu-global.el"))
 
 (use-package whitespace
   :config
