@@ -289,6 +289,8 @@ installed/loaded.")
   (use-package git-commit
     :bind
     ("C-c C-e" . m/suggest-commit-message-prefix))
+  (use-package magit-gh-pulls
+    :init (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
   :config
   (m/l "init-magit.el"))
 
@@ -450,7 +452,8 @@ installed/loaded.")
         "C-x C-k"
         "C-c g"
         "C-c g g"
-        "C-c s"))
+        "C-c s"
+        "# g"))
   :config
   (guide-key-mode 1))
 
