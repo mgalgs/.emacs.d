@@ -956,7 +956,7 @@ suggests some commit message prefixes."
   (interactive)
   (magit-with-toplevel
     (let ((choices (delete nil
-                           (-uniq (mapcar (lambda (el) (s-match ".*:"
+                           (-uniq (mapcar (lambda (el) (s-match ".*: "
                                                                 (substring el 1)))
                                           (magit-git-lines "log"
                                                            "--no-merges"
@@ -969,8 +969,7 @@ suggests some commit message prefixes."
       (message "choices is %s" choices)
       (when (> (length choices) 0)
         (insert (helm-comp-read "Commit message prefix: "
-                                choices)
-                " ")))))
+                                choices))))))
 
 (defun m/underline-previous-line ()
   "Adds an ascii underline to the previous line using `='
