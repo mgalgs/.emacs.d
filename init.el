@@ -151,7 +151,10 @@ installed/loaded.")
 
 (use-package auto-complete
   :config
-  (ac-config-default))
+  (ac-config-default)
+  (setq ac-auto-start nil)
+  (define-key ac-mode-map (kbd "C-c /") 'auto-complete)
+  (define-key ac-mode-map (kbd "C-s") 'ac-isearch))
 
 (use-package ggtags
   :bind
