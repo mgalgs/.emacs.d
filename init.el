@@ -25,7 +25,7 @@
 (when (eq system-type 'darwin)
   (add-to-list 'exec-path "/usr/local/bin")
   (setq mac-command-modifier 'meta
-        setq mac-option-modifier 'super
+        mac-option-modifier 'super
         mac-function-modifier 'control))
 
 ;; some general advice
