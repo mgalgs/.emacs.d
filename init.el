@@ -154,7 +154,7 @@ installed/loaded.")
   (ac-config-default)
   (setq ac-auto-start nil)
   (define-key ac-mode-map (kbd "C-c /") 'auto-complete)
-  (define-key ac-mode-map (kbd "C-s") 'ac-isearch))
+  (define-key ac-completing-map (kbd "C-s") 'ac-isearch))
 
 (use-package ggtags
   :bind
