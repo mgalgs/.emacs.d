@@ -161,21 +161,25 @@ installed/loaded.")
   ("M-*" . pop-tag-mark)
   :init
   (dolist (hook '(c-mode-common-hook dired-mode-hook))
-    (add-hook hook 'ggtags-mode))
+    (add-hook hook (lambda ()
+                     (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'dired-mode-hook)
+                       (ggtags-mode 1)))))
   :config
   (m/l "init-gnu-global.el"))
 
 (use-package whitespace
+  :init
+  (dolist (hook '(c-mode-common-hook))
+    (add-hook hook #'whitespace-mode))
   :config
   (setq whitespace-style '(face trailing lines-tail empty indentation::tab))
-  (global-whitespace-mode 0)
-  (dolist (hook '(c-mode-common-hook))
-    (add-hook hook #'whitespace-mode)))
+  (global-whitespace-mode 0))
 
 (use-package yasnippet
+  :init
+  (add-hook 'c-mode-common-hook 'yas-minor-mode)
   :config
-  (yas-reload-all)
-  (add-hook 'c-mode-common-hook 'yas-minor-mode))
+  (yas-reload-all))
 
 (use-package org
   :bind
@@ -230,7 +234,7 @@ installed/loaded.")
   (setq helm-ls-git-show-abs-or-relative 'relative))
 
 (use-package shell
-  :config
+  :init
   (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on))
 
 (use-package cc-mode
@@ -375,7 +379,7 @@ installed/loaded.")
    ("C-c m m <" . mc/mark-all-like-this))
   :init
   (use-package phi-search
-    :config
+    :init
     ;; credit to @jonebird for the following 
     ;; Allow isearch functionality with multipl-cursors
     (add-hook 'multiple-cursors-mode-enabled-hook
@@ -395,7 +399,7 @@ installed/loaded.")
 
 ;;; make sure you `pacman -S python2-jedi python-jedi'
 (use-package jedi
-  :config
+  :init
   (add-hook 'python-mode-hook 'jedi:setup))
 
 (use-package litable
@@ -526,6 +530,9 @@ installed/loaded.")
 (use-package ov)
 
 (use-package rainbow-delimiters
+  :init
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
   :config
   (set-face-attribute 'rainbow-delimiters-depth-1-face nil :foreground "#2aa198")
   (set-face-attribute 'rainbow-delimiters-depth-2-face nil :foreground "#b58900")
@@ -535,9 +542,7 @@ installed/loaded.")
   (set-face-attribute 'rainbow-delimiters-depth-6-face nil :foreground "#268bd2")
   (set-face-attribute 'rainbow-delimiters-depth-7-face nil :foreground "#cb4b16")
   (set-face-attribute 'rainbow-delimiters-depth-8-face nil :foreground "#d33682")
-  (set-face-attribute 'rainbow-delimiters-depth-9-face nil :foreground "#839496")
-  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'ielm-mode-hook 'rainbow-delimiters-mode))
+  (set-face-attribute 'rainbow-delimiters-depth-9-face nil :foreground "#839496"))
 
 (use-package erc
   :config
@@ -587,8 +592,9 @@ installed/loaded.")
 (use-package nginx-mode)
 
 (use-package xcscope
-  :config
+  :init
   (add-hook 'python-mode-hook (function cscope-minor-mode))
+  :config
   (setq cscope-index-recursively t))
 
 (use-package gnus

@@ -1,8 +1,3 @@
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-              (ggtags-mode 1))))
-
 (defun m/gtags-command-finished (process event)
   (message "%s: %s" process (replace-regexp-in-string (regexp-quote "\n")
 						      ""
