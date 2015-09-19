@@ -663,6 +663,8 @@ installed/loaded.")
     (eval-after-load 'flycheck
       '(flycheck-package-setup))))
 
+(use-package gist)
+
 
 ;;; These lines should be last:
 ;; some keybindings
