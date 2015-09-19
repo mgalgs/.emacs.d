@@ -287,8 +287,8 @@ installed/loaded.")
    ("C-c m m l" . m/magit-file-log))
   :init
   (use-package git-commit
-    :init
-    (bind-key "C-c C-e" 'm/suggest-commit-message-prefix))
+    :bind
+    ("C-c C-e" . m/suggest-commit-message-prefix))
   :config
   (m/l "init-magit.el"))
 
