@@ -32,7 +32,36 @@
 (m/l "my-advice.el")
 
 ;; some utility functions
-(m/l "my-util.el")
+(use-package my-util
+  :ensure nil
+  :load-path "lisp/"
+  :bind
+  (("C-c m m a" . m/add-include)
+   ("C-v" . m/smooth-scroll-down)
+   ("M-v" . m/smooth-scroll-up)
+   ("<M-up>" . m/increment-number-decimal)
+   ("<M-down>" . m/decrement-number-decimal)
+   ("M-P" . m/up-a-line)
+   ("M-N" . m/down-a-line)
+   ("C-S-l" . m/horizontal-recenter)
+   ("C-c m d" . m/lookup-current-word)
+   ("<f8>" . m/toggle-tab-width-setting)
+   ("C-c m s" . m/search-all-buffers)
+   ("C-c m i" . m/kill-where-i-am)
+   ("C-c m m i" . m/kill-where-i-am-relative-to-gitroot)
+   ("C-c m g" . m/grep-what-im-on)
+   ("C-c m l" . m/kill-last-message)
+   ("C-c m x" . m/xdg-open-each-in-region)
+   ("C-c i" . m/go-to-corresponding-header-or-implementation-file)
+   ("C-c m `" . m/recompile)
+   ("C-c m m `" . m/open-compilation-buffer)
+   ("C-c m m o" . m/occur-region-or-symbol-at-point)
+   ("C-c m C-x C-e" . eval-and-replace)
+   ("C-h e" . m/view-and-switch-to-echo-area-messages)
+   ("C-c m M-/" . m/expand-file-name-at-point)
+   ("C-v" . m/smooth-scroll-down)
+   ("M-v" . m/smooth-scroll-up)
+   ("C-c m m u" . m/underline-previous-line)))
 
 (defvar m/init-complete-hook nil
   "Runs when ~/.emacs.d/init.el finishes loading.  Useful for

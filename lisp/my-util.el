@@ -982,3 +982,39 @@ characters.  TODO: add support for different characters."
                       (end-of-line)
                       (- (current-column) col)))))
     (insert (make-string line-len ?=) "\n")))
+
+(defvar m--add-include-history nil)
+
+(defun m/goto-includes ()
+  "Goes to the top #include block"
+  (interactive)
+  (-if-let (includes (save-excursion
+                       (goto-char 0)
+                       (-when-let (includes (re-search-forward "^#include " nil t))
+                         (beginning-of-line)
+                         (point))))
+      (progn
+        (push-mark)
+        (goto-char includes)
+        (recenter))
+    (message "Couldn't find any includes in this file!")))
+
+(defun m/add-include (arg)
+  "Adds a #include to the current buffer (presumably a C source
+or header file), by appending it to the first block of existing
+#include's.
+
+With a prefix arg, just goto this file's includes."
+  (interactive "P")
+  (if arg
+      (m/goto-includes)
+    (let ((include (read-string "#include: "
+                                nil
+                                m--add-include-history)))
+      (save-excursion
+        (goto-char 0)
+        (when (re-search-forward "^#include " nil t)
+          (forward-paragraph)
+          (insert "#include " include "\n"))))))
+
+(provide 'my-util)
