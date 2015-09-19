@@ -34,6 +34,7 @@
 ;; some utility functions
 (use-package my-util
   :ensure nil
+  :commands (m/suggest-commit-message-prefix)
   :load-path "lisp/"
   :bind
   (("C-c m m a" . m/add-include)
