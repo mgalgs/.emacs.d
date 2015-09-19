@@ -43,3 +43,11 @@
 
 (font-lock-add-keywords 'emacs-lisp-mode
                         magit-font-lock-keywords)
+
+(defun m/magit-reset-author (&optional args)
+  "Resets the authorship information for the last commit"
+  (interactive)
+  (magit-run-git-async "commit" "--amend" "--no-edit" "--reset-author"))
+
+(magit-define-popup-action 'magit-commit-popup
+  ?R "Reset author" 'm/magit-reset-author)
