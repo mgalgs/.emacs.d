@@ -966,7 +966,6 @@ suggests some commit message prefixes."
                                                            (magit-git-lines "diff"
                                                                             "--cached"
                                                                             "--name-only")))))))
-      (message "choices is %s" choices)
       (when (> (length choices) 0)
         (insert (helm-comp-read "Commit message prefix: "
                                 choices))))))
