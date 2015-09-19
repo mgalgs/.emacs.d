@@ -164,7 +164,7 @@ installed/loaded.")
 
 (use-package whitespace
   :config
-  (setq whitespace-style '(face lines-tail empty indentation::tab))
+  (setq whitespace-style '(face trailing lines-tail empty indentation::tab))
   (global-whitespace-mode 0)
   (dolist (hook '(c-mode-common-hook))
     (add-hook hook #'whitespace-mode)))
