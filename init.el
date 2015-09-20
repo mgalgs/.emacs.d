@@ -519,6 +519,7 @@ installed/loaded.")
   (setq-default web-mode-markup-indent-offset 2))
 
 (use-package nyan-mode
+  :if window-system
   :config
   (when window-system
     (nyan-mode)
