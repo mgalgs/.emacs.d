@@ -655,6 +655,13 @@ installed/loaded.")
 (use-package sh-script
   :mode ("\.install" . sh-mode))
 
+(use-package flycheck
+  :config
+  (use-package flycheck-package
+    :config
+    (eval-after-load 'flycheck
+      '(flycheck-package-setup))))
+
 
 ;;; These lines should be last:
 ;; some keybindings
