@@ -666,7 +666,8 @@ installed/loaded.")
 (use-package gist)
 
 (use-package undo-tree
-  :config (global-undo-tree-mode))
+  :config (global-undo-tree-mode)
+  :diminish undo-tree-mode)
 
 
 ;;; These lines should be last:
