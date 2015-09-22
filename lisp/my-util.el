@@ -626,12 +626,19 @@ in each `nnmail-split-methods'"
 (add-hook 'isearch-mode-hook 'm/isearch-yank-word-hook)
 
 (defun m/bit-numberer (numstring &optional arg)
-  "Numbers the bits in `num' (expected to be a string
-representing a binary number)."
+  "Number the bits in `NUMSTRING'.
+
+NUMSTRING is a string representing a binary or hex number.
+
+When give a prefix arg, also prompts for a minimum bit width."
   (interactive "sBinary or hex number: \nP")
-  (let (output-list output-string)
+  (let (output-list output-string bitwidth)
     (when (string-prefix-p "0x" numstring)
-        (setq numstring (hex2bin numstring)))
+      (setq numstring (hex2bin numstring)))
+    (if arg
+        (setq bitwidth (read-number "Bit width: " 32))
+      (setq bitwidth 32))
+    (setq numstring (s-pad-left bitwidth "0" numstring))
     (loop for i downfrom (1- (length numstring)) to 0
 	  do
 	  (setq output-list (cons (format "|%-3d" i) output-list)))
@@ -641,9 +648,7 @@ representing a binary number)."
     (setq output-string (mapconcat 'identity
 				   (reverse output-list)
 				   ""))
-    (message output-string)
-    (when arg
-      (insert-string output-string))))
+    (message output-string)))
 
 (defun m/occur-region-or-symbol-at-point (&optional nlines the-point the-mark)
   "Run `occur' with `symbol-at-point' or the region, if active."
