@@ -665,6 +665,9 @@ installed/loaded.")
 
 (use-package gist)
 
+(use-package undo-tree
+  :config (global-undo-tree-mode))
+
 
 ;;; These lines should be last:
 ;; some keybindings
