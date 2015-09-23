@@ -10,3 +10,6 @@
 [submodule "lisp/indent-hints-mode"]
 	path = lisp/indent-hints-mode
 	url = https://github.com/mgalgs/indent-hints-mode.git
+[submodule "lisp/make-readme-markdown"]
+	path = lisp/make-readme-markdown
+	url = git@github.com:mgalgs/make-readme-markdown.git
