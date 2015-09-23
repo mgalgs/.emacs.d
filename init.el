@@ -163,7 +163,7 @@ installed/loaded.")
   :init
   (dolist (hook '(c-mode-common-hook dired-mode-hook))
     (add-hook hook (lambda ()
-                     (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'dired-mode-hook)
+                     (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'dired-mode)
                        (ggtags-mode 1)))))
   :config
   (m/l "init-gnu-global.el"))
