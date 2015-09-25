@@ -582,7 +582,7 @@ installed/loaded.")
   :config
   (setq python-fill-docstring-style 'pep-257-nn)
 
-  (defun m/pyscope-current-repo ()
+  (defun m/pycscope-current-repo ()
     (interactive)
     (magit-with-toplevel
       (shell-command "find . -name '*.py' > cscope.files")
