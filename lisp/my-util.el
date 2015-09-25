@@ -975,16 +975,17 @@ suggests some commit message prefixes."
         (insert (helm-comp-read "Commit message prefix: "
                                 choices))))))
 
-(defun m/underline-previous-line ()
+(defun m/underline-previous-line (&optional arg)
   "Adds an ascii underline to the previous line using `='
 characters.  TODO: add support for different characters."
-  (interactive)
+  (interactive "P")
   (let ((line-len (save-excursion
                     (forward-line -1)
                     (let ((col (current-column)))
                       (end-of-line)
-                      (- (current-column) col)))))
-    (insert (make-string line-len ?=) "\n")))
+                      (- (current-column) col))))
+        (c (if arg (read-char "Underline char: ") ?=)))
+    (insert (make-string line-len c) "\n")))
 
 (defvar m--add-include-history nil)
 
