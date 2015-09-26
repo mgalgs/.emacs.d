@@ -669,6 +669,8 @@ installed/loaded.")
   :config (global-undo-tree-mode)
   :diminish undo-tree-mode)
 
+(use-package restclient)
+
 
 ;;; These lines should be last:
 ;; some keybindings
