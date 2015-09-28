@@ -598,7 +598,7 @@ installed/loaded.")
 
 (use-package xcscope
   :init
-  (add-hook 'python-mode-hook (function cscope-minor-mode))
+  (add-hook 'python-mode-hook 'cscope-minor-mode)
   :config
   (setq cscope-index-recursively t))
 
