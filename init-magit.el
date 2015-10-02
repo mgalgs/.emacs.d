@@ -39,7 +39,9 @@
 
 (defun m/magit-file-log ()
   (interactive)
-  (magit-log '("HEAD") nil (list (magit-file-relative-name))))
+  (magit-log '("HEAD")
+             '("--follow")
+             (list (magit-file-relative-name))))
 
 (font-lock-add-keywords 'emacs-lisp-mode
                         magit-font-lock-keywords)
