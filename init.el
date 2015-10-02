@@ -171,8 +171,11 @@ installed/loaded.")
 
 (use-package whitespace
   :init
-  (dolist (hook '(c-mode-common-hook))
-    (add-hook hook #'whitespace-mode))
+  (add-hook 'c-mode-common-hook 'whitespace-mode)
+  (add-hook 'python-mode-hook (lambda ()
+                                (set (make-local-variable 'whitespace-style)
+                                     '(face trailing lines-tail empty indentation::space))
+                                (whitespace-mode)))
   :config
   (setq whitespace-style '(face trailing lines-tail empty indentation::tab))
   (global-whitespace-mode 0))
