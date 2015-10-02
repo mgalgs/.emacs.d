@@ -637,7 +637,8 @@ installed/loaded.")
   :config
   (setq indent-hints-profile-switching-enabled t
         indent-hints-ignore-c-styles '("linux"))
-  (add-hook 'c-mode-common-hook 'indent-hints-activate))
+  (add-hook 'c-mode-common-hook 'indent-hints-activate)
+  (add-hook 'dts-mode-hook 'indent-hints-activate))
 
 (use-package conf-mode
   :mode (("/crontab.*$" . conf-mode)
