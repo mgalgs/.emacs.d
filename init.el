@@ -162,7 +162,7 @@ installed/loaded.")
   :bind
   ("M-*" . pop-tag-mark)
   :init
-  (dolist (hook '(c-mode-common-hook dired-mode-hook))
+  (dolist (hook '(c-mode-common-hook dired-mode-hook dts-mode-hook conf-mode-hook))
     (add-hook hook (lambda ()
                      (when (locate-dominating-file "." "GTAGS")
                        (ggtags-mode 1)))))
