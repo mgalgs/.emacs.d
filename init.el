@@ -126,6 +126,7 @@ installed/loaded.")
 (global-auto-revert-mode)
 (delete-selection-mode)
 (savehist-mode 1)
+(electric-pair-mode)
 
 (defmacro m/visit-init-file-maker ()
   "Defines a function to visit init.el"
@@ -240,8 +241,7 @@ installed/loaded.")
 
 (use-package cc-mode
   :config
-  (m/l "init-linux-kernel.el")
-  (add-hook 'c-mode-common-hook 'electric-pair-mode))
+  (m/l "init-linux-kernel.el"))
 
 (use-package iedit
   :bind
@@ -274,7 +274,8 @@ installed/loaded.")
                   lisp-mode-hook
                   lisp-interaction-mode-hook
                   scheme-mode-hook))
-    (add-hook hook #'enable-paredit-mode))
+    (add-hook hook #'enable-paredit-mode)
+    (add-hook hook (lambda () (electric-pair-local-mode 0))))
   :diminish paredit-mode)
 
 (use-package magit
@@ -516,7 +517,8 @@ installed/loaded.")
           ("django" . m/current-buffer-django-p)
           ("php" . "\\.php")))
   (define-key web-mode-map (kbd "C-;") nil)
-  (setq-default web-mode-markup-indent-offset 2))
+  (setq-default web-mode-markup-indent-offset 2)
+  (add-hook 'web-mode-hook (lambda () (electric-pair-local-mode 0))))
 
 (use-package nyan-mode
   :if window-system
