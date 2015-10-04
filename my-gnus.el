@@ -67,7 +67,7 @@
       '((".*"
          (signature "Mitch"))))
 
-(setq gnus-completing-read-function 'm/helm-completing-read-must-match)
+(setq gnus-completing-read-function 'gnus-emacs-completing-read)
 
 (require 'gnus-article-treat-patch)
 (setq gnus-article-patch-conditions
