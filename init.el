@@ -668,6 +668,8 @@ installed/loaded.")
   :mode ("\.install" . sh-mode))
 
 (use-package flycheck
+  :init
+  (add-hook 'js-mode-hook 'flycheck-mode)
   :config
   (use-package flycheck-package
     :config
