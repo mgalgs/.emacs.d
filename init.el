@@ -280,7 +280,8 @@ installed/loaded.")
                   ielm-mode-hook
                   lisp-mode-hook
                   lisp-interaction-mode-hook
-                  scheme-mode-hook))
+                  scheme-mode-hook
+                  clj-mode-hook))
     (add-hook hook #'enable-paredit-mode)
     (add-hook hook (lambda () (electric-pair-local-mode 0))))
   :diminish paredit-mode)
@@ -686,6 +687,10 @@ installed/loaded.")
 (use-package restclient)
 
 (use-package json-mode)
+
+(use-package clj-mode
+  :config
+  (add-hook 'clj-mode-hook 'show-paren-mode))
 
 
 ;;; These lines should be last:
