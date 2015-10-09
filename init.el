@@ -685,6 +685,8 @@ installed/loaded.")
 
 (use-package restclient)
 
+(use-package json-mode)
+
 
 ;;; These lines should be last:
 ;; some keybindings
