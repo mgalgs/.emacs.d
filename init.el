@@ -281,7 +281,8 @@ installed/loaded.")
                   lisp-mode-hook
                   lisp-interaction-mode-hook
                   scheme-mode-hook
-                  clj-mode-hook))
+                  clojure-mode-hook
+                  cider-repl-mode-hook))
     (add-hook hook #'enable-paredit-mode)
     (add-hook hook (lambda () (electric-pair-local-mode 0))))
   :diminish paredit-mode)
@@ -550,6 +551,8 @@ installed/loaded.")
   :init
   (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
   (add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
   :config
   (set-face-attribute 'rainbow-delimiters-depth-1-face nil :foreground "#2aa198")
   (set-face-attribute 'rainbow-delimiters-depth-2-face nil :foreground "#b58900")
@@ -688,9 +691,17 @@ installed/loaded.")
 
 (use-package json-mode)
 
-(use-package clj-mode
-  :config
-  (add-hook 'clj-mode-hook 'show-paren-mode))
+(use-package clojure-mode
+  :init
+  (add-hook 'clojure-mode-hook 'show-paren-mode))
+
+;;; you also need a ~/.lein/profiles.clj with something like:
+;;; {:user {:plugins [[cider/cider-nrepl "0.10.0-SNAPSHOT"]]}}
+;;; more setup info at https://github.com/clojure-emacs/cider
+(use-package cider
+  :init
+  (add-hook 'cider-mode-hook #'eldoc-mode)
+  (setq cider-auto-mode nil))
 
 
 ;;; These lines should be last:
