@@ -191,14 +191,14 @@ installed/loaded.")
   (yas-reload-all))
 
 (use-package org
+  :init (m/l "init-org.el")
   :bind
   (("C-c l" . org-store-link)
    ("C-c c" . org-capture)
    ("C-c a" . org-agenda))
   :config
   (use-package ox-reveal)
-  (use-package htmlize)
-  (m/l "init-org.el"))
+  (use-package htmlize))
 
 (use-package ido
   :init

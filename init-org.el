@@ -1,5 +1,5 @@
 ;; (require 'org-install)
-;; (require 'org)
+(require 'org)
 (require 'htmlize)
 (setq htmlize-ignore-faces  '(whitespace-line))
 
