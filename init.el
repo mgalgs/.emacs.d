@@ -166,7 +166,8 @@ installed/loaded.")
                   dired-mode-hook
                   dts-mode-hook
                   conf-mode-hook
-                  asm-mode-hook))
+                  asm-mode-hook
+                  kconfig-mode-hook))
     (add-hook hook (lambda ()
                      (when (locate-dominating-file "." "GTAGS")
                        (ggtags-mode 1)))))
