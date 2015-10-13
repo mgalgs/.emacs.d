@@ -960,20 +960,29 @@ generic (split into columns based on regex)."
 suggests some commit message prefixes."
   (interactive)
   (magit-with-toplevel
-    (let ((choices (delete nil
-                           (-uniq (mapcar (lambda (el) (s-match ".*: "
-                                                                (substring el 1)))
-                                          (magit-git-lines "log"
-                                                           "--no-merges"
-                                                           "--pretty=\"%s\""
-                                                           "-100"
-                                                           "--"
-                                                           (magit-git-lines "diff"
-                                                                            "--cached"
-                                                                            "--name-only")))))))
-      (when (> (length choices) 0)
+    (let* ((all-prefixes (mapcar (lambda (el) (car (s-match ".*: "
+                                                            (substring el 1))))
+                                 (magit-git-lines "log" "--no-merges" "--pretty=\"%s\"" "-100" "--"
+                                                  (magit-git-lines "diff" "--cached" "--name-only"))))
+           (uniq-prefixes (-uniq all-prefixes))
+           (counted-prefixes (mapcar (lambda (el) (cons el
+                                                        (-count (lambda (el2) (string= el2 el))
+                                                                all-prefixes)))
+                                     uniq-prefixes))
+           (sorted-choices (-sort (lambda (c1 c2) (> (cdr c1) (cdr c2)))
+                                  counted-prefixes))
+           (formatted-choices (mapcar (lambda (el) (cons (format "%s (used %d time%s recently)"
+                                                                 (car el)
+                                                                 (cdr el)
+                                                                 (if (= (cdr el) 1)
+                                                                     ""
+                                                                   "s"))
+                                                         (car el)))
+                                      sorted-choices)))
+      (when (> (length formatted-choices) 0)
         (insert (helm-comp-read "Commit message prefix: "
-                                choices))))))
+                                formatted-choices)))
+      formatted-choices)))
 
 (defun m/underline-previous-line (&optional arg)
   "Adds an ascii underline to the previous line using `='
