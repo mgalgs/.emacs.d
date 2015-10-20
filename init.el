@@ -571,6 +571,7 @@ installed/loaded.")
     "For ansi color escape sequences"
     (ansi-color-apply-on-region (point-min) (point-max)))
   (add-hook 'erc-insert-modify-hook 'm/erc-ansi-colors)
+  (erc-notifications-mode)
   (use-package erc-hl-nicks))
 
 (use-package dts-mode
