@@ -572,6 +572,8 @@ installed/loaded.")
     (ansi-color-apply-on-region (point-min) (point-max)))
   (add-hook 'erc-insert-modify-hook 'm/erc-ansi-colors)
   (erc-notifications-mode)
+  (setq erc-track-showcount t)
+  (setq erc-track-shorten-cutoff 8)
   (use-package erc-hl-nicks))
 
 (use-package dts-mode
