@@ -651,7 +651,10 @@ installed/loaded.")
   :config
   (setq indent-hints-profile-switching-enabled t
         indent-hints-ignore-c-styles '("linux"))
-  (add-hook 'c-mode-common-hook 'indent-hints-activate)
+  ;; we add our hook to both c-mode-hook and c-mode-common-hook to get
+  ;; ignore-c-styles working.
+  (add-hook 'c-mode-hook 'indent-hints-activate t)
+  (add-hook 'c-mode-common-hook 'indent-hints-activate t)
   (add-hook 'dts-mode-hook 'indent-hints-activate))
 
 (use-package conf-mode

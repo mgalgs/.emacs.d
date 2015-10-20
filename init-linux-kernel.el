@@ -16,7 +16,7 @@
 (defun m/kernel-source-hook ()
   (let ((filename (buffer-file-name)))
     ;; Enable kernel mode for the appropriate files
-    (when (and filename
+    (if (and filename
                (or (string-match (expand-file-name "/local/mnt/workspace/mitchelh/.*/kernel")
                                  filename)
                    (string-match "/local/mnt/workspace/mitchelh/msm-kvm"
@@ -25,10 +25,12 @@
                    (locate-dominating-file filename "Kconfig")
                    (save-excursion (goto-char 0)
                                    (search-forward-regexp "^#include <linux/\\(module\\|kernel\\)\\.h>$" nil t))))
-      (setq indent-tabs-mode t)
-      (setq tab-width 8)
-      (setq c-basic-offset 8)
-      (message "Setting up indentation for the linux kernel")
-      (c-set-style "linux"))))
+        (progn
+          (setq indent-tabs-mode t)
+          (setq tab-width 8)
+          (setq c-basic-offset 8)
+          (message "Setting up indentation for the linux kernel")
+          (c-set-style "linux"))
+      (c-set-style "k&r"))))
 
 (add-hook 'c-mode-hook 'm/kernel-source-hook)
