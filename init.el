@@ -710,6 +710,18 @@ installed/loaded.")
   (add-hook 'cider-mode-hook #'eldoc-mode)
   (setq cider-auto-mode nil))
 
+(use-package company)
+
+(use-package rust-mode
+  :init
+  (use-package racer
+    :init
+    (add-hook 'rust-mode-hook #'racer-mode)
+    (add-hook 'racer-mode-hook #'eldoc-mode)
+    (add-hook 'racer-mode-hook #'company-mode)
+    :bind
+    (("TAB" . company-indent-or-complete-common))))
+
 (use-package calc
   :init
   ;; GIANT INLINE DEFINITION.  IT'S UGLY BECAUSE IT NEEDS TO BE RIPPED OUT.
