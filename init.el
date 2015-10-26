@@ -587,7 +587,8 @@ installed/loaded.")
 (use-package recentf
   :config
   (recentf-mode 1)
-  (setq recentf-max-menu-items 100))
+  (setq recentf-max-menu-items 100
+        recentf-max-saved-items 200))
 
 (use-package dockerfile-mode
   :mode (("Dockerfile\\'" . dockerfile-mode)))
