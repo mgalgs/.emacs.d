@@ -733,6 +733,8 @@ installed/loaded.")
     :init
     (add-hook 'rust-mode-hook 'cargo-minor-mode)))
 
+(use-package toml-mode)
+
 (use-package calc
   :init
   ;; GIANT INLINE DEFINITION.  IT'S UGLY BECAUSE IT NEEDS TO BE RIPPED OUT.
