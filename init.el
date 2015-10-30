@@ -412,9 +412,9 @@ installed/loaded.")
 (use-package wgrep-ack)
 
 ;;; make sure you `pacman -S python2-jedi python-jedi'
-(use-package jedi
-  :init
-  (add-hook 'python-mode-hook 'jedi:setup))
+;; (use-package jedi
+;;   :init
+;;   (add-hook 'python-mode-hook 'jedi:setup))
 
 (use-package litable
   :defer t)
