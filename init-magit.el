@@ -7,8 +7,20 @@
 (setq git-rebase-auto-advance t)
 (setq magit-stage-all-confirm nil)
 (setq magit-commit-squash-commit 'marked-or-current)
-(setq magit-status-buffer-switch-function 'switch-to-buffer)
 (setq magit-push-always-verify nil)     ; cuz it says so
+
+(defun m/magit-display-buffer-traditional (buffer)
+  "Like magit-display-buffer-traditional, but re-uses window for status mode, too."
+  (display-buffer
+   buffer (if (not (memq (with-current-buffer buffer major-mode)
+                         '(magit-process-mode
+                           magit-revision-mode
+                           magit-diff-mode
+                           magit-stash-mode)))
+              '(display-buffer-same-window)
+            nil)))
+
+(setq magit-display-buffer-function 'm/magit-display-buffer-traditional)
 
 (add-to-list 'git-commit-known-pseudo-headers "Change-Id")
 (add-to-list 'git-commit-known-pseudo-headers "CRs-Fixed")
