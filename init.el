@@ -735,6 +735,8 @@ installed/loaded.")
 
 (use-package toml-mode)
 
+(use-package systemd)
+
 (use-package calc
   :init
   ;; GIANT INLINE DEFINITION.  IT'S UGLY BECAUSE IT NEEDS TO BE RIPPED OUT.
