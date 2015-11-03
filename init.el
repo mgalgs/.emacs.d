@@ -737,6 +737,10 @@ installed/loaded.")
 
 (use-package systemd)
 
+(use-package jumbobuffer
+  :load-path "lisp/jumbobuffer"
+  :ensure nil)
+
 (use-package calc
   :init
   ;; GIANT INLINE DEFINITION.  IT'S UGLY BECAUSE IT NEEDS TO BE RIPPED OUT.
