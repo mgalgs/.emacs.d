@@ -167,7 +167,8 @@ installed/loaded.")
                   dts-mode-hook
                   conf-mode-hook
                   asm-mode-hook
-                  kconfig-mode-hook))
+                  kconfig-mode-hook
+                  makefile-mode-hook))
     (add-hook hook (lambda ()
                      (when (locate-dominating-file "." "GTAGS")
                        (ggtags-mode 1)))))
