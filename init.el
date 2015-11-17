@@ -713,7 +713,8 @@ installed/loaded.")
   (add-hook 'cider-mode-hook #'eldoc-mode)
   (setq cider-auto-mode nil))
 
-(use-package company)
+(use-package company
+  :diminish company-mode)
 
 (use-package rust-mode
   :init
@@ -723,7 +724,8 @@ installed/loaded.")
     (add-hook 'racer-mode-hook #'eldoc-mode)
     (add-hook 'racer-mode-hook #'company-mode)
     :bind
-    (("TAB" . company-indent-or-complete-common)))
+    (("TAB" . company-indent-or-complete-common))
+    :diminish racer-mode)
   ;; flycheck-rust currently has a hard time with Cargo :(
   ;; disable it until it works
   ;; (use-package flycheck-rust
@@ -732,7 +734,8 @@ installed/loaded.")
   ;;   (add-hook 'rust-mode-hook 'flycheck-mode))
   (use-package cargo
     :init
-    (add-hook 'rust-mode-hook 'cargo-minor-mode)))
+    (add-hook 'rust-mode-hook 'cargo-minor-mode)
+    :diminish cargo-minor-mode))
 
 (use-package toml-mode)
 
