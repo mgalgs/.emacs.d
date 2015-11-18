@@ -48,4 +48,4 @@
 (advice-add #'backward-page :after #'recenter)
 (advice-add #'forward-page  :after #'recenter)
 (my-make-recentering-advice racer-find-definition)
-(advice-add #'xref-pop-marker-stack  :after #'recenter)
+(my-make-recentering-advice xref-pop-marker-stack)
