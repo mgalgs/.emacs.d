@@ -710,8 +710,7 @@ installed/loaded.")
 ;;; more setup info at https://github.com/clojure-emacs/cider
 (use-package cider
   :init
-  (add-hook 'cider-mode-hook #'eldoc-mode)
-  (setq cider-auto-mode nil))
+  (add-hook 'cider-mode-hook #'eldoc-mode))
 
 (use-package company
   :diminish company-mode)
