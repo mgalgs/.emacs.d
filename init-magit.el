@@ -45,9 +45,12 @@
         magit-insert-unstaged-changes
         magit-insert-staged-changes
         magit-insert-unpushed-cherries
-        magit-insert-unpulled-commits
         magit-insert-recent-commits
-        magit-insert-stashes))
+        magit-insert-stashes
+        magit-insert-unpulled-from-upstream
+        magit-insert-unpulled-from-pushremote
+        magit-insert-unpushed-to-upstream
+        magit-insert-unpushed-to-pushremote))
 
 (defun m/magit-file-log ()
   (interactive)
