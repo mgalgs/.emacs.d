@@ -1034,12 +1034,14 @@ With a prefix arg, just goto this file's includes."
   "Create a new tmux window in the current directory and switch
 to it."
   (interactive)
-  (shell-command (format "tmux new-window -c \"%s\""
-                         default-directory))
-  (let ((cmd (format "wmctrl -a 'zsh - \"%s@%s: '"
-                     (user-login-name)
-                     system-name)))
-    (message "Trying %s" cmd)
-    (shell-command cmd)))
+  (let ((tmux-cmd (format "tmux new-window -c \"%s\""
+                          (expand-file-name default-directory)))
+        (wmctrl-cmd (format "wmctrl -a 'zsh - \"%s@%s: '"
+                            (user-login-name)
+                            system-name)))
+    (message "Trying %s" tmux-cmd)
+    (shell-command tmux-cmd)
+    (message "Trying %s" wmctrl-cmd)
+    (shell-command wmctrl-cmd)))
 
 (provide 'my-util)
