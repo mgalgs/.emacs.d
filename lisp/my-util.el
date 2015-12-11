@@ -1030,4 +1030,16 @@ With a prefix arg, just goto this file's includes."
           (forward-paragraph)
           (insert "#include " include "\n"))))))
 
+(defun m/shell-here ()
+  "Create a new tmux window in the current directory and switch
+to it."
+  (interactive)
+  (shell-command (format "tmux new-window -c \"%s\""
+                         default-directory))
+  (let ((cmd (format "wmctrl -a 'zsh - \"%s@%s: '"
+                     (user-login-name)
+                     system-name)))
+    (message "Trying %s" cmd)
+    (shell-command cmd)))
+
 (provide 'my-util)

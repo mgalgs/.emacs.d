@@ -53,6 +53,7 @@
    ("C-c m g" . m/grep-what-im-on)
    ("C-c m l" . m/kill-last-message)
    ("C-c m x" . m/xdg-open-each-in-region)
+   ("C-c m m x" . m/shell-here)
    ("C-c i" . m/go-to-corresponding-header-or-implementation-file)
    ("C-c m `" . m/recompile)
    ("C-c m m `" . m/open-compilation-buffer)
