@@ -846,6 +846,11 @@ alteration."
                         val))
                   val)))))))))
 
+(use-package elisp-mode
+  :ensure nil
+  :init
+  (add-hook 'emacs-lisp-mode-hook 'company-mode))
+
 
 ;;; These lines should be last:
 ;; some keybindings
