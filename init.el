@@ -851,6 +851,11 @@ alteration."
   :init
   (add-hook 'emacs-lisp-mode-hook 'company-mode))
 
+(use-package default-text-scale
+  :bind
+  (("C-M-=" . default-text-scale-increase)
+   ("C-M--" . default-text-scale-decrease)))
+
 
 ;;; These lines should be last:
 ;; some keybindings
