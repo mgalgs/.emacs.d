@@ -17,3 +17,4 @@
 (require 'use-package)
 
 (use-package paradox)
+(setq paradox-execute-asynchronously t)
