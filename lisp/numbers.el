@@ -13,6 +13,14 @@
         (message res)
       res)))
 
+(defun dec2bin (dec-number)
+  "Convert `dec-number' to binary string"
+  (interactive "sDecimal Number: ")
+  (let ((res (hex2bin (dec2hex dec-number))))
+    (if (called-interactively-p)
+        (message res))
+    res))
+
 (defun hex2dec (hex-number)
   "Convert `hex-number' to a decimal number"
   (interactive "sHex Number: ")
