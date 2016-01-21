@@ -451,7 +451,8 @@ installed/loaded.")
                          " MRev"
                          " FN"
                          " Fly"
-                         " MML"))))
+                         " MML"
+                         " WK"))))
 
 (use-package git-gutter
   :config (global-git-gutter-mode +1)
@@ -459,23 +460,8 @@ installed/loaded.")
          ("C-c m [" . git-gutter:previous-hunk)
          ("C-c m ." . git-gutter:stage-hunk)))
 
-(use-package guide-key
-  :init
-  (setq guide-key/guide-key-sequence
-      '("C-x r"
-        "C-x 4"
-        "C-c m"
-        "C-c m m"
-        "C-x C-k"
-        "C-c g"
-        "C-c g g"
-        "C-c s"
-        "# g"
-        "C-c ^"
-        "C-c !"
-        "C-c C-c"))
-  :config
-  (guide-key-mode 1))
+(use-package which-key
+  :init (which-key-mode))
 
 (use-package ack-and-a-half
   :load-path "lisp/ack-and-a-half"
