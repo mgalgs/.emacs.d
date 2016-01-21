@@ -29,7 +29,7 @@
 (add-to-list 'git-commit-known-pseudo-headers "Fixes")
 (add-to-list 'git-commit-known-pseudo-headers "Tested-by")
 
-(setq magit-log-section-commit-count' 15)
+(setq magit-log-section-commit-count' 10)
 (setq magit-log-section-arguments '("--graph" "--decorate" "--color"))
 
 (setq magit-status-sections-hook
