@@ -452,8 +452,11 @@ installed/loaded.")
                          " Fly"
                          " MML"))))
 
-(use-package diff-hl
-  :config (global-diff-hl-mode))
+(use-package git-gutter
+  :config (global-git-gutter-mode +1)
+  :bind (("C-c m ]" . git-gutter:next-hunk)
+         ("C-c m [" . git-gutter:previous-hunk)
+         ("C-c m ." . git-gutter:stage-hunk)))
 
 (use-package guide-key
   :init
