@@ -293,6 +293,7 @@ installed/loaded.")
 (use-package magit
   :bind
   (("C-c m t" . magit-status)
+   ("C-c m T" . magit-commit)
    ("C-c m c" . magit-show-commit)
    ("C-c m m c" . m/show-commit-at-point)
    ("C-c m :" . magit-git-command)
