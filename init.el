@@ -838,7 +838,9 @@ alteration."
 (use-package elisp-mode
   :ensure nil
   :init
-  (add-hook 'emacs-lisp-mode-hook 'company-mode))
+  (add-hook 'emacs-lisp-mode-hook 'company-mode)
+  :bind
+  (("C-c M-s ." . isearch-forward-symbol-at-point)))
 
 (use-package default-text-scale
   :bind
