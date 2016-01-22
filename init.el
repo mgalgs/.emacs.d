@@ -454,7 +454,9 @@ installed/loaded.")
                          " FN"
                          " Fly"
                          " MML"
-                         " WK"))))
+                         " WK"
+                         " ARev"
+                         " GitGutter"))))
 
 (use-package git-gutter
   :config (global-git-gutter-mode +1)
