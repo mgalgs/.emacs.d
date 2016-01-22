@@ -456,7 +456,8 @@ installed/loaded.")
                          " MML"
                          " WK"
                          " ARev"
-                         " GitGutter"))))
+                         " GitGutter"
+                         " ElDoc"))))
 
 (use-package git-gutter
   :config (global-git-gutter-mode +1)
