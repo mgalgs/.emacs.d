@@ -91,6 +91,7 @@ installed/loaded.")
       ring-bell-function 'ignore
       history-length 6000
       compile-command "make"
+      compilation-skip-threshold 2
       read-file-name-completion-ignore-case t
       mouse-yank-at-point t
       backup-by-copying t      ; don't clobber symlinks
