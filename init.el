@@ -207,7 +207,7 @@ installed/loaded.")
 
 (use-package ido
   :init
-  (ido-mode)
+  (ido-mode 1)
   (add-hook 'ido-setup-hook
 	    (lambda () (define-key ido-completion-map
 			 " "
