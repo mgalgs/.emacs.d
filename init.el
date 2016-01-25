@@ -296,6 +296,7 @@ installed/loaded.")
   :bind
   (("C-c m t" . magit-status)
    ("C-c m T" . magit-commit)
+   ("C-c m C-c" . magit-commit-popup)
    ("C-c m P" . magit-push-popup)
    ("C-c m c" . magit-show-commit)
    ("C-c m m c" . m/show-commit-at-point)
