@@ -226,7 +226,12 @@ installed/loaded.")
 	  "^\*RE\-Builder\*"
 	  "^\*Pymacs\*" "*Async Shell Command*"
 	  "^\.newsrc-dribble"
-	  "^\*GTAGS SELECT\*")))
+	  "^\*GTAGS SELECT\*"))
+  (use-package ido-vertical-mode
+    :init
+    (ido-vertical-mode 1)
+    :config
+    (setq ido-vertical-define-keys 'C-n-and-C-p-only)))
 
 (use-package helm
   :bind
