@@ -130,6 +130,8 @@ installed/loaded.")
 (delete-selection-mode)
 (savehist-mode 1)
 (electric-pair-mode)
+(display-time)
+(show-paren-mode)
 
 (defmacro m/visit-init-file-maker ()
   "Defines a function to visit init.el"
