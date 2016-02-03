@@ -631,6 +631,7 @@ installed/loaded.")
 (use-package gnus
   :config
   (setq shr-use-fonts nil)
+  (setq gnus-treat-fill-long-lines nil)
   (define-key gnus-article-mode-map (kbd "C-c m m l") 'gnus-article-fill-long-lines)
 
   (defun m/ov-whole-buffer (regexp color-spec)
