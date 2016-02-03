@@ -47,7 +47,7 @@
         magit-insert-unpushed-cherries
         magit-insert-recent-commits
         magit-insert-stashes
-        magit-insert-unpulled-from-upstream
+        ;; magit-insert-unpulled-from-upstream
         magit-insert-unpulled-from-pushremote
         magit-insert-unpushed-to-upstream
         magit-insert-unpushed-to-pushremote))
