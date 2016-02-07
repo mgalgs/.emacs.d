@@ -862,6 +862,8 @@ alteration."
   (("C-M-=" . default-text-scale-increase)
    ("C-M--" . default-text-scale-decrease)))
 
+(use-package debbugs)
+
 
 ;;; These lines should be last:
 ;; some keybindings
