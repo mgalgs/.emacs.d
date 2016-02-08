@@ -178,7 +178,8 @@ installed/loaded.")
                      (when (locate-dominating-file "." "GTAGS")
                        (ggtags-mode 1)))))
   :config
-  (m/l "init-gnu-global.el"))
+  (m/l "init-gnu-global.el")
+  (setq ggtags-global-window-height 30))
 
 (use-package whitespace
   :init
