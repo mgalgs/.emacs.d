@@ -864,6 +864,8 @@ alteration."
 
 (use-package debbugs)
 
+(use-package git-timemachine)
+
 
 ;;; These lines should be last:
 ;; some keybindings
