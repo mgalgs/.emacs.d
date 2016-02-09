@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: dma_addr_t
+# key: da
+# binding: direct-keybinding
+# --
+dma_addr_t $0
