@@ -473,7 +473,8 @@ installed/loaded.")
   :config (global-git-gutter-mode +1)
   :bind (("C-c m ]" . git-gutter:next-hunk)
          ("C-c m [" . git-gutter:previous-hunk)
-         ("C-c m ." . git-gutter:stage-hunk)))
+         ("C-c m ." . git-gutter:stage-hunk)
+         ("C-c m ," . git-gutter:revert-hunk)))
 
 (use-package which-key
   :init (which-key-mode))
