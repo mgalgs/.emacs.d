@@ -964,7 +964,7 @@ suggests some commit message prefixes."
                                                             (substring el 1))))
                                  (magit-git-lines "log" "--no-merges" "--pretty=\"%s\"" "-100" "--"
                                                   (magit-git-lines "diff" "--cached" "--name-only"))))
-           (uniq-prefixes (-uniq all-prefixes))
+           (uniq-prefixes (-uniq (-filter 'identity all-prefixes)))
            (counted-prefixes (mapcar (lambda (el) (cons el
                                                         (-count (lambda (el2) (string= el2 el))
                                                                 all-prefixes)))
