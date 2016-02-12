@@ -868,6 +868,11 @@ alteration."
 
 (use-package git-timemachine)
 
+;;; override `vc-git-find-file-hook' due to
+;;; http://debbugs.gnu.org/cgi/bugreport.cgi?bug=21559
+(require 'vc-git)
+(defun vc-git-find-file-hook () "Just no. http://debbugs.gnu.org/cgi/bugreport.cgi?bug=21559")
+
 
 ;;; These lines should be last:
 ;; some keybindings
