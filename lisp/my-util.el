@@ -1045,4 +1045,11 @@ to it."
     (message "Trying %s" wmctrl-cmd)
     (shell-command wmctrl-cmd)))
 
+;; Pull from PRIMARY (same as middle mouse click)
+;;; from http://stackoverflow.com/a/28492272/209050
+(defun m/get-primary ()
+  (interactive)
+  (insert
+   (gui-get-primary-selection)))
+
 (provide 'my-util)
