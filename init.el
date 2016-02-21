@@ -874,6 +874,8 @@ alteration."
 (require 'vc-git)
 (defun vc-git-find-file-hook () "Just no. http://debbugs.gnu.org/cgi/bugreport.cgi?bug=21559")
 
+(use-package chess)
+
 
 ;;; These lines should be last:
 ;; some keybindings
