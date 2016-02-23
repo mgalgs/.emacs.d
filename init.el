@@ -150,6 +150,8 @@ installed/loaded.")
 ;;; wombat sets a foreground color for the `region' face, so we need to
 ;;; make it unspecified so that foreground colors don't get wiped out
 (set-face-attribute 'region nil :background "MediumPurple4" :foreground 'unspecified)
+(set-cursor-color "#ff8844")
+(blink-cursor-mode 0)
 
 
 ;;; *** PACKAGES ***
