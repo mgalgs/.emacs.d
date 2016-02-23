@@ -971,17 +971,17 @@ suggests some commit message prefixes."
                                      uniq-prefixes))
            (sorted-choices (-sort (lambda (c1 c2) (> (cdr c1) (cdr c2)))
                                   counted-prefixes))
-           (formatted-choices (mapcar (lambda (el) (cons (format "%s (used %d time%s recently)"
-                                                                 (car el)
-                                                                 (cdr el)
-                                                                 (if (= (cdr el) 1)
-                                                                     ""
-                                                                   "s"))
-                                                         (car el)))
+           (formatted-choices (mapcar (lambda (el) (format "%s (used %d time%s recently)"
+                                                           (car el)
+                                                           (cdr el)
+                                                           (if (= (cdr el) 1)
+                                                               ""
+                                                             "s")))
                                       sorted-choices)))
       (when (> (length formatted-choices) 0)
-        (insert (helm-comp-read "Commit message prefix: "
-                                formatted-choices)))
+        (insert (first (split-string (ido-completing-read "Commit message prefix: "
+                                                          formatted-choices)
+                                     " (used .* time.* recently)"))))
       formatted-choices)))
 
 (defun m/underline-previous-line (&optional arg)
