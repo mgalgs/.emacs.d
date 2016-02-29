@@ -64,7 +64,8 @@
    ("C-v" . m/smooth-scroll-down)
    ("M-v" . m/smooth-scroll-up)
    ("C-c m m u" . m/underline-previous-line)
-   ("C-c m C-y" . m/get-primary)))
+   ("C-c m C-y" . m/get-primary)
+   ("M-Y" . m/yank-pop-forwards)))
 
 (defvar m/init-complete-hook nil
   "Runs when ~/.emacs.d/init.el finishes loading.  Useful for

@@ -86,7 +86,7 @@
                             (- cur mid)))))
 
 ;; cycle backwards
-(defun yank-pop-forwards (arg)
+(defun m/yank-pop-forwards (arg)
   (interactive "p")
   (yank-pop (- arg)))
 
