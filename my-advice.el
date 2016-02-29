@@ -27,7 +27,7 @@
 (defadvice occur (around my-occur-advice activate)
   "Make *Occur* buffer small if possible"
   ad-do-it
-  (my-switch-to-buffer-and-shrink "*Occur*"))
+  (m/switch-to-buffer-and-shrink "*Occur*"))
 
 ;; Some advice to recenter after moving to next compile error
 (defadvice next-error (after my-next-error-after
