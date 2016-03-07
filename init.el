@@ -592,6 +592,8 @@ installed/loaded.")
   (erc-notifications-mode)
   (setq erc-track-showcount t)
   (setq erc-track-shorten-cutoff 8)
+  (setq erc-track-exclude-types
+        '("JOIN" "KICK" "NICK" "PART" "QUIT" "MODE" "333" "353"))
   (use-package erc-hl-nicks))
 
 (use-package dts-mode
