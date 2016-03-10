@@ -121,6 +121,7 @@ installed/loaded.")
               term-buffer-maximum-size 15000)
 
 (fset 'yes-or-no-p 'y-or-n-p)
+(put 'narrow-to-region 'disabled nil)
 
 ;; gpg use the minibuffer for passphrase, not GUI
 (setenv "GPG_AGENT_INFO" nil)
