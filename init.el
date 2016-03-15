@@ -889,6 +889,10 @@ alteration."
 
 (use-package chess)
 
+(use-package calendar
+  :bind
+  (("C-c m m C" . calendar)))
+
 
 ;;; These lines should be last:
 ;; some keybindings
