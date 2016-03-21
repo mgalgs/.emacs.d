@@ -353,6 +353,7 @@ installed/loaded.")
 
 (use-package which-func
   :config
+  (which-function-mode)
   (setq which-func-unknown "-")
   (set-face-attribute 'which-func nil
                       :foreground "deep sky blue")
