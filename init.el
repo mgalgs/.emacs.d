@@ -251,7 +251,10 @@ installed/loaded.")
 (use-package helm
   :bind
   (("C-x C-b" . helm-buffers-list)
-   ("C-x r h" . helm-bookmarks))
+   ("C-x r h" . helm-bookmarks)
+   :map helm-map
+   ("C-s" . helm-next-line)
+   ("C-r" . helm-previous-line))
   :init
   (require 'helm)
   (require 'helm-config)
