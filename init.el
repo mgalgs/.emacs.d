@@ -240,8 +240,8 @@ installed/loaded.")
 	  "^\*Buffer List"
 	  "^\*Shell Command Output" ;"^\*compilation\*"
 	  "^\*RE\-Builder\*"
-	  "^\*Pymacs\*" "*Async Shell Command*"
-	  "^\.newsrc-dribble"
+	  "^\*Pymacs\*"
+          "^\.newsrc-dribble"
 	  "^\*GTAGS SELECT\*"))
   (use-package ido-vertical-mode
     :init
