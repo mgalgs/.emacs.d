@@ -176,6 +176,7 @@ installed/loaded.")
 (use-package ggtags
   :bind
   ("M-*" . pop-tag-mark)
+  ("C-c m M-." . ggtags-find-tag-continue)
   :init
   (dolist (hook '(c-mode-common-hook
                   dired-mode-hook
