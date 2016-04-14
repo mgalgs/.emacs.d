@@ -891,7 +891,9 @@ alteration."
 
 (use-package debbugs)
 
-(use-package git-timemachine)
+(use-package git-timemachine
+  :bind
+  (("C-c m C-m" . git-timemachine)))
 
 ;;; override `vc-git-find-file-hook' due to
 ;;; http://debbugs.gnu.org/cgi/bugreport.cgi?bug=21559
