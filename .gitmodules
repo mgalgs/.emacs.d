@@ -12,7 +12,7 @@
 	url = https://github.com/mgalgs/indent-hints-mode.git
 [submodule "lisp/make-readme-markdown"]
 	path = lisp/make-readme-markdown
-	url = git@github.com:mgalgs/make-readme-markdown.git
+	url = https://github.com/mgalgs/make-readme-markdown.git
 [submodule "lisp/jumbobuffer"]
 	path = lisp/jumbobuffer
 	url = https://github.com/mgalgs/jumbobuffer.git
