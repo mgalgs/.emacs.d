@@ -633,7 +633,7 @@ installed/loaded.")
   (defun m/pycscope-current-repo ()
     (interactive)
     (magit-with-toplevel
-      (shell-command "find . -name '*.py' > cscope.files")
+      (shell-command "find . -name '*.py' -not -iwholename './env/*' > cscope.files")
       (shell-command "~/virtualenvs/pycscope/bin/pycscope -i cscope.files")))
 
   (add-hook 'python-mode-hook
