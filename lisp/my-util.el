@@ -1052,4 +1052,16 @@ to it."
   (insert
    (gui-get-primary-selection)))
 
+(defun m/query-replace-using-region (start end)
+  "Like `query-replace' but uses region as the search string"
+  (interactive "r")
+  (let ((use-region-p nil)
+        (from (buffer-substring-no-properties start end)))
+    (deactivate-mark)
+    (goto-char start)
+    (perform-replace from
+                     (read-from-minibuffer (format "Replace %s with: "
+                                                   from))
+                     t nil nil)))
+
 (provide 'my-util)
