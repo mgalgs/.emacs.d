@@ -627,15 +627,39 @@ installed/loaded.")
 
 (use-package go-autocomplete)
 
+(defvar pycscope-env "~/virtualenvs/pycscope")
+(defvar pycscope-venv "virtualenv")
+
 (use-package python
   :config
   (setq python-fill-docstring-style 'pep-257-nn)
+
+  (defun m/pycscope-env-cmd (cmd)
+    (m/init-pycscope)
+    (let ((cmd (format "%s/bin/%s"
+                           pycscope-env
+                           cmd)))
+      (with-temp-message (concat "running: " cmd)
+        (shell-command cmd))))
+
+  (defun m/init-pycscope ()
+    (let ((pycscope (concat pycscope-env "/bin/pycscope")))
+      (unless (file-exists-p pycscope-env)
+        (with-temp-message (format "Initializing pycscope virtualenv at %s"
+                                   pycscope-env)
+          (shell-command (concat pycscope-venv " " pycscope-env))
+          (m/pycscope-env-cmd "pip install pycscope")))))
 
   (defun m/pycscope-current-repo ()
     (interactive)
     (magit-with-toplevel
       (shell-command "find . -name '*.py' -not -iwholename './env/*' > cscope.files")
-      (shell-command "~/virtualenvs/pycscope/bin/pycscope -i cscope.files")))
+      (m/pycscope-env-cmd "pycscope -i cscope.files")))
+
+  (defun m/pycscope-current-dir-recursively ()
+    (interactive)
+    (shell-command "find . -name '*.py' > cscope.files")
+    (m/pycscope-env-cmd "pycscope -i cscope.files"))
 
   (add-hook 'python-mode-hook
             #'(lambda ()
