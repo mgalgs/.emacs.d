@@ -68,3 +68,5 @@
 
 (magit-define-popup-action 'magit-commit-popup
   ?R "Reset author" 'm/magit-reset-author)
+
+(setq git-commit-finish-query-functions nil)
