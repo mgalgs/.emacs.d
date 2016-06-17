@@ -15,6 +15,7 @@ might want to do the same:
 ```shell
 git clone https://github.com/mgalgs/emacs.git
 cd emacs
+./autogen.sh
 ./configure --prefix=$HOME/opt/emacs-git && make -j8 && make install
 ```
 
