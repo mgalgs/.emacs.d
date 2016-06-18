@@ -1,7 +1,7 @@
 ;; (require 'org-install)
 (require 'org)
-(require 'htmlize)
-(setq htmlize-ignore-faces '(whitespace-line whitespace-indentation))
+;; (require 'htmlize)
+;; (setq htmlize-ignore-faces '(whitespace-line whitespace-indentation))
 
 (setq org-default-notes-file "~/notes/notes.org")
 (setq org-use-property-inheritance t)   ;for inheritance in matches
