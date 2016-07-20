@@ -189,8 +189,8 @@ installed/loaded.")
     (add-hook hook (lambda ()
                      (when (locate-dominating-file "." "GTAGS")
                        (ggtags-mode 1)))))
-  :config
   (m/l "init-gnu-global.el")
+  :config
   (setq ggtags-global-window-height 30))
 
 (use-package whitespace
