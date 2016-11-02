@@ -2,6 +2,8 @@
 (unless (server-running-p)
   (server-start))
 
+;;; stuff
+
 (defun m/l (file)
   "loads a file from the `user-emacs-directory'"
   (load-file (concat user-emacs-directory file)))
