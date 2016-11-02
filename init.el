@@ -52,7 +52,7 @@
    ("C-c m s" . m/search-all-buffers)
    ("C-c m i" . m/kill-where-i-am)
    ("C-c m m i" . m/kill-where-i-am-relative-to-gitroot)
-   ("C-c m g" . m/grep-what-im-on)
+   ("C-c m g" . m/grep-what-im-on)      ;things
    ("C-c m l" . m/kill-last-message)
    ("C-c m x" . m/xdg-open-each-in-region)
    ("C-c m m x" . m/shell-here)
