@@ -546,7 +546,8 @@ installed/loaded.")
 (use-package web-mode
   :mode (("\\.html?\\'" . web-mode)
          ("\\.djhtml?\\'" . web-mode)
-         ("\\.tpl" . web-mode))
+         ("\\.tpl" . web-mode)
+         ("\\.jsx" . web-mode))
   :config
   (defun m/current-buffer-django-p ()
     (save-excursion
@@ -557,6 +558,8 @@ installed/loaded.")
         '(("django". "\\.djhtml")
           ("django" . m/current-buffer-django-p)
           ("php" . "\\.php")))
+  (setq web-mode-content-types-alist
+        '(("jsx"  . "\\.jsx")))
   (define-key web-mode-map (kbd "C-;") nil)
   (setq-default web-mode-markup-indent-offset 2)
   (add-hook 'web-mode-hook (lambda () (electric-pair-local-mode 0))))
