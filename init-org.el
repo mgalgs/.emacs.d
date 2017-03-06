@@ -48,7 +48,7 @@
 ;; don't say `days' in clocksums
 (setq org-time-clocksum-format "%d :%02d")
 
-(require 'ox-reveal)
+; (require 'ox-reveal)
 
 (setq org-capture-templates
       '(("t" "Todo item (including gnus links)" entry
