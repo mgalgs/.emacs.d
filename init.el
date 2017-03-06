@@ -622,7 +622,7 @@ installed/loaded.")
 (use-package dockerfile-mode
   :mode (("Dockerfile\\'" . dockerfile-mode)))
 
-(use-package graphviz-dot-mode)
+;; (use-package graphviz-dot-mode)
 
 (use-package go-mode)
 
