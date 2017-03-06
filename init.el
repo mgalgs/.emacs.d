@@ -219,7 +219,7 @@ installed/loaded.")
    ("C-c c" . org-capture)
    ("C-c a" . org-agenda))
   :config
-  (use-package ox-reveal)
+  ;; (use-package ox-reveal)
   (use-package htmlize))
 
 (use-package ido
