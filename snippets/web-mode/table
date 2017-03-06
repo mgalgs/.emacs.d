@@ -1,0 +1,12 @@
+# key: table
+# name: table
+# --
+<table${1: class="${2:table table-bordered table-striped}$3"}>
+  <thead>
+    <tr>
+      <th>$0</th>
+    </tr>
+  </thead
+  <tbody>
+  </tbody>
+</table>
