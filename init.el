@@ -209,6 +209,7 @@ installed/loaded.")
   (add-hook 'c-mode-common-hook 'yas-minor-mode)
   (add-hook 'js-mode-hook 'yas-minor-mode)
   (add-hook 'web-mode-hook 'yas-minor-mode)
+  (add-hook 'python-mode-hook 'yas-minor-mode)
   :config
   (yas-reload-all))
 
