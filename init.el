@@ -552,7 +552,7 @@ installed/loaded.")
   :config
   (defun m/current-buffer-django-p ()
     (save-excursion
-      (search-forward-regexp "{% base\\|{% if\\|{% for\\|{% include\\|{% block\\|{% csrf_token %}\\|{% url\\|{{ "
+      (search-forward-regexp "{% base\\|{% extends\\|{% if\\|{% for\\|{% include\\|{% block\\|{% csrf_token %}\\|{% url\\|{{ "
                              nil
                              t)))
   (setq web-mode-engines-alist
