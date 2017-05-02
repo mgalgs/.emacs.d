@@ -657,8 +657,9 @@ installed/loaded.")
 
   (defun m/pycscope-current-repo ()
     (interactive)
+
     (magit-with-toplevel
-      (shell-command "find . -name '*.py' -not -iwholename './env/*' > cscope.files")
+      (shell-command "find . -name '*.py' -not -iwholename '**/env/*' > cscope.files")
       (m/pycscope-env-cmd "pycscope -i cscope.files")))
 
   (defun m/pycscope-current-dir-recursively ()
