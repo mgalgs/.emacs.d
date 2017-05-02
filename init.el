@@ -936,6 +936,8 @@ alteration."
   :bind
   (("C-c m m C" . calendar)))
 
+(use-package git-link)
+
 
 ;;; These lines should be last:
 ;; some keybindings
