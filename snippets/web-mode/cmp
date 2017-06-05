@@ -1,0 +1,35 @@
+# -*- mode: snippet -*-
+# name: cmp
+# key: cmp
+# --
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+
+class $1 extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div>
+              $0
+            </div>
+        );
+    }
+}
+
+$1.propTypes = {
+    prop0: PropTypes.object.isRequired,
+    prop1: PropTypes.number.isRequired,
+    prop2: PropTypes.func,
+};
+
+function ${1:$(concat yas-text "App")}(el) {
+    if (el === null)
+        return;
+    ReactDOM.render(<$1 />, el);
+}
+
+export default ${1:$(concat yas-text "App")};
