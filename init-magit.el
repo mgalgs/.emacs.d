@@ -52,12 +52,6 @@
         magit-insert-unpushed-to-pushremote
         magit-insert-unpulled-from-upstream))
 
-(defun m/magit-file-log ()
-  (interactive)
-  (magit-log '("HEAD")
-             '("--follow")
-             (list (magit-file-relative-name))))
-
 (font-lock-add-keywords 'emacs-lisp-mode
                         magit-font-lock-keywords)
 

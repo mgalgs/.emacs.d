@@ -330,7 +330,7 @@ installed/loaded.")
    ("C-c m m c" . m/show-commit-at-point)
    ("C-c m :" . magit-git-command)
    ("C-c m m b" . magit-blame)
-   ("C-c m m l" . m/magit-file-log))
+   ("C-c m m l" . magit-log-buffer-file))
   :init
   (use-package git-commit
     :bind
