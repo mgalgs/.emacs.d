@@ -3,6 +3,8 @@
 ;; (require 'htmlize)
 ;; (setq htmlize-ignore-faces '(whitespace-line whitespace-indentation))
 
+(require 'ox-md)
+
 (setq org-default-notes-file "~/notes/notes.org")
 (setq org-use-property-inheritance t)   ;for inheritance in matches
 ;; handy sparse tree shortcuts:
