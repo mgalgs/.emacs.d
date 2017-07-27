@@ -335,8 +335,6 @@ installed/loaded.")
   (use-package git-commit
     :bind
     ("C-c C-e" . m/suggest-commit-message-prefix))
-  (use-package magit-gh-pulls
-    :init (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
   :config
   (m/l "init-magit.el"))
 
