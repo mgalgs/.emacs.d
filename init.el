@@ -38,8 +38,6 @@
   :load-path "lisp/"
   :bind
   (("C-c m m a" . m/add-include)
-   ("C-v" . m/smooth-scroll-down)
-   ("M-v" . m/smooth-scroll-up)
    ("<M-up>" . m/increment-number-decimal)
    ("<M-down>" . m/decrement-number-decimal)
    ("M-P" . m/up-a-line)
@@ -61,8 +59,6 @@
    ("C-c m C-x C-e" . eval-and-replace)
    ("C-h e" . m/view-and-switch-to-echo-area-messages)
    ("C-c m M-/" . m/expand-file-name-at-point)
-   ("C-v" . m/smooth-scroll-down)
-   ("M-v" . m/smooth-scroll-up)
    ("C-c m m u" . m/underline-previous-line)
    ("C-c m C-y" . m/get-primary)
    ("M-Y" . m/yank-pop-forwards)
