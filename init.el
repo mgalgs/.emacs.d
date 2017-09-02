@@ -20,7 +20,7 @@
 ;;; distracting to switch up UI elements later during loading.
 (when window-system
   (tool-bar-mode 0)
-  (set-scroll-bar-mode 'right))
+  (set-scroll-bar-mode nil))
 
 (when (eq system-type 'darwin)
   (add-to-list 'exec-path "/usr/local/bin")
