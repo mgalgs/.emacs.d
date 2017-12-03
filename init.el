@@ -741,6 +741,7 @@ installed/loaded.")
   :init
   (add-hook 'js-mode-hook 'flycheck-mode)
   (add-hook 'python-mode-hook 'flycheck-mode)
+  (add-hook 'go-mode-hook 'flycheck-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
 
   ;; use local eslint from node_modules before global
