@@ -622,7 +622,11 @@ installed/loaded.")
 
 ;; (use-package graphviz-dot-mode)
 
-(use-package go-mode)
+(use-package go-mode
+  :init
+  (use-package go-eldoc
+    :init
+    (add-hook 'go-mode-hook 'go-eldoc-setup)))
 
 (use-package go-autocomplete)
 
@@ -797,7 +801,10 @@ installed/loaded.")
   (add-hook 'cider-mode-hook #'eldoc-mode))
 
 (use-package company
-  :diminish company-mode)
+  :diminish company-mode
+  :init
+  (add-hook 'go-mode-hook 'company-mode)
+  (use-package company-go))
 
 (use-package rust-mode
   :init
