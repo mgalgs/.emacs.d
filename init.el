@@ -967,6 +967,14 @@ alteration."
 
 (use-package git-link)
 
+(use-package celestial-mode-line
+  :config
+  (setq calendar-latitude 33.004174)
+  (setq calendar-longitude -117.047074)
+  (setq calendar-location-name "Poway, CA")
+  (setq global-mode-string '("" celestial-mode-line-string " " display-time-string))
+  (celestial-mode-line-start-timer))
+
 
 ;;; These lines should be last:
 ;; some keybindings
