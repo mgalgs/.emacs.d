@@ -803,8 +803,9 @@ installed/loaded.")
 (use-package company
   :diminish company-mode
   :init
-  (add-hook 'go-mode-hook 'company-mode)
-  (use-package company-go))
+  (use-package company-go
+    :init
+    (add-hook 'go-mode-hook 'company-mode)))
 
 (use-package rust-mode
   :init
