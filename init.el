@@ -672,13 +672,13 @@ installed/loaded.")
 
 (use-package nginx-mode)
 
-(use-package helm-cscope
-  :init
-  (add-hook 'python-mode-hook 'helm-cscope-mode)
-  :bind
-  (:map helm-cscope-mode-map
-        ("M-." . helm-cscope-find-global-definition)
-        ("M-*" . helm-cscope-pop-mark)))
+;; (use-package helm-cscope
+;;   :init
+;;   (add-hook 'python-mode-hook 'helm-cscope-mode)
+;;   :bind
+;;   (:map helm-cscope-mode-map
+;;         ("M-." . helm-cscope-find-global-definition)
+;;         ("M-*" . helm-cscope-pop-mark)))
 
 (use-package gnus
   :config
@@ -975,6 +975,12 @@ alteration."
   (setq calendar-location-name "Poway, CA")
   (setq global-mode-string '("" celestial-mode-line-string " " display-time-string))
   (celestial-mode-line-start-timer))
+
+(use-package elpy
+  :init
+  (elpy-enable))
+
+(use-package groovy-mode)
 
 
 ;;; These lines should be last:
