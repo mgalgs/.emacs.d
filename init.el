@@ -978,7 +978,11 @@ alteration."
 
 (use-package elpy
   :init
-  (elpy-enable))
+  (elpy-enable)
+  :config
+  (setq elpy-modules (-remove (lambda (el) (or (eq el 'elpy-module-highlight-indentation)
+                                               (eq el 'elpy-module-flymake)))
+                              elpy-modules)))
 
 (use-package groovy-mode)
 
