@@ -986,6 +986,8 @@ alteration."
 
 (use-package groovy-mode)
 
+(use-package lorem-ipsum)
+
 
 ;;; These lines should be last:
 ;; some keybindings
