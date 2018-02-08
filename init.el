@@ -557,7 +557,8 @@ installed/loaded.")
         '(("jsx"  . "\\.jsx")))
   (define-key web-mode-map (kbd "C-;") nil)
   (setq-default web-mode-markup-indent-offset 2)
-  (add-hook 'web-mode-hook (lambda () (electric-pair-local-mode 0))))
+  (add-hook 'web-mode-hook (lambda () (electric-pair-local-mode 0)))
+  (add-to-list 'web-mode-indentation-params '("case-extra-offset" . nil)))
 
 (use-package nyan-mode
   :if window-system
