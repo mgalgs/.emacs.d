@@ -22,6 +22,8 @@
   (tool-bar-mode 0)
   (set-scroll-bar-mode nil))
 
+(menu-bar-mode -1)
+
 (when (eq system-type 'darwin)
   (add-to-list 'exec-path "/usr/local/bin")
   (setq mac-command-modifier 'meta
