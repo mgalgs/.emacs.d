@@ -991,6 +991,8 @@ alteration."
 
 (use-package lorem-ipsum)
 
+(use-package pyvenv)
+
 
 ;;; These lines should be last:
 ;; some keybindings
