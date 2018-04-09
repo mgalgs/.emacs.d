@@ -1,8 +1,9 @@
 # -*- mode: snippet -*-
-# name: cmp
-# key: cmp
+# name: cmpa
+# key: cmpa
 # --
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 class $1 extends React.Component {
@@ -25,4 +26,10 @@ $1.propTypes = {
     prop2: PropTypes.func,
 };
 
-export default $1;
+function ${1:$(concat yas-text "App")}(el) {
+    if (el === null)
+        return;
+    ReactDOM.render(<$1 />, el);
+}
+
+export default ${1:$(concat yas-text "App")};
