@@ -805,10 +805,13 @@ installed/loaded.")
 
 (use-package company
   :diminish company-mode
+  :config
+  (setq company-backends (-remove (lambda (el) (eq el 'company-dabbrev))
+                                  company-backends)))
+
+(use-package company-go
   :init
-  (use-package company-go
-    :init
-    (add-hook 'go-mode-hook 'company-mode)))
+  (add-hook 'go-mode-hook 'company-mode))
 
 (use-package rust-mode
   :init
@@ -985,7 +988,11 @@ alteration."
   :config
   (setq elpy-modules (-remove (lambda (el) (or (eq el 'elpy-module-highlight-indentation)
                                                (eq el 'elpy-module-flymake)))
-                              elpy-modules)))
+                              elpy-modules))
+  (add-hook 'elpy-mode-hook (lambda ()
+                              ;; undo crap from elpy-module-company
+                              (set (make-local-variable 'company-dabbrev-code-everywhere)
+                                   nil))))
 
 (use-package groovy-mode)
 
