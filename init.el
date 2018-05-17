@@ -638,7 +638,7 @@ installed/loaded.")
 
 (use-package python
   :config
-  (setq python-fill-docstring-style 'pep-257-nn)
+  (setq python-fill-docstring-style 'django)
 
   (defun m/pycscope-env-cmd (cmd)
     (m/init-pycscope)
