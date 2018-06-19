@@ -986,6 +986,7 @@ alteration."
   :init
   (elpy-enable)
   :config
+  (setq elpy-rpc-ignored-buffer-size 204800)
   (setq elpy-modules (-remove (lambda (el) (or (eq el 'elpy-module-highlight-indentation)
                                                (eq el 'elpy-module-flymake)))
                               elpy-modules))
