@@ -425,6 +425,8 @@ installed/loaded.")
    ("C-c m m <" . mc/mark-all-like-this))
   :init
   (use-package phi-search
+    :config
+    (setq phi-search-limit 5000)
     :init
     ;; credit to @jonebird for the following 
     ;; Allow isearch functionality with multipl-cursors
