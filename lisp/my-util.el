@@ -283,13 +283,16 @@ number."
 ;; http://ergoemacs.org/emacs/elisp_trim_string.html
 (require 'subr-x)
 
+(defun m/gitroot ()
+  (concat (string-trim-right (shell-command-to-string "git rev-parse --show-toplevel"))
+          "/"))
+
 (defun m/kill-where-i-am-relative-to-gitroot (include-line-number)
   "Like `m/kill-where-i-am' but is relative to the gitroot
 rather than the absolute path"
   (interactive "P")
   (let ((x-select-enable-clipboard t)
-        (gitroot (concat (string-trim-right (shell-command-to-string "git rev-parse --show-toplevel"))
-                         "/")))
+        (gitroot (m/gitroot)))
     (kill-new (string-remove-prefix gitroot
                                     (mgalgs--get-where-i-am include-line-number)))))
 
