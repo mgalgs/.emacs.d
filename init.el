@@ -984,24 +984,32 @@ alteration."
   (setq global-mode-string '("" celestial-mode-line-string " " display-time-string))
   (celestial-mode-line-start-timer))
 
-(use-package elpy
-  :init
-  (elpy-enable)
-  :config
-  (setq elpy-rpc-ignored-buffer-size 409600)
-  (setq elpy-modules (-remove (lambda (el) (or (eq el 'elpy-module-highlight-indentation)
-                                               (eq el 'elpy-module-flymake)))
-                              elpy-modules))
-  (add-hook 'elpy-mode-hook (lambda ()
-                              ;; undo crap from elpy-module-company
-                              (set (make-local-variable 'company-dabbrev-code-everywhere)
-                                   nil))))
+;; (use-package elpy
+;;   :init
+;;   (elpy-enable)
+;;   :config
+;;   (setq elpy-rpc-ignored-buffer-size 409600)
+;;   (setq elpy-modules (-remove (lambda (el) (or (eq el 'elpy-module-highlight-indentation)
+;;                                                (eq el 'elpy-module-flymake)))
+;;                               elpy-modules))
+;;   (add-hook 'elpy-mode-hook (lambda ()
+;;                               ;; undo crap from elpy-module-company
+;;                               (set (make-local-variable 'company-dabbrev-code-everywhere)
+;;                                    nil))))
 
 (use-package groovy-mode)
 
 (use-package lorem-ipsum)
 
 (use-package pyvenv)
+
+(use-package lsp-mode
+  :commands lsp
+  :config
+  (add-hook 'python-mode-hook #'lsp))
+
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package company-lsp :commands company-lsp)
 
 
 ;;; These lines should be last:
