@@ -60,7 +60,10 @@
   (interactive)
   (magit-run-git-async "commit" "--amend" "--no-edit" "--reset-author"))
 
-(magit-define-popup-action 'magit-commit-popup
-  ?R "Reset author" 'm/magit-reset-author)
+;; (magit-define-popup-action 'magit-commit-popup
+;;   ?R "Reset author" 'm/magit-reset-author)
+(transient-append-suffix 'magit-commit
+  "S"
+  '("R" "Reset author" m/magit-reset-author))
 
 (setq git-commit-finish-query-functions nil)
