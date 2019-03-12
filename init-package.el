@@ -7,7 +7,7 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
-(package-initialize)
+; (package-initialize)
 
 (unless (package-installed-p 'use-package)
     (progn
