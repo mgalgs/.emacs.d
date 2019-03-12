@@ -1044,7 +1044,7 @@ to it."
                             system-name)))
     (message "Trying %s" tmux-cmd)
     (shell-command tmux-cmd)
-    (sit-for 1.5)
+    (sit-for 2.5)
     (message "Trying %s" wmctrl-cmd)
     (shell-command wmctrl-cmd)))
 
