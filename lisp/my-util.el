@@ -1044,9 +1044,12 @@ to it."
                             system-name)))
     (message "Trying %s" tmux-cmd)
     (shell-command tmux-cmd)
-    (sit-for 2.5)
-    (message "Trying %s" wmctrl-cmd)
-    (shell-command wmctrl-cmd)))
+    (cl-dotimes (i 5)
+      (sit-for i)
+      (message "Trying %s" wmctrl-cmd)
+      (when (= 0 (shell-command wmctrl-cmd))
+        (cl-return))
+      (message "Couldn't find the window on iteration %d" i))))
 
 ;; Pull from PRIMARY (same as middle mouse click)
 ;;; from http://stackoverflow.com/a/28492272/209050
