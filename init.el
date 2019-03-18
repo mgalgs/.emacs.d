@@ -242,7 +242,8 @@ installed/loaded.")
 	  "^\*RE\-Builder\*"
 	  "^\*Pymacs\*"
           "^\.newsrc-dribble"
-	  "^\*GTAGS SELECT\*"))
+	  "^\*GTAGS SELECT\*"
+          "^\*ag search "))
   (use-package ido-vertical-mode
     :init
     (ido-vertical-mode 1)
@@ -494,15 +495,7 @@ installed/loaded.")
 (use-package which-key
   :init (which-key-mode))
 
-(use-package ack-and-a-half
-  :load-path "lisp/ack-and-a-half"
-  :ensure nil
-  :config
-  (defalias 'ack 'ack-and-a-half)
-  (defalias 'ack-same 'ack-and-a-half-same)
-  (defalias 'ack-find-file 'ack-and-a-half-find-file)
-  (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
-  (defalias 'ack-with-args 'ack-and-a-half-with-args))
+(use-package ag)
 
 (use-package flyspell
   :config
