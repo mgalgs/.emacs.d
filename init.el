@@ -440,7 +440,7 @@ installed/loaded.")
                 (global-set-key (kbd "C-r") 'isearch-backward)))))
 
 (use-package wgrep)
-(use-package wgrep-ack)
+(use-package wgrep-ag)
 
 ;;; make sure you `pacman -S python2-jedi python-jedi'
 ;; (use-package jedi
