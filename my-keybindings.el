@@ -43,7 +43,6 @@
 (global-set-key (kbd "C-c m m s") (lambda () (interactive) (switch-to-buffer "*scratch*")))
 (global-set-key (kbd "C-c m m t") (lambda () (interactive) (find-file "~/tmp/notes.org")))
 
-
 (global-set-key (kbd "C-c m p") 'pwd)
 
 (global-set-key (kbd "C-c m b") (lambda ()
