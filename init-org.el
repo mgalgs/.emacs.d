@@ -1,7 +1,4 @@
-;; (require 'org-install)
 (require 'org)
-;; (require 'htmlize)
-;; (setq htmlize-ignore-faces '(whitespace-line whitespace-indentation))
 
 (require 'ox-md)
 
@@ -18,29 +15,6 @@
         ("pc" "C-Priority todos (TODO)" tags-tree "PRIORITY=\"C\"/TODO")
         ("pC" "C-Priority todos" tags-tree "PRIORITY=\"C\"")
         ("d" "[d]eadline-less tasks" tags "-DEADLINE={.+}/!+TODO")))
-;; TODO workflow states
-(setq org-todo-keywords
-      '((sequence "TODO" "NEED DV" "CODE REVIEW" "BLOCKED" "DEFERRED" "DONE")))
-;; faces for todo keywords:
-(setq org-todo-keyword-faces
-      '(("TODO" . (:foreground "red" :weight bold))
-        ("NEED DV" . (:foreground "yellow"))
-        ("CODE REVIEW" . (:foreground "dark orange"))
-        ("BLOCKED" . shadow)
-	("DEFERRED" . shadow)
-        ("CANCELED" . (:foreground "dark red"))
-        ("DONE" . (:foreground "dark green" :weight bold))))
-
-;; fix some org-mode + yasnippet conflicts (if we have loaded yas):
-;; (unless (not (boundp 'yas/version))
-;;   (defun yas/org-very-safe-expand ()
-;;     (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
-;;   (add-hook 'org-mode-hook
-;; 	    (lambda ()
-;; 	      (make-variable-buffer-local 'yas/trigger-key)
-;; 	      (setq yas/trigger-key [tab])
-;; 	      (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
-;; 	      (define-key yas/keymap [tab] 'yas/next-field))))
 
 (require 'org-gnus)
 
@@ -49,8 +23,6 @@
 
 ;; don't say `days' in clocksums
 (setq org-time-clocksum-format "%d :%02d")
-
-; (require 'ox-reveal)
 
 (setq org-capture-templates
       '(("t" "Todo item (including gnus links)" entry
