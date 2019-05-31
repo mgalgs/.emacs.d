@@ -333,6 +333,9 @@ installed/loaded.")
   :config
   (m/l "init-magit.el"))
 
+(use-package forge
+  :after magit)
+
 (use-package ansi-color
   :init
   ;; handle ANSI color escape sequences in compilation output (like for
