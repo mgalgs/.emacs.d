@@ -24,11 +24,16 @@
 
 (menu-bar-mode -1)
 
+;;; mac-specific setup
 (when (eq system-type 'darwin)
   (add-to-list 'exec-path "/usr/local/bin")
   (setq mac-command-modifier 'meta
         mac-option-modifier 'super
         mac-function-modifier 'control))
+
+;;; chrome os (crostini) specific setup
+(when (getenv "SOMMELIER_VERSION")
+  (define-key key-translation-map (kbd "<delete>") (kbd "<M-DEL>")))
 
 ;; some general advice
 (m/l "my-advice.el")
