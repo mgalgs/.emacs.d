@@ -32,3 +32,4 @@ games
 ido.last
 /transient/
 /.lsp-session-v1
+/forge-database.sqlite
