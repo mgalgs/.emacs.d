@@ -1008,6 +1008,11 @@ alteration."
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package company-lsp :commands company-lsp)
 
+(use-package emacs-pager
+  :ensure nil
+  :load-path "lisp/emacs-pager"
+  :mode ("\\.emacs-pager$" . emacs-pager-mode))
+
 
 ;;; These lines should be last:
 ;; some keybindings
