@@ -16,3 +16,6 @@
 [submodule "lisp/jumbobuffer"]
 	path = lisp/jumbobuffer
 	url = https://github.com/mgalgs/jumbobuffer.git
+[submodule "lisp/emacs-pager"]
+	path = lisp/emacs-pager
+	url = git@github.com:mgalgs/emacs-pager.git
