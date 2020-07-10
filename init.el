@@ -202,6 +202,7 @@ installed/loaded.")
   (add-hook 'python-mode-hook (lambda ()
                                 (set (make-local-variable 'whitespace-style)
                                      '(face trailing lines-tail empty indentation::space))
+                                (setq-local whitespace-line-column 100)
                                 (whitespace-mode)))
   :config
   (setq whitespace-style '(face trailing lines-tail empty indentation::tab))
