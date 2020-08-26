@@ -1070,4 +1070,15 @@ to it."
                                                    from))
                      t nil nil)))
 
+;; https://stackoverflow.com/a/10216310/209050
+(defun m/copy-all ()
+  "Copy entire buffer to clipboard"
+  (interactive)
+  (clipboard-kill-ring-save (point-min) (point-max)))
+
+(defun m/toggle-truncate-lines ()
+  "Toggle value of truncate-lines"
+  (interactive)
+  (setq truncate-lines (not truncate-lines)))
+
 (provide 'my-util)
