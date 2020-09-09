@@ -1014,6 +1014,8 @@ alteration."
   :load-path "lisp/emacs-pager"
   :mode ("\\.emacs-pager$" . emacs-pager-mode))
 
+(use-package dart-mode)
+
 
 ;;; These lines should be last:
 ;; some keybindings
