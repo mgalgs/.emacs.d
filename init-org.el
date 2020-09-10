@@ -16,7 +16,7 @@
         ("pC" "C-Priority todos" tags-tree "PRIORITY=\"C\"")
         ("d" "[d]eadline-less tasks" tags "-DEADLINE={.+}/!+TODO")))
 
-(require 'org-gnus)
+;; (require 'org-gnus)
 
 ;; fontify code in code blocks
 (setq org-src-fontify-natively t)
