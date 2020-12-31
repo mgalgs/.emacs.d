@@ -1015,6 +1015,9 @@ alteration."
   :mode ("\\.emacs-pager$" . emacs-pager-mode))
 
 (use-package dart-mode)
+(use-package lsp-dart
+  :ensure t
+  :hook (dart-mode . lsp))
 
 
 ;;; These lines should be last:
