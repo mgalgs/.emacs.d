@@ -1004,7 +1004,9 @@ alteration."
 (use-package lsp-mode
   :commands lsp
   :config
-  (add-hook 'python-mode-hook #'lsp))
+  (add-hook 'python-mode-hook #'lsp)
+  :bind
+  (("C-c m a" . lsp-execute-code-action)))
 
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package company-lsp :commands company-lsp)
