@@ -1021,6 +1021,10 @@ alteration."
   :ensure t
   :hook (dart-mode . lsp))
 
+;; GUI dialog for printing (print-buffer) and friends
+(setq lpr-command "gtklp")
+(setq ps-lpr-command "gtklp")
+
 
 ;;; These lines should be last:
 ;; some keybindings
