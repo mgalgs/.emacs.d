@@ -46,11 +46,11 @@
         magit-insert-staged-changes
         magit-insert-unpushed-cherries
         magit-insert-recent-commits
-        magit-insert-stashes
         magit-insert-unpulled-from-pushremote
         magit-insert-unpushed-to-upstream
         magit-insert-unpushed-to-pushremote
-        magit-insert-unpulled-from-upstream))
+        magit-insert-unpulled-from-upstream
+        magit-insert-stashes))
 
 (font-lock-add-keywords 'emacs-lisp-mode
                         magit-font-lock-keywords)
