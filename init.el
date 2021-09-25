@@ -2,6 +2,11 @@
 (unless (server-running-p)
   (server-start))
 
+;; reduce the frequency of garbage collection by making it happen on
+;; each 50MB of allocated data (the default is on every 0.76MB)
+;; (especially useful for speeding up lsp-mode)
+(setq gc-cons-threshold 50000000)
+
 (defun m/l (file)
   "loads a file from the `user-emacs-directory'"
   (load-file (concat user-emacs-directory file)))
