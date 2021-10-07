@@ -754,6 +754,9 @@ installed/loaded.")
   (add-hook 'python-mode-hook 'flycheck-mode)
   (add-hook 'go-mode-hook 'flycheck-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
+  :config
+  (setq flycheck-idle-change-delay 3)
+  (setq flycheck-idle-buffer-switch-delay 3)
 
   ;; use local eslint from node_modules before global
   ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
