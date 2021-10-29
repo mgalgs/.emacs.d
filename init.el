@@ -1030,6 +1030,14 @@ alteration."
   :ensure t
   :hook (dart-mode . lsp))
 
+(use-package ivy
+  :init
+  (use-package counsel)
+  (use-package swiper)
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t))
+
 ;; GUI dialog for printing (print-buffer) and friends
 (setq lpr-command "gtklp")
 (setq ps-lpr-command "gtklp")
