@@ -1051,6 +1051,10 @@ alteration."
 (setq lpr-command "gtklp")
 (setq ps-lpr-command "gtklp")
 
+(use-package quick-clone
+  :ensure nil
+  :load-path "lisp/quick-clone")
+
 
 ;;; These lines should be last:
 ;; some keybindings
