@@ -1034,6 +1034,15 @@ alteration."
   :init
   (use-package counsel)
   (use-package swiper)
+  ;; advice to prevent dynamic exhibit delay for C-n/C-p
+  ;; https://github.com/abo-abo/swiper/issues/1218#issuecomment-962516670
+  (defvar +ivy--queue-last-input nil)
+  (defun +ivy-queue-exhibit-a(f &rest args)
+    (if (equal +ivy--queue-last-input (ivy--input))
+        (ivy--exhibit)
+      (apply f args))
+    (setq +ivy--queue-last-input (ivy--input)))
+  (advice-add 'ivy--queue-exhibit :around #'+ivy-queue-exhibit-a)
   :config
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t))
