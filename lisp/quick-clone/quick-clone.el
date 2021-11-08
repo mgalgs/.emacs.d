@@ -36,7 +36,7 @@
                                (clone-url (nth 1 parts))
                                (clone-dirname (nth 0
                                                    (last (split-string (s-chop-suffix ".git"
-                                                                                      repo)
+                                                                                      clone-url)
                                                                        "/"))))
                                (full-clone-dir (concat (file-name-as-directory (expand-file-name quick-clone-target-directory))
                                                        clone-dirname)))
