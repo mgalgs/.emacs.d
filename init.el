@@ -564,7 +564,7 @@ installed/loaded.")
         '(("jsx"  . "\\.jsx")))
   (define-key web-mode-map (kbd "C-;") nil)
   (setq-default web-mode-markup-indent-offset 2)
-  (setq web-mode-enable-auto-closing nil)
+  (setq web-mode-enable-auto-closing t)
   (setq web-mode-enable-auto-indentation nil)
   (add-to-list 'web-mode-indentation-params '("case-extra-offset" . nil)))
 
