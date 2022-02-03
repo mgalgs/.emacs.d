@@ -851,7 +851,9 @@ installed/loaded.")
   :load-path "lisp/jumbobuffer"
   :ensure nil)
 
-(use-package calc)
+(use-package calc
+  :bind
+  (("C-c m C-c" . calc)))
 
 (use-package elisp-mode
   :ensure nil
