@@ -26,7 +26,7 @@
 (global-set-key (kbd "<f6>") 'next-error)
 (global-set-key (kbd "<f7>") 'compile)
 
-(global-set-key "\C-cmw" 'woman)
+(global-set-key "\C-cmw" 'man)
 
 
 
