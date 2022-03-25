@@ -385,15 +385,6 @@ installed/loaded.")
                                     git-commit-mode
                                     magit-mode)))
 
-(use-package which-c-preprocessor-cond
-  :load-path "lisp/"
-  :ensure nil
-  :config
-  (which-c-preprocessor-cond-mode)
-  (setq-default header-line-format
-                `((which-func-mode ("" which-func-format " "))
-                  (which-c-preprocessor-cond-mode ,which-c-preprocessor-cond-format))))
-
 (use-package kernel-stack-trace-mode
   :load-path "lisp/kernel-stack-trace-mode"
   :ensure nil)
