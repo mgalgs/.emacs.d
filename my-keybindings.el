@@ -65,4 +65,4 @@
 
 (global-set-key (kbd "C-c m m e") 'm/overlays-for-mailing-lists)
 
-
+(global-set-key (kbd "C-x SPC") 'ido-switch-buffer)
