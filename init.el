@@ -219,7 +219,6 @@ installed/loaded.")
   (add-hook 'c-mode-common-hook 'yas-minor-mode)
   (add-hook 'js-mode-hook 'yas-minor-mode)
   (add-hook 'web-mode-hook 'yas-minor-mode)
-  (add-hook 'python-mode-hook 'yas-minor-mode)
   :config
   (yas-reload-all))
 
@@ -631,45 +630,33 @@ installed/loaded.")
 
 (use-package go-autocomplete)
 
-(defvar pycscope-env "~/virtualenvs/pycscope")
-(defvar pycscope-venv "virtualenv")
-
 (use-package python
   :config
   (setq python-fill-docstring-style 'django)
 
-  (defun m/pycscope-env-cmd (cmd)
-    (m/init-pycscope)
-    (let ((cmd (format "%s/bin/%s"
-                           pycscope-env
-                           cmd)))
-      (with-temp-message (concat "running: " cmd)
-        (shell-command cmd))))
+  ;; (add-hook 'python-mode-hook
+  ;;           #'(lambda ()
+  ;;               (setq autopair-handle-action-fns
+  ;;                     (list #'autopair-default-handle-action
+  ;;                           #'autopair-python-triple-quote-action))))
+  )
 
-  (defun m/init-pycscope ()
-    (let ((pycscope (concat pycscope-env "/bin/pycscope")))
-      (unless (file-exists-p pycscope-env)
-        (with-temp-message (format "Initializing pycscope virtualenv at %s"
-                                   pycscope-env)
-          (shell-command (concat pycscope-venv " " pycscope-env))
-          (m/pycscope-env-cmd "pip install pycscope")))))
+;; Unfortunate nvm version hard-coding... :thinking:
+(setq m/node-root (file-name-as-directory (expand-file-name "~/.nvm/versions/node/v18.2.0")))
+(defun m/node-path (path)
+  (concat m/node-root path))
 
-  (defun m/pycscope-current-repo ()
-    (interactive)
-    (magit-with-toplevel
-      (shell-command "find . -name '*.py' -not -iwholename '**/env/*' > cscope.files")
-      (m/pycscope-env-cmd "pycscope -i cscope.files")))
-
-  (defun m/pycscope-current-dir-recursively ()
-    (interactive)
-    (shell-command "find . -name '*.py' > cscope.files")
-    (m/pycscope-env-cmd "pycscope -i cscope.files"))
-
-  (add-hook 'python-mode-hook
-            #'(lambda ()
-                (setq autopair-handle-action-fns
-                      (list #'autopair-default-handle-action
-                            #'autopair-python-triple-quote-action)))))
+;; requires pyright to be installed
+;; nvm install latest && npm install -g pyright
+;; (see m/node-root)
+(use-package eglot
+  :init
+  (add-hook 'python-mode-hook 'eglot-ensure)
+  :config
+  (add-to-list 'eglot-server-programs
+               `(python-mode . (,(m/node-path "bin/node")
+                                ,(m/node-path "bin/pyright-langserver")
+                                "--stdio"))))
 
 (use-package nginx-mode)
 
@@ -886,35 +873,11 @@ installed/loaded.")
   (setq global-mode-string '("" celestial-mode-line-string " " display-time-string))
   (celestial-mode-line-start-timer))
 
-;; (use-package elpy
-;;   :init
-;;   (elpy-enable)
-;;   :config
-;;   (setq elpy-rpc-ignored-buffer-size 409600)
-;;   (setq elpy-modules (-remove (lambda (el) (or (eq el 'elpy-module-highlight-indentation)
-;;                                                (eq el 'elpy-module-flymake)))
-;;                               elpy-modules))
-;;   (add-hook 'elpy-mode-hook (lambda ()
-;;                               ;; undo crap from elpy-module-company
-;;                               (set (make-local-variable 'company-dabbrev-code-everywhere)
-;;                                    nil))))
-
 (use-package groovy-mode)
 
 (use-package lorem-ipsum)
 
 (use-package pyvenv)
-
-(use-package lsp-mode
-  :commands lsp
-  :config
-  (add-hook 'python-mode-hook #'lsp)
-  :bind
-  (("C-c m a" . lsp-execute-code-action)))
-
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package company-lsp :commands company-lsp)
-
 (use-package emacs-pager
   :ensure nil
   :load-path "lisp/emacs-pager"
