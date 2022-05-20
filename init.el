@@ -500,7 +500,8 @@ installed/loaded.")
 (use-package which-key
   :init (which-key-mode))
 
-(use-package ag)
+(use-package ag
+  :bind (("C-c m a" . ag-project)))
 
 (use-package flyspell
   :config
