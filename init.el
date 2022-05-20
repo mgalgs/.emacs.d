@@ -74,7 +74,8 @@
    ("C-c m m u" . m/underline-previous-line)
    ("C-c m C-y" . m/get-primary)
    ("M-Y" . m/yank-pop-forwards)
-   ("C-c m M-%" . m/query-replace-using-region)))
+   ("C-c m M-%" . m/query-replace-using-region)
+   ("C-M-." . m/xref-find-apropos-at-point)))
 
 (defvar m/init-complete-hook nil
   "Runs when ~/.emacs.d/init.el finishes loading.  Useful for

@@ -1081,4 +1081,15 @@ to it."
   (interactive)
   (setq truncate-lines (not truncate-lines)))
 
+(defun m/xref-find-apropos-at-point (arg)
+  "Like `xref-find-apropos', but without the prompt (uses
+`symbol-at-point'). With a prefix, simply calls
+`xref-find-apropos', which allows this command to be bound to the
+default `xref-find-apropos' keybinding without losing
+functionality (just call with prefix for original behavior)."
+  (interactive "P")
+  (if arg
+      (call-interactively 'xref-find-apropos)
+    (xref-find-apropos (thing-at-point 'symbol))))
+
 (provide 'my-util)
