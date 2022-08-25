@@ -915,6 +915,8 @@ installed/loaded.")
   :ensure nil
   :load-path "lisp/quick-clone")
 
+(use-package olivetti)
+
 
 ;;; These lines should be last:
 ;; some keybindings
