@@ -778,7 +778,9 @@ installed/loaded.")
 
 (use-package undo-tree
   :config (global-undo-tree-mode)
-  :diminish undo-tree-mode)
+  :diminish undo-tree-mode
+  :init
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
 (use-package restclient)
 
