@@ -635,6 +635,9 @@ installed/loaded.")
 (use-package go-autocomplete)
 
 (use-package python
+  :init
+  (use-package blacken)
+
   :config
   (setq python-fill-docstring-style 'django)
 
