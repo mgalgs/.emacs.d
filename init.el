@@ -649,9 +649,18 @@ installed/loaded.")
   )
 
 ;; Unfortunate nvm version hard-coding... :thinking:
-(setq m/node-root (file-name-as-directory (expand-file-name "~/.nvm/versions/node/v18.2.0")))
+(setq m/node-root (file-name-as-directory (expand-file-name "~/.nvm/versions/node/v18.12.0")))
 (defun m/node-path (path)
   (concat m/node-root path))
+
+;; eglot wrapper that sets VIRTUAL_ENV to the value of pyvenv-activate and
+;; executes pyright from the node environment under m/node-root
+(defun m/eglot (interactive-p)
+  (when (and (boundp 'pyvenv-activate) pyvenv-activate)
+    (setenv "VIRTUAL_ENV" (expand-file-name pyvenv-activate)))
+  (list (m/node-path "bin/node")
+        (m/node-path "bin/pyright-langserver")
+        "--stdio"))
 
 ;; requires pyright to be installed
 ;; nvm install latest && npm install -g pyright
@@ -661,9 +670,7 @@ installed/loaded.")
   (add-hook 'python-mode-hook 'eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
-               `(python-mode . (,(m/node-path "bin/node")
-                                ,(m/node-path "bin/pyright-langserver")
-                                "--stdio"))))
+               '(python-mode . m/eglot)))
 
 (use-package nginx-mode)
 
