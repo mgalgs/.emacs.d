@@ -931,6 +931,8 @@ installed/loaded.")
 
 (use-package olivetti)
 
+(use-package sudo-edit)
+
 
 ;;; These lines should be last:
 ;; some keybindings
