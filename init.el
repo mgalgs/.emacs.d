@@ -161,11 +161,15 @@ installed/loaded.")
 ;; m/visit-init-file-maker
 (m/visit-init-file-maker)
 
-(load-theme 'wombat)
+;; (load-theme 'wombat)
 ;;; wombat sets a foreground color for the `region' face, so we need to
 ;;; make it unspecified so that foreground colors don't get wiped out
-(set-face-attribute 'region nil :background "MediumPurple4" :foreground 'unspecified)
-(set-cursor-color "#ff8844")
+;; (set-face-attribute 'region nil :background "MediumPurple4" :foreground 'unspecified)
+;; (set-cursor-color "#ff8844")
+
+(use-package kaolin-themes
+  :config
+  (load-theme 'kaolin-ocean t))
 (blink-cursor-mode 0)
 
 
