@@ -823,20 +823,6 @@ installed/loaded.")
 
 (use-package rust-mode
   :init
-  (use-package racer
-    :init
-    (add-hook 'rust-mode-hook #'racer-mode)
-    (add-hook 'racer-mode-hook #'eldoc-mode)
-    (add-hook 'racer-mode-hook #'company-mode)
-    :bind
-    (("TAB" . company-indent-or-complete-common))
-    :diminish racer-mode)
-  ;; flycheck-rust currently has a hard time with Cargo :(
-  ;; disable it until it works
-  ;; (use-package flycheck-rust
-  ;;   :init
-  ;;   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-  ;;   (add-hook 'rust-mode-hook 'flycheck-mode))
   (use-package cargo
     :init
     (add-hook 'rust-mode-hook 'cargo-minor-mode)
