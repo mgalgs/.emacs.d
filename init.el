@@ -17,6 +17,8 @@
       (append (list "~/.emacs.d/lisp")
               load-path))
 
+(m/l "init-straight.el")
+
 ;; workaround for https://lists.gnu.org/archive/html/emacs-devel/2015-07/msg00251.html
 ;; remove once http://lists.gnu.org/archive/html/emacs-diffs/2015-03/msg00137.html is included in a stable release
 (setq tramp-ssh-controlmaster-options nil)
