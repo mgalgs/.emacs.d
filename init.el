@@ -674,6 +674,7 @@ installed/loaded.")
 (use-package eglot
   :init
   (add-hook 'python-mode-hook 'eglot-ensure)
+  (add-hook 'rust-mode-hook 'eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
                '(python-mode . m/eglot)))
