@@ -643,6 +643,8 @@ installed/loaded.")
 (use-package python
   :init
   (use-package blacken)
+  :bind
+  (("C-c m m k" . blacken-buffer))
 
   :config
   (setq python-fill-docstring-style 'django)
