@@ -924,7 +924,9 @@ installed/loaded.")
   :ensure nil
   :load-path "lisp/quick-clone")
 
-(use-package olivetti)
+(use-package olivetti
+  :bind
+  (("C-c m m m o" . olivetti-mode)))
 
 (use-package sudo-edit)
 
