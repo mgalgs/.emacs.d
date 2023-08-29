@@ -277,7 +277,6 @@ installed/loaded.")
    ("C-r" . helm-previous-line))
   :init
   (require 'helm)
-  (require 'helm-config)
   (use-package helm-ls-git
     :bind
     ("C-c m f" . helm-ls-git-ls))
