@@ -334,7 +334,23 @@ installed/loaded.")
                   cider-repl-mode-hook))
     (add-hook hook #'enable-paredit-mode)
     (add-hook hook (lambda () (electric-pair-local-mode 0))))
-  :diminish paredit-mode)
+  :diminish paredit-mode
+  :bind
+  (:map paredit-mode-map
+        ("<return>" . my/paredit-RET))
+  :config
+  ;; from https://www.reddit.com/r/emacs/comments/101uwgd/comment/jjq0jen/
+  (defun my/paredit-RET ()
+    "Wraps `paredit-RET' to provide a sensible minibuffer experience"
+    (interactive)
+    (cond
+     ((minibufferp)
+      (read--expression-try-read))
+     ((and (eq major-mode 'inferior-emacs-lisp-mode)
+           (string-prefix-p "*ielm*" (buffer-name)))
+      (ielm-return))
+     (t
+      (paredit-RET)))))
 
 (use-package magit
   :bind
