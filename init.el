@@ -701,7 +701,8 @@ installed/loaded.")
   (add-hook 'rust-mode-hook 'eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
-               '(python-mode . m/eglot)))
+               '(python-mode . m/eglot))
+  (setq eglot-report-progress nil))
 
 (use-package nginx-mode)
 
