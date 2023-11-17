@@ -22,13 +22,6 @@
 
 (setq magit-display-buffer-function 'm/magit-display-buffer-traditional)
 
-(add-to-list 'git-commit-known-pseudo-headers "Change-Id")
-(add-to-list 'git-commit-known-pseudo-headers "CRs-Fixed")
-(add-to-list 'git-commit-known-pseudo-headers "Git-commit")
-(add-to-list 'git-commit-known-pseudo-headers "Git-repo")
-(add-to-list 'git-commit-known-pseudo-headers "Fixes")
-(add-to-list 'git-commit-known-pseudo-headers "Tested-by")
-
 (setq magit-log-section-commit-count' 10)
 (setq magit-log-section-arguments '("--graph" "--decorate" "--color"))
 
@@ -65,5 +58,3 @@
 (transient-append-suffix 'magit-commit
   "S"
   '("R" "Reset author" m/magit-reset-author))
-
-(setq git-commit-finish-query-functions nil)
