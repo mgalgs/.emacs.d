@@ -776,12 +776,11 @@ installed/loaded.")
 
 (use-package flycheck
   :diminish flycheck-mode
-  :init
+  :config
   (add-hook 'js-mode-hook 'flycheck-mode)
   (add-hook 'python-mode-hook 'flycheck-mode)
   (add-hook 'go-mode-hook 'flycheck-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
-  :config
   (setq flycheck-idle-change-delay 3)
   (setq flycheck-idle-buffer-switch-delay 3)
 
@@ -797,6 +796,18 @@ installed/loaded.")
       (when (and eslint (file-executable-p eslint))
         (setq-local flycheck-javascript-eslint-executable eslint))))
 
+  (defun m/add-eslint-extra-config ()
+    "If dominating file eslint-extra.json is found, add it to the
+eslint command line args with -c"
+    (let* ((extra-config-filename "eslint-extra.json")
+           (extra-config-file (locate-dominating-file default-directory
+                                                      extra-config-filename))
+           (extra-config-file (and extra-config-file
+                                   (expand-file-name extra-config-file))))
+      (when extra-config-file
+        (setq-local flycheck-eslint-args (list "-c" (concat extra-config-file
+                                                            extra-config-filename))))))
+
   (defun my/configure-web-mode-flycheck-checkers ()
     ;; in order to have flycheck enabled in web-mode, add an entry to this
     ;; cond that matches the web-mode engine/content-type/etc and returns the
@@ -808,6 +819,7 @@ installed/loaded.")
       (flycheck-select-checker checker)))
 
   (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+  (add-hook 'flycheck-mode-hook #'m/add-eslint-extra-config)
   (add-hook 'web-mode-hook #'my/configure-web-mode-flycheck-checkers)
 
   :config
