@@ -890,6 +890,13 @@ eslint command line args with -c"
          calc-alg-map
          ("C-o" . casual-calc-tmenu)))
 
+(use-package casual-dired
+  :ensure t
+  :bind (:map dired-mode-map
+              ("C-o" . #'casual-dired-tmenu)
+              ("s" . #'casual-dired-sort-by-tmenu)
+              ("/" . #'casual-dired-search-replace-tmenu)))
+
 (use-package elisp-mode
   :ensure nil
   :init
