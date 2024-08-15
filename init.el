@@ -897,6 +897,10 @@ eslint command line args with -c"
               ("s" . #'casual-dired-sort-by-tmenu)
               ("/" . #'casual-dired-search-replace-tmenu)))
 
+(use-package casual-isearch
+  :ensure t
+  :bind (:map isearch-mode-map ("C-o" . casual-isearch-tmenu)))
+
 (use-package elisp-mode
   :ensure nil
   :init
