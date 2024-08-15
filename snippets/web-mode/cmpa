@@ -2,34 +2,54 @@
 # name: cmpa
 # key: cmpa
 # --
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { createRoot } from 'react-dom/client';
 
-class $1 extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+import { fetchJSON, strRequest } from './util.jsx';
 
-    render() {
-        return (
-            <div>
-              $0
-            </div>
-        );
-    }
-}
+const apiUrl = "/api/v2/TODO";
+
+const $1 = (props) => {
+    const [items, setItems] = useState([]);
+
+    const fetchData = async () => {
+        const data = await fetchJSON(apiUrl);
+        setItems(data.results);
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const submit = async () => {
+        const data = {};
+        const rsp = await strRequest(apiUrl, "POST", data);
+        if (!rsp.ok) {
+            toast.error(\`Error saving: \${rsp.statusText}\`);
+        } else {
+            toast.succes("Save successful");
+            fetchData();
+        }
+    };
+
+    return (
+      <div>$0</div>
+    );
+};
 
 $1.propTypes = {
-    prop0: PropTypes.object.isRequired,
-    prop1: PropTypes.number.isRequired,
-    prop2: PropTypes.func,
 };
+
+let root = null;
 
 function ${1:$(concat yas-text "App")}(el) {
     if (el === null)
         return;
-    ReactDOM.render(<$1 />, el);
+    if (root)
+        root.unmount();
+    root = createRoot(el);
+    root.render(<$1 />);
 }
 
 export default ${1:$(concat yas-text "App")};

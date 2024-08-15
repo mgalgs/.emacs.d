@@ -2,27 +2,42 @@
 # name: cmp
 # key: cmp
 # --
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-class $1 extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+import { fetchJSON, strRequest } from './util.jsx';
 
-    render() {
-        return (
-            <div>
-              $0
-            </div>
-        );
-    }
-}
+const apiUrl = "/api/v2/TODO";
+
+const $1 = (props) => {
+    const [items, setItems] = useState([]);
+
+    const fetchData = async () => {
+        const data = await fetchJSON(apiUrl);
+        setItems(data.results);
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const submit = async () => {
+        const data = {};
+        const rsp = await strRequest(apiUrl, "POST", data);
+        if (!rsp.ok) {
+            toast.error(\`Error saving: \${rsp.statusText}\`);
+        } else {
+            toast.succes("Save successful");
+            fetchData();
+        }
+    };
+
+    return (
+      <div>$0</div>
+    );
+};
 
 $1.propTypes = {
-    prop0: PropTypes.object.isRequired,
-    prop1: PropTypes.number.isRequired,
-    prop2: PropTypes.func,
 };
 
 export default $1;
