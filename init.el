@@ -881,6 +881,15 @@ eslint command line args with -c"
   :bind
   (("C-c m C-c" . calc)))
 
+(use-package casual-calc
+  :after (calc)
+  :bind (:map
+         calc-mode-map
+         ("C-o" . casual-calc-tmenu)
+         :map
+         calc-alg-map
+         ("C-o" . casual-calc-tmenu)))
+
 (use-package elisp-mode
   :ensure nil
   :init
