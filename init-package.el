@@ -15,6 +15,3 @@
       (package-install 'use-package)))
 
 (require 'use-package)
-
-(use-package paradox)
-(setq paradox-execute-asynchronously t)
