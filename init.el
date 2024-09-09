@@ -1019,6 +1019,8 @@ eslint command line args with -c"
   (popper-mode +1)
   (popper-echo-mode +1)) ; For echo area hints
 
+(use-package posframe)
+
 
 ;;; These lines should be last:
 ;; some keybindings
