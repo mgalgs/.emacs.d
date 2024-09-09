@@ -28,7 +28,7 @@
 
 (global-set-key "\C-cmw" 'man)
 
-
+(global-set-key (kbd "M-o") 'other-window)
 
 (global-set-key (kbd "C-c m o") 'browse-url)
 
