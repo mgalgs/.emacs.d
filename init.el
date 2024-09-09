@@ -1046,6 +1046,9 @@ eslint command line args with -c"
     :stream t
     :key (get-anthropic-api-key)))
 
+(use-package gptel-quick
+  :straight (gptel-quick :type git :host github :repo "karthink/gptel-quick"))
+
 
 ;;; These lines should be last:
 ;; some keybindings
