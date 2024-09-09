@@ -1021,6 +1021,31 @@ eslint command line args with -c"
 
 (use-package posframe)
 
+;;; Note: relevant ~/.authinfo entries are required, i.e.
+;; machine api.openai.com login apikey password ****
+;; machine api.anthropic.com login anthropic-api-key password ****
+(use-package gptel
+  :ensure t
+  :config
+  ;; Function to retrieve the API key from ~/.authinfo
+  (defun get-anthropic-api-key ()
+    "Retrieve the Anthropic API key from ~/.authinfo."
+    (let ((auth-info (auth-source-search
+                      :host "api.anthropic.com"
+                      :user "anthropic-api-key"
+                      :require '(:user :secret))))
+      (if auth-info
+          (let ((secret (plist-get (car auth-info) :secret)))
+            (if (functionp secret)
+                (funcall secret)  ; If it's a function, call it to get the actual value
+              secret))  ; Otherwise, return the secret directly
+        (error "API key not found in ~/.authinfo"))))
+
+  ;; ChatGPT is enabled by default. Add Claude backend as well.
+  (gptel-make-anthropic "Claude"
+    :stream t
+    :key (get-anthropic-api-key)))
+
 
 ;;; These lines should be last:
 ;; some keybindings
