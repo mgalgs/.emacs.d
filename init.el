@@ -999,6 +999,11 @@ eslint command line args with -c"
 
 (use-package helpful)
 
+(use-package dumb-jump
+  :config
+  (add-hook 'xref-backend-definitions #'dumb-jump-xref-activate)
+  (setq xref-show-definitions-function #'xref-show-definitions-completing-read))
+
 
 ;;; These lines should be last:
 ;; some keybindings
