@@ -28,8 +28,10 @@ Arguments _BEGIN, _END, and _LENGTH are passed by `after-change-functions' but u
   (let ((buf (get-buffer-create autosave-notes-buffer-name)))
     (switch-to-buffer buf)
     (when (file-readable-p autosave-notes-file)
-      (erase-buffer)
-      (insert-file-contents autosave-notes-file))
+      ; Disable autosave for one sec
+      (let ((after-change-functions nil))
+        (erase-buffer)
+        (insert-file-contents autosave-notes-file)))
     (set-buffer-modified-p nil)))
 
 (provide 'autosave-notes)
