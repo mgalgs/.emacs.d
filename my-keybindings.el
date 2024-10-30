@@ -39,7 +39,6 @@
 (global-set-key "\C-x>" (lambda () (interactive) (other-window 1) (end-of-buffer)))
 
 (global-set-key (kbd "C-c m n") 'm/visit-init-file)
-(global-set-key (kbd "C-c m m n") (lambda () (interactive) (switch-to-buffer "*notes*")))
 (global-set-key (kbd "C-c m m s") (lambda () (interactive) (switch-to-buffer "*scratch*")))
 (global-set-key (kbd "C-c m m t") (lambda () (interactive) (find-file "~/notes/notes.org")))
 

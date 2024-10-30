@@ -1065,6 +1065,17 @@ eslint command line args with -c"
   ;;				      parenthesized_expression subscript)))
   :hook ((python-base-mode yaml-mode) . indent-bars-mode))
 
+(use-package autosave-notes
+  :load-path "~/.emacs.d/lisp"
+  :bind (("C-c m m n" . autosave-notes-open-notes-buffer))
+  :config
+  (autosave-notes-mode 1)
+  ;; Enable olivetti-mode when opening notes buffer
+  (advice-add 'autosave-notes-open-notes-buffer :after
+              (lambda (&rest _)
+                (with-current-buffer "*notes*"
+                  (olivetti-mode 1)))))
+
 
 ;;; These lines should be last:
 ;; some keybindings
