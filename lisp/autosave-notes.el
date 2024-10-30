@@ -11,7 +11,7 @@
 Arguments _BEGIN, _END, and _LENGTH are passed by `after-change-functions' but unused."
   (when (and (string= (buffer-name) autosave-notes-buffer-name)
              (buffer-modified-p))
-    (write-region (point-min) (point-max) autosave-notes-file)))
+    (write-region (point-min) (point-max) autosave-notes-file nil 0)))
 
 ;;;###autoload
 (define-minor-mode autosave-notes-mode
