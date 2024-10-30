@@ -87,7 +87,7 @@ it might contain configuration that relies on packages yet to be
 installed/loaded.")
 
 (when (file-exists-p "~/private.el")
-    (load-file "~/private.el"))
+  (load-file "~/private.el"))
 
 
 ;;; misc settings
@@ -244,8 +244,8 @@ installed/loaded.")
   (ido-mode 1)
   (add-hook 'ido-setup-hook
 	    (lambda () (define-key ido-completion-map
-			 " "
-			 'ido-restrict-to-matches)))
+			           " "
+			           'ido-restrict-to-matches)))
   :config
   (setq ido-enable-flex-matching t
 	ido-max-prospects 6
@@ -461,7 +461,7 @@ installed/loaded.")
     :config
     (setq phi-search-limit 5000)
     :init
-    ;; credit to @jonebird for the following 
+    ;; credit to @jonebird for the following
     ;; Allow isearch functionality with multipl-cursors
     (add-hook 'multiple-cursors-mode-enabled-hook
               (lambda ()
