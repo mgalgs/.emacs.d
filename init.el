@@ -59,7 +59,6 @@
    ("C-S-l" . m/horizontal-recenter)
    ("C-c m d" . m/lookup-current-word)
    ("<f8>" . m/toggle-tab-width-setting)
-   ("C-c m s" . m/search-all-buffers)
    ("C-c m i" . m/kill-where-i-am)
    ("C-c m m i" . m/kill-where-i-am-relative-to-gitroot)
    ("C-c m g" . m/grep-what-im-on)
