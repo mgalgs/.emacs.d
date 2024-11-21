@@ -71,4 +71,4 @@
 ;; Remap C-h prefix to C-c C-h so that I can map C-h to backward-char
 (global-set-key (kbd "C-c C-h") help-map)
 (global-set-key (kbd "C-h") 'backward-char)
-(global-set-key (kbd "C-c m s") 'sort-lines)
+(global-set-key (kbd "C-c m s") 'm/sort)
