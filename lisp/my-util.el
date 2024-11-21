@@ -1092,4 +1092,16 @@ functionality (just call with prefix for original behavior)."
       (call-interactively 'xref-find-apropos)
     (xref-find-apropos (thing-at-point 'symbol))))
 
+(defun m/sort (arg)
+  "`sort-lines' wrapper. If called with a prefix then it sorts the
+current paragraph"
+  (interactive "P")
+  (if arg
+      (sort-lines nil
+                  (save-excursion (backward-paragraph)
+                                  (point))
+                  (save-excursion (forward-paragraph)
+                                  (point)))
+    (call-interactively 'sort-lines)))
+
 (provide 'my-util)
