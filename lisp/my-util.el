@@ -1098,10 +1098,12 @@ current paragraph"
   (interactive "P")
   (if arg
       (sort-lines nil
-                  (save-excursion (backward-paragraph)
-                                  (point))
-                  (save-excursion (forward-paragraph)
-                                  (point)))
+                  (save-excursion
+                    (backward-paragraph)
+                    (point))
+                  (save-excursion
+                    (forward-paragraph)
+                    (point)))
     (call-interactively 'sort-lines)))
 
 (provide 'my-util)
