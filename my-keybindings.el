@@ -72,3 +72,5 @@
 (global-set-key (kbd "C-c C-h") help-map)
 (global-set-key (kbd "C-h") 'backward-char)
 (global-set-key (kbd "C-c m s") 'm/sort)
+(global-set-key (kbd "C-<next>") 'other-window)
+(global-set-key (kbd "C-<prior>") (lambda () (interactive) (other-window -1)))
