@@ -74,3 +74,5 @@
 (global-set-key (kbd "C-c m s") 'm/sort)
 (global-set-key (kbd "C-<next>") 'other-window)
 (global-set-key (kbd "C-<prior>") (lambda () (interactive) (other-window -1)))
+(global-set-key (kbd "<f10>") 'delete-window)
+(global-set-key (kbd "<f1>") 'delete-other-windows)
