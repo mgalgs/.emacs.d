@@ -880,25 +880,20 @@ eslint command line args with -c"
   :bind
   (("C-c m C-c" . calc)))
 
-(use-package casual-calc
+(use-package casual
   :after (calc)
   :bind (:map
          calc-mode-map
          ("C-o" . casual-calc-tmenu)
          :map
          calc-alg-map
-         ("C-o" . casual-calc-tmenu)))
-
-(use-package casual-dired
-  :ensure t
-  :bind (:map dired-mode-map
-              ("C-o" . #'casual-dired-tmenu)
-              ("s" . #'casual-dired-sort-by-tmenu)
-              ("/" . #'casual-dired-search-replace-tmenu)))
-
-(use-package casual-isearch
-  :ensure t
-  :bind (:map isearch-mode-map ("C-o" . casual-isearch-tmenu)))
+         ("C-o" . casual-calc-tmenu)
+         :map
+         dired-mode-map
+         ("C-o" . casual-dired-tmenu)
+         :map
+         isearch-mode-map
+         ("C-o" . casual-isearch-tmenu)))
 
 (use-package elisp-mode
   :ensure nil
