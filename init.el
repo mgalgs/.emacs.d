@@ -360,22 +360,22 @@ installed/loaded.")
    ("C-c m :" . magit-git-command)
    ("C-c m m b" . magit-blame)
    ("C-c m m l" . magit-log-buffer-file))
-  :init
-  (use-package git-commit
-    :bind
-    ("C-c C-e" . m/suggest-commit-message-prefix)
-    :config
-    (add-to-list 'git-commit-trailers "Change-Id")
-    (add-to-list 'git-commit-trailers "CRs-Fixed")
-    (add-to-list 'git-commit-trailers "Git-commit")
-    (add-to-list 'git-commit-trailers "Git-repo")
-    (add-to-list 'git-commit-trailers "Fixes")
-    (setq git-commit-finish-query-functions nil))
   :config
   (m/l "init-magit.el"))
 
-;; (use-package forge
-;;   :after magit)
+(use-package git-commit
+  :after magit
+  :ensure nil  ; it's part of magit
+  :bind (:map
+         git-commit-mode-map
+         ("C-c C-e" . m/suggest-commit-message-prefix))
+  :config
+  (add-to-list 'git-commit-trailers "Change-Id")
+  (add-to-list 'git-commit-trailers "CRs-Fixed")
+  (add-to-list 'git-commit-trailers "Git-commit")
+  (add-to-list 'git-commit-trailers "Git-repo")
+  (add-to-list 'git-commit-trailers "Fixes")
+  (setq git-commit-finish-query-functions nil))
 
 (use-package ansi-color
   :init
