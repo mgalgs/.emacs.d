@@ -247,10 +247,10 @@ installed/loaded.")
 			           'ido-restrict-to-matches)))
   :config
   (setq ido-enable-flex-matching t
-	ido-max-prospects 6
-	ido-auto-merge-work-directories-length -1
-	ido-default-buffer-method 'maybe-frame
-	ido-ignore-buffers
+        ido-max-prospects 6
+        ido-auto-merge-work-directories-length -1
+        ido-default-buffer-method 'maybe-frame
+        ido-ignore-buffers
 	'("\\` " "^\*Back"
 	  ".*Completion" "^\*Ido" "^\*trace"
 	  "^\*Bookmark" "^\*Compile\-Log"
@@ -261,6 +261,9 @@ installed/loaded.")
           "^\.newsrc-dribble"
 	  "^\*GTAGS SELECT\*"
           "^\*ag search "))
+
+  (add-to-list 'ido-ignore-files "__pycache__/" t)
+
   (use-package ido-vertical-mode
     :init
     (ido-vertical-mode 1)
