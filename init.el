@@ -1062,6 +1062,8 @@ eslint command line args with -c"
   ;;				      parenthesized_expression subscript)))
   :hook ((python-base-mode yaml-mode) . indent-bars-mode))
 
+(use-package boxquote)
+
 (use-package autosave-notes
   :load-path "~/.emacs.d/lisp"
   :bind (("C-c m m n" . autosave-notes-open-notes-buffer))
