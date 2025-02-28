@@ -1066,7 +1066,7 @@ eslint command line args with -c"
 
 (use-package autosave-notes
   :load-path "~/.emacs.d/lisp"
-  :bind (("C-c m m n" . autosave-notes-open-notes-buffer))
+  :bind (("C-c m n" . autosave-notes-open-notes-buffer))
   :config
   (autosave-notes-mode 1)
   ;; Enable olivetti-mode when opening notes buffer
