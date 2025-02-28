@@ -120,7 +120,8 @@ installed/loaded.")
       column-number-mode t
       auto-revert-verbose nil
       mouse-wheel-mode nil
-      confirm-kill-emacs 'y-or-n-p)
+      confirm-kill-emacs 'y-or-n-p
+      visual-line-fringe-indicators '(right-arrow nil))
 
 (setq-default indent-tabs-mode nil ; don't use the tab character, only spaces
               ;; tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)
@@ -1074,6 +1075,14 @@ eslint command line args with -c"
               (lambda (&rest _)
                 (with-current-buffer "*notes*"
                   (olivetti-mode 1)))))
+
+(use-package modern-fringes
+  :straight (modern-fringes :type git :host github :repo "SpecialBomb/emacs-modern-fringes")
+  :init
+  ;; Adjust fringe bitmaps to match the background color
+  (modern-fringes-invert-arrows)
+  ;; Enable modern-fringes globally
+  (modern-fringes-mode 1))
 
 
 ;;; These lines should be last:
