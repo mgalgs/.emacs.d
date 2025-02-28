@@ -76,3 +76,4 @@
 (global-set-key (kbd "C-<prior>") (lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "<f10>") 'delete-window)
 (global-set-key (kbd "<f1>") 'delete-other-windows)
+(global-set-key (kbd "C-c m v") 'visual-line-mode)
