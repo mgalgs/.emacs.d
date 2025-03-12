@@ -3,15 +3,15 @@
 ;; Usage: mkdir myclean ; cd myclean ; emacs -Q -nw -l ~/emacs-clean.el
 ;; (or use emacs_clean.sh)
 
+(require 'package)
+
 (setq package-user-dir
       (concat
        default-directory
-       "elpa"))
+       "pkg"))
 (message "Using package-user-dir: %s" package-user-dir)
 
-(setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("melpa" . "http://melpa.milkbox.net/packages/")))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 (package-initialize)
 (package-refresh-contents)
