@@ -1035,12 +1035,15 @@ eslint command line args with -c"
             (if (functionp secret)
                 (funcall secret)  ; If it's a function, call it to get the actual value
               secret))  ; Otherwise, return the secret directly
-        (error "API key not found in ~/.authinfo"))))
+        nil)))
 
   ;; ChatGPT is enabled by default. Add Claude backend as well.
-  (gptel-make-anthropic "Claude"
-    :stream t
-    :key (get-anthropic-api-key)))
+  (let ((anthropic-api-key (get-anthropic-api-key)))
+    (if anthropic-api-key
+        (gptel-make-anthropic "Claude"
+          :stream t
+          :key (get-anthropic-api-key))
+      (message "No Anthropic API key found. Not adding Claude to gptel."))))
 
 (use-package gptel-quick
   :straight (gptel-quick :type git :host github :repo "karthink/gptel-quick"))
