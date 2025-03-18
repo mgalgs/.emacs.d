@@ -34,7 +34,6 @@
         magit-insert-bisect-output
         magit-insert-bisect-rest
         magit-insert-bisect-log
-        magit-insert-untracked-files
         magit-insert-unstaged-changes
         magit-insert-staged-changes
         magit-insert-unpushed-cherries
@@ -43,6 +42,7 @@
         magit-insert-unpushed-to-upstream
         magit-insert-unpushed-to-pushremote
         magit-insert-unpulled-from-upstream
+        magit-insert-untracked-files
         magit-insert-stashes))
 
 (font-lock-add-keywords 'emacs-lisp-mode
