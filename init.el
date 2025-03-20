@@ -1086,6 +1086,11 @@ eslint command line args with -c"
   ;; Enable modern-fringes globally
   (modern-fringes-mode 1))
 
+(defun m/compilation-mode-hook ()
+  (run-at-time "0.1 sec" nil (lambda () (goto-char (point-max)))))
+
+(add-hook 'compilation-mode-hook 'm/compilation-mode-hook)
+
 
 ;;; These lines should be last:
 ;; some keybindings
