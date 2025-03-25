@@ -1089,7 +1089,12 @@ eslint command line args with -c"
   (modern-fringes-mode 1))
 
 (defun m/compilation-mode-hook ()
-  (run-at-time "0.1 sec" nil (lambda () (goto-char (point-max)))))
+  (let ((current-compilation-buffer (current-buffer)))
+    (run-at-time "0.1 sec" nil (lambda (buf)
+                                 (with-current-buffer buf
+                                   (message "Scrolling in %s" buf)
+                                   (goto-char (point-max))))
+                 current-compilation-buffer)))
 
 (add-hook 'compilation-mode-hook 'm/compilation-mode-hook)
 
