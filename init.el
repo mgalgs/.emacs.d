@@ -701,9 +701,12 @@ installed/loaded.")
   :init
   (add-hook 'python-mode-hook 'eglot-ensure)
   (add-hook 'rust-mode-hook 'eglot-ensure)
+  (add-hook 'typescript-ts-mode-hook 'eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
                '(python-mode . m/eglot))
+  (add-to-list 'eglot-server-programs
+               '(typescript-ts-mode . ("typescript-language-server" "--stdio")))
   (setq eglot-report-progress nil))
 
 (use-package nginx-mode)
