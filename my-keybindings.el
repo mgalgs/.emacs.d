@@ -71,7 +71,7 @@
 ;; Remap C-h prefix to C-c C-h so that I can map C-h to backward-char
 (global-set-key (kbd "C-c C-h") help-map)
 (global-set-key (kbd "C-h") 'backward-char)
-(global-set-key (kbd "C-c m s") 'm/sort)
+(global-set-key (kbd "C-c m s") 'sort-lines)
 (global-set-key (kbd "C-c m S") 'gthings-show-file-at-rev)
 (global-set-key (kbd "C-<next>") 'other-window)
 (global-set-key (kbd "C-<prior>") (lambda () (interactive) (other-window -1)))
