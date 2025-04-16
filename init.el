@@ -1025,6 +1025,9 @@ eslint command line args with -c"
 ;; machine api.openai.com login apikey password ****
 ;; machine api.anthropic.com login anthropic-api-key password ****
 (use-package gptel
+  :bind (:map
+         gptel-mode-map
+         ("C-t" . gptel-menu))
   :config
   ;; Function to retrieve the API key from ~/.authinfo
   (defun get-anthropic-api-key ()
