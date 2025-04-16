@@ -1140,6 +1140,11 @@ eslint command line args with -c"
 
 (use-package kotlin-mode)
 
+(use-package copilot
+  :vc (:url "https://github.com/copilot-emacs/copilot.el"
+            :rev :newest
+            :branch "main"))
+
 
 ;;; These lines should be last:
 ;; some keybindings
