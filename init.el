@@ -861,7 +861,8 @@ eslint command line args with -c"
   :diminish company-mode
   :config
   (setq company-backends (-remove (lambda (el) (eq el 'company-dabbrev))
-                                  company-backends)))
+                                  company-backends))
+  (global-company-mode))
 
 (use-package company-go
   :init
