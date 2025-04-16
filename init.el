@@ -1137,6 +1137,8 @@ eslint command line args with -c"
   :config
   (m/setup-install-grammars))
 
+(use-package kotlin-mode)
+
 
 ;;; These lines should be last:
 ;; some keybindings
