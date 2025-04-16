@@ -79,3 +79,4 @@
 (global-set-key (kbd "<f1>") 'delete-other-windows)
 (global-set-key (kbd "C-c m v") 'visual-line-mode)
 (global-set-key (kbd "C-c m G") 'gptel)
+(global-set-key (kbd "M-x") 'helm-M-x)
