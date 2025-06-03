@@ -61,10 +61,8 @@ ls-files` at the specified revision)."
          (file-list (split-string (shell-command-to-string file-list-cmd)
                                   "\n" t))
          (filename (if (or current-prefix-arg (not (buffer-file-name)))
-                   (ido-completing-read "File: " file-list)
-                 (if filename
-                     filename
-                   (file-name-nondirectory (buffer-file-name))))))
+                       (ido-completing-read "File: " file-list)
+                     (file-name-nondirectory (buffer-file-name)))))
     (let ((show-cmd (format "show \"%s:./%s\"" rev filename)))
       (gthings-run-git-cmd show-cmd
                            (format gthings-git-show-buffer-name-fmt rev)
