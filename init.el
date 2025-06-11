@@ -1023,8 +1023,7 @@ eslint command line args with -c"
 (use-package posframe)
 
 ;;; Note: relevant ~/.authinfo entries are required, i.e.
-;; machine api.openai.com login apikey password ****
-;; machine api.anthropic.com login anthropic-api-key password ****
+;; machine api.openrouter.com login openrouter-api-key password ****
 (use-package gptel
   :bind (:map
          gptel-mode-map
