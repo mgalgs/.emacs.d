@@ -1030,27 +1030,50 @@ eslint command line args with -c"
          gptel-mode-map
          ("C-t" . gptel-menu))
   :config
+
   ;; Function to retrieve the API key from ~/.authinfo
-  (defun get-anthropic-api-key ()
-    "Retrieve the Anthropic API key from ~/.authinfo."
+  (defun get-authinfo-secret (host user)
+    "Retrieve a secret from ~/.authinfo given a HOST and USER."
     (let ((auth-info (auth-source-search
-                      :host "api.anthropic.com"
-                      :user "anthropic-api-key"
+                      :host host
+                      :user user
                       :require '(:user :secret))))
       (if auth-info
           (let ((secret (plist-get (car auth-info) :secret)))
             (if (functionp secret)
-                (funcall secret)  ; If it's a function, call it to get the actual value
-              secret))  ; Otherwise, return the secret directly
+                (funcall secret)
+              secret))
         nil)))
 
-  ;; ChatGPT is enabled by default. Add Claude backend as well.
-  (let ((anthropic-api-key (get-anthropic-api-key)))
-    (if anthropic-api-key
-        (gptel-make-anthropic "Claude"
-          :stream t
-          :key (get-anthropic-api-key))
-      (message "No Anthropic API key found. Not adding Claude to gptel."))))
+  (defun get-openrouter-api-key ()
+    "Retrieve the OpenRouter API key from ~/.authinfo."
+    (get-authinfo-secret "api.openrouter.com" "openrouter-api-key"))
+
+  (gptel-make-openai "OpenRouter"
+    :host "openrouter.ai"
+    :endpoint "/api/v1/chat/completions"
+    :stream t
+    :key (get-openrouter-api-key)
+    :models '(anthropic/claude-3.7-sonnet
+              anthropic/claude-3.7-sonnet:thinking
+              anthropic/claude-opus-4
+              anthropic/claude-sonnet-4
+              deepseek/deepseek-chat-v3-0324
+              deepseek/deepseek-chat-v3-0324:free
+              deepseek/deepseek-r1-0528
+              deepseek/deepseek-r1-0528:free
+              google/gemini-2.0-flash-001
+              google/gemini-2.5-flash-preview-05-20
+              google/gemini-2.5-pro-preview-05-06
+              openai/gpt-4.1
+              openai/gpt-4.1-mini
+              openai/gpt-4o
+              openai/gpt-4o-2024-11-20
+              openai/gpt-4o-mini
+              openai/o1
+              openai/o1-mini
+              qwen/qwen3-235b-a22b
+              x-ai/grok-3-mini-beta)))
 
 (use-package gptel-quick
   :straight (gptel-quick :type git :host github :repo "karthink/gptel-quick"))
