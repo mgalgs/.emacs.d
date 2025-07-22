@@ -1061,9 +1061,10 @@ eslint command line args with -c"
               deepseek/deepseek-chat-v3-0324:free
               deepseek/deepseek-r1-0528
               deepseek/deepseek-r1-0528:free
-              google/gemini-2.0-flash-001
-              google/gemini-2.5-flash-preview-05-20
-              google/gemini-2.5-pro-preview-05-06
+              google/gemini-2.5-flash
+              google/gemini-2.5-pro
+              moonshotai/kimi-k2
+              moonshotai/kimi-k2:free
               openai/gpt-4.1
               openai/gpt-4.1-mini
               openai/gpt-4o
@@ -1071,7 +1072,11 @@ eslint command line args with -c"
               openai/gpt-4o-mini
               openai/o1
               openai/o1-mini
-              qwen/qwen3-235b-a22b
+              openai/o3-mini
+              openai/o3-mini-high
+              openai/o3-pro
+              qwen/qwen3-235b-a22b-07-25
+              qwen/qwen3-235b-a22b-07-25:free
               x-ai/grok-3-mini-beta)))
 
 (defun m/gptel-add-screenshot-from-clipboard ()
