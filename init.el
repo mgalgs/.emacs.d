@@ -1074,6 +1074,13 @@ eslint command line args with -c"
               qwen/qwen3-235b-a22b
               x-ai/grok-3-mini-beta)))
 
+(defun m/gptel-add-screenshot-from-clipboard ()
+  "Capture screenshot from clipboard and add to gptel context."
+  (interactive)
+  (let ((temp-file (make-temp-file "gptel-screenshot-" nil ".png")))
+    (shell-command (format "xclip -selection clipboard -t image/png -o > %s" temp-file))
+    (gptel-add-file temp-file)))
+
 (use-package gptel-quick
   :straight (gptel-quick :type git :host github :repo "karthink/gptel-quick"))
 
