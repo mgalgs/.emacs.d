@@ -238,7 +238,9 @@ installed/loaded.")
    ("C-c a" . org-agenda))
   :config
   ;; (use-package ox-reveal)
-  (use-package htmlize))
+  (use-package htmlize)
+  ; Disable M-h since our UHK requires its use
+  (define-key org-mode-map (kbd "M-h") nil))
 
 (use-package ido
   :init
