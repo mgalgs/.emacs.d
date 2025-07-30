@@ -1067,7 +1067,10 @@ eslint command line args with -c"
               qwen/qwen3-235b-a22b-thinking-2507
               qwen/qwen3-coder
               qwen/qwen3-coder:free
-              x-ai/grok-3-mini-beta)))
+              x-ai/grok-3-mini-beta))
+
+  ;; ★ default model ★
+  (setq gptel-model 'google/gemini-2.5-flash))
 
 (defun m/gptel-add-screenshot-from-clipboard ()
   "Capture screenshot from clipboard and add to gptel context."
