@@ -1075,9 +1075,11 @@ eslint command line args with -c"
               openai/o3-mini
               openai/o3-mini-high
               openai/o3-pro
-              qwen/qwen3-235b-a22b-07-25
-              qwen/qwen3-235b-a22b-07-25:free
+              qwen/qwen3-235b-a22b-2507
+              qwen/qwen3-235b-a22b-2507:free
+              qwen/qwen3-235b-a22b-thinking-2507
               qwen/qwen3-coder
+              qwen/qwen3-coder:free
               x-ai/grok-3-mini-beta)))
 
 (defun m/gptel-add-screenshot-from-clipboard ()
