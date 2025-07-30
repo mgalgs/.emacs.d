@@ -680,34 +680,19 @@ installed/loaded.")
   ;;                           #'autopair-python-triple-quote-action))))
   )
 
-;; Unfortunate nvm version hard-coding... :thinking:
-(setq m/node-root (file-name-as-directory (expand-file-name "~/.nvm/versions/node/v18.12.0")))
-(defun m/node-path (path)
-  (concat m/node-root path))
+(setq m/pyright-uvx-command
+      '("uvx" "--from" "pyright==1.1.403" "pyright-langserver" "--" "--stdio"))
 
-;; eglot wrapper that sets VIRTUAL_ENV to the value of pyvenv-activate and
-;; executes pyright from the node environment under m/node-root
-(defun m/eglot (interactive-p)
-  (when (and (boundp 'pyvenv-activate) pyvenv-activate)
-    (setenv "VIRTUAL_ENV" (expand-file-name pyvenv-activate)))
-  (list (m/node-path "bin/node")
-        (m/node-path "bin/pyright-langserver")
-        "--stdio"))
-
-;; requires pyright to be installed
-;; nvm install latest && npm install -g pyright
-;; (see m/node-root)
 (use-package eglot
   :init
   (add-hook 'python-mode-hook 'eglot-ensure)
   (add-hook 'rust-mode-hook 'eglot-ensure)
   (add-hook 'typescript-ts-mode-hook 'eglot-ensure)
   :config
-  (add-to-list 'eglot-server-programs
-               '(python-mode . m/eglot))
-  (add-to-list 'eglot-server-programs
-               '(typescript-ts-mode . ("typescript-language-server" "--stdio")))
-  (setq eglot-report-progress nil))
+  (add-to-list 'eglot-server-programs `(python-mode . ,m/pyright-uvx-command))
+  (add-to-list 'eglot-server-programs '(typescript-ts-mode . ("typescript-language-server" "--stdio")))
+  ;; (setq eglot-report-progress nil)
+  )
 
 (use-package nginx-mode)
 
