@@ -689,10 +689,10 @@ installed/loaded.")
       '("uvx" "--from" "pyright==1.1.403" "pyright-langserver" "--" "--stdio"))
 
 (use-package eglot
-  :init
-  (add-hook 'python-mode-hook 'eglot-ensure)
-  (add-hook 'rust-mode-hook 'eglot-ensure)
-  (add-hook 'typescript-ts-mode-hook 'eglot-ensure)
+  :hook
+  ((python-mode . eglot-ensure)
+   (rust-mode . eglot-ensure)
+   (typescript-ts-mode . eglot-ensure))
   :config
   (add-to-list 'eglot-server-programs `(python-mode . ,m/pyright-uvx-command))
   (add-to-list 'eglot-server-programs '(typescript-ts-mode . ("typescript-language-server" "--stdio")))
