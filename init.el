@@ -668,7 +668,9 @@ installed/loaded.")
 
 (use-package python
   :init
-  (use-package blacken)
+  (use-package blacken
+    :custom
+    (blacken-executable "~/.emacs.d/bin/black-uv"))
   :bind
   (("C-c m m k" . blacken-buffer))
 
