@@ -131,7 +131,7 @@ installed/loaded.")
               ;; c-default-style "bsd" ; for nasty brace face
               indicate-buffer-boundaries 'right
               truncate-lines t
-              fill-column 75
+              fill-column 85
               ediff-show-clashes-only t
               term-buffer-maximum-size 15000)
 
