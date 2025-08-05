@@ -1039,42 +1039,41 @@ eslint command line args with -c"
     "Retrieve the OpenRouter API key from ~/.authinfo."
     (get-authinfo-secret "api.openrouter.com" "openrouter-api-key"))
 
-  (gptel-make-openai "OpenRouter"
-    :host "openrouter.ai"
-    :endpoint "/api/v1/chat/completions"
-    :stream t
-    :key (get-openrouter-api-key)
-    :models '(anthropic/claude-3.7-sonnet
-              anthropic/claude-3.7-sonnet:thinking
-              anthropic/claude-opus-4
-              anthropic/claude-sonnet-4
-              deepseek/deepseek-chat-v3-0324
-              deepseek/deepseek-chat-v3-0324:free
-              deepseek/deepseek-r1-0528
-              deepseek/deepseek-r1-0528:free
-              google/gemini-2.5-flash
-              google/gemini-2.5-pro
-              moonshotai/kimi-k2
-              moonshotai/kimi-k2:free
-              openai/gpt-4.1
-              openai/gpt-4.1-mini
-              openai/gpt-4o
-              openai/gpt-4o-2024-11-20
-              openai/gpt-4o-mini
-              openai/o1
-              openai/o1-mini
-              openai/o3-mini
-              openai/o3-mini-high
-              openai/o3-pro
-              qwen/qwen3-235b-a22b-2507
-              qwen/qwen3-235b-a22b-2507:free
-              qwen/qwen3-235b-a22b-thinking-2507
-              qwen/qwen3-coder
-              qwen/qwen3-coder:free
-              x-ai/grok-3-mini-beta))
-
-  ;; ★ default model ★
-  (setq gptel-model 'google/gemini-2.5-flash))
+  ;; ★ default model and backend ★
+  (setq gptel-model 'qwen/qwen3-235b-a22b-2507
+        gptel-backend (gptel-make-openai "OpenRouter"
+                        :host "openrouter.ai"
+                        :endpoint "/api/v1/chat/completions"
+                        :stream t
+                        :key (get-openrouter-api-key)
+                        :models '(anthropic/claude-3.7-sonnet
+                                  anthropic/claude-3.7-sonnet:thinking
+                                  anthropic/claude-opus-4
+                                  anthropic/claude-sonnet-4
+                                  deepseek/deepseek-chat-v3-0324
+                                  deepseek/deepseek-chat-v3-0324:free
+                                  deepseek/deepseek-r1-0528
+                                  deepseek/deepseek-r1-0528:free
+                                  google/gemini-2.5-flash
+                                  google/gemini-2.5-pro
+                                  moonshotai/kimi-k2
+                                  moonshotai/kimi-k2:free
+                                  openai/gpt-4.1
+                                  openai/gpt-4.1-mini
+                                  openai/gpt-4o
+                                  openai/gpt-4o-2024-11-20
+                                  openai/gpt-4o-mini
+                                  openai/o1
+                                  openai/o1-mini
+                                  openai/o3-mini
+                                  openai/o3-mini-high
+                                  openai/o3-pro
+                                  qwen/qwen3-235b-a22b-2507
+                                  qwen/qwen3-235b-a22b-2507:free
+                                  qwen/qwen3-235b-a22b-thinking-2507
+                                  qwen/qwen3-coder
+                                  qwen/qwen3-coder:free
+                                  x-ai/grok-3-mini-beta))))
 
 (defun m/gptel-add-screenshot-from-clipboard ()
   "Capture screenshot from clipboard and add to gptel context."
