@@ -1069,6 +1069,12 @@ eslint command line args with -c"
                                   openai/gpt-4o
                                   openai/gpt-4o-2024-11-20
                                   openai/gpt-4o-mini
+                                  openai/gpt-5
+                                  openai/gpt-5-chat
+                                  openai/gpt-5-mini
+                                  openai/gpt-5-nano
+                                  openai/gpt-oss-120b
+                                  openai/gpt-oss-20b
                                   openai/o1
                                   openai/o1-mini
                                   openai/o3-mini
