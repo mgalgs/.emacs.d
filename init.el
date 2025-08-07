@@ -373,7 +373,8 @@ installed/loaded.")
   :ensure nil  ; it's part of magit
   :bind (:map
          git-commit-mode-map
-         ("C-c C-e" . m/suggest-commit-message-prefix))
+         ("C-c C-e" . m/suggest-commit-message-prefix)
+         ("C-c C-l" . m/write-commit-message-with-commitothy))
   :config
   (add-to-list 'git-commit-trailers "Change-Id")
   (add-to-list 'git-commit-trailers "CRs-Fixed")
