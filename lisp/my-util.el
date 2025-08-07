@@ -991,14 +991,20 @@ suggests some commit message prefixes."
 (defvar m/commitothy-args '("--model" "qwen/qwen3-235b-a22b-2507"))
 
 (defun m/write-commit-message-with-commitothy ()
-  "Calls external commitothy.py script and inserts result at point"
+  "Calls commitothy.py, inserts result, and fills each paragraph."
   (interactive)
-  (apply #'call-process
-         (expand-file-name m/commitothy-executable)
-         nil ; no stdin
-         t   ; insert output in current buffer
-         nil ; no stderr destination
-         m/commitothy-args))
+  (let* ((command (mapconcat #'shell-quote-argument
+                             (cons (expand-file-name m/commitothy-executable) m/commitothy-args)
+                             " "))
+         (output (shell-command-to-string command))
+         (start (point)))
+    (insert output)
+    (let ((end (point)))
+      (save-excursion
+        (goto-char start)
+        (while (< (point) end)
+          (fill-paragraph nil)
+          (forward-paragraph))))))
 
 (defun m/underline-previous-line (&optional arg)
   "Adds an ascii underline to the previous line using `='
