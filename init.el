@@ -380,7 +380,13 @@ installed/loaded.")
   (add-to-list 'git-commit-trailers "Git-commit")
   (add-to-list 'git-commit-trailers "Git-repo")
   (add-to-list 'git-commit-trailers "Fixes")
-  (setq git-commit-finish-query-functions nil))
+  (add-to-list 'git-commit-trailers "Commit-Message-Co-Author")
+  (setq git-commit-finish-query-functions nil)
+
+  ;; Set fill-column only in git-commit-mode
+  (add-hook 'git-commit-mode-hook
+            (lambda ()
+              (setq-local fill-column 72))))
 
 (use-package ansi-color
   :init
