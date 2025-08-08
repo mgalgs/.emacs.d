@@ -990,11 +990,13 @@ suggests some commit message prefixes."
 (defvar m/commitothy-executable "~/src/committothy/commitothy.py")
 (defvar m/commitothy-args '("--model" "qwen/qwen3-30b-a3b-instruct-2507"))
 
-(defun m/write-commit-message-with-commitothy ()
-  "Calls commitothy.py, inserts result, and fills each paragraph."
-  (interactive)
-  (let* ((command (mapconcat #'shell-quote-argument
-                             (cons (expand-file-name m/commitothy-executable) m/commitothy-args)
+(defun m/write-commit-message-with-commitothy (arg)
+  "Calls commitothy.py, inserts result, and fills each paragraph.
+With prefix ARG, passes --head to the command."
+  (interactive "P")
+  (let* ((args (if arg (append m/commitothy-args '("--head")) m/commitothy-args))
+         (command (mapconcat #'shell-quote-argument
+                             (cons (expand-file-name m/commitothy-executable) args)
                              " "))
          (output (shell-command-to-string command))
          (start (point)))
