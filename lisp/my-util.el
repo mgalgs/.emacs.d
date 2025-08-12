@@ -992,7 +992,7 @@ suggests some commit message prefixes."
       formatted-choices)))
 
 (defvar m/commitothy-executable "~/src/commitothy/commitothy.py")
-(defvar m/commitothy-args '("--model" "qwen/qwen3-30b-a3b-instruct-2507"))
+(defvar m/commitothy-args '("--model" "qwen/qwen3-235b-a22b-2507"))
 
 (defun m/write-commit-message-with-commitothy (arg)
   "Calls commitothy.py, inserts result, and fills each paragraph.
