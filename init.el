@@ -48,7 +48,7 @@
 ;; some utility functions
 (use-package my-util
   :ensure nil
-  :commands (m/suggest-commit-message-prefix)
+  :commands (m/suggest-commit-message-prefix m/write-commit-message-with-commitothy)
   :load-path "lisp/"
   :bind
   (("C-c m m a" . m/add-include)
