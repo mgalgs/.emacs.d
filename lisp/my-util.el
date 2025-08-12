@@ -846,9 +846,13 @@ specified by `start' and `end'"
 
 (defun m/view-and-switch-to-echo-area-messages ()
   (interactive)
-  (view-echo-area-messages)
-  (other-window 1)
-  (end-of-buffer))
+  (let ((buf (get-buffer "*Messages*")))
+    (unless buf
+      (message "No messages buffer found")
+      (cl-return-from m/view-and-switch-to-echo-area-messages))
+    (switch-to-buffer buf)
+    (with-current-buffer buf
+      (goto-char (point-max)))))
 
 (defun m/indent-last-kill ()
   (interactive)
