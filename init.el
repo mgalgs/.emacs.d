@@ -13,6 +13,11 @@
 
 (m/l "init-package.el")
 
+(defmacro use-package-nope (&rest _)
+  "Ignore the entire use-package block. Intended to temporarily disable a
+use-package declaration without commenting."
+  nil)
+
 (setq load-path
       (append (list "~/.emacs.d/lisp")
               load-path))
