@@ -588,7 +588,7 @@ installed/loaded.")
   :mode (("\\.html?\\'" . web-mode)
          ("\\.djhtml?\\'" . web-mode)
          ("\\.tpl" . web-mode)
-         ;; ("\\.jsx" . web-mode)
+         ("\\.jsx" . web-mode)
          )
   :config
   (defun m/current-buffer-django-p ()
@@ -600,8 +600,8 @@ installed/loaded.")
         '(("django". "\\.djhtml")
           ("django" . m/current-buffer-django-p)
           ("php" . "\\.php")))
-  ;; (setq web-mode-content-types-alist
-  ;;       '(("jsx"  . "\\.jsx")))
+  (setq web-mode-content-types-alist
+        '(("jsx"  . "\\.jsx")))
   (define-key web-mode-map (kbd "C-;") nil)
   (define-key web-mode-map (kbd "C-c C-h") nil)
   (setq-default web-mode-markup-indent-offset 2)
@@ -1193,7 +1193,7 @@ eslint command line args with -c"
             :rev :newest
             :branch "main"))
 
-(use-package jtsx
+(use-package-nope jtsx
   :ensure t
   :mode (("\\.jsx?\\'" . jtsx-jsx-mode)
          ("\\.tsx\\'" . jtsx-tsx-mode)
