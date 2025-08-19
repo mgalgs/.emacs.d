@@ -70,7 +70,7 @@
    ("C-c m m `" . m/open-compilation-buffer)
    ("C-c m m o" . m/occur-region-or-symbol-at-point)
    ("C-c m C-x C-e" . eval-and-replace)
-   ("C-h e" . m/view-and-switch-to-echo-area-messages)
+   ("C-c C-h e" . m/view-and-switch-to-echo-area-messages)
    ("C-c m M-/" . m/expand-file-name-at-point)
    ("C-c m m u" . m/underline-previous-line)
    ("C-c m C-y" . m/get-primary)
