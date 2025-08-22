@@ -40,7 +40,5 @@
        ;; (message (concat "Running advice for " (symbol-name ',after-what-str)))
        (recenter))))
 
-(advice-add #'backward-page :after #'recenter)
-(advice-add #'forward-page  :after #'recenter)
 (my-make-recentering-advice racer-find-definition)
 (my-make-recentering-advice xref-pop-marker-stack)
