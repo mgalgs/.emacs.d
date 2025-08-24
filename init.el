@@ -1125,12 +1125,7 @@ eslint command line args with -c"
   :load-path "~/.emacs.d/lisp"
   :bind (("C-c m n" . autosave-notes-open-notes-buffer))
   :config
-  (autosave-notes-mode 1)
-  ;; Enable olivetti-mode when opening notes buffer
-  (advice-add 'autosave-notes-open-notes-buffer :after
-              (lambda (&rest _)
-                (with-current-buffer "*notes*"
-                  (olivetti-mode 1)))))
+  (autosave-notes-mode 1))
 
 (use-package modern-fringes
   :straight (modern-fringes :type git :host github :repo "SpecialBomb/emacs-modern-fringes")
