@@ -247,7 +247,7 @@ installed/loaded.")
   ; Disable M-h since our UHK requires its use
   (define-key org-mode-map (kbd "M-h") nil))
 
-(use-package ido
+(use-package-nope ido
   :init
   (ido-mode 1)
   (add-hook 'ido-setup-hook
