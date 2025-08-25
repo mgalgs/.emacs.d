@@ -1127,13 +1127,14 @@ eslint command line args with -c"
   :config
   (autosave-notes-mode 1))
 
-(use-package modern-fringes
-  :straight (modern-fringes :type git :host github :repo "SpecialBomb/emacs-modern-fringes")
-  :init
-  ;; Adjust fringe bitmaps to match the background color
-  (modern-fringes-invert-arrows)
-  ;; Enable modern-fringes globally
-  (modern-fringes-mode 1))
+(when window-system
+  (use-package modern-fringes
+    :straight (modern-fringes :type git :host github :repo "SpecialBomb/emacs-modern-fringes")
+    :init
+    ;; Adjust fringe bitmaps to match the background color
+    (modern-fringes-invert-arrows)
+    ;; Enable modern-fringes globally
+    (modern-fringes-mode 1)))
 
 (defun m/compilation-mode-hook ()
   (let ((current-compilation-buffer (current-buffer)))
