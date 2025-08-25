@@ -291,9 +291,6 @@ installed/loaded.")
   (use-package helm-ls-git
     :bind
     ("C-c m f" . helm-ls-git-ls))
-  (use-package helm-swoop
-    :init
-    (define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch))
   (require 'helm-bookmark)
   (setq helm-minibuffer-history-key nil
 	helm-truncate-lines t)
