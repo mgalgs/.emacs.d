@@ -65,7 +65,7 @@
 (global-set-key (kbd "C-c m m e") 'm/overlays-for-mailing-lists)
 
 ;;; Some stuff to make UHK life easier
-(global-set-key (kbd "C-x SPC") 'ido-switch-buffer)
+(global-set-key (kbd "C-x SPC") 'consult-buffer)
 (global-set-key (kbd "M-h") 'backward-word)
 (global-set-key (kbd "C-M-h") 'backward-sexp)
 ;; Remap C-h prefix to C-c C-h so that I can map C-h to backward-char
