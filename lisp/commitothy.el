@@ -1,10 +1,14 @@
 ;;; commitothy.el --- Commit message generation via commitothy -*- lexical-binding: t; -*-
 
-(defvar commitothy-executable "~/src/commitothy/commitothy.py"
-  "Path to the commitothy Python script.")
+(defcustom commitothy-executable "~/src/commitothy/commitothy.py"
+  "Path to the commitothy Python script."
+  :type 'file
+  :group 'commitothy)
 
-(defvar commitothy-model "qwen/qwen3-235b-a22b-2507"
-  "LLM to use (passed to commitothy as `--model').")
+(defcustom commitothy-model "qwen/qwen3-235b-a22b-2507"
+  "LLM to use (passed to commitothy as `--model')."
+  :type 'string
+  :group 'commitothy)
 
 (defun commitothy--run (&rest args)
   "Run commitothy.py with ARGS and return its output string."
