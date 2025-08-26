@@ -957,7 +957,7 @@ eslint command line args with -c"
 (use-package swiper
   :bind (:map
          isearch-mode-map
-         ("C-c C-s" . swiper-from-isearch)))
+         ("M-i" . swiper-from-isearch)))
 
 (use-package ivy
   :init
