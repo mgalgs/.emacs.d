@@ -1331,8 +1331,8 @@ eslint command line args with -c"
 (use-package minuet
   :ensure t
   :bind
-  (("M-y" . #'minuet-complete-with-minibuffer) ;; use minibuffer for completion
-   ("M-i" . #'minuet-show-suggestion)          ;; use overlay for completion
+  (("M-i" . #'minuet-show-suggestion)          ;; use overlay for completion
+   ;; ("M-y" . #'minuet-complete-with-minibuffer); use minibuffer for completion
    ; ("C-c m" . #'minuet-configure-provider)
    :map minuet-active-mode-map
    ;; These keymaps activate only when a minuet suggestion is displayed in the current buffer
