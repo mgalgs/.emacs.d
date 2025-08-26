@@ -954,9 +954,13 @@ eslint command line args with -c"
 
 (use-package counsel)
 
+(use-package swiper
+  :bind (:map
+         isearch-mode-map
+         ("C-c C-s" . swiper-from-isearch)))
+
 (use-package ivy
   :init
-  (use-package swiper)
   ;; advice to prevent dynamic exhibit delay for C-n/C-p
   ;; https://github.com/abo-abo/swiper/issues/1218#issuecomment-962516670
   (defvar +ivy--queue-last-input nil)
