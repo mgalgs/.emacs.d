@@ -53,7 +53,7 @@ use-package declaration without commenting."
 ;; some utility functions
 (use-package my-util
   :ensure nil
-  :commands (m/suggest-commit-message-prefix m/write-commit-message-with-commitothy)
+  :commands (m/suggest-commit-message-prefix)
   :load-path "lisp/"
   :bind
   (("C-c m m a" . m/add-include)
@@ -81,7 +81,10 @@ use-package declaration without commenting."
    ("C-c m C-y" . m/get-primary)
    ("M-Y" . m/yank-pop-forwards)
    ("C-c m M-%" . m/query-replace-using-region)
-   ("C-M-." . m/xref-find-apropos-at-point)))
+   ("C-M-." . m/xref-find-apropos-at-point)
+   (:map
+    git-commit-mode-map
+    ("C-c C-e" . m/suggest-commit-message-prefix))))
 
 (defvar m/init-complete-hook nil
   "Runs when ~/.emacs.d/init.el finishes loading.  Useful for
@@ -370,10 +373,6 @@ installed/loaded.")
 (use-package git-commit
   :after magit
   :ensure nil  ; it's part of magit
-  :bind (:map
-         git-commit-mode-map
-         ("C-c C-e" . m/suggest-commit-message-prefix)
-         ("C-c C-l" . m/write-commit-message-with-commitothy))
   :config
   (add-to-list 'git-commit-trailers "Change-Id")
   (add-to-list 'git-commit-trailers "CRs-Fixed")
@@ -1367,6 +1366,14 @@ eslint command line args with -c"
   (minuet-set-optional-options minuet-openai-compatible-options :provider '(:sort "throughput"))
   (minuet-set-optional-options minuet-openai-compatible-options :max_tokens 56)
   (minuet-set-optional-options minuet-openai-compatible-options :top_p 0.9))
+
+(use-package commitothy
+  :load-path "~/.emacs.d/lisp"
+  :bind
+  (:map
+   git-commit-mode-map
+   ("C-c C-l" . commitothy-write-commit-message)
+   ("TAB" . commitothy-improve-commit-message)))
 
 
 ;;; These lines should be last:

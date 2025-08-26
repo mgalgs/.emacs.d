@@ -991,27 +991,6 @@ suggests some commit message prefixes."
                                      " (used .* time.* recently)"))))
       formatted-choices)))
 
-(defvar m/commitothy-executable "~/src/commitothy/commitothy.py")
-(defvar m/commitothy-args '("--model" "qwen/qwen3-235b-a22b-2507"))
-
-(defun m/write-commit-message-with-commitothy (arg)
-  "Calls commitothy.py, inserts result, and fills each paragraph.
-With prefix ARG, passes --head to the command."
-  (interactive "P")
-  (let* ((args (if arg (append m/commitothy-args '("--head")) m/commitothy-args))
-         (command (mapconcat #'shell-quote-argument
-                             (cons (expand-file-name m/commitothy-executable) args)
-                             " "))
-         (output (shell-command-to-string command))
-         (start (point)))
-    (insert output)
-    (let ((end (point)))
-      (save-excursion
-        (goto-char start)
-        (while (< (point) end)
-          (fill-paragraph nil)
-          (forward-paragraph))))))
-
 (defun m/underline-previous-line (&optional arg)
   "Adds an ascii underline to the previous line using `='
 characters.  TODO: add support for different characters."
