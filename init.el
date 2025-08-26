@@ -288,9 +288,6 @@ installed/loaded.")
    ("C-r" . helm-previous-line))
   :init
   (require 'helm)
-  (use-package helm-ls-git
-    :bind
-    ("C-c m f" . helm-ls-git-ls))
   (require 'helm-bookmark)
   (setq helm-minibuffer-history-key nil
 	helm-truncate-lines t)
