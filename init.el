@@ -953,9 +953,10 @@ eslint command line args with -c"
 ;;   :ensure t
 ;;   :hook (dart-mode . lsp))
 
+(use-package counsel)
+
 (use-package ivy
   :init
-  (use-package counsel)
   (use-package swiper)
   ;; advice to prevent dynamic exhibit delay for C-n/C-p
   ;; https://github.com/abo-abo/swiper/issues/1218#issuecomment-962516670
