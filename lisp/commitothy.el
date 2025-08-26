@@ -3,15 +3,16 @@
 (defvar commitothy-executable "~/src/commitothy/commitothy.py"
   "Path to the commitothy Python script.")
 
-(defvar commitothy-args '("--model" "qwen/qwen3-235b-a22b-2507")
-  "Default args passed to commitothy.py.")
+(defvar commitothy-model "qwen/qwen3-235b-a22b-2507"
+  "LLM to use (passed to commitothy as `--model').")
 
 (defun commitothy--run (&rest args)
   "Run commitothy.py with ARGS and return its output string."
   (let* ((args (delq nil args))
          (command (mapconcat #'shell-quote-argument
                              (cons (expand-file-name commitothy-executable)
-                                   (append commitothy-args args))
+                                   (append (list "--model" commitothy-model)
+                                           args))
                              " ")))
     (message "Running commitothy cmd: %s" command)
     (shell-command-to-string command)))
