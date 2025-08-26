@@ -58,3 +58,35 @@
 (transient-append-suffix 'magit-commit
   "S"
   '("R" "Reset author" m/magit-reset-author))
+
+;; Pretty nice-looking faces for dark theme
+(custom-set-faces
+ ;; Added lines – deeper green bg, brighter fg
+ '(magit-diff-added
+   ((t (:background "#003300" :foreground "#61ef61"))))
+ '(magit-diff-added-highlight
+   ((t (:background "#145214" :foreground "#90ff90" :weight bold))))
+ '(diff-refined-added
+   ((t (:background "#227722" :foreground "#c0ffc0" :weight bold))))
+
+ ;; Removed lines – deeper red bg, brighter fg
+ '(magit-diff-removed
+   ((t (:background "#330000" :foreground "#ff6666"))))
+ '(magit-diff-removed-highlight
+   ((t (:background "#662222" :foreground "#ff9494" :weight bold))))
+ '(diff-refined-removed
+   ((t (:background "#883333" :foreground "#ffd0d0" :weight bold))))
+
+ ;; Context lines – slightly brighter than before
+ '(magit-diff-context
+   ((t (:background "#202020" :foreground "#bbbbbb"))))
+ '(magit-diff-context-highlight
+   ((t (:background "#303030" :foreground "#dddddd"))))
+
+ '(magit-diff-hunk-heading ((t (:background "#303030" :foreground "lightgray" :weight bold))))
+ '(magit-diff-hunk-heading-highlight ((t (:background "#505050" :foreground "white" :weight bold))))
+ '(magit-diff-hunk-heading-selection ((t (:background "#606090" :foreground "white" :weight bold))))
+
+ '(magit-diff-file-heading ((t (:foreground "LightSteelBlue" :weight bold))))
+ '(magit-diff-file-heading-highlight ((t (:background "#333344" :weight bold))))
+ '(magit-diff-file-heading-selection ((t (:background "#666699" :foreground "white" :weight bold)))))
