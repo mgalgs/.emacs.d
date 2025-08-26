@@ -1055,7 +1055,7 @@ eslint command line args with -c"
     (get-authinfo-secret "api.openrouter.com" "openrouter-api-key"))
 
   ;; ★ default model and backend ★
-  (setq gptel-model 'qwen/qwen3-235b-a22b-2507
+  (setq gptel-model 'openai/gpt-5-chat
         gptel-backend (gptel-make-openai "OpenRouter"
                         :host "openrouter.ai"
                         :endpoint "/api/v1/chat/completions"
