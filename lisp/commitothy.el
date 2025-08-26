@@ -44,11 +44,11 @@ Saves the buffer first, then calls commitothy with
   (interactive)
   (when git-commit-mode
     (save-buffer)
-    (let ((cursor-pos (number-to-string (1- (position-bytes (point))))))
+    (let* ((cursor-pos (number-to-string (1- (position-bytes (point)))))
+           (output (commitothy--run "--improve-message"
+                                    "--improve-message-cursor-position" cursor-pos)))
       (erase-buffer)
-      (commitothy--insert-output
-       (commitothy--run "--improve-message"
-                        "--improve-message-cursor-position" cursor-pos)))))
+      (commitothy--insert-output output))))
 
 (provide 'commitothy)
 ;;; commitothy.el ends here
