@@ -81,5 +81,5 @@
 (global-set-key (kbd "C-c m G g") (lambda () (interactive) (switch-to-buffer (gptel "*OpenRouter*"))))
 (global-set-key (kbd "C-c m G a") 'gptel-add)
 (global-set-key (kbd "C-c m G c") 'gptel-context-remove-all)
-(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-c m f") 'counsel-git)
