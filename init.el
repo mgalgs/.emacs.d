@@ -1383,6 +1383,8 @@ eslint command line args with -c"
 
 (use-package commitothy
   :load-path "~/.emacs.d/lisp"
+  :custom
+  (commitothy-model "gpt-5-chat")
   :bind
   (:map
    git-commit-mode-map
