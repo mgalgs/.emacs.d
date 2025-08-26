@@ -1319,9 +1319,14 @@ eslint command line args with -c"
 
 (use-package vertico
   :ensure t
-  :config
-  (setq vertico-cycle t)
-  (vertico-mode 1))
+  :custom
+  (vertico-cycle t)
+  :init
+  (vertico-mode)
+  :bind
+  (:map
+   vertico-map
+   ("C-l" . vertico-directory-up)))
 
 (use-package marginalia
   :ensure t
