@@ -1022,9 +1022,14 @@ eslint command line args with -c"
 ;;; Note: relevant ~/.authinfo entries are required, i.e.
 ;; machine api.openrouter.com login openrouter-api-key password ****
 (use-package gptel
-  :bind (:map
-         gptel-mode-map
-         ("C-t" . gptel-menu))
+  :config
+  (require 'gptel-context)
+  :bind (("C-c m G g" . (lambda () (interactive) (switch-to-buffer (gptel "*OpenRouter*"))))
+         ("C-c m G a" . gptel-add)
+         ("C-c m G c" . gptel-context-remove-all)
+         (:map
+          gptel-mode-map
+          ("C-t" . gptel-menu)))
   :config
 
   ;; Function to retrieve the API key from ~/.authinfo
