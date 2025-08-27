@@ -54,6 +54,7 @@ use-package declaration without commenting."
 (use-package my-util
   :ensure nil
   :commands (m/suggest-commit-message-prefix)
+  :after git-commit
   :load-path "lisp/"
   :bind
   (("C-c m m a" . m/add-include)
