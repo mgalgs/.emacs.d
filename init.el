@@ -692,7 +692,7 @@ installed/loaded.")
   )
 
 (setq m/pyright-uvx-command
-      '("uvx" "--from" "pyright==1.1.403" "pyright-langserver" "--" "--stdio"))
+      '("uvx" "--from" "pyright==1.1.404" "pyright-langserver" "--" "--stdio"))
 
 (use-package eglot
   :hook
