@@ -1316,11 +1316,7 @@ eslint command line args with -c"
 
   ;; Use Consult to select xref locations with preview
   (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
-
-  :config
-  ;; (setq completion-styles '(substring basic))
-  )
+        xref-show-definitions-function #'consult-xref))
 
 (use-package orderless
   :ensure t
