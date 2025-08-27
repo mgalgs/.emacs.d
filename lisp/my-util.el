@@ -1110,4 +1110,19 @@ current paragraph"
                     (point)))
     (call-interactively 'sort-lines)))
 
+(defun m/gptel-add-buffer ()
+  "Pick a buffer with `consult-buffer'-like UI and add content to gptel."
+  (interactive)
+  (let* ((buffer-name (consult--read
+                       (mapcar #'buffer-name (buffer-list))
+                       :prompt "Add buffer to gptel context: "
+                       :require-match t
+                       :history 'consult--buffer-history))
+         (buffer (get-buffer buffer-name)))
+    (if buffer
+        (with-current-buffer buffer
+          (gptel-add (buffer-substring-no-properties (point-min) (point-max))
+                     :metadata (format "Buffer: %s" (buffer-name buffer))))
+      (message "Buffer not found: %s" buffer-name))))
+
 (provide 'my-util)

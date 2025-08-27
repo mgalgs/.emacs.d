@@ -1031,6 +1031,7 @@ eslint command line args with -c"
   :bind (("C-c m G g" . (lambda () (interactive) (switch-to-buffer (gptel "*OpenRouter*"))))
          ("C-c m G a" . gptel-add)
          ("C-c m G c" . gptel-context-remove-all)
+         ("C-c m G b" . m/gptel-add-buffer)
          (:map
           gptel-mode-map
           ("C-t" . gptel-menu)))
