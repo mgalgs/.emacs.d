@@ -41,16 +41,20 @@ With prefix ARG, also pass --head to analyze HEAD instead of staged changes."
    (commitothy--run (when arg "--head"))))
 
 ;;;###autoload
-(defun commitothy-improve-commit-message ()
+(defun commitothy-improve-commit-message (arg)
   "Improve the current COMMIT_EDITMSG buffer using commitothy.
 Saves the buffer first, then calls commitothy with
---improve-message and passes point as cursor position."
-  (interactive)
+--improve-message and passes point as cursor position.
+
+With prefix ARG, also pass --head to analyze HEAD instead of staged changes."
+  (interactive "P")
   (when git-commit-mode
     (save-buffer)
     (let* ((cursor-pos (number-to-string (1- (position-bytes (point)))))
-           (output (commitothy--run "--improve-message"
-                                    "--improve-message-cursor-position" cursor-pos)))
+           (args (list "--improve-message"
+                       "--improve-message-cursor-position" cursor-pos
+                       (when arg "--head")))
+           (output (apply #'commitothy--run args)))
       (erase-buffer)
       (commitothy--insert-output output))))
 
