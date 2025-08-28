@@ -1246,6 +1246,14 @@ eslint command line args with -c"
 
 (use-package consult
   :ensure t
+  :config
+  (defun my/consult-git-grep-buffer-name ()
+    "Run `consult-git-grep` with the current buffer name as the initial input."
+    (interactive)
+    (let ((bufname (if buffer-file-name
+                       (file-name-nondirectory buffer-file-name)
+                     (buffer-name))))
+      (consult-git-grep nil bufname)))
   ;; Replace bindings. Lazily loaded by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
@@ -1254,6 +1262,7 @@ eslint command line args with -c"
          ;; ("C-c m" . consult-man)
          ;; ("C-c i" . consult-info)
          ([remap Info-search] . consult-info)
+         ("C-c m A" . my/consult-git-grep-buffer-name)
 
          ;; C-x bindings in `ctl-x-map'
          ;; ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
