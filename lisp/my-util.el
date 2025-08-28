@@ -1,4 +1,3 @@
-(require 'cl)
 (require 'thingatpt)
 
 (defun fill-out-to-column (&optional width fill-char)
@@ -443,9 +442,10 @@ When give a prefix arg, also prompts for a minimum bit width."
         (setq bitwidth (read-number "Bit width: " 32))
       (setq bitwidth 32))
     (setq numstring (s-pad-left bitwidth "0" numstring))
-    (loop for i downfrom (1- (length numstring)) to 0
-	  do
-	  (setq output-list (cons (format "|%-3d" i) output-list)))
+    (let ((i (1- (length numstring))))
+      (while (>= i 0)
+        (setq output-list (cons (format "|%-3d" i) output-list))
+        (setq i (1- i))))
     (setq output-list (cons "\n" output-list))
     (dolist (ch (mapcar 'identity numstring))
       (setq output-list (cons (format "|%-3c" ch) output-list)))
@@ -775,9 +775,9 @@ suggests some commit message prefixes."
                                                              "s")))
                                       sorted-choices)))
       (when (> (length formatted-choices) 0)
-        (insert (first (split-string (ido-completing-read "Commit message prefix: "
-                                                          formatted-choices)
-                                     " (used .* time.* recently)"))))
+        (insert (car (split-string (ido-completing-read "Commit message prefix: "
+                                                        formatted-choices)
+                                   " (used .* time.* recently)"))))
       formatted-choices)))
 
 (defun m/underline-previous-line (&optional arg)
