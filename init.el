@@ -1330,10 +1330,25 @@ eslint command line args with -c"
   (vertico-cycle t)
   :init
   (vertico-mode)
+  :config
+  (defun m/kill-current-consult-buffer ()
+    "Kill the currently selected buffer in `consult-buffer'."
+    (interactive)
+    (let* ((candidate (vertico--candidate))
+           (multi-cat (get-text-property 0 'multi-category candidate))
+           (buf-name (when (consp multi-cat) (cdr multi-cat)))
+           (buf (and buf-name (get-buffer buf-name))))
+      (if (and buf (buffer-live-p buf))
+          (progn
+            (kill-buffer buf)
+            (message "Killed buffer: %s" buf-name)
+            (call-interactively 'consult-buffer))
+        (message "No live buffer found to kill"))))
   :bind
   (:map
    vertico-map
-   ("C-l" . vertico-directory-up)))
+   ("C-l" . vertico-directory-up)
+   ("C-k" . m/kill-current-consult-buffer)))
 
 (use-package marginalia
   :ensure t
