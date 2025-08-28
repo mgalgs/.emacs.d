@@ -1340,6 +1340,18 @@ eslint command line args with -c"
   :config
   (marginalia-mode 1))
 
+(use-package embark
+  :after vertico
+  :bind
+  (:map vertico-map
+        ("C-." . embark-act)
+        ("C-;" . embark-dwim)))
+
+(use-package embark-consult
+  :after (embark consult)
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
 (use-package minuet
   :ensure t
   :bind
