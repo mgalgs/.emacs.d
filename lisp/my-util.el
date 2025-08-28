@@ -1,18 +1,6 @@
 (require 'cl)
 (require 'thingatpt)
 
-(defun directories-in-directory (directory)
-  "Returns a list of all directories contained in DIRECTORY"
-  (let* ((all-files (mapcar (lambda (el)
-                              (concat (file-name-as-directory directory) el))
-                            (directory-files directory)))
-         ;; remove '.', '..' and all non-directories
-         (filtered-files (remove-if (lambda (el)
-                                      (or (string= "." (substring el -1))
-                                          (not (file-directory-p el))))
-                                    all-files)))
-    filtered-files))
-
 (defun fill-out-to-column (&optional width fill-char)
   "Insert FILL-CHAR at the end of the current line until the line
   is WIDTH columns wide. WIDTH defaults to 80 and FILL-CHAR
@@ -25,36 +13,6 @@
   (let ((n (- width (current-column))))
     (if (> n 0)
         (insert-char fill-char n))))
-
-
-(defun get-buffer-by-regexp (pattern)
-  "Returns the first buffer that matches PATTERN"
-  (find pattern (buffer-list) :key 'buffer-name :test 'string-match-p))
-
-;; function call face
-(defun m/match-function-call (&optional limit)
-  (message "Trying the matcher function fun from %d to %d" (point) limit)
-  (while (and (search-forward-regexp "\\(\\w+\\)\\s-*\(" limit 'no-error)
-              (not (save-match-data
-                     (string-match c-keywords-regexp (match-string 1))))
-              (not (save-excursion
-                     (backward-char)
-                     (forward-sexp)
-                     (c-skip-ws-forward)
-                     (or (eobp) (= ?\{ (char-after (point)))))))))
-
-(defvar font-lock-function-call-face		'font-lock-function-call-face
-  "Face name to use for function calls.")
-
-;; could also use a regex:
-;; ("\\(\\w+\\)\\s-*\(" (1 font-lock-function-call-face))
-;; could use a match function:
-;; (font-lock-add-keywords 'c++-mode
-;;                         '((m/match-function-call . font-lock-function-call-face)))
-;; could use a regexp:
-(font-lock-add-keywords 'c++-mode
-                        '(("\\(\\w+\\)\\s-*\(" (1 font-lock-function-call-face))))
-
 
 ;; one-line scrollers:
 (defun m/up-a-line ()
@@ -391,34 +349,6 @@ that buffer, and move point to LOC in the new buffer."
      ((string= last-char "k") (* 1024 (string-to-number all-but-last)))
      ((string= last-char "m") (* 1048576 (string-to-number all-but-last))))))
 
-(defun get-rfc-list-downloaded-rfcs ()
-  "Lists RFCs under `get-rfc-local-rfc-directory' along with
-their titles. Requires rfc-index.txt to be in place."
-  (interactive)
-  (require 'get-rfc)
-  (let ((rfcs (remove-if (lambda (f)
-                           (or (file-directory-p f)
-                               (string= "rfc-index.txt" f))) 
-                         (directory-files get-rfc-local-rfc-directory)))
-        (rfc-output '()))
-    (with-temp-buffer
-      (insert-file-contents (concat get-rfc-local-rfc-directory "/" get-rfc-rfc-index))
-      (dolist (rfc rfcs)
-        (goto-char 0)
-        (let* ((rfc-match (string-match "[[:alpha:]]+\\([[:digit:]]+\\)\\.txt" rfc))
-               (rfc-num (string-to-number (match-string 1
-                                                        rfc)))
-               (rfc-num-padded (format "%.4d" rfc-num))
-               (beginning-of-title (re-search-forward (concat "^" rfc-num-padded " ")))
-               (end-of-title (line-end-position))
-               (the-title (buffer-substring beginning-of-title end-of-title)))
-          (setq rfc-output
-                  (cons (format "%6s %13s %s %s" rfc-num rfc " => " the-title)
-                        rfc-output)))))
-    (with-output-to-temp-buffer "*Downloaded RFCs*"
-      (dolist (output-line rfc-output)
-        (princ (concat output-line "\n"))))))
-
 (defcustom pageview-narrow-to-page t
   "When non-nil, narrows to page whenever
   `pageview-goto-next-page-break' or
@@ -464,111 +394,6 @@ HOW should be `forward-page', `backward-page', or similar."
                     (substring el 1)))
           paths))
 
-
-(defun directory-dirs (dir &optional excludes)
-  "Find all directories in DIR.
-
-Adapted from http://emacswiki.org/emacs/ElispCookbook"
-  (unless (file-directory-p dir)
-    (error "Not a directory `%s'" dir))
-  (let ((dir (directory-file-name dir))
-        (dirs '())
-        (files (directory-files dir nil nil t))
-        (the-excludes (append '("." "..") excludes)))
-    (dolist (file files)
-      (unless (member file the-excludes)
-        (let ((file (concat dir "/" file)))
-          (when (file-directory-p file)
-            (setq dirs (append (cons file
-                                     (directory-dirs file excludes))
-                               dirs))))))
-    dirs))
-
-(defun strip-leading-dir-from-each (dirs dir-to-strip)
-  "Strips leading DIR-TO-STRIP from DIRS"
-  (mapcar (lambda (el)
-            (file-name-as-directory (replace-regexp-in-string dir-to-strip "/" el)))
-          dirs))
-
-(defun m/transpose-windows (arg)
-   "Transpose the buffers shown in two windows. From
-http://emacswiki.org/emacs/TransposeWindows"
-   (interactive "p")
-   (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
-     (while (/= arg 0)
-       (let ((this-win (window-buffer))
-             (next-win (window-buffer (funcall selector))))
-         (set-window-buffer (selected-window) next-win)
-         (set-window-buffer (funcall selector) this-win)
-         (select-window (funcall selector)))
-       (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
-
-(defun m/go-to-corresponding-header-or-implementation-file ()
-  "Goes to the .c or .h that corresponds to the current file"
-  (interactive)
-  (let* ((file-base-name (file-name-sans-extension (buffer-file-name)))
-	 (file-extension (file-name-extension (buffer-file-name)))
-	 (the-other-file (concat file-base-name
-				 (cond
-				  ((string= file-extension "c") ".h")
-				  ((string= file-extension "cpp") ".h")
-				  ((and (string= file-extension "h")
-					(file-exists-p (concat file-base-name ".c"))) ".c")
-				  ((and (string= file-extension "h")
-					(file-exists-p (concat file-base-name ".cpp"))) ".cpp")
-				  (t nil)))))
-    (if (not (or (string= file-extension "c")
-		 (string= file-extension "cpp")
-		 (string= file-extension "h")))
-	(message "%s.%s is not a .c, .cpp, or .h file." (file-name-nondirectory file-base-name) file-extension)
-      (if (or (not the-other-file) (not (file-exists-p the-other-file)))
-	  (message "%s does not exist" the-other-file)
-	(find-file the-other-file)))))
-
-;; (defun m/gnus-get-group-names ()
-;;   "Returns a list of currently subscribed gnus group names"
-;;   (let (choices group)
-;;     (mapatoms (lambda (symbol)
-;; 		(setq group (symbol-name symbol))
-;; 		(push (if (string-match "[^\000-\177]" group)
-;; 			  (gnus-group-decoded-name group)
-;; 			group)
-;; 		      choices))
-;; 	      gnus-active-hashtb)
-;;     choices))
-
-(defun m/gnus-get-group-names ()
-  "get gnus group names"
-  (with-current-buffer gnus-group-buffer
-    (save-excursion
-      (gnus-group-list-all-groups)
-      (goto-char (point-min))
-      (let ((group-names nil)
-	    (more-lines t))
-	(while more-lines
-	  (push (gnus-group-name-at-point) group-names)
-	  (setq more-lines (= 0 (forward-line 1))))
-	(cdr group-names)))))
-
-(defun m/gnus-subscribed-to-group-p (group)
-  "Checks that we are subscribed to `group'"
-  (member group (m/gnus-get-group-names)))
-
-(defun m/gnus-verify-subscriptions (groups)
-  "Verify that we are subscribed to all groups in
-  `groups'. Prompt to subscribe for any unsubscribed group."
-  (interactive)
-  (let ((group-names (m/gnus-get-group-names)))
-    (dolist (group groups)
-      (unless (member group group-names)
-	(message "Not subscribed to %s. You might want to add a subscription..." group)))))
-
-(defun m/gnus-verify-subscriptions-hook ()
-  "Just calls `m/gnus-verify-subscriptions' with the first item
-in each `nnmail-split-methods'"
-  (interactive)
-  (m/gnus-verify-subscriptions (mapcar 'first nnmail-split-methods)))
-
 (defun m/once ()
   "Insert header guards"
   (interactive)
@@ -603,30 +428,6 @@ in each `nnmail-split-methods'"
               (output (shell-command-to-string cmd))
               (output-clean (car (split-string output "\n"))))
          output-clean))))
-
-(defun m/isearch-word-at-point ()
-  (interactive)
-  (call-interactively 'isearch-forward-regexp))
-
-(defun m/isearch-yank-word-hook ()
-  (when (equal this-command 'm/isearch-word-at-point)
-    (let ((string (concat "\\<"
-                          (buffer-substring-no-properties
-                           (progn (skip-syntax-backward "w_") (point))
-                           (progn (skip-syntax-forward "w_") (point)))
-                          "\\>")))
-      (if (and isearch-case-fold-search
-               (eq 'not-yanks search-upper-case))
-          (setq string (downcase string)))
-      (setq isearch-string string
-            isearch-message
-            (concat isearch-message
-                    (mapconcat 'isearch-text-char-description
-                               string ""))
-            isearch-yank-flag t)
-      (isearch-search-and-update))))
-
-(add-hook 'isearch-mode-hook 'm/isearch-yank-word-hook)
 
 (defun m/bit-numberer (numstring &optional arg)
   "Number the bits in `NUMSTRING'.
@@ -673,18 +474,6 @@ When give a prefix arg, also prompts for a minimum bit width."
   "Switch to buffer and call `shrink-window-if-larger-than-buffer'"
   (interactive "b")
   (shrink-window-if-larger-than-buffer (get-buffer-window buf)))
-
-(defun m/rescan-and-add-to-load-path ()
-  "Re-scans ~/.emacs.d/site-lisp and adds missing directories to
-load-path"
-  (interactive)
-  (let ((new-dirs (-difference (directories-in-directory "~/.emacs.d/site-lisp")
-                               load-path)))
-    (message "Adding to load-path: %s" (if new-dirs
-                                           new-dirs
-                                         "NOTHING! All sync'd up."))
-    (setq load-path (-distinct (append load-path
-                                       new-dirs)))))
 
 ;; Credit:
 ;; https://github.com/magnars/.emacs.d/blob/master/defuns/lisp-defuns.el
