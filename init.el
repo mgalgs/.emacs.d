@@ -1241,7 +1241,7 @@ eslint command line args with -c"
                      (buffer-name))))
       (consult-git-grep nil bufname)))
 
-  (defvar m/consult--magit-buffers
+  (defvar m/consult--magit-status-buffers
     `(:name     "Magit"
                 :narrow   ?g
                 :category buffer
@@ -1252,11 +1252,11 @@ eslint command line args with -c"
                                      (seq-filter
                                       (lambda (b)
                                         (with-current-buffer b
-                                          (eq major-mode 'magit-mode)))
+                                          (eq major-mode 'magit-status-mode)))
                                       (buffer-list))))
                 :action   ,#'switch-to-buffer))
 
-  (add-to-list 'consult-buffer-sources 'm/consult--magit-buffers)
+  (add-to-list 'consult-buffer-sources 'm/consult--magit-status-buffers)
 
   ;; Replace bindings. Lazily loaded by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
