@@ -48,6 +48,19 @@
         (with-temp-buffer
           (format "Function %s not found" name)))))
 
+;; --- Web Browsing Tool ---
+(defun m/gptel-tool-browse-web (url)
+  "Fetch URL contents as plain text for use as a GPT tool."
+  (require 'url)
+  (require 'shr)
+  (with-current-buffer (url-retrieve-synchronously url t t 10)
+    (goto-char (point-min))
+    (re-search-forward "\n\n" nil 'move)
+    (let ((dom (libxml-parse-html-region (point) (point-max))))
+      (with-temp-buffer
+        (shr-insert-document dom)
+        (buffer-string)))))
+
 ;; ---- Export tools ----
 (defun m/get-gptel-tools ()
   "Return a list of tools for gptel to use for buffer and file manipulation.
@@ -91,7 +104,12 @@ Can be used like so: (setq gptel-tools (m/get-gptel-tools))"
     :name "describe_function"
     :function #'m/gptel-tool-describe-function
     :description "Get docstring for an Emacs Lisp function."
-    :args (list '(:name "name" :type string :description "Function name")))))
+    :args (list '(:name "name" :type string :description "Function name")))
+   (gptel-make-tool
+    :name "browse_web"
+    :function #'m/gptel-tool-browse-web
+    :description "Fetch the plain text content of a webpage via URL."
+    :args (list '(:name "url" :type string :description "URL of the page to fetch")))))
 
 (provide 'gptel-tools)
 ;;; gptel-tools.el ends here
