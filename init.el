@@ -1240,6 +1240,24 @@ eslint command line args with -c"
                        (file-name-nondirectory buffer-file-name)
                      (buffer-name))))
       (consult-git-grep nil bufname)))
+
+  (defvar m/consult--magit-buffers
+    `(:name     "Magit"
+                :narrow   ?g
+                :category buffer
+                :items    ,(lambda ()
+                             (mapcar (lambda (buf)
+                                       (propertize (buffer-name buf)
+                                                   'consult--buffer buf))
+                                     (seq-filter
+                                      (lambda (b)
+                                        (with-current-buffer b
+                                          (eq major-mode 'magit-mode)))
+                                      (buffer-list))))
+                :action   ,#'switch-to-buffer))
+
+  (add-to-list 'consult-buffer-sources 'm/consult--magit-buffers)
+
   ;; Replace bindings. Lazily loaded by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
