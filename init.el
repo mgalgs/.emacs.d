@@ -1232,6 +1232,8 @@ eslint command line args with -c"
 
 (use-package consult
   :ensure t
+  :custom
+  (consult-narrow-key "<")
   :config
   (defun m/consult-git-grep-buffer-name ()
     "Run `consult-git-grep` with the current buffer name as the initial input."
