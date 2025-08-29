@@ -1011,6 +1011,7 @@ eslint command line args with -c"
 (use-package gptel
   :config
   (require 'gptel-context)
+  (m/l "gptel-tools.el")
   :bind (("C-c m G g" . (lambda () (interactive) (switch-to-buffer (gptel "*OpenRouter*"))))
          ("C-c m G a" . gptel-add)
          ("C-c m G c" . gptel-context-remove-all)
@@ -1078,7 +1079,10 @@ eslint command line args with -c"
                                   qwen/qwen3-235b-a22b-thinking-2507
                                   qwen/qwen3-coder
                                   qwen/qwen3-coder:free
-                                  x-ai/grok-3-mini-beta))))
+                                  x-ai/grok-3-mini-beta)))
+  ;; Tools
+  (setq gptel-tools (m/get-gptel-tools))
+  )
 
 (defun m/gptel-add-screenshot-from-clipboard ()
   "Capture screenshot from clipboard and add to gptel context."
