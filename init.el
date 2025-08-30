@@ -1245,7 +1245,7 @@ eslint command line args with -c"
 
   (defvar m/consult--magit-status-buffers
     `(:name     "Magit"
-                :narrow   ?g
+                :narrow   ?:
                 :category buffer
                 :items    ,(lambda ()
                              (mapcar (lambda (buf)
