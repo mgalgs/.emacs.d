@@ -1258,7 +1258,7 @@ eslint command line args with -c"
                                       (buffer-list))))
                 :action   ,#'switch-to-buffer))
 
-  (add-to-list 'consult-buffer-sources 'm/consult--magit-status-buffers)
+  (add-to-list 'consult-buffer-sources 'm/consult--magit-status-buffers 'append)
 
   ;; Replace bindings. Lazily loaded by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
