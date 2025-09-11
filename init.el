@@ -83,6 +83,7 @@ use-package declaration without commenting."
    ("M-Y" . m/yank-pop-forwards)
    ("C-c m M-%" . m/query-replace-using-region)
    ("C-M-." . m/xref-find-apropos-at-point)
+   ("C-c m m p" . m/jump-to-use-package)
    (:map
     git-commit-mode-map
     ("C-c C-e" . m/suggest-commit-message-prefix))))

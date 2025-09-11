@@ -914,4 +914,29 @@ current paragraph"
                      :metadata (format "Buffer: %s" (buffer-name buffer))))
       (message "Buffer not found: %s" buffer-name))))
 
+(defun m/jump-to-use-package ()
+  "Jump to a `use-package' declaration in `~/.emacs.d/init.el'."
+  (interactive)
+  (let* ((file (expand-file-name "init.el" user-emacs-directory))
+         (lines
+          (with-temp-buffer
+            (insert-file-contents file)
+            (goto-char (point-min))
+            (let (results)
+              (while (re-search-forward "^(use-package \\([^ )\n]+\\)" nil t)
+                (let ((pkg (match-string 1))
+                      (line (line-number-at-pos)))
+                  (push (cons (format "%s:%d: %s" (file-name-nondirectory file) line pkg)
+                              line)
+                        results)))
+              (nreverse results))))
+         (choice (consult--read (mapcar #'car lines)
+                                :prompt "Use-package: "
+                                :require-match t)))
+    (when choice
+      (find-file file)
+      (goto-char (point-min))
+      (forward-line (1- (cdr (assoc choice lines))))
+      (recenter))))
+
 (provide 'my-util)
