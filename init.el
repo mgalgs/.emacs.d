@@ -1052,38 +1052,21 @@ eslint command line args with -c"
                                   anthropic/claude-opus-4
                                   anthropic/claude-sonnet-4
                                   deepseek/deepseek-chat-v3-0324
-                                  deepseek/deepseek-chat-v3-0324:free
                                   deepseek/deepseek-r1-0528
-                                  deepseek/deepseek-r1-0528:free
                                   google/gemini-2.5-flash
                                   google/gemini-2.5-pro
                                   moonshotai/kimi-k2
-                                  moonshotai/kimi-k2:free
-                                  openai/gpt-4.1
-                                  openai/gpt-4.1-mini
-                                  openai/gpt-4o
                                   openai/gpt-4o-2024-11-20
-                                  openai/gpt-4o-mini
                                   openai/gpt-5
                                   openai/gpt-5-chat
-                                  openai/gpt-5-mini
-                                  openai/gpt-5-nano
                                   openai/gpt-oss-120b
-                                  openai/gpt-oss-20b
-                                  openai/o1
-                                  openai/o1-mini
-                                  openai/o3-mini
-                                  openai/o3-mini-high
-                                  openai/o3-pro
                                   qwen/qwen3-235b-a22b-2507
-                                  qwen/qwen3-235b-a22b-2507:free
                                   qwen/qwen3-235b-a22b-thinking-2507
                                   qwen/qwen3-coder
-                                  qwen/qwen3-coder:free
-                                  x-ai/grok-3-mini-beta)))
+                                  x-ai/grok-3-mini-beta
+                                  x-ai/grok-code-fast-1)))
   ;; Tools
-  (setq gptel-tools (m/get-gptel-tools))
-  )
+  (setq gptel-tools (m/get-gptel-tools)))
 
 (defun m/gptel-add-screenshot-from-clipboard ()
   "Capture screenshot from clipboard and add to gptel context."
