@@ -23,15 +23,19 @@ Arguments _BEGIN, _END, and _LENGTH are passed by `after-change-functions' but u
 
 ;;;###autoload
 (defun autosave-notes-open-notes-buffer ()
+  "Switch to the *notes* buffer if already open, otherwise open it and
+populate its contents from saved file."
   (interactive)
-  "Open or switch to the *notes* buffer and load contents from file."
-  (let ((buf (get-buffer-create autosave-notes-buffer-name)))
+  (let* ((existing (get-buffer autosave-notes-buffer-name))
+         (buf (or existing
+                  (get-buffer-create autosave-notes-buffer-name))))
     (switch-to-buffer buf)
-    (when (file-readable-p autosave-notes-file)
-      ; Disable autosave for one sec
-      (let ((after-change-functions nil))
-        (erase-buffer)
-        (insert-file-contents autosave-notes-file)))
+    (unless existing
+      (when (file-readable-p autosave-notes-file)
+        ;; Temporarily disable autosave hook while inserting
+        (let ((after-change-functions nil))
+          (erase-buffer)
+          (insert-file-contents autosave-notes-file))))
     (set-buffer-modified-p nil)))
 
 (provide 'autosave-notes)
