@@ -1,4 +1,5 @@
 (require 'thingatpt)
+(require 'consult)
 
 (defun fill-out-to-column (&optional width fill-char)
   "Insert FILL-CHAR at the end of the current line until the line
