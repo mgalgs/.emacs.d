@@ -1064,7 +1064,10 @@ eslint command line args with -c"
                                    qwen/qwen3-235b-a22b-2507
                                    qwen/qwen3-235b-a22b-thinking-2507
                                    qwen/qwen3-coder
+                                   qwen/qwen3-max
                                    x-ai/grok-3-mini-beta
+                                   z-ai/glm-4.5
+                                   z-ai/glm-4.5-air
                                    x-ai/grok-code-fast-1))))
   ;; Tools
   (setq gptel-tools (m/get-gptel-tools)))
