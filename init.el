@@ -53,7 +53,7 @@ use-package declaration without commenting."
 ;; some utility functions
 (use-package my-util
   :ensure nil
-  :commands (m/suggest-commit-message-prefix)
+  :commands (m/suggest-commit-message-prefix m/augment-openrouter-models-list)
   :after git-commit
   :load-path "lisp/"
   :bind
