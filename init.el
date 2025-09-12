@@ -1047,24 +1047,25 @@ eslint command line args with -c"
                         :endpoint "/api/v1/chat/completions"
                         :stream t
                         :key (get-openrouter-api-key)
-                        :models '(anthropic/claude-3.7-sonnet
-                                  anthropic/claude-3.7-sonnet:thinking
-                                  anthropic/claude-opus-4
-                                  anthropic/claude-sonnet-4
-                                  deepseek/deepseek-chat-v3-0324
-                                  deepseek/deepseek-r1-0528
-                                  google/gemini-2.5-flash
-                                  google/gemini-2.5-pro
-                                  moonshotai/kimi-k2
-                                  openai/gpt-4o-2024-11-20
-                                  openai/gpt-5
-                                  openai/gpt-5-chat
-                                  openai/gpt-oss-120b
-                                  qwen/qwen3-235b-a22b-2507
-                                  qwen/qwen3-235b-a22b-thinking-2507
-                                  qwen/qwen3-coder
-                                  x-ai/grok-3-mini-beta
-                                  x-ai/grok-code-fast-1)))
+                        :models (m/augment-openrouter-models-list
+                                 '(anthropic/claude-3.7-sonnet
+                                   anthropic/claude-3.7-sonnet:thinking
+                                   anthropic/claude-opus-4
+                                   anthropic/claude-sonnet-4
+                                   deepseek/deepseek-chat-v3-0324
+                                   deepseek/deepseek-r1-0528
+                                   google/gemini-2.5-flash
+                                   google/gemini-2.5-pro
+                                   moonshotai/kimi-k2
+                                   openai/gpt-4o-2024-11-20
+                                   openai/gpt-5
+                                   openai/gpt-5-chat
+                                   openai/gpt-oss-120b
+                                   qwen/qwen3-235b-a22b-2507
+                                   qwen/qwen3-235b-a22b-thinking-2507
+                                   qwen/qwen3-coder
+                                   x-ai/grok-3-mini-beta
+                                   x-ai/grok-code-fast-1))))
   ;; Tools
   (setq gptel-tools (m/get-gptel-tools)))
 

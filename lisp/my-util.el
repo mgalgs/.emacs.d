@@ -1,5 +1,7 @@
 (require 'thingatpt)
 (require 'consult)
+(require 'json)
+(require 'url)
 
 (defun fill-out-to-column (&optional width fill-char)
   "Insert FILL-CHAR at the end of the current line until the line
@@ -939,5 +941,66 @@ current paragraph"
       (goto-char (point-min))
       (forward-line (1- (cdr (assoc choice lines))))
       (recenter))))
+
+(defun m--fetch-openrouter-models ()
+  "Fetch and parse the OpenRouter models API synchronously.
+Return an alist of (ID-STRING . raw-model-plist) entries."
+  (let ((url-request-extra-headers '(("Accept" . "application/json"))))
+    (with-current-buffer
+        (url-retrieve-synchronously "https://openrouter.ai/api/v1/models" t t 15)
+      (goto-char (point-min))
+      (re-search-forward "\n\n") ;; skip HTTP headers
+      (let* ((raw (buffer-substring-no-properties (point) (point-max)))
+             (data (json-parse-string raw
+                                      :object-type 'plist
+                                      :array-type 'list
+                                      :null-object nil
+                                      :false-object :json-false)))
+        (mapcar (lambda (m) (cons (plist-get m :id) m))
+                (plist-get data :data))))))
+
+(defun m--guess-capabilities (desc)
+  "Heuristically guess capabilities from DESC string."
+  (let ((d (downcase (or desc "")))
+        caps)
+    (when (string-match-p "tool" d)    (push 'tool-use caps))
+    (when (string-match-p "reason" d)  (push 'reasoning caps))
+    (when (string-match-p "image" d)   (push 'media caps))
+    (when (string-match-p "json" d)    (push 'json caps))
+    (when (string-match-p "url" d)     (push 'url caps))
+    (nreverse caps)))
+
+(defun m--convert-openrouter-to-gptel (m)
+  "Convert OpenRouter model plist M into gptel--openai-models-style plist."
+  (let* ((desc (plist-get m :description))
+         (ctx (or (plist-get m :context_length)
+                  (plist-get (plist-get m :top_provider) :context_length)))
+         (pricing (plist-get m :pricing))
+         (in (and pricing
+                  (* 1e6 (string-to-number (or (plist-get pricing :prompt) "0")))))
+         (out (and pricing
+                   (* 1e6 (string-to-number (or (plist-get pricing :completion) "0"))))))
+    (append (list :description desc)
+            (when ctx (list :context-window (/ ctx 1000.0)))
+            (when in (list :input-cost in))
+            (when out (list :output-cost out))
+            (let ((caps (m--guess-capabilities desc)))
+              (when caps (list :capabilities caps))))))
+
+(defun m/augment-openrouter-models-list (ids)
+  "Augment model IDS using the OpenRouter API.
+Returns a list of (symbol . plist).  If a model is missing, returns (id)."
+  (let* ((all (m--fetch-openrouter-models))
+         (tbl (make-hash-table :test 'equal)))
+    (dolist (m all)
+      (puthash (car m) (cdr m) tbl))
+    (mapcar
+     (lambda (id)
+       (let* ((id-str (if (symbolp id) (symbol-name id) id))
+              (m (gethash id-str tbl)))
+         (if m
+             (cons (intern id-str) (m--convert-openrouter-to-gptel m))
+           (list (intern id-str)))))
+     ids)))
 
 (provide 'my-util)
