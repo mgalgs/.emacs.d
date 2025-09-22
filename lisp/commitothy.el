@@ -10,13 +10,19 @@
   :type 'string
   :group 'commitothy)
 
+(defcustom commitothy-options nil
+  "Additional command line options to pass to `commitothy-executable'"
+  :type '(repeat string)
+  :group 'commitothy)
+
 (defun commitothy--run (&rest args)
   "Run commitothy.py with ARGS and return its output string."
   (let* ((args (delq nil args))
          (command (mapconcat #'shell-quote-argument
                              (cons (expand-file-name commitothy-executable)
                                    (append (list "--model" commitothy-model)
-                                           args))
+                                           args
+                                           commitothy-options))
                              " ")))
     (message "Running commitothy cmd: %s" command)
     (shell-command-to-string command)))
