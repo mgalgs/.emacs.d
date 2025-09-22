@@ -41,3 +41,4 @@ ido.last
 /eln-cache/
 /.cache/
 /tree-sitter/
+/ielm-history.eld
