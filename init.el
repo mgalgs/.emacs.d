@@ -1425,6 +1425,10 @@ eslint command line args with -c"
   (:map
    git-commit-mode-map
    ("C-c C-l" . commitothy-write-commit-message)
+   ("C-c C-S-l" . (lambda (arg)
+                    (interactive "P")
+                    (let ((commitothy-options nil))
+                      (commitothy-write-commit-message arg))))
    ("TAB" . commitothy-improve-commit-message)))
 
 
