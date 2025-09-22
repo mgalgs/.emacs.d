@@ -1420,7 +1420,7 @@ eslint command line args with -c"
   :load-path "~/.emacs.d/lisp"
   :custom
   (commitothy-model "gpt-5-chat")
-  (commitothy-options '("--code-review" "full"))
+  (commitothy-options '("--code-review" "--consider-recent-patches"))
   :bind
   (:map
    git-commit-mode-map
