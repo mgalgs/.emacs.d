@@ -31,6 +31,10 @@
   "Insert OUTPUT at point and fill paragraphs."
   (let ((start (point)))
     (insert output)
+    ;; We don't want to fill code review, if any. Search back for beginning of code
+    ;; review block that signals the end of the commit message.
+    (when (search-backward-regexp "^# \\*\\*\\* CODE REVIEW" nil t)
+      (backward-paragraph))
     (let ((end (point)))
       (save-excursion
         (goto-char start)
