@@ -1341,24 +1341,25 @@ eslint command line args with -c"
   :init
   (vertico-mode)
   :config
-  (defun m/kill-current-consult-buffer ()
-    "Kill the currently selected buffer in `consult-buffer'."
-    (interactive)
-    (let* ((candidate (vertico--candidate))
-           (multi-cat (get-text-property 0 'multi-category candidate))
-           (buf-name (when (consp multi-cat) (cdr multi-cat)))
-           (buf (and buf-name (get-buffer buf-name))))
-      (if (and buf (buffer-live-p buf))
-          (progn
-            (kill-buffer buf)
-            (message "Killed buffer: %s" buf-name)
-            (call-interactively 'consult-buffer))
-        (message "No live buffer found to kill"))))
+  (defun m/kill-current-buffer-embark (&optional arg)
+    "Kill the current buffer candidate using Embark."
+    (interactive "P")
+    (let ((kill-buffer-query-functions (delq 'process-kill-buffer-query-function
+                                             kill-buffer-query-functions))
+          (embark-default-action-overrides '((buffer . kill-buffer)))
+          ; These next two suppress confirmations from embark itself
+          embark-pre-action-hooks
+          embark-quit-after-action)
+      (embark-dwim arg)))
+  (defvar m/consult-buffer-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "C-k") #'m/kill-current-buffer-embark)
+      map))
+  (consult-customize consult-buffer :keymap m/consult-buffer-map)
   :bind
   (:map
    vertico-map
-   ("C-l" . vertico-directory-up)
-   ("C-k" . m/kill-current-consult-buffer)))
+   ("C-l" . vertico-directory-up)))
 
 (use-package marginalia
   :ensure t
