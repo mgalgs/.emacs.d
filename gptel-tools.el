@@ -91,8 +91,25 @@ If START and END are specified, constrain search to that region."
   "Return `describe-variable' output (string) for variable NAME."
   (let ((sym (intern-soft name)))
     (if (and sym (boundp sym))
-        (with-temp-buffer
-          (format "Function %s not found" name)))))
+        (let ((doc (documentation-property sym 'variable-documentation))
+              (value (symbol-value sym)))
+          (format "Variable: %s\n\nValue: %s\n\n%s"
+                  name
+                  (if (stringp value) (prin1-to-string value) value)
+                  (or doc "No documentation.")))
+      (format "Variable %s not found" name))))
+
+(defun m/gptel-tool-describe-function (name)
+  "Return `describe-function' output (string) for function NAME."
+  (let ((sym (intern-soft name)))
+    (if (and sym (fboundp sym))
+        (let ((doc (documentation sym t))
+              (arglist (help-function-arglist sym)))
+          (format "Function: %s\n\nArguments: %s\n\n%s"
+                  name
+                  (or arglist "unknown")
+                  (or doc "No documentation.")))
+      (format "Function %s not found" name))))
 
 ;; --- Web Browsing Tool ---
 (defun m/gptel-tool-browse-web (url)
