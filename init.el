@@ -1040,44 +1040,46 @@ eslint command line args with -c"
     "Retrieve the OpenRouter API key from ~/.authinfo."
     (get-authinfo-secret "api.openrouter.com" "openrouter-api-key"))
 
+  (defun m/set-tools-for-current-model ()
+    "Sets gptel-tools to relevant tools for the selected model, if any"
+    (let ((current-model-has-tool-use (memq 'tool-use
+                                            (plist-get (cdr (assoc gptel-model
+                                                                   m--augmented-models))
+                                                       :capabilities))))
+      (setq gptel-tools (when current-model-has-tool-use (m/get-gptel-tools)))))
+
   ;; ★ default model and backend ★
-  (let ((m--augmented-models (m/augment-openrouter-models-list
-                              '(anthropic/claude-3.7-sonnet
-                                anthropic/claude-3.7-sonnet:thinking
-                                anthropic/claude-opus-4
-                                anthropic/claude-sonnet-4
-                                deepseek/deepseek-chat-v3-0324
-                                deepseek/deepseek-r1-0528
-                                google/gemini-2.5-flash
-                                google/gemini-2.5-pro
-                                moonshotai/kimi-k2
-                                openai/gpt-4o-2024-11-20
-                                openai/gpt-5
-                                openai/gpt-5-chat
-                                openai/gpt-oss-120b
-                                qwen/qwen3-235b-a22b-2507
-                                qwen/qwen3-235b-a22b-thinking-2507
-                                qwen/qwen3-coder
-                                qwen/qwen3-max
-                                x-ai/grok-3-mini-beta
-                                z-ai/glm-4.5
-                                z-ai/glm-4.5-air
-                                x-ai/grok-code-fast-1)))
-        m--selected-model-has-tool-use)
-    (setq gptel-model 'openai/gpt-5-chat
-          gptel-backend (gptel-make-openai "OpenRouter"
-                          :host "openrouter.ai"
-                          :endpoint "/api/v1/chat/completions"
-                          :stream t
-                          :key (get-openrouter-api-key)
-                          :models m--augmented-models))
-    ;; Tools
-    ; only enable tools by default if default model (gptel-model) supports tool use
-    (setq m--selected-model-has-tool-use (memq 'tool-use
-                                               (plist-get (cdr (assoc gptel-model
-                                                                      m--augmented-models))
-                                                          :capabilities)))
-    (setq gptel-tools (when m--selected-model-has-tool-use (m/get-gptel-tools)))))
+  (setq m--gptel-models '(anthropic/claude-3.7-sonnet
+                          anthropic/claude-3.7-sonnet:thinking
+                          anthropic/claude-opus-4
+                          anthropic/claude-sonnet-4
+                          deepseek/deepseek-chat-v3-0324
+                          deepseek/deepseek-r1-0528
+                          google/gemini-2.5-flash
+                          google/gemini-2.5-pro
+                          moonshotai/kimi-k2
+                          openai/gpt-4o-2024-11-20
+                          openai/gpt-5
+                          openai/gpt-5-chat
+                          openai/gpt-oss-120b
+                          qwen/qwen3-235b-a22b-2507
+                          qwen/qwen3-235b-a22b-thinking-2507
+                          qwen/qwen3-coder
+                          qwen/qwen3-max
+                          x-ai/grok-3-mini-beta
+                          z-ai/glm-4.5
+                          z-ai/glm-4.5-air
+                          x-ai/grok-code-fast-1)
+        m--augmented-models (m/augment-openrouter-models-list m--gptel-models)
+        gptel-model 'openai/gpt-5-chat
+        gptel-backend (gptel-make-openai "OpenRouter"
+                        :host "openrouter.ai"
+                        :endpoint "/api/v1/chat/completions"
+                        :stream t
+                        :key (get-openrouter-api-key)
+                        :models m--augmented-models))
+  ;; Set tools list based on current model capabilities
+  (m/set-tools-for-current-model))
 
 (defun m/gptel-add-screenshot-from-clipboard ()
   "Capture screenshot from clipboard and add to gptel context."
