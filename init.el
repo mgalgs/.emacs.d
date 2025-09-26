@@ -1040,13 +1040,14 @@ eslint command line args with -c"
     "Retrieve the OpenRouter API key from ~/.authinfo."
     (get-authinfo-secret "api.openrouter.com" "openrouter-api-key"))
 
-  (defun m/set-tools-for-current-model ()
+  (defun m/set-tools-for-model (&optional model)
     "Sets gptel-tools to relevant tools for the selected model, if any"
-    (let ((current-model-has-tool-use (memq 'tool-use
-                                            (plist-get (cdr (assoc gptel-model
-                                                                   m--augmented-models))
-                                                       :capabilities))))
-      (setq gptel-tools (when current-model-has-tool-use (m/get-gptel-tools)))))
+    (message "Setting tools for %s (%s)" (or model gptel-model) model)
+    (let ((model-has-tool-use (memq 'tool-use
+                                    (plist-get (cdr (assoc (or model gptel-model)
+                                                           m--augmented-models))
+                                               :capabilities))))
+      (setq gptel-tools (when model-has-tool-use (m/get-gptel-tools)))))
 
   ;; ★ default model and backend ★
   (setq m--gptel-models '(anthropic/claude-3.7-sonnet
@@ -1079,7 +1080,12 @@ eslint command line args with -c"
                         :key (get-openrouter-api-key)
                         :models m--augmented-models))
   ;; Set tools list based on current model capabilities
-  (m/set-tools-for-current-model))
+  (m/set-tools-for-model)
+  ;; And listen for changes to gptel-model, setting tools on change
+  (defun m--gptel-models-watcher (_sym newval op _where)
+    (when (eq op 'set)
+      (m/set-tools-for-model newval)))
+  (add-variable-watcher 'gptel-model 'm--gptel-models-watcher))
 
 (defun m/gptel-add-screenshot-from-clipboard ()
   "Capture screenshot from clipboard and add to gptel context."
