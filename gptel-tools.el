@@ -9,11 +9,6 @@
 
 ;; -- Tools --
 
-(defun m/gptel-tool-insert (text)
-  "Insert TEXT at point in current buffer."
-  (insert text)
-  (format "Inserted %d chars into %s" (length text) (buffer-name)))
-
 (defun m/gptel-tool-replace-region (start end text &optional buffer)
   "Replace region [START,END] with TEXT in BUFFER or current buffer."
   (let ((buf (if buffer
@@ -26,16 +21,67 @@
         (insert text)))
     (format "Replaced region %d–%d in %s" start end (buffer-name buf))))
 
-(defun m/gptel-tool-open-file (path)
-  "Open file PATH and return buffer name."
-  (buffer-name (find-file-noselect path)))
-
-(defun m/gptel-tool-save-buffer (buffer)
-  "Save BUFFER to disk."
-  (let ((buf (m/gptel-tools--resolve-buffer buffer)))
+(defun m/gptel-tool-find-and-replace (old-text new-text &optional buffer start end)
+  "Find and replace OLD-TEXT with NEW-TEXT in BUFFER (or current buffer).
+Replaces all occurrences by default. If START and END are provided,
+constrain the search to the region [START, END]."
+  (let ((buf (if buffer
+                 (m/gptel-tools--resolve-buffer buffer)
+               (current-buffer))))
     (with-current-buffer buf
-      (save-buffer))
-    (format "Saved %s" (buffer-name buf))))
+      (save-excursion
+        (goto-char (or start (point-min)))
+        (let ((count 0)
+              (search-end (or end (point-max))))
+          (while (and (< (point) search-end)
+                      (search-forward old-text search-end t))
+            (replace-match new-text t t)
+            (setq count (1+ count)))
+          (format "Replaced %d occurrence(s) of '%s' in %s" count old-text (buffer-name buf)))))))
+
+(defun m/gptel-tool-read-buffer (&optional buffer start end)
+  "Return buffer content as string.
+If BUFFER is specified, read from that buffer, otherwise current buffer.
+If START and END are specified, read that region, otherwise entire buffer."
+  (let ((buf (if buffer
+                 (m/gptel-tools--resolve-buffer buffer)
+               (current-buffer))))
+    (with-current-buffer buf
+      (buffer-substring-no-properties (or start (point-min)) (or end (point-max))))))
+
+(defun m/gptel-tool-find-in-file (search-text &optional buffer start end)
+  "Find SEARCH-TEXT in BUFFER (or current buffer) and return positions.
+Returns list of (start-pos end-pos) for each match.
+If START and END are specified, constrain search to that region."
+  (let ((buf (if buffer
+                 (m/gptel-tools--resolve-buffer buffer)
+               (current-buffer))))
+    (with-current-buffer buf
+      (save-excursion
+        (goto-char (or start (point-min)))
+        (let ((matches '())
+              (search-end (or end (point-max))))
+          (while (and (< (point) search-end)
+                      (search-forward search-text search-end t))
+            (push (list (match-beginning 0) (match-end 0)) matches))
+          (nreverse matches))))))
+
+(defun m/gptel-tool-find-in-file-regexp (regexp &optional buffer start end)
+  "Find REGEXP in BUFFER (or current buffer) and return positions.
+Returns list of (start-pos end-pos) for each match.
+If START and END are specified, constrain search to that region."
+  (let ((buf (if buffer
+                 (m/gptel-tools--resolve-buffer buffer)
+               (current-buffer))))
+    (with-current-buffer buf
+      (save-excursion
+        (goto-char (or start (point-min)))
+        (let ((matches '())
+              (search-end (or end (point-max))))
+          (while (and (< (point) search-end)
+                      (re-search-forward regexp search-end t))
+            (push (list (match-beginning 0) (match-end 0)) matches))
+          (nreverse matches))))))
 
 (defun m/gptel-tool-list-buffers ()
   "Return a list of live buffer names."
@@ -68,11 +114,6 @@
 Can be used like so: (setq gptel-tools (m/get-gptel-tools))"
   (list
    (gptel-make-tool
-    :name "insert_text"
-    :function #'m/gptel-tool-insert
-    :description "Insert given text at point in the current buffer"
-    :args (list '(:name "text" :type string :description "Text to insert")))
-   (gptel-make-tool
     :name "replace_region"
     :function #'m/gptel-tool-replace-region
     :description "Replace text in a region"
@@ -81,15 +122,37 @@ Can be used like so: (setq gptel-tools (m/get-gptel-tools))"
                 '(:name "text"  :type string  :description "New text")
                 '(:name "buffer" :type string :description "Optional buffer name" :optional t)))
    (gptel-make-tool
-    :name "open_file"
-    :function #'m/gptel-tool-open-file
-    :description "Open a file into a buffer"
-    :args (list '(:name "path" :type string :description "Path to file")))
+    :name "find_and_replace"
+    :function #'m/gptel-tool-find-and-replace
+    :description "Find and replace text in a buffer"
+    :args (list '(:name "old-text" :type string :description "Text to find")
+                '(:name "new-text" :type string :description "Replacement text")
+                '(:name "buffer" :type string :description "Optional buffer name" :optional t)
+                '(:name "start" :type integer :description "Start position for constrained search" :optional t)
+                '(:name "end" :type integer :description "End position for constrained search" :optional t)))
    (gptel-make-tool
-    :name "save_buffer"
-    :function #'m/gptel-tool-save-buffer
-    :description "Save a buffer to disk"
-    :args (list '(:name "buffer" :type string :description "Buffer name")))
+    :name "read_buffer"
+    :function #'m/gptel-tool-read-buffer
+    :description "Read buffer content as string"
+    :args (list '(:name "buffer" :type string :description "Optional buffer name" :optional t)
+                '(:name "start" :type integer :description "Start position for reading" :optional t)
+                '(:name "end" :type integer :description "End position for reading" :optional t)))
+   (gptel-make-tool
+    :name "find_in_file"
+    :function #'m/gptel-tool-find-in-file
+    :description "Find text in buffer and return positions"
+    :args (list '(:name "search-text" :type string :description "Text to find")
+                '(:name "buffer" :type string :description "Optional buffer name" :optional t)
+                '(:name "start" :type integer :description "Start position for constrained search" :optional t)
+                '(:name "end" :type integer :description "End position for constrained search" :optional t)))
+   (gptel-make-tool
+    :name "find_in_file_regexp"
+    :function #'m/gptel-tool-find-in-file-regexp
+    :description "Find regexp in buffer and return positions"
+    :args (list '(:name "regexp" :type string :description "Regular expression to find")
+                '(:name "buffer" :type string :description "Optional buffer name" :optional t)
+                '(:name "start" :type integer :description "Start position for constrained search" :optional t)
+                '(:name "end" :type integer :description "End position for constrained search" :optional t)))
    (gptel-make-tool
     :name "list_buffers"
     :function #'m/gptel-tool-list-buffers
