@@ -1021,24 +1021,9 @@ eslint command line args with -c"
           gptel-mode-map
           ("C-t" . gptel-menu)))
   :config
-
-  ;; Function to retrieve the API key from ~/.authinfo
-  (defun get-authinfo-secret (host user)
-    "Retrieve a secret from ~/.authinfo given a HOST and USER."
-    (let ((auth-info (auth-source-search
-                      :host host
-                      :user user
-                      :require '(:user :secret))))
-      (if auth-info
-          (let ((secret (plist-get (car auth-info) :secret)))
-            (if (functionp secret)
-                (funcall secret)
-              secret))
-        nil)))
-
   (defun get-openrouter-api-key ()
     "Retrieve the OpenRouter API key from ~/.authinfo."
-    (get-authinfo-secret "api.openrouter.com" "openrouter-api-key"))
+    (m/get-authinfo-secret "api.openrouter.com" "openrouter-api-key"))
 
   (defun m/set-tools-for-model (&optional model)
     "Sets gptel-tools to relevant tools for the selected model, if any"

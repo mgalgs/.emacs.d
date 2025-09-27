@@ -1003,4 +1003,17 @@ Returns a list of (symbol . plist).  If a model is missing, returns (id)."
            (list (intern id-str)))))
      ids)))
 
+(defun m/get-authinfo-secret (host user)
+  "Retrieve a secret from ~/.authinfo given a HOST and USER."
+  (let ((auth-info (auth-source-search
+                    :host host
+                    :user user
+                    :require '(:user :secret))))
+    (if auth-info
+        (let ((secret (plist-get (car auth-info) :secret)))
+          (if (functionp secret)
+              (funcall secret)
+            secret))
+      nil)))
+
 (provide 'my-util)
