@@ -80,3 +80,4 @@
 (global-set-key (kbd "C-c m v") 'visual-line-mode)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-c m f") 'counsel-git)
+(global-set-key (kbd "C-c m C-r") 'commitothy-show-code-review-for-rev)

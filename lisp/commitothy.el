@@ -68,5 +68,45 @@ With prefix ARG, also pass --head to analyze HEAD instead of staged changes."
       (erase-buffer)
       (commitothy--insert-output output))))
 
+;;;###autoload
+(defun commitothy-show-code-review-for-rev (rev)
+  "Run commitothy code review for a given REV string and display it.
+
+When called interactively without a prefix argument, use the commit
+at point if in a magit buffer. Otherwise, prompt for a revision.
+
+With a prefix argument, always prompt for a revision.
+
+The prompt will use `magit-read-range-or-commit' when available,
+falling back to a regular minibuffer read."
+  (interactive
+   (let ((prompt-for-rev (lambda ()
+                           (if (fboundp 'magit-read-range-or-commit)
+                               (magit-read-range-or-commit "Code review for rev: ")
+                             (read-string "Code review for rev: ")))))
+     (list
+      (if current-prefix-arg
+          (funcall prompt-for-rev)
+        (or (when (fboundp 'magit-commit-at-point) (magit-commit-at-point))
+            (funcall prompt-for-rev))))))
+  (let ((output (commitothy--run "--code-review" "--rev" rev)))
+    (if (string-empty-p output)
+        (message "commitothy returned no output.")
+      (let* ((review-start (string-match "# \\*\\*\\* CODE REVIEW" output))
+             (review-content (when review-start
+                               (substring-no-properties output review-start)))
+             (cleaned-review (when review-content
+                               (replace-regexp-in-string "^# ?" "" review-content))))
+        (if cleaned-review
+            (with-current-buffer (get-buffer-create (format "*commitothy-review: %s*" rev))
+              (let ((inhibit-read-only t))
+                (erase-buffer)
+                (insert cleaned-review)
+                (markdown-mode)
+                (setq-local buffer-read-only t)
+                (define-key (current-local-map) (kbd "q") 'bury-buffer))
+              (pop-to-buffer (current-buffer)))
+          (message "Could not find code review in commitothy output."))))))
+
 (provide 'commitothy)
 ;;; commitothy.el ends here
