@@ -1425,6 +1425,22 @@ eslint command line args with -c"
                       (commitothy-write-commit-message arg))))
    ("TAB" . commitothy-improve-commit-message)))
 
+; for agent-shell
+(use-package shell-maker
+  :ensure t)
+
+; for agent-shell
+(use-package acp
+  :vc (:url "https://github.com/xenodium/acp.el"))
+
+(use-package agent-shell
+  :vc (:url "https://github.com/xenodium/agent-shell")
+  :after (shell-maker acp)
+  :config
+  (setq agent-shell-google-authentication
+        (agent-shell-google-make-authentication
+         :api-key (lambda () (m/get-authinfo-secret "api.gemini.goog" "api-key")))))
+
 
 ;;; These lines should be last:
 ;; some keybindings
