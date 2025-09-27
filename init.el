@@ -18,9 +18,7 @@
 use-package declaration without commenting."
   nil)
 
-(setq load-path
-      (append (list "~/.emacs.d/lisp")
-              load-path))
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (m/l "init-straight.el")
 
