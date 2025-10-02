@@ -15,6 +15,12 @@
   :type '(repeat string)
   :group 'commitothy)
 
+(defvar commitothy-review-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "q") #'quit-window)
+    map)
+  "Keymap for `commitothy-review-mode'.")
+
 (defun commitothy--run (&rest args)
   "Run commitothy.py with ARGS and return its output string."
   (let* ((args (delq nil args))
@@ -101,12 +107,17 @@ falling back to a regular minibuffer read."
             (with-current-buffer (get-buffer-create (format "*commitothy-review: %s*" rev))
               (let ((inhibit-read-only t))
                 (erase-buffer)
-                (insert cleaned-review)
-                (markdown-mode)
-                (setq-local buffer-read-only t)
-                (define-key (current-local-map) (kbd "q") 'bury-buffer))
+                (insert cleaned-review))
+              (commitothy-review-mode)
               (pop-to-buffer (current-buffer)))
           (message "Could not find code review in commitothy output."))))))
+
+(define-derived-mode commitothy-review-mode markdown-mode "Commitothy-Review"
+  "Major mode for viewing Commitothy code reviews.
+
+\\{commitothy-review-mode-map}"
+  :keymap commitothy-review-mode-map
+  (setq buffer-read-only t))
 
 (provide 'commitothy)
 ;;; commitothy.el ends here
