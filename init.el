@@ -1410,6 +1410,9 @@ eslint command line args with -c"
 
 (use-package commitothy
   :load-path "~/.emacs.d/lisp"
+  :commands (commitothy-write-commit-message
+             commitothy-improve-commit-message
+             commitothy-show-code-review-for-rev)
   :custom
   (commitothy-model "gpt-5-chat")
   (commitothy-options '("--code-review" "--consider-recent-patches"))
