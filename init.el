@@ -1051,9 +1051,10 @@ eslint command line args with -c"
                           qwen/qwen3-coder
                           qwen/qwen3-max
                           x-ai/grok-3-mini-beta
+                          x-ai/grok-code-fast-1
                           z-ai/glm-4.5
                           z-ai/glm-4.5-air
-                          x-ai/grok-code-fast-1)
+                          z-ai/glm-4.6)
         m--augmented-models (m/augment-openrouter-models-list m--gptel-models)
         gptel-model 'openai/gpt-5-chat
         gptel-backend (gptel-make-openai "OpenRouter"
