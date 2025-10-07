@@ -1032,6 +1032,8 @@ eslint command line args with -c"
                                                :capabilities))))
       (setq gptel-tools (when model-has-tool-use (m/get-gptel-tools)))))
 
+  (setq gptel-include-reasoning "*gptel-reasoning*")
+
   ;; ★ default model and backend ★
   (setq m--gptel-models '(anthropic/claude-3.7-sonnet
                           anthropic/claude-3.7-sonnet:thinking
