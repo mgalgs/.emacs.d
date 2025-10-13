@@ -1010,11 +1010,14 @@ eslint command line args with -c"
 (use-package gptel
   :config
   (require 'gptel-context)
+  (defun m/gptel-context-add-buffer ()
+    (interactive)
+    (gptel-context-add t))
   (m/l "gptel-tools.el")
   :bind (("C-c m G g" . (lambda () (interactive) (switch-to-buffer (gptel "*OpenRouter*"))))
          ("C-c m G a" . gptel-add)
          ("C-c m G c" . gptel-context-remove-all)
-         ("C-c m G b" . m/gptel-add-buffer)
+         ("C-c m G b" . m/gptel-context-add-buffer)
          (:map
           gptel-mode-map
           ("C-t" . gptel-menu)))
