@@ -1001,4 +1001,19 @@ Returns a list of (symbol . plist).  If a model is missing, returns (id)."
             secret))
       nil)))
 
+(defun m/consult-git-ls-files ()
+  "Complete over Git‑tracked files using Consult and Orderless."
+  (interactive)
+  (let* ((gitroot (m/gitroot)))
+    (unless gitroot
+      (user-error "Not inside a Git repo"))
+    (let* ((default-directory gitroot)
+           (files (split-string (shell-command-to-string "git ls-files") "\n" t)))
+      (find-file
+       (consult--read files
+                      :prompt "Git file: "
+                      :sort nil
+                      :category 'file
+                      :state (consult--file-preview))))))
+
 (provide 'my-util)
