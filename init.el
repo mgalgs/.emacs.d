@@ -82,6 +82,7 @@ use-package declaration without commenting."
    ("C-c m M-%" . m/query-replace-using-region)
    ("C-M-." . m/xref-find-apropos-at-point)
    ("C-c m m p" . m/jump-to-use-package)
+   ("C-c m f" . m/consult-git-ls-files)
    (:map
     git-commit-mode-map
     ("C-c C-e" . m/suggest-commit-message-prefix))))
@@ -934,28 +935,6 @@ eslint command line args with -c"
 ;;   :ensure t
 ;;   :hook (dart-mode . lsp))
 
-(use-package counsel)
-
-(use-package swiper
-  :bind (:map
-         isearch-mode-map
-         ("M-i" . swiper-from-isearch)))
-
-(use-package ivy
-  :init
-  ;; advice to prevent dynamic exhibit delay for C-n/C-p
-  ;; https://github.com/abo-abo/swiper/issues/1218#issuecomment-962516670
-  (defvar +ivy--queue-last-input nil)
-  (defun +ivy-queue-exhibit-a(f &rest args)
-    (if (equal +ivy--queue-last-input (ivy--input))
-        (ivy--exhibit)
-      (apply f args))
-    (setq +ivy--queue-last-input (ivy--input)))
-  (advice-add 'ivy--queue-exhibit :around #'+ivy-queue-exhibit-a)
-  :config
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t))
-
 ;; GUI dialog for printing (print-buffer) and friends
 (setq lpr-command "gtklp")
 (setq ps-lpr-command "gtklp")
@@ -1307,7 +1286,7 @@ eslint command line args with -c"
          :map isearch-mode-map
          ("M-e" . consult-isearch-history)   ;; orig. isearch-edit-string
          ("M-s e" . consult-isearch-history) ;; orig. isearch-edit-string
-         ;; ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
+         ("M-i" . consult-line)
          ;; ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
 
          ;; Minibuffer history
