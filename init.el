@@ -1417,10 +1417,10 @@ eslint command line args with -c"
 
 ; for agent-shell
 (use-package acp
-  :vc (:url "https://github.com/xenodium/acp.el"))
+  :vc (:url "https://github.com/xenodium/acp.el" :branch "main"))
 
 (use-package agent-shell
-  :vc (:url "https://github.com/xenodium/agent-shell")
+  :vc (:url "https://github.com/xenodium/agent-shell" :branch "main")
   :after (shell-maker acp)
   :config
   (setq agent-shell-google-authentication
