@@ -1335,7 +1335,9 @@ eslint command line args with -c"
   :bind
   (:map
    vertico-map
-   ("C-l" . vertico-directory-up)))
+   ("C-l" . vertico-directory-up)
+   ("C-s" . vertico-next)
+   ("C-r" . vertico-previous)))
 
 (use-package marginalia
   :ensure t
