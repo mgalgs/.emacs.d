@@ -160,6 +160,7 @@ installed/loaded.")
 (electric-pair-mode)
 (display-time)
 (show-paren-mode)
+(global-visual-line-mode)
 
 (defmacro m/visit-init-file-maker ()
   "Defines a function to visit init.el"
