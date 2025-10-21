@@ -1017,9 +1017,38 @@ Returns a list of (symbol . plist).  If a model is missing, returns (id)."
                       :state (consult--file-preview))))))
 
 (defun m/insert-markdown-code-block ()
-  "Insert a Markdown triple-backtick code block."
+  "Insert Markdown backticks depending on point/region context:
+- At beginning of empty line: insert triple backtick block.
+- With active region:
+  - If region covers whole lines (both endpoints at bol): wrap in triple backticks.
+  - Otherwise wrap in single backticks.
+- Otherwise (inline): insert two backticks and place cursor in between."
   (interactive)
-  (insert "```\n\n```")
-  (forward-line -1))
+  (cond
+   ;; region active
+   ((use-region-p)
+    (let* ((beg (region-beginning))
+           (end (region-end))
+           (bol-beg (save-excursion (goto-char beg) (bolp)))
+           (bol-end (save-excursion (goto-char end) (bolp))))
+      (if (and bol-beg bol-end)
+          ;; multiline/in whole lines: triple backticks
+          (progn
+            (goto-char end) (insert "```\n")
+            (goto-char beg) (insert "```\n"))
+        ;; inline: single backticks
+        (goto-char end) (insert "`")
+        (goto-char beg) (insert "`"))))
+
+   ;; beginning of empty line
+   ((and (bolp)
+         (looking-at "[[:space:]]*$"))
+    (insert "```\n\n```")
+    (forward-line -1))
+
+   ;; inline (not at bol)
+   (t
+    (insert "``")
+    (backward-char 1))))
 
 (provide 'my-util)
