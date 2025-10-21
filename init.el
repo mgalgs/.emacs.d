@@ -749,7 +749,9 @@ installed/loaded.")
 
 (use-package markdown-mode
   :mode (("\\.md" . markdown-mode)
-         ("\\.markdown" . markdown-mode)))
+         ("\\.markdown" . markdown-mode))
+  :bind (:map markdown-mode-map
+              ("C-c `" . m/insert-markdown-code-block)))
 
 (use-package yaml-mode
   :mode ("\\.yml$" . yaml-mode))

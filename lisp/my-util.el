@@ -1016,4 +1016,10 @@ Returns a list of (symbol . plist).  If a model is missing, returns (id)."
                       :category 'file
                       :state (consult--file-preview))))))
 
+(defun m/insert-markdown-code-block ()
+  "Insert a Markdown triple-backtick code block."
+  (interactive)
+  (insert "```\n\n```")
+  (forward-line -1))
+
 (provide 'my-util)
