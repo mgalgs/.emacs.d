@@ -1392,7 +1392,7 @@ eslint command line args with -c"
 
   (plist-put minuet-openai-compatible-options :end-point "https://openrouter.ai/api/v1/chat/completions")
   (plist-put minuet-openai-compatible-options :api-key "OPENROUTER_API_KEY")
-  (plist-put minuet-openai-compatible-options :model "qwen/qwen3-coder")
+  (plist-put minuet-openai-compatible-options :model "x-ai/grok-code-fast-1")
 
   ;; Prioritize throughput for faster completion
   (minuet-set-optional-options minuet-openai-compatible-options :provider '(:sort "throughput"))
