@@ -1398,7 +1398,7 @@ eslint command line args with -c"
              commitothy-improve-commit-message
              commitothy-show-code-review-for-rev)
   :custom
-  (commitothy-model "z-ai/glm-4.6")
+  (commitothy-model "openai/gpt-5-chat")
   (commitothy-options '("--code-review" "--consider-recent-patches"))
   :bind
   (:map
