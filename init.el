@@ -1382,21 +1382,14 @@ eslint command line args with -c"
   ;; (add-hook 'prog-mode-hook #'minuet-auto-suggestion-mode)
 
   :config
-  ;; You can use M-x minuet-configure-provider to interactively configure provider and model
-                                        ;(setq minuet-provider 'openai-fim-compatible)
-                                        ;(minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 64)
   (setq minuet-provider 'openai-compatible)
   (setq minuet-request-timeout 6)
-  (setq minuet-auto-suggestion-throttle-delay 1.5) ;; Increase to reduce costs and avoid rate limits
-  (setq minuet-auto-suggestion-debounce-delay 0.6) ;; Increase to reduce costs and avoid rate limits
 
   (plist-put minuet-openai-compatible-options :end-point "https://openrouter.ai/api/v1/chat/completions")
   (plist-put minuet-openai-compatible-options :api-key "OPENROUTER_API_KEY")
   (plist-put minuet-openai-compatible-options :model "x-ai/grok-code-fast-1")
 
-  ;; Prioritize throughput for faster completion
-  (minuet-set-optional-options minuet-openai-compatible-options :provider '(:sort "throughput"))
-  (minuet-set-optional-options minuet-openai-compatible-options :max_tokens 200)
+  (minuet-set-optional-options minuet-openai-compatible-options :max_tokens 350)
   (minuet-set-optional-options minuet-openai-compatible-options :top_p 0.9))
 
 (use-package commitothy
