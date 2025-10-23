@@ -1386,7 +1386,7 @@ eslint command line args with -c"
                                         ;(setq minuet-provider 'openai-fim-compatible)
                                         ;(minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 64)
   (setq minuet-provider 'openai-compatible)
-  (setq minuet-request-timeout 2.5)
+  (setq minuet-request-timeout 6)
   (setq minuet-auto-suggestion-throttle-delay 1.5) ;; Increase to reduce costs and avoid rate limits
   (setq minuet-auto-suggestion-debounce-delay 0.6) ;; Increase to reduce costs and avoid rate limits
 
@@ -1396,7 +1396,7 @@ eslint command line args with -c"
 
   ;; Prioritize throughput for faster completion
   (minuet-set-optional-options minuet-openai-compatible-options :provider '(:sort "throughput"))
-  (minuet-set-optional-options minuet-openai-compatible-options :max_tokens 56)
+  (minuet-set-optional-options minuet-openai-compatible-options :max_tokens 200)
   (minuet-set-optional-options minuet-openai-compatible-options :top_p 0.9))
 
 (use-package commitothy
