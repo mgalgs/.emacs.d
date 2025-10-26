@@ -1030,6 +1030,7 @@ eslint command line args with -c"
                           google/gemini-2.5-flash
                           google/gemini-2.5-pro
                           moonshotai/kimi-k2
+                          moonshotai/kimi-k2-0905:exacto
                           openai/gpt-4o-2024-11-20
                           openai/gpt-5
                           openai/gpt-5-chat
@@ -1037,12 +1038,14 @@ eslint command line args with -c"
                           qwen/qwen3-235b-a22b-2507
                           qwen/qwen3-235b-a22b-thinking-2507
                           qwen/qwen3-coder
+                          qwen/qwen3-coder:exacto
                           qwen/qwen3-max
                           x-ai/grok-3-mini-beta
                           x-ai/grok-code-fast-1
                           z-ai/glm-4.5
                           z-ai/glm-4.5-air
-                          z-ai/glm-4.6)
+                          z-ai/glm-4.6
+                          z-ai/glm-4.6:exacto)
         m--augmented-models (m/augment-openrouter-models-list m--gptel-models)
         gptel-model 'openai/gpt-5-chat
         gptel-backend (gptel-make-openai "OpenRouter"
