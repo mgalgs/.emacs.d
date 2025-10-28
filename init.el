@@ -100,7 +100,7 @@ installed/loaded.")
 
 ;;; misc settings
 (setq scroll-step 1
-      default-truncate-lines t
+      default-truncate-lines nil
       display-time-day-and-date t
       nxml-sexp-element-flag t
       linum-format "%4d"
@@ -160,7 +160,6 @@ installed/loaded.")
 (electric-pair-mode)
 (display-time)
 (show-paren-mode)
-(global-visual-line-mode)
 
 (defmacro m/visit-init-file-maker ()
   "Defines a function to visit init.el"
