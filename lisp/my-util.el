@@ -1051,4 +1051,19 @@ Returns a list of (symbol . plist).  If a model is missing, returns (id)."
     (insert "``")
     (backward-char 1))))
 
+(defun m/ascii-clean-region (begin end)
+  "Transliterate non-ASCII characters in region (BEGIN END) to ASCII
+equivalents using `iconv` safely (no shell invocation)."
+  (interactive "r")
+  (let ((temp (generate-new-buffer " *iconv*")))
+    (unwind-protect
+        (progn
+          ;; Run iconv directly without a shell.
+          (call-process-region begin end "iconv" nil temp nil
+                               "-f" "utf-8" "-t" "ascii//TRANSLIT")
+          ;; Replace region contents safely.
+          (delete-region begin end)
+          (insert-buffer-substring temp))
+      (kill-buffer temp))))
+
 (provide 'my-util)
