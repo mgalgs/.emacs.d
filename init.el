@@ -990,7 +990,7 @@ eslint command line args with -c"
 ;;; Note: relevant ~/.authinfo entries are required, i.e.
 ;; machine api.openrouter.com login openrouter-api-key password ****
 (use-package gptel
-  :config
+  :init
   (require 'gptel-context)
   (defun m/gptel-context-add-buffer ()
     (interactive)
