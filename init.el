@@ -566,6 +566,7 @@ installed/loaded.")
          ("\\.djhtml?\\'" . web-mode)
          ("\\.tpl" . web-mode)
          ("\\.jsx" . web-mode)
+         ("\\.tsx" . web-mode)
          )
   :config
   (defun m/current-buffer-django-p ()
