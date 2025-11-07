@@ -1055,12 +1055,13 @@ eslint command line args with -c"
                         :key (get-openrouter-api-key)
                         :models m--augmented-models))
   ;; Set tools list based on current model capabilities
-  (m/set-tools-for-model)
+  ; (m/set-tools-for-model)
   ;; And listen for changes to gptel-model, setting tools on change
-  (defun m--gptel-models-watcher (_sym newval op _where)
-    (when (eq op 'set)
-      (m/set-tools-for-model newval)))
-  (add-variable-watcher 'gptel-model 'm--gptel-models-watcher))
+  ;; (defun m--gptel-models-watcher (_sym newval op _where)
+  ;;   (when (eq op 'set)
+  ;;     (m/set-tools-for-model newval)))
+  ;; (add-variable-watcher 'gptel-model 'm--gptel-models-watcher)
+  )
 
 (defun m/gptel-add-screenshot-from-clipboard ()
   "Capture screenshot from clipboard and add to gptel context."
