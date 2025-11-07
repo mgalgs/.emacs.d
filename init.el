@@ -1432,7 +1432,13 @@ eslint command line args with -c"
   :config
   (setq agent-shell-google-authentication
         (agent-shell-google-make-authentication
-         :api-key (lambda () (m/get-authinfo-secret "api.gemini.goog" "api-key")))))
+         :api-key (lambda () (m/get-authinfo-secret "api.gemini.goog" "api-key"))))
+  ;; TODO: figure out why this is still doing qwen oauth login
+  (setq agent-shell-qwen-environment
+        (agent-shell-make-environment-variables
+         "OPENAI_MODEL" "x-ai/grok-code-fast-1"
+         "OPENAI_BASE_URL" "https://openrouter.ai/api/v1"
+         "OPENAI_API_KEY" (m/get-authinfo-secret "api.openrouter.com" "openrouter-api-key"))))
 
 (use-package gptel-persist
   :load-path "~/.emacs.d/lisp"
