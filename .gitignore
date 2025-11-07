@@ -42,3 +42,4 @@ ido.last
 /.cache/
 /tree-sitter/
 /ielm-history.eld
+/gptel-persist-cache/
