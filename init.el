@@ -1434,6 +1434,13 @@ eslint command line args with -c"
         (agent-shell-google-make-authentication
          :api-key (lambda () (m/get-authinfo-secret "api.gemini.goog" "api-key")))))
 
+(use-package gptel-persist
+  :load-path "~/.emacs.d/lisp"
+  :after gptel
+  :ensure nil
+  :config
+  (gptel-persist-enable))
+
 
 ;;; These lines should be last:
 ;; some keybindings
