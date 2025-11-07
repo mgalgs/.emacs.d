@@ -37,7 +37,10 @@ constrain the search to the region [START, END]."
                       (search-forward old-text search-end t))
             (replace-match new-text t t)
             (setq count (1+ count)))
-          (format "Replaced %d occurrence(s) of '%s' in %s" count old-text (buffer-name buf)))))))
+          (format "Replaced %d occurrence(s) of '%s' in %s"
+                  count
+                  (truncate-string-to-width old-text 20 nil nil "...")
+                  (buffer-name buf)))))))
 
 (defun m/gptel-tool-read-buffer (&optional buffer start end)
   "Return buffer content as string.
@@ -64,7 +67,7 @@ If START and END are specified, constrain search to that region."
           (while (and (< (point) search-end)
                       (search-forward search-text search-end t))
             (push (list (match-beginning 0) (match-end 0)) matches))
-          (nreverse matches))))))
+          (format "Matches: %s" (nreverse matches)))))))
 
 (defun m/gptel-tool-find-in-file-regexp (regexp &optional buffer start end)
   "Find REGEXP in BUFFER (or current buffer) and return positions.
@@ -81,11 +84,11 @@ If START and END are specified, constrain search to that region."
           (while (and (< (point) search-end)
                       (re-search-forward regexp search-end t))
             (push (list (match-beginning 0) (match-end 0)) matches))
-          (nreverse matches))))))
+          (format "Matches: %s" (nreverse matches)))))))
 
 (defun m/gptel-tool-list-buffers ()
   "Return a list of live buffer names."
-  (mapcar #'buffer-name (buffer-list)))
+  (format "Buffer names: %s" (mapcar #'buffer-name (buffer-list))))
 
 (defun m/gptel-tool-describe-variable (name)
   "Return `describe-variable' output (string) for variable NAME."
@@ -132,7 +135,7 @@ Can be used like so: (setq gptel-tools (m/get-gptel-tools))"
   (list
    (gptel-make-tool
     :name "replace_region"
-    :function #'m/gptel-tool-replace-region
+    :function 'm/gptel-tool-replace-region
     :description "Replace text in a region"
     :args (list '(:name "start" :type integer :description "Start position")
                 '(:name "end"   :type integer :description "End position")
@@ -140,7 +143,7 @@ Can be used like so: (setq gptel-tools (m/get-gptel-tools))"
                 '(:name "buffer" :type string :description "Optional buffer name" :optional t)))
    (gptel-make-tool
     :name "find_and_replace"
-    :function #'m/gptel-tool-find-and-replace
+    :function 'm/gptel-tool-find-and-replace
     :description "Find and replace text in a buffer"
     :args (list '(:name "old-text" :type string :description "Text to find")
                 '(:name "new-text" :type string :description "Replacement text")
@@ -149,14 +152,14 @@ Can be used like so: (setq gptel-tools (m/get-gptel-tools))"
                 '(:name "end" :type integer :description "End position for constrained search" :optional t)))
    (gptel-make-tool
     :name "read_buffer"
-    :function #'m/gptel-tool-read-buffer
+    :function 'm/gptel-tool-read-buffer
     :description "Read buffer content as string"
     :args (list '(:name "buffer" :type string :description "Optional buffer name" :optional t)
                 '(:name "start" :type integer :description "Start position for reading" :optional t)
                 '(:name "end" :type integer :description "End position for reading" :optional t)))
    (gptel-make-tool
     :name "find_in_file"
-    :function #'m/gptel-tool-find-in-file
+    :function 'm/gptel-tool-find-in-file
     :description "Find text in buffer and return positions"
     :args (list '(:name "search-text" :type string :description "Text to find")
                 '(:name "buffer" :type string :description "Optional buffer name" :optional t)
@@ -164,7 +167,7 @@ Can be used like so: (setq gptel-tools (m/get-gptel-tools))"
                 '(:name "end" :type integer :description "End position for constrained search" :optional t)))
    (gptel-make-tool
     :name "find_in_file_regexp"
-    :function #'m/gptel-tool-find-in-file-regexp
+    :function 'm/gptel-tool-find-in-file-regexp
     :description "Find regexp in buffer and return positions"
     :args (list '(:name "regexp" :type string :description "Regular expression to find")
                 '(:name "buffer" :type string :description "Optional buffer name" :optional t)
@@ -172,22 +175,22 @@ Can be used like so: (setq gptel-tools (m/get-gptel-tools))"
                 '(:name "end" :type integer :description "End position for constrained search" :optional t)))
    (gptel-make-tool
     :name "list_buffers"
-    :function #'m/gptel-tool-list-buffers
+    :function 'm/gptel-tool-list-buffers
     :description "List open buffer names"
     :args nil)
    (gptel-make-tool
     :name "describe_variable"
-    :function #'m/gptel-tool-describe-variable
+    :function 'm/gptel-tool-describe-variable
     :description "Get value for an Emacs Lisp variable."
     :args (list '(:name "name" :type string :description "Variable name")))
    (gptel-make-tool
     :name "describe_function"
-    :function #'m/gptel-tool-describe-function
+    :function 'm/gptel-tool-describe-function
     :description "Get docstring for an Emacs Lisp function."
     :args (list '(:name "name" :type string :description "Function name")))
    (gptel-make-tool
     :name "browse_web"
-    :function #'m/gptel-tool-browse-web
+    :function 'm/gptel-tool-browse-web
     :description "Fetch the plain text content of a webpage via URL."
     :args (list '(:name "url" :type string :description "URL of the page to fetch")))))
 
