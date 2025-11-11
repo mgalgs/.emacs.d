@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Read stdin into a temp file and open it in Emacs view-mode
+
+tmp=$(mktemp)
+cat >"$tmp"
+
+SCRIPT="
+(progn
+  (load-file (expand-file-name \"~/.emacs.d/bin/eless.el\"))
+  (eless \"$tmp\"))"
+
+emacsclient --tty --suppress-output --eval "$SCRIPT"
