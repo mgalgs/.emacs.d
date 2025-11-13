@@ -834,18 +834,8 @@ With a prefix arg, just goto this file's includes."
 to it."
   (interactive)
   (let ((tmux-cmd (format "tmux new-window -c \"%s\""
-                          (expand-file-name default-directory)))
-        (wmctrl-cmd (format "wmctrl -a 'zsh - \"%s@%s: '"
-                            (user-login-name)
-                            system-name)))
-    (message "Trying %s" tmux-cmd)
-    (shell-command tmux-cmd)
-    (cl-dotimes (i 5)
-      (sit-for i)
-      (message "Trying %s" wmctrl-cmd)
-      (when (= 0 (shell-command wmctrl-cmd))
-        (cl-return))
-      (message "Couldn't find the window on iteration %d" i))))
+                          (expand-file-name default-directory))))
+    (shell-command tmux-cmd)))
 
 ;; Pull from PRIMARY (same as middle mouse click)
 ;;; from http://stackoverflow.com/a/28492272/209050
