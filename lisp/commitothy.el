@@ -33,10 +33,21 @@
     (message "Running commitothy cmd: %s" command)
     (shell-command-to-string command)))
 
+(defun commitothy--ascii-clean-text (text)
+  "Safely transliterate TEXT to ASCII using iconv if available."
+  (if (not (executable-find "iconv"))
+      text
+    (with-temp-buffer
+      (insert text)
+      (call-process-region (point-min) (point-max)
+                           "iconv" t t nil
+                           "-f" "utf-8" "-t" "ascii//TRANSLIT")
+      (buffer-string))))
+
 (defun commitothy--insert-output (output)
-  "Insert OUTPUT at point and fill paragraphs."
+  "Insert OUTPUT at point. Also fills paragraphs and cleans output (to ascii)."
   (let ((start (point)))
-    (insert output)
+    (insert (commitothy--ascii-clean-text output))
     ;; We don't want to fill code review, if any. Search back for beginning of code
     ;; review block that signals the end of the commit message.
     (when (search-backward-regexp "^# \\*\\*\\* CODE REVIEW" nil t)
