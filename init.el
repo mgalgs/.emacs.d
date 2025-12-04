@@ -1031,10 +1031,10 @@ eslint command line args with -c"
                           google/gemini-2.5-pro
                           moonshotai/kimi-k2
                           moonshotai/kimi-k2-0905:exacto
-                          openai/gpt-4o-2024-11-20
-                          openai/gpt-5
-                          openai/gpt-5-chat
-                          openai/gpt-oss-120b
+                          openai/gpt-5.1
+                          openai/gpt-5.1-chat
+                          openai/gpt-5.1-codex
+                          openai/gpt-5.1-codex-mini
                           qwen/qwen3-235b-a22b-2507
                           qwen/qwen3-235b-a22b-thinking-2507
                           qwen/qwen3-coder
@@ -1047,7 +1047,7 @@ eslint command line args with -c"
                           z-ai/glm-4.6
                           z-ai/glm-4.6:exacto)
         m--augmented-models (m/augment-openrouter-models-list m--gptel-models)
-        gptel-model 'openai/gpt-5-chat
+        gptel-model 'openai/gpt-5.1-chat
         gptel-backend (gptel-make-openai "OpenRouter"
                         :host "openrouter.ai"
                         :endpoint "/api/v1/chat/completions"
@@ -1402,7 +1402,7 @@ eslint command line args with -c"
              commitothy-improve-commit-message
              commitothy-show-code-review-for-rev)
   :custom
-  (commitothy-model "openai/gpt-5-chat")
+  (commitothy-model "openai/gpt-5.1-chat")
   (commitothy-options '("--code-review" "--consider-recent-patches"))
   :bind
   (:map
