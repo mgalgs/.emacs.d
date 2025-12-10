@@ -210,6 +210,7 @@
 ;;;###autoload
 (defun gptel-persist-enable ()
   "Enable gptel-persist-mode for all gptel buffers."
+  (gptel-persist--load)
   (add-hook 'gptel-mode-hook #'gptel-persist-mode))
 
 (provide 'gptel-persist)
