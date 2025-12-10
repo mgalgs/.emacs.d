@@ -1447,6 +1447,10 @@ eslint command line args with -c"
   :config
   (gptel-persist-enable))
 
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
 
 ;;; These lines should be last:
 ;; some keybindings
