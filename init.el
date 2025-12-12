@@ -1029,6 +1029,7 @@ eslint command line args with -c"
                           deepseek/deepseek-r1-0528
                           google/gemini-2.5-flash
                           google/gemini-2.5-pro
+                          google/gemini-3-pro-preview
                           moonshotai/kimi-k2
                           moonshotai/kimi-k2-0905:exacto
                           openai/gpt-5.1
