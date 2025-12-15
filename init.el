@@ -1033,9 +1033,9 @@ eslint command line args with -c"
                           moonshotai/kimi-k2
                           moonshotai/kimi-k2-0905:exacto
                           openai/gpt-5.1
-                          openai/gpt-5.1-chat
                           openai/gpt-5.1-codex
                           openai/gpt-5.1-codex-mini
+                          openai/gpt-5.2
                           qwen/qwen3-235b-a22b-2507
                           qwen/qwen3-235b-a22b-thinking-2507
                           qwen/qwen3-coder
