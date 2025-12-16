@@ -1048,7 +1048,7 @@ eslint command line args with -c"
                           z-ai/glm-4.6
                           z-ai/glm-4.6:exacto)
         m--augmented-models (m/augment-openrouter-models-list m--gptel-models)
-        gptel-model 'qwen/qwen3-max
+        gptel-model 'google/gemini-3-pro-preview
         gptel-backend (gptel-make-openai "OpenRouter"
                         :host "openrouter.ai"
                         :endpoint "/api/v1/chat/completions"
