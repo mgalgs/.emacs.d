@@ -687,8 +687,7 @@ installed/loaded.")
   :config
   (add-to-list 'eglot-server-programs `(python-mode . ,m/pyright-uvx-command))
   (add-to-list 'eglot-server-programs '(typescript-ts-mode . ("typescript-language-server" "--stdio")))
-  ;; (setq eglot-report-progress nil)
-  )
+  (add-to-list 'eglot-stay-out-of 'imenu)
 
 (use-package nginx-mode)
 
