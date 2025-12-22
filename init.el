@@ -974,7 +974,8 @@ eslint command line args with -c"
   :ensure t ; or :straight t
   :bind (("C-`"   . popper-toggle)
          ("C-~"   . popper-cycle)
-         ("C-M-`" . popper-toggle-type))
+         ("C-M-`" . popper-toggle-type)
+         ("C-C m C-SPC" . popper-toggle-type))
   :init
   (setq popper-reference-buffers
         '("\\*Messages\\*"
