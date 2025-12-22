@@ -1021,10 +1021,8 @@ eslint command line args with -c"
   (setq gptel-include-reasoning "*gptel-reasoning*")
 
   ;; ★ default model and backend ★
-  (setq m--gptel-models '(anthropic/claude-3.7-sonnet
-                          anthropic/claude-3.7-sonnet:thinking
-                          anthropic/claude-opus-4
-                          anthropic/claude-sonnet-4
+  (setq m--gptel-models '(anthropic/claude-opus-4.5
+                          anthropic/claude-sonnet-4.5
                           deepseek/deepseek-chat-v3-0324
                           deepseek/deepseek-r1-0528
                           google/gemini-2.5-flash
