@@ -304,10 +304,6 @@ installed/loaded.")
   :init
   (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on))
 
-(use-package cc-mode
-  :config
-  (m/l "init-linux-kernel.el"))
-
 (use-package iedit
   :bind
   (("C-;" . iedit-mode)
