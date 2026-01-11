@@ -304,6 +304,12 @@ installed/loaded.")
   :init
   (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on))
 
+(use-package cc-mode
+  :ensure nil
+  :config
+  ; Disable C-M-h since our UHK requires its use
+  (define-key c-mode-map (kbd "C-M-h") nil))
+
 (use-package iedit
   :bind
   (("C-;" . iedit-mode)
@@ -679,10 +685,12 @@ installed/loaded.")
   :hook
   ((python-mode . eglot-ensure)
    (rust-mode . eglot-ensure)
-   (typescript-ts-mode . eglot-ensure))
+   (typescript-ts-mode . eglot-ensure)
+   (c-mode-hook . eglot-ensure))
   :config
   (add-to-list 'eglot-server-programs `(python-mode . ,m/pyright-uvx-command))
   (add-to-list 'eglot-server-programs '(typescript-ts-mode . ("typescript-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(c-mode . ("clangd")))
   (add-to-list 'eglot-stay-out-of 'imenu))
 
 (use-package nginx-mode)
