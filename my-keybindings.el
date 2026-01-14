@@ -79,3 +79,6 @@
 (global-set-key (kbd "<f1>") 'delete-other-windows)
 (global-set-key (kbd "C-c m v") 'visual-line-mode)
 (global-set-key (kbd "C-c m C-r") 'commitothy-show-code-review-for-rev)
+
+;;; alias for `C-x #'
+(define-key server-mode-map (kbd "C-c RET") 'server-edit)
