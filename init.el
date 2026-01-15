@@ -952,7 +952,8 @@ eslint command line args with -c"
 
 (use-package olivetti
   :bind
-  (("C-c m m m o" . olivetti-mode)))
+  (("C-c m m m o" . olivetti-mode)
+   ("C-c m O" . olivetti-mode)))
 
 (use-package sudo-edit)
 
