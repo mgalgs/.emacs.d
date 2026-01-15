@@ -752,9 +752,27 @@ installed/loaded.")
 
 (use-package markdown-mode
   :mode (("\\.md" . markdown-mode)
-         ("\\.markdown" . markdown-mode))
+         ("\\.markdown" . markdown-mode)
+         ; gemini-cli/qwen-code/claude prompt buffers
+         ("/tmp/\\(gemini\\|qwen\\)-edit-[^/]+/buffer\\.txt\\'" . markdown-mode))
   :bind (:map markdown-mode-map
-              ("C-c `" . m/insert-markdown-code-block)))
+              ("C-c `" . m/insert-markdown-code-block))
+  :init
+  (defun m/prompt-edit-buffer-p (&optional filename)
+    "Non-nil when FILENAME looks like an AI prompt temp file.
+
+This is intended for buffers opened via $EDITOR from tools like Claude Code,
+Gemini CLI, or Qwen Code (typically under /tmp)."
+    (let ((f (or filename buffer-file-name "")))
+      (or (string-match-p "\\`/tmp/claude-prompt-[^/]+\\.md\\'" f)
+          (string-match-p "\\`/tmp/\\(gemini\\|qwen\\)-edit-[^/]+/buffer\\.txt\\'" f))))
+
+  (defun m/maybe-enable-olivetti-mode-for-prompt-buffers ()
+    (when (m/prompt-edit-buffer-p)
+      (olivetti-mode 1)
+      (end-of-buffer)))
+
+  (add-hook 'markdown-mode-hook #'m/maybe-enable-olivetti-mode-for-prompt-buffers))
 
 (use-package yaml-mode
   :mode ("\\.yml$" . yaml-mode))
