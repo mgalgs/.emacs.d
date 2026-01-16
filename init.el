@@ -769,6 +769,7 @@ Gemini CLI, or Qwen Code (typically under /tmp)."
 
   (defun m/maybe-enable-olivetti-mode-for-prompt-buffers ()
     (when (m/prompt-edit-buffer-p)
+      (setq-local require-final-newline nil)
       (olivetti-mode 1)
       (end-of-buffer)))
 
