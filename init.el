@@ -773,7 +773,8 @@ Gemini CLI, or Qwen Code (typically under /tmp)."
       (olivetti-mode 1)
       (end-of-buffer)))
 
-  (add-hook 'markdown-mode-hook #'m/maybe-enable-olivetti-mode-for-prompt-buffers))
+  (add-hook 'markdown-mode-hook #'m/maybe-enable-olivetti-mode-for-prompt-buffers)
+  (add-hook 'markdown-mode-hook #'visual-line-mode))
 
 (use-package yaml-mode
   :mode ("\\.yml$" . yaml-mode))
