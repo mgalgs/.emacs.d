@@ -762,10 +762,12 @@ installed/loaded.")
     "Non-nil when FILENAME looks like an AI prompt temp file.
 
 This is intended for buffers opened via $EDITOR from tools like Claude Code,
-Gemini CLI, or Qwen Code (typically under /tmp)."
+Gemini CLI, Qwen Code, or OpenCode (typically under /tmp)."
     (let ((f (or filename buffer-file-name "")))
       (or (string-match-p "\\`/tmp/claude-prompt-[^/]+\\.md\\'" f)
-          (string-match-p "\\`/tmp/\\(gemini\\|qwen\\)-edit-[^/]+/buffer\\.txt\\'" f))))
+          (string-match-p "\\`/tmp/\\(gemini\\|qwen\\)-edit-[^/]+/buffer\\.txt\\'" f)
+          ;; OpenCode prompt buffers look like /tmp/1768710630818.md
+          (string-match-p "\\`/tmp/[0-9]+\\.md\\'" f))))
 
   (defun m/maybe-enable-olivetti-mode-for-prompt-buffers ()
     (when (m/prompt-edit-buffer-p)
