@@ -1336,6 +1336,13 @@ eslint command line args with -c"
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref))
 
+(use-package consult-jq
+  :vc (:url "https://github.com/bigbuger/consult-jq"
+            :rev :newest
+            :branch "master")
+  :after consult
+  :commands (consult-jq consult-jq-without-candidate))
+
 (use-package orderless
   :ensure t
   :custom
