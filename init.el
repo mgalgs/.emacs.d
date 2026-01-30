@@ -1480,6 +1480,10 @@ eslint command line args with -c"
   :ensure t
   :init (doom-modeline-mode 1))
 
+(use-package company-emoji
+  :config
+  (add-to-list 'company-backends 'company-emoji))
+
 
 ;;; These lines should be last:
 ;; some keybindings
