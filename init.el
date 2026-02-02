@@ -1069,7 +1069,7 @@ eslint command line args with -c"
                           x-ai/grok-code-fast-1
                           z-ai/glm-4.7)
         m--augmented-models (m/augment-openrouter-models-list m--gptel-models)
-        gptel-model 'google/gemini-3-pro-preview
+        gptel-model 'openai/gpt-5.2
         gptel-backend (gptel-make-openai "OpenRouter"
                         :host "openrouter.ai"
                         :endpoint "/api/v1/chat/completions"
