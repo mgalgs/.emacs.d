@@ -1484,6 +1484,9 @@ eslint command line args with -c"
   :config
   (add-to-list 'company-backends 'company-emoji))
 
+(use-package tmux-view
+  :vc (:url "https://github.com/mgalgs/tmux-view.el" :rev :newest))
+
 
 ;;; These lines should be last:
 ;; some keybindings
