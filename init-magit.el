@@ -27,6 +27,7 @@
 
 (setq magit-status-sections-hook
       '(magit-insert-status-headers
+        magit-insert-worktrees
         magit-insert-merge-log
         magit-insert-rebase-sequence
         magit-insert-am-sequence
