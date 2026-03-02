@@ -642,10 +642,29 @@ installed/loaded.")
   :load-path "lisp/")
 
 (use-package recentf
+  :init
+  ;; Avoid blocking UI operations (e.g. consult-buffer) on recentf cleanup, and
+  ;; drop TRAMP entries entirely since probing them can be very slow.
+  (defun m/recentf-keep-local-readable-p (file)
+    "Keep only local, readable FILEs for `recentf'."
+    (and (not (file-remote-p file))
+         (file-readable-p file)))
+
+  (setq recentf-max-menu-items 100
+        recentf-max-saved-items 800
+        ;; Run cleanup when Emacs is idle instead of synchronously.
+        recentf-auto-cleanup 30
+        ;; Keep policy used by cleanup; excludes TRAMP without probing it.
+        recentf-keep '(m/recentf-keep-local-readable-p)
+        ;; Prevent remote entries from being added going forward.
+        recentf-exclude (append (list (lambda (f) (file-remote-p f)))
+                                (when (boundp 'recentf-exclude)
+                                  recentf-exclude)))
   :config
   (recentf-mode 1)
-  (setq recentf-max-menu-items 100
-        recentf-max-saved-items 800))
+  ;; Prune any already-saved TRAMP entries immediately.
+  (setq recentf-list (seq-remove (lambda (f) (file-remote-p f)) recentf-list))
+  (recentf-save-list))
 
 (use-package dockerfile-mode
   :mode (("Dockerfile\\'" . dockerfile-mode)))
@@ -1236,6 +1255,28 @@ eslint command line args with -c"
   :ensure t
   :custom
   (consult-narrow-key "<")
+  :init
+  (defvar m/consult-buffer-sources-buffers-only
+    '(consult--source-buffer
+      m/consult--magit-status-buffers)
+    "Sources used by `m/consult-switch-buffer'.
+
+This intentionally excludes sources like recent files and bookmarks, since
+those can include TRAMP entries (e.g. /sudo: or /ssh:) which can be slow to
+probe/preview.")
+
+  (defun m/consult-switch-buffer (&optional arg)
+    "Switch buffers quickly (buffers only).
+
+With ARG, pass through to `consult-buffer'."
+    (interactive "P")
+    (let ((consult-buffer-sources m/consult-buffer-sources-buffers-only))
+      (consult-buffer arg)))
+
+  ;; Use Consult to select xref locations with preview
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+
   :config
   (defun m/consult-git-grep-buffer-name ()
     "Run `consult-git-grep` with the current buffer name as the initial input."
@@ -1329,12 +1370,7 @@ eslint command line args with -c"
   ;; relevant when you use the default completion UI.
   :hook (completion-list-mode . consult-preview-at-point-mode)
 
-  ;; The :init configuration is always executed (Not lazy)
-  :init
-
-  ;; Use Consult to select xref locations with preview
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref))
+  )
 
 (use-package consult-jq
   :vc (:url "https://github.com/bigbuger/consult-jq"
