@@ -247,6 +247,15 @@ number."
   (concat (string-trim-right (shell-command-to-string "git rev-parse --show-toplevel"))
           "/"))
 
+(defun m/kill-which-function ()
+  "Copy the current function name (from `which-function-mode') to the kill ring."
+  (interactive)
+  (if-let ((func-name (which-function)))
+      (progn
+        (kill-new func-name)
+        (message "Copied: %s" func-name))
+    (message "No function at point")))
+
 (defun m/kill-where-i-am-relative-to-gitroot (include-line-number)
   "Like `m/kill-where-i-am' but is relative to the gitroot
 rather than the absolute path"

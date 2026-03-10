@@ -66,6 +66,7 @@ use-package declaration without commenting."
    ("C-c m m i" . m/kill-where-i-am)
    ("C-c m i" . m/kill-where-i-am-relative-to-gitroot)
    ("C-c m g" . m/grep-what-im-on)
+   ("C-c m m f" . m/kill-which-function)
    ("C-c m l" . m/kill-last-message)
    ("C-c m x" . m/xdg-open-each-in-region)
    ("C-c m m x" . m/shell-here)
