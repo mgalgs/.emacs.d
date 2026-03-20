@@ -46,6 +46,8 @@
         magit-insert-unpulled-from-upstream
         magit-insert-stashes))
 
+(define-key magit-mode-map (kbd "C-c C-p") #'magit-section-up)
+
 (font-lock-add-keywords 'emacs-lisp-mode
                         magit-font-lock-keywords)
 
