@@ -43,3 +43,5 @@ ido.last
 /tree-sitter/
 /ielm-history.eld
 /gptel-persist-cache/
+/.agent-shell/
+/agent/
