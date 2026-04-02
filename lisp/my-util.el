@@ -1037,7 +1037,8 @@ Returns a list of (symbol . plist).  If a model is missing, returns (id)."
             (goto-char beg) (insert "```\n"))
         ;; inline: single backticks
         (goto-char end) (insert "`")
-        (goto-char beg) (insert "`"))))
+        (goto-char beg) (insert "`")
+        (goto-char (+ end 2)))))
 
    ;; beginning of empty line
    ((and (bolp)
