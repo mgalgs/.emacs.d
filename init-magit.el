@@ -37,8 +37,8 @@
         magit-insert-bisect-log
         magit-insert-unstaged-changes
         magit-insert-staged-changes
-        magit-insert-unpushed-cherries
         magit-insert-untracked-files
+        magit-insert-unpushed-cherries
         magit-insert-recent-commits
         magit-insert-unpulled-from-pushremote
         magit-insert-unpushed-to-upstream
