@@ -64,11 +64,14 @@ a non-cycling command breaks the sequence."
                         (eq (buffer-local-value 'major-mode buf)
                             'magit-status-mode))
                       (buffer-list))))
+  (setq m/magit--cycle-buffers
+        (seq-filter #'buffer-live-p m/magit--cycle-buffers))
   (let* ((bufs m/magit--cycle-buffers)
          (len (length bufs))
          (pos (seq-position bufs (current-buffer))))
     (cond
-     ((< len 2) (message "No other magit status buffers"))
+     ((zerop len) (message "No magit status buffers"))
+     ((and pos (< len 2)) (message "No other magit status buffers"))
      (pos (switch-to-buffer
             (nth (mod (+ pos (if reverse -1 1)) len) bufs)))
      (t (switch-to-buffer (car bufs))))))
