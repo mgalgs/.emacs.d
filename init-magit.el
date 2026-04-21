@@ -46,6 +46,41 @@
         magit-insert-unpulled-from-upstream
         magit-insert-stashes))
 
+(defvar m/magit--cycle-buffers nil
+  "Snapshot of magit status buffers for the current cycling sequence.")
+
+(defun m/magit-cycle-status-buffers (&optional reverse)
+  "Cycle to the next magit-status-mode buffer.
+With REVERSE non-nil, cycle in the opposite direction.
+The buffer list is snapshotted at the start of a cycling
+sequence (ordered by most recently visited) and reused until
+a non-cycling command breaks the sequence."
+  (interactive)
+  ;; Snapshot on first call of a cycling sequence.
+  (unless (memq last-command '(m/magit-cycle-status-buffers
+                                m/magit-cycle-status-buffers-reverse))
+    (setq m/magit--cycle-buffers
+          (seq-filter (lambda (buf)
+                        (eq (buffer-local-value 'major-mode buf)
+                            'magit-status-mode))
+                      (buffer-list))))
+  (let* ((bufs m/magit--cycle-buffers)
+         (len (length bufs))
+         (pos (seq-position bufs (current-buffer))))
+    (cond
+     ((< len 2) (message "No other magit status buffers"))
+     (pos (switch-to-buffer
+            (nth (mod (+ pos (if reverse -1 1)) len) bufs)))
+     (t (switch-to-buffer (car bufs))))))
+
+(defun m/magit-cycle-status-buffers-reverse ()
+  "Cycle to the previous magit-status-mode buffer."
+  (interactive)
+  (m/magit-cycle-status-buffers t))
+
+(define-key magit-status-mode-map (kbd "C-t") #'m/magit-cycle-status-buffers)
+(define-key magit-status-mode-map (kbd "C-y") #'m/magit-cycle-status-buffers-reverse)
+
 (define-key magit-mode-map (kbd "C-c C-p") #'magit-section-up)
 
 (font-lock-add-keywords 'emacs-lisp-mode
