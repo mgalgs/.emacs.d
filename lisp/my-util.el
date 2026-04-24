@@ -225,7 +225,9 @@
         (count-lines (point-min) (point))))))
 
 (defun mgalgs--get-where-i-am (include-line-number)
-  (let ((the-path buffer-file-name)
+  (let ((the-path (or buffer-file-name
+                      (and (derived-mode-p 'magit-mode)
+                           (expand-file-name default-directory))))
         (suffix (if include-line-number
                     (concat ":"
                             (number-to-string (line-number-at-pos)))
