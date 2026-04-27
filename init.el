@@ -947,10 +947,6 @@ eslint command line args with -c"
 
 (use-package debbugs)
 
-(use-package git-timemachine
-  :bind
-  (("C-c m C-m" . git-timemachine)))
-
 ;;; override `vc-git-find-file-hook' due to
 ;;; http://debbugs.gnu.org/cgi/bugreport.cgi?bug=21559
 (require 'vc-git)
