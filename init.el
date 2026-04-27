@@ -21,9 +21,12 @@ use-package declaration without commenting."
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (m/l "init-straight.el")
-(m/l "init-dashboard.el")
 
-(setq initial-buffer-choice #'m/dashboard)
+(use-package init-dashboard
+  :load-path "."
+  :bind (("C-c m C-m" . m/dashboard))
+  :init
+  (setq initial-buffer-choice #'m/dashboard))
 
 ;; workaround for https://lists.gnu.org/archive/html/emacs-devel/2015-07/msg00251.html
 ;; remove once http://lists.gnu.org/archive/html/emacs-diffs/2015-03/msg00137.html is included in a stable release
