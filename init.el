@@ -23,7 +23,7 @@ use-package declaration without commenting."
 (m/l "init-straight.el")
 
 (use-package init-dashboard
-  :load-path "."
+  :load-path "lisp/"
   :bind (("C-c m C-m" . m/dashboard))
   :init
   (setq initial-buffer-choice #'m/dashboard))
