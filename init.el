@@ -798,7 +798,7 @@ Gemini CLI, Qwen Code, or OpenCode (typically under /tmp)."
   (defun m/maybe-enable-olivetti-mode-for-prompt-buffers ()
     (when (m/prompt-edit-buffer-p)
       (setq-local require-final-newline nil)
-      (olivetti-mode 1)
+      (m/writing-mode 1)
       (end-of-buffer)))
 
   (add-hook 'markdown-mode-hook #'m/maybe-enable-olivetti-mode-for-prompt-buffers)
@@ -996,8 +996,14 @@ eslint command line args with -c"
 
 (use-package olivetti
   :bind
-  (("C-c m m m o" . olivetti-mode)
-   ("C-c m O" . olivetti-mode)))
+  (("C-c m m m o" . olivetti-mode)))
+
+(use-package topspace)
+
+(use-package init-writing
+  :ensure nil
+  :load-path "lisp/"
+  :bind (("C-c m O" . m/writing-mode)))
 
 (use-package sudo-edit)
 
