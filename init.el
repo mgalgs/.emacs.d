@@ -2,6 +2,10 @@
 (unless (server-running-p)
   (server-start))
 
+(let ((claude-notes "~/src/claude-config/emacs.d/claude-notes.el"))
+  (when (file-exists-p claude-notes)
+    (load claude-notes)))
+
 ;; reduce the frequency of garbage collection by making it happen on
 ;; each 50MB of allocated data (the default is on every 0.76MB)
 ;; (especially useful for speeding up lsp-mode)
