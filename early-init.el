@@ -1,5 +1,6 @@
-;; Disable JIT native compilation — MELPA ships .elc files compiled on
-;; Emacs 31, which bake in runtime calls to compile-time macros
-;; (incf, static-when, etc.) that don't exist as functions on Emacs 30.
-;; The native compiler reproduces the same breakage when JIT-compiling.
-(setq native-comp-jit-compilation nil)
+;; Disable native compilation entirely — .eln files go stale when
+;; packages update their macro environments (compat, etc.) and produce
+;; inscrutable wrong-number-of-arguments errors.  The performance
+;; benefit is negligible for interactive use.
+(setq native-comp-jit-compilation nil
+      native-comp-async-jobs-number 0)
