@@ -71,6 +71,10 @@ Intended for use in `magit-status-mode-hook'."
   (forward-line -1)
   (beginning-of-line))
 
+(defvar-local m/dashboard--last-project nil
+  "The last project directory point was on, used to restore position.")
+(put 'm/dashboard--last-project 'permanent-local t)
+
 (defun m/dashboard--project-on-line ()
   "Return the project directory for the current line, or nil."
   (get-text-property (line-beginning-position) 'dashboard-project))
@@ -79,6 +83,7 @@ Intended for use in `magit-status-mode-hook'."
   "Open magit-status for the project on the current line."
   (interactive)
   (when-let ((dir (m/dashboard--project-on-line)))
+    (setq m/dashboard--last-project dir)
     (if (file-directory-p dir)
         (magit-status dir)
       (message "Directory no longer exists: %s" dir))))
@@ -97,37 +102,44 @@ Intended for use in `magit-status-mode-hook'."
   (m/dashboard--render))
 
 (defun m/dashboard--render ()
-  "Render the dashboard into `m/dashboard-buffer-name'."
-  (let ((buf (get-buffer-create m/dashboard-buffer-name)))
-    (with-current-buffer buf
-      (let ((inhibit-read-only t)
-            (line (line-number-at-pos)))
-        (erase-buffer)
-        (m/dashboard-mode)
-        (insert (propertize "Projects" 'face 'bold) "\n\n")
-        (if (null m/dashboard-projects)
-            (insert (propertize "  No projects yet. Open magit-status in a repo to add one."
-                                'face 'font-lock-comment-face))
-          (dolist (dir m/dashboard-projects)
-            (let ((name (file-name-nondirectory (directory-file-name (expand-file-name dir))))
-                  (start (point)))
-              (insert (propertize (concat "  " name) 'face 'font-lock-keyword-face)
-                      (propertize (concat "  " dir) 'face 'font-lock-comment-face)
-                      "\n")
-              (put-text-property start (point) 'dashboard-project dir))))
-        ;; Restore cursor position, defaulting to first project line.
-        (goto-char (point-min))
-        (let ((target (if (= line 1) 3 line)))
-          (forward-line (1- (min target (count-lines (point-min) (point-max))))))
-        (beginning-of-line)))
-    buf))
+  "Render the dashboard in the current buffer."
+  (let ((inhibit-read-only t)
+        (prev-project (or (m/dashboard--project-on-line)
+                          m/dashboard--last-project)))
+    (erase-buffer)
+    (m/dashboard-mode)
+    (setq m/dashboard--last-project prev-project)
+    (insert (propertize "Projects" 'face 'bold) "\n\n")
+    (if (null m/dashboard-projects)
+        (insert (propertize "  No projects yet. Open magit-status in a repo to add one."
+                            'face 'font-lock-comment-face))
+      (dolist (dir m/dashboard-projects)
+        (let ((name (file-name-nondirectory (directory-file-name (expand-file-name dir))))
+              (start (point)))
+          (insert (propertize (concat "  " name) 'face 'font-lock-keyword-face)
+                  (propertize (concat "  " dir) 'face 'font-lock-comment-face)
+                  "\n")
+          (put-text-property start (point) 'dashboard-project dir))))
+    (goto-char (point-min))
+    (forward-line 2)
+    (when prev-project
+      (let ((found nil))
+        (save-excursion
+          (goto-char (point-min))
+          (while (and (not found) (not (eobp)))
+            (when (equal (m/dashboard--project-on-line) prev-project)
+              (setq found (point)))
+            (forward-line 1)))
+        (when found (goto-char found))))
+    (beginning-of-line)))
 
 ;;;###autoload
 (defun m/dashboard ()
   "Show the project dashboard."
   (interactive)
   (m/dashboard--load-projects)
-  (switch-to-buffer (m/dashboard--render)))
+  (switch-to-buffer (get-buffer-create m/dashboard-buffer-name))
+  (m/dashboard--render))
 
 ;; Load persisted projects at init time.
 (m/dashboard--load-projects)
