@@ -1,5 +1,7 @@
 ;;; init-dashboard.el --- Minimal project dashboard  -*- lexical-binding: t; -*-
 
+(require 'cl-lib)
+
 (defvar m/dashboard-projects-file
   (expand-file-name "dashboard-projects" user-emacs-directory)
   "File storing the persisted list of project directories (most recent first).")
@@ -61,8 +63,11 @@ Intended for use in `magit-status-mode-hook'."
 (defun m/dashboard-prev ()
   "Move to the previous project line."
   (interactive)
-  (forward-line -1)
-  (beginning-of-line))
+  (let ((prev (line-beginning-position)))
+    (forward-line -1)
+    (unless (m/dashboard--project-on-line)
+      (goto-char prev))
+    (beginning-of-line)))
 
 (defvar-local m/dashboard--last-project nil
   "The last project directory point was on, used to restore position.")
@@ -132,30 +137,33 @@ C-g cancels and restores the full list."
         (abort-recursive-edit)))
     (setq m/dashboard--filter nil)
     (m/dashboard--render)
-    (unwind-protect
-        (progn
-          (minibuffer-with-setup-hook
-              (lambda ()
-                (add-hook 'post-command-hook
-                          (lambda ()
-                            (let ((input (minibuffer-contents)))
-                              (m/dashboard--filter-do-in-window
-                               dashboard-buf
-                               (lambda ()
-                                 (setq m/dashboard--filter
-                                       (unless (string-empty-p input) input))
-                                 (m/dashboard--render)))))
-                          nil t))
+    (let ((prev-input ""))
+      (unwind-protect
+          (progn
+            (minibuffer-with-setup-hook
+                (lambda ()
+                  (add-hook 'post-command-hook
+                            (lambda ()
+                              (let ((input (minibuffer-contents)))
+                                (unless (equal input prev-input)
+                                  (setq prev-input input)
+                                  (m/dashboard--filter-do-in-window
+                                   dashboard-buf
+                                   (lambda ()
+                                     (setq m/dashboard--filter
+                                           (unless (string-empty-p input) input))
+                                     (m/dashboard--render))))))
+                            nil t))
             (read-from-minibuffer "Filter: " nil filter-map))
           (setq accepted t)
           (goto-char (point-min))
           (forward-line 2)
           (beginning-of-line))
-      (unless accepted
-        (when (buffer-live-p dashboard-buf)
-          (with-current-buffer dashboard-buf
-            (setq m/dashboard--filter nil)
-            (m/dashboard--render)))))))
+        (unless accepted
+          (when (buffer-live-p dashboard-buf)
+            (with-current-buffer dashboard-buf
+              (setq m/dashboard--filter nil)
+              (m/dashboard--render))))))))
 
 (defun m/dashboard--render ()
   "Render the dashboard in the current buffer."
