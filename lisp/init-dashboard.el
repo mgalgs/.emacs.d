@@ -216,6 +216,11 @@ C-g cancels and restores the full list."
   "Show the project dashboard."
   (interactive)
   (m/dashboard--load-projects)
+  (let ((before (length m/dashboard-projects)))
+    (setq m/dashboard-projects
+          (cl-remove-if-not #'file-directory-p m/dashboard-projects))
+    (when (/= before (length m/dashboard-projects))
+      (m/dashboard--save-projects)))
   (switch-to-buffer (get-buffer-create m/dashboard-buffer-name))
   (m/dashboard--render))
 
