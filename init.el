@@ -28,7 +28,14 @@ use-package declaration without commenting."
 
 (use-package init-dashboard
   :load-path "lisp/"
-  :bind (("C-c m C-m" . m/dashboard))
+  :bind (("C-c m C-m" . m/dashboard)
+         :map m/dashboard-mode-map
+         ("n" . m/dashboard-next)
+         ("p" . m/dashboard-prev)
+         ("RET" . m/dashboard-open-project)
+         ("g" . m/dashboard-refresh)
+         ("d" . m/dashboard-remove-project)
+         ("/" . m/dashboard-filter))
   :init
   (setq initial-buffer-choice #'m/dashboard))
 
