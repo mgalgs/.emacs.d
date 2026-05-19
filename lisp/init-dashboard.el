@@ -43,14 +43,7 @@ Intended for use in `magit-status-mode-hook'."
 
 ;;; --- Dashboard buffer ---
 
-(defvar m/dashboard-mode-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "n") #'m/dashboard-next)
-    (define-key map (kbd "p") #'m/dashboard-prev)
-    (define-key map (kbd "RET") #'m/dashboard-open-project)
-    (define-key map (kbd "g") #'m/dashboard-refresh)
-    (define-key map (kbd "d") #'m/dashboard-remove-project)
-    map)
+(defvar m/dashboard-mode-map (make-sparse-keymap)
   "Keymap for `m/dashboard-mode'.")
 
 (define-derived-mode m/dashboard-mode special-mode "Dashboard"
@@ -75,6 +68,10 @@ Intended for use in `magit-status-mode-hook'."
   "The last project directory point was on, used to restore position.")
 (put 'm/dashboard--last-project 'permanent-local t)
 
+(defvar-local m/dashboard--filter nil
+  "Current filter string, or nil for no filter.")
+(put 'm/dashboard--filter 'permanent-local t)
+
 (defun m/dashboard--project-on-line ()
   "Return the project directory for the current line, or nil."
   (get-text-property (line-beginning-position) 'dashboard-project))
@@ -97,9 +94,68 @@ Intended for use in `magit-status-mode-hook'."
     (m/dashboard-refresh)))
 
 (defun m/dashboard-refresh ()
-  "Refresh the dashboard buffer."
+  "Refresh the dashboard buffer and clear any active filter."
   (interactive)
+  (setq m/dashboard--filter nil)
   (m/dashboard--render))
+
+(defun m/dashboard--filter-regexp (filter)
+  "Build a regexp from FILTER that matches all space-separated tokens in order."
+  (mapconcat #'regexp-quote (split-string (downcase filter)) ".*"))
+
+(defun m/dashboard--filter-do-in-window (dashboard-buf func)
+  "Call FUNC in the window displaying DASHBOARD-BUF."
+  (let ((win (get-buffer-window dashboard-buf)))
+    (when win (with-selected-window win (funcall func)))))
+
+(defun m/dashboard-filter ()
+  "Interactively filter the project list.
+Type to narrow results live.  C-n/C-p to navigate results.
+C-j to open the selected project.  RET accepts the filter.
+C-g cancels and restores the full list."
+  (interactive)
+  (let ((dashboard-buf (current-buffer))
+        (accepted nil)
+        (filter-map (make-sparse-keymap)))
+    (set-keymap-parent filter-map minibuffer-local-map)
+    (define-key filter-map (kbd "C-n")
+      (lambda () (interactive)
+        (m/dashboard--filter-do-in-window dashboard-buf #'m/dashboard-next)))
+    (define-key filter-map (kbd "C-p")
+      (lambda () (interactive)
+        (m/dashboard--filter-do-in-window dashboard-buf #'m/dashboard-prev)))
+    (define-key filter-map (kbd "C-j")
+      (lambda () (interactive)
+        (with-current-buffer dashboard-buf
+          (setq m/dashboard--filter nil)
+          (m/dashboard-open-project))
+        (abort-recursive-edit)))
+    (setq m/dashboard--filter nil)
+    (m/dashboard--render)
+    (unwind-protect
+        (progn
+          (minibuffer-with-setup-hook
+              (lambda ()
+                (add-hook 'post-command-hook
+                          (lambda ()
+                            (let ((input (minibuffer-contents)))
+                              (m/dashboard--filter-do-in-window
+                               dashboard-buf
+                               (lambda ()
+                                 (setq m/dashboard--filter
+                                       (unless (string-empty-p input) input))
+                                 (m/dashboard--render)))))
+                          nil t))
+            (read-from-minibuffer "Filter: " nil filter-map))
+          (setq accepted t)
+          (goto-char (point-min))
+          (forward-line 2)
+          (beginning-of-line))
+      (unless accepted
+        (when (buffer-live-p dashboard-buf)
+          (with-current-buffer dashboard-buf
+            (setq m/dashboard--filter nil)
+            (m/dashboard--render)))))))
 
 (defun m/dashboard--render ()
   "Render the dashboard in the current buffer."
@@ -109,17 +165,31 @@ Intended for use in `magit-status-mode-hook'."
     (erase-buffer)
     (m/dashboard-mode)
     (setq m/dashboard--last-project prev-project)
-    (insert (propertize "Projects" 'face 'bold) "\n\n")
-    (if (null m/dashboard-projects)
-        (insert (propertize "  No projects yet. Open magit-status in a repo to add one."
-                            'face 'font-lock-comment-face))
-      (dolist (dir m/dashboard-projects)
-        (let ((name (file-name-nondirectory (directory-file-name (expand-file-name dir))))
-              (start (point)))
-          (insert (propertize (concat "  " name) 'face 'font-lock-keyword-face)
-                  (propertize (concat "  " dir) 'face 'font-lock-comment-face)
-                  "\n")
-          (put-text-property start (point) 'dashboard-project dir))))
+    (insert (propertize "Projects" 'face 'bold)
+            (if m/dashboard--filter
+                (propertize (concat "  [" m/dashboard--filter "]")
+                            'face 'font-lock-string-face)
+              "")
+            "\n\n")
+    (let ((projects (if m/dashboard--filter
+                       (let ((re (m/dashboard--filter-regexp m/dashboard--filter)))
+                         (cl-remove-if-not
+                          (lambda (dir)
+                            (string-match-p re (downcase dir)))
+                          m/dashboard-projects))
+                     m/dashboard-projects)))
+      (if (null projects)
+          (insert (propertize (if m/dashboard--filter
+                                  "  No matching projects."
+                                "  No projects yet. Open magit-status in a repo to add one.")
+                              'face 'font-lock-comment-face))
+        (dolist (dir projects)
+          (let ((name (file-name-nondirectory (directory-file-name (expand-file-name dir))))
+                (start (point)))
+            (insert (propertize (concat "  " name) 'face 'font-lock-keyword-face)
+                    (propertize (concat "  " dir) 'face 'font-lock-comment-face)
+                    "\n")
+            (put-text-property start (point) 'dashboard-project dir)))))
     (goto-char (point-min))
     (forward-line 2)
     (when prev-project
