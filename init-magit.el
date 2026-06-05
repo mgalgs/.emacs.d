@@ -38,8 +38,8 @@
         magit-insert-unstaged-changes
         magit-insert-staged-changes
         magit-insert-untracked-files
-        magit-insert-unpushed-cherries
         magit-insert-recent-commits
+        magit-insert-unpushed-cherries
         magit-insert-unpulled-from-pushremote
         magit-insert-unpushed-to-upstream
         magit-insert-unpushed-to-pushremote
