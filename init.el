@@ -801,7 +801,7 @@ installed/loaded.")
 This is intended for buffers opened via $EDITOR from tools like Claude Code,
 Gemini CLI, Qwen Code, or OpenCode (typically under /tmp)."
     (let ((f (or filename buffer-file-name "")))
-      (or (string-match-p "\\`/tmp/claude-prompt-[^/]+\\.md\\'" f)
+      (or (string-match-p "\\`/tmp/\\(?:claude-[0-9]+/\\)?claude-prompt-[^/]+\\.md\\'" f)
           (string-match-p "\\`/tmp/\\(gemini\\|qwen\\)-edit-[^/]+/buffer\\.txt\\'" f)
           ;; OpenCode prompt buffers look like /tmp/1768710630818.md
           (string-match-p "\\`/tmp/[0-9]+\\.md\\'" f))))
