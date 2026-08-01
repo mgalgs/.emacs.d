@@ -2,6 +2,9 @@
 
 (require 'ox-md)
 
+(setq org-todo-keywords
+      '((sequence "TODO" "IN-PROGRESS" "|" "DONE")))
+
 (setq org-default-notes-file "~/notes/notes.org")
 (setq org-use-property-inheritance t)   ;for inheritance in matches
 ;; handy sparse tree shortcuts:
