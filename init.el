@@ -1100,6 +1100,7 @@ eslint command line args with -c"
                           openai/gpt-5.1-codex
                           openai/gpt-5.1-codex-mini
                           openai/gpt-5.2
+                          openai/gpt-5.6
                           qwen/qwen3-235b-a22b-2507
                           qwen/qwen3-235b-a22b-thinking-2507
                           qwen/qwen3-coder
@@ -1490,7 +1491,7 @@ With ARG, pass through to `consult-buffer'."
              commitothy-improve-commit-message
              commitothy-show-code-review-for-rev)
   :custom
-  (commitothy-model "openai/gpt-5.1-chat")
+  (commitothy-model "openai/gpt-5.6")
   (commitothy-options '("--code-review" "--consider-recent-patches"))
   :bind
   (:map
