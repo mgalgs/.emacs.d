@@ -316,7 +316,8 @@ installed/loaded.")
   ;; todo: make cycling global (not per-source):
   ;; https://github.com/emacs-helm/helm/issues/387
   ;; (setq helm-move-to-line-cycle-in-source t)
-  (setq helm-ls-git-show-abs-or-relative 'relative))
+  (setq helm-ls-git-show-abs-or-relative 'relative)
+  (global-set-key (kbd "C-x c") nil))
 
 (use-package shell
   :init
@@ -1361,6 +1362,7 @@ With ARG, pass through to `consult-buffer'."
          ;; ("M-g k" . consult-global-mark)
          ("M-g i" . consult-imenu)
          ("M-g I" . consult-imenu-multi)
+         ("C-x c i" . consult-imenu)
 
          ;; M-s bindings in `search-map'
          ;; ("M-s d" . consult-find)                  ;; Alternative: consult-fd
