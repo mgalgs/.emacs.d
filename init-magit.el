@@ -46,6 +46,39 @@
         magit-insert-unpulled-from-upstream
         magit-insert-stashes))
 
+(defun m/magit-worktrees-sort-by-head-date (worktrees)
+  "Return WORKTREES sorted by HEAD committer date, newest first.
+WORKTREES has the format returned by `magit-list-worktrees'.
+Worktrees with no commit (bare or removed) sort to the bottom.
+All commits share one object store, so a single git call fetches
+every date."
+  (let ((commits (delq nil (mapcar (lambda (wt) (nth 1 wt)) worktrees)))
+        (dates (make-hash-table :test 'equal)))
+    (when commits
+      (dolist (line (apply #'magit-git-lines
+                           "show" "-s" "--format=%H %ct" commits))
+        (when (string-match "\\`\\([0-9a-f]+\\) \\([0-9]+\\)\\'" line)
+          (puthash (match-string 1 line)
+                   (string-to-number (match-string 2 line))
+                   dates))))
+    (seq-sort-by
+     (lambda (wt)
+       (let ((commit (nth 1 wt)))
+         (or (and commit (gethash commit dates)) 0)))
+     #'> worktrees)))
+
+(define-advice magit-insert-worktrees
+    (:around (orig-fn &rest args) m/sort-by-head-date)
+  "Show the Worktrees section sorted by HEAD committer date, newest first.
+Only the display order changes: `magit-list-worktrees' still
+returns git's native order (primary first) for the rest of magit,
+which relies on it."
+  (cl-letf* ((orig (symbol-function 'magit-list-worktrees))
+             ((symbol-function 'magit-list-worktrees)
+              (lambda (&rest a)
+                (m/magit-worktrees-sort-by-head-date (apply orig a)))))
+    (apply orig-fn args)))
+
 (defvar m/magit--cycle-buffers nil
   "Snapshot of magit status buffers for the current cycling sequence.")
 
