@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;;; A few miscellaneous general keybindings: ;;;
 
 ;; Typical prefixes:

@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (require 'package)
 
 ;; don't let package init things. we'll use use-package for that.

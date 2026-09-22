@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (require 's)
 (require 'calc-bin)
 

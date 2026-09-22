@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (require 'thingatpt)
 (require 'consult)
 (require 'json)

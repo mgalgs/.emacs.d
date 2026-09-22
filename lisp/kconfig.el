@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;;; kconfig.el - a major mode for editing linux kernel config (Kconfig) files
 ;; Copyright © 2014 Yu Peng
 ;; Copyright © 2014 Michal Sojka

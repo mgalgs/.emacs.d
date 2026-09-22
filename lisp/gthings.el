@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (require 'magit)
 
 (setq gthings-completing-read 'ido-completing-read)

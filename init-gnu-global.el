@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (defun m/gtags-command-finished (process event)
   (message "%s: %s" process (replace-regexp-in-string (regexp-quote "\n")
 						      ""

@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (require 'server)
 (unless (server-running-p)
   (server-start))

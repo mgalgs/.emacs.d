@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;; set mark when we go backward-up-list:
 ;; (defadvice backward-up-list (around my-backward-up-list-advice activate)
 ;;   "stuffs"

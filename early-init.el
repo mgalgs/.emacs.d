@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;; Disable native compilation entirely — .eln files go stale when
 ;; packages update their macro environments (compat, etc.) and produce
 ;; inscrutable wrong-number-of-arguments errors.  The performance

@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; avoid conflicts with vc:
