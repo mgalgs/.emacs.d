@@ -1292,6 +1292,7 @@ probe/preview.")
 
 With ARG, pass through to `consult-buffer'."
     (interactive "P")
+    (defvar consult-buffer-sources)
     (let ((consult-buffer-sources m/consult-buffer-sources-buffers-only))
       (consult-buffer arg)))
 
@@ -1417,6 +1418,10 @@ With ARG, pass through to `consult-buffer'."
   (defun m/kill-current-buffer-embark (&optional arg)
     "Kill the current buffer candidate using Embark."
     (interactive "P")
+    ;; Must be special before embark is autoloaded, or the let binds lexically
+    (defvar embark-default-action-overrides)
+    (defvar embark-pre-action-hooks)
+    (defvar embark-quit-after-action)
     (let ((kill-buffer-query-functions (delq 'process-kill-buffer-query-function
                                              kill-buffer-query-functions))
           (embark-default-action-overrides '((buffer . kill-buffer)))
